@@ -15,6 +15,14 @@ class CreateTokensTable extends Migration
     {
         Schema::create('tokens', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('xcp_core_asset_name')->unique();
+            $table->string('name')->unique(); // Convenience
+            $table->string('type')->index();
+            $table->string('description')->nullable();
+            $table->string('image_url')->nullable();
+            $table->text('content')->nullable();
+            $table->timestamp('approved_at')->nullable();
+            $table->timestamp('rejected_at')->nullable();
             $table->timestamps();
         });
     }

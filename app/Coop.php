@@ -51,7 +51,7 @@ class Coop extends Model
      */
     public function farms()
     {
-        return $this->hasMany(Farm::class, 'id', 'coop_id');
+        return $this->hasMany(Farm::class, 'coop_id', 'id');
     }
 
     /**
