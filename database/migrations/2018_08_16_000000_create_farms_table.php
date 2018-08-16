@@ -15,6 +15,13 @@ class CreateFarmsTable extends Migration
     {
         Schema::create('farms', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('coop_id')->nullable()->index();
+            $table->unsignedInteger('xcp_core_credit_id')->index(); // Creation Event
+            $table->string('name')->unique();
+            $table->string('address')->unique();
+            $table->string('description');
+            $table->string('image_url');
+            $table->unsignedBigInteger('total_harvested')->default(0); // Convenience
             $table->timestamps();
         });
     }

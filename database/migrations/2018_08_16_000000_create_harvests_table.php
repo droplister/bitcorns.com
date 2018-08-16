@@ -15,6 +15,10 @@ class CreateHarvestsTable extends Migration
     {
         Schema::create('harvests', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('xcp_core_tx_index')->nullable()->index();
+            $table->unsignedBigInteger('quantity');
+            $table->unsignedBigInteger('quantity_per_crops');
+            $table->timestamp('scheduled_at');
             $table->timestamps();
         });
     }

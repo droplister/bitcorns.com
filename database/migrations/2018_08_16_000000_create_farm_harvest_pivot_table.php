@@ -14,8 +14,11 @@ class CreateFarmHarvestPivotTable extends Migration
     public function up()
     {
         Schema::create('farm_harvest_pivot', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->unsignedInteger('farm_id')->index();
+            $table->unsignedInteger('harvest_id')->index();
+            $table->unsignedInteger('coop_id')->nullable()->index();
+            $table->unsignedBigInteger('quantity');
+            $table->boolean('dryasabone')->default(0);
         });
     }
 
