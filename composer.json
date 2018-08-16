@@ -12,11 +12,12 @@
     ],
     "require": {
         "php": "^7.1.3",
+        "droplister/xcp-core": "dev-master",
         "fideloper/proxy": "^4.0",
+        "gstt/laravel-achievements": "^1.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "laravel/horizon": "^1.3",
-        "droplister/xcp-core": "dev-master"
+        "laravel/horizon": "^1.3"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

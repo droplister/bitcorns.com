@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Gstt\Achievements\AchievementsServiceProvider::class,
 
         /*
          * Application Service Providers...
