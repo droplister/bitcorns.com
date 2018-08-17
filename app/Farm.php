@@ -4,6 +4,7 @@ namespace App;
 
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
+use Droplister\XcpCore\App\Address;
 use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
@@ -16,15 +17,25 @@ class Farm extends Model
      * @var array
      */
     protected $fillable = [
-        'coop_id',
+        'xcp_core_address',
         'xcp_core_credit_id', 
+        'coop_id',
         'name',
         'address',
-        'description',
         'image_url',
+        'content',
         'total_harvested',
     ];
 
+    /**
+     * Address
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'xcp_core_address', 'address');
+    }
 
     /**
      * Coop

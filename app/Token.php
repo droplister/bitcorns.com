@@ -19,11 +19,12 @@ class Token extends Model
      */
     protected $fillable = [
         'xcp_core_asset_name',
+        'xcp_core_burn_tx_hash',
         'type',
         'name',
-        'content',
-        'description',
         'image_url',
+        'content',
+        'museumed_at',
         'approved_at',
         'rejected_at',
     ];
@@ -34,6 +35,7 @@ class Token extends Model
      * @var array
      */
     protected $dates = [
+        'museumed_at',
         'approved_at',
         'rejected_at',
     ];

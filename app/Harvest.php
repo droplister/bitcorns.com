@@ -15,8 +15,10 @@ class Harvest extends Model
      */
     protected $fillable = [
         'xcp_core_tx_index',
+        'name',
+        'content',
+        'image_url',
         'quantity',
-        'quantity_per_crops',
         'scheduled_at',
     ];
 

@@ -15,11 +15,11 @@ class CreateCoopsTable extends Migration
     {
         Schema::create('coops', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('farm_id')->index(); // Admin
+            $table->unsignedInteger('farm_id')->index(); // Owner
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('description');
             $table->string('image_url')->nullable();
+            $table->text('content');
             $table->unsignedBigInteger('total_harvested')->default(0); // Convenience
             $table->timestamps();
         });

@@ -19,8 +19,8 @@ class Coop extends Model
         'farm_id',
         'name',
         'slug',
-        'description',
         'image_url',
+        'content',
         'total_harvested',
         'deleted_at',
     ];
@@ -35,11 +35,11 @@ class Coop extends Model
     ];
 
     /**
-     * Admin
+     * Owner
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function admin()
+    public function owner()
     {
         return $this->belongsTo(Farm::class, 'farm_id', 'id');
     }
