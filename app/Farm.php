@@ -38,6 +38,16 @@ class Farm extends Model
     }
 
     /**
+     * Token Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tokenBalances()
+    {
+        return $this->hasMany(TokenBalance::class, 'xcp_core_address', 'address')->with('token');
+    }
+
+    /**
      * Coop
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

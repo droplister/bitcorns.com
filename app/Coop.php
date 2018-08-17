@@ -54,6 +54,17 @@ class Coop extends Model
         return $this->hasMany(Farm::class, 'coop_id', 'id');
     }
 
+
+    /**
+     * Token Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tokenBalances()
+    {
+        return $this->hasManyThrough(TokenBalance::class, Farm::class)->with('token');
+    }
+
     /**
      * Harvests
      * 

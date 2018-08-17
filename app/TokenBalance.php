@@ -20,6 +20,16 @@ class TokenBalance extends Balance
     }
 
     /**
+     * Token
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function token()
+    {
+        return $this->belongsTo(Token::class, 'asset_name', 'xcp_core_asset_name');
+    }
+
+    /**
      * Game Tokens
      */
     public function scopeGameTokens($query)
