@@ -13,8 +13,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'Droplister\XcpCore\App\Events\CreditWasCreated' => [
+            'App\Listeners\FarmListener',
+        ],
+        'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
+            'App\Listeners\NoCropsListener',
+        ],
         'Droplister\XcpCore\App\Events\DividendWasCreated' => [
-            'App\Listeners\BitcornHarvestListener',
+            'App\Listeners\HarvestListener',
         ],
     ];
 

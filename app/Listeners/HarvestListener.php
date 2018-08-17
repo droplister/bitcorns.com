@@ -6,7 +6,7 @@ use Droplister\XcpCore\App\Events\DividendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class BitcornHarvestListener
+class HarvestListener
 {
     /**
      * Handle the event.
