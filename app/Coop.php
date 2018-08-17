@@ -75,4 +75,18 @@ class Coop extends Model
         return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')
             ->withPivot('quantity', 'dryasabone');
     }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 }

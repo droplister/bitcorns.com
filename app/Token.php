@@ -5,12 +5,11 @@ namespace App;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Balance;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
-    use Achiever, Sluggable;
+    use Achiever;
 
     /**
      * The attributes that are mass assignable.
