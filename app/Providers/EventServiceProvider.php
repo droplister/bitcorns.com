@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'Droplister\XcpCore\App\Events\DividendWasCreated' => [
+            'App\Listeners\BitcornHarvestListener',
         ],
     ];
 
