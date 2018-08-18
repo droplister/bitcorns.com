@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Farm;
 use Droplister\XcpCore\App\Events\BalanceWasUpdated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,7 +17,14 @@ class NoCropsListener
      */
     public function handle(BalanceWasUpdated $event)
     {
-        // Check If First CROPS Credit
-        // Create New Farm
+        if($event->balance->asset === 'CROPS' && $event->balance->quantity === 0)
+        {
+            $farm = Farm::where('address', '=', $event->balance->address)->first();
+
+            if($farm)
+            {
+                // Handle That
+            }
+        }
     }
 }
