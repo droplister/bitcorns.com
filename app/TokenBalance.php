@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Droplister\XcpCore\App\Token;
+use App\Token;
 use Droplister\XcpCore\App\Balance;
 use Tightenco\Parental\HasParentModel;
 
