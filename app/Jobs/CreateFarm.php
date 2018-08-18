@@ -66,11 +66,10 @@ class CreateFarm implements ShouldQueue
      */
     private function getName()
     {
-        $rank = Farm::count();
         if($this->credit->action === 'issuance') return 'Genesis Farm';
-        if($this->credit->action === 'dividend') $ties = Farm::where('xcp_core_credit_id', '=', $this->credit->id)->count();
+        $rank = Farm::count();
 
-        return isset($ties) ? "Bitcorn Farm #{$rank}-{$ties}" : "Bitcorn Farm #{$rank}";
+        return "Bitcorn Farm #{$rank}";
     }
 
     /**
