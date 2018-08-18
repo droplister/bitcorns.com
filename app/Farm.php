@@ -44,7 +44,7 @@ class Farm extends Model
      */
     public function tokenBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'xcp_core_address', 'address')->with('token');
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->with('token');
     }
 
     /**
