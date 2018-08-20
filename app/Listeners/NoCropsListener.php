@@ -12,7 +12,7 @@ class NoCropsListener
     /**
      * Handle the event.
      *
-     * @param  BalanceWasUpdated  $event
+     * @param  \Droplister\XcpCore\App\Events\BalanceWasUpdated  $event
      * @return void
      */
     public function handle(BalanceWasUpdated $event)

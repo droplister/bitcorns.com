@@ -14,7 +14,7 @@ class MuseumListener
     /**
      * Handle the event.
      *
-     * @param  CreditWasCreated  $event
+     * @param  \Droplister\XcpCore\App\Events\CreditWasCreated  $event
      * @return void
      */
     public function handle(CreditWasCreated $event)
@@ -40,8 +40,8 @@ class MuseumListener
     /**
      * Generous Benefactors
      *
-     * @param  Token  $token
-     * @param  CreditWasCreated  $event
+     * @param  \App\Token  $token
+     * @param  \Droplister\XcpCore\App\Events\CreditWasCreated  $event
      * @return void
      */
     private function generousBenefactors(Token $token, CreditWasCreated $event)

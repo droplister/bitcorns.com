@@ -82,11 +82,12 @@ class Farm extends Model
     /**
      * Get Balance
      *
-     * @return \App\Balance
+     * @param  string  $asset_name
+     * @return \App\TokenBalance
      */
-    public function getTokenBalance($token)
+    public function getTokenBalance($asset_name)
     {
-        return $this->tokenBalances()->where('asset', '=', $token)->firstOrFail();
+        return $this->tokenBalances()->where('asset', '=', $asset_name)->firstOrFail();
     }
 
     /**

@@ -11,7 +11,7 @@ class HarvestListener
     /**
      * Handle the event.
      *
-     * @param  DividendWasCreated  $event
+     * @param  \Droplister\XcpCore\App\Events\DividendWasCreated  $event
      * @return void
      */
     public function handle(DividendWasCreated $event)

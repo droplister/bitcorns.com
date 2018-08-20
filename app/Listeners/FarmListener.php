@@ -12,7 +12,7 @@ class FarmListener
     /**
      * Handle the event.
      *
-     * @param  CreditWasCreated  $event
+     * @param  \Droplister\XcpCore\App\Events\CreditWasCreated  $event
      * @return void
      */
     public function handle(CreditWasCreated $event)
