@@ -17,14 +17,11 @@ class NoCropsListener
      */
     public function handle(BalanceWasUpdated $event)
     {
-        if($event->balance->asset === 'CROPS' && $event->balance->quantity === 0)
+        if($event->balance->asset === config('bitcorn.access_token') && $event->balance->quantity === 0)
         {
             $farm = Farm::where('address', '=', $event->balance->address)->first();
 
-            if($farm)
-            {
-                // Handle That
-            }
+            // Handle That
         }
     }
 }

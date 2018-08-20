@@ -17,7 +17,7 @@ class FarmListener
      */
     public function handle(CreditWasCreated $event)
     {
-        if($event->credit->asset === 'CROPS')
+        if($event->credit->asset === config('bitcorn.access_token'))
         {
             CreateFarm::dispatch($event->credit);
         }
