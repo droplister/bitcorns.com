@@ -17,11 +17,38 @@ class NoCropsListener
      */
     public function handle(BalanceWasUpdated $event)
     {
-        if($event->balance->asset === config('bitcorn.access_token') && $event->balance->quantity === 0)
+        // Farms Only
+        if($this->isAccessToken($event))
         {
+            // Get Farm
             $farm = Farm::where('address', '=', $event->balance->address)->first();
 
-            // Handle That
+            $this->updateAccess($farm, $event);
         }
+    }
+
+    /**
+     * Is Access Token
+     *
+     * @param  \Droplister\XcpCore\App\Events\BalanceWasUpdated  $event
+     * @return boolean
+     */
+    private function isAccessToken($event)
+    {
+        return $event->balance->asset === config('bitcorn.access_token');
+    }
+
+    /**
+     * Is Access Token
+     *
+     * @param  \App\Farm  $farm
+     * @param  \Droplister\XcpCore\App\Events\BalanceWasUpdated  $event
+     * @return \App\Farm
+     */
+    private function updateAccess($farm, $event)
+    {
+        $access = $event->balance->quantity > 0;
+
+        return $farm->update(['access' => $access]);
     }
 }
