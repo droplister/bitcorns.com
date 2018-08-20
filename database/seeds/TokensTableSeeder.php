@@ -13,7 +13,24 @@ class TokensTableSeeder extends Seeder
      */
     public function run()
     {
-        $tokens = [
+        $tokens = $this->getTokens();
+
+        foreach($tokens as $token)
+        {
+            $token['approved_at'] = Carbon::now();
+
+            Token::create($token);
+        }
+    }
+
+    /**
+     * Get Tokens
+     * 
+     * @return array
+     */
+    private function getTokens()
+    {
+        return [
             [
                 'type' => 'access',
                 'name' => 'CROPS',
@@ -43,12 +60,5 @@ class TokensTableSeeder extends Seeder
                 'content' => 'Squad Goals (SQUADGOALS:XCP) is the trophy token that will be awarded in the Year 2022 to the Bitcorns.com coop that harvests the most Bitcorn in total. Ownership will go to the coop\'s creator and one token will go to each member farm.',
             ]
         ];
-
-        foreach($tokens as $token)
-        {
-            $token['approved_at'] = Carbon::now();
-
-            Token::create($token);
-        }
     }
 }
