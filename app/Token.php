@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Throwable;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Balance;
@@ -57,5 +58,17 @@ class Token extends Model
     public function balances()
     {
         return $this->hasMany(Balance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Enforce Type Limit
+     */
+    public static function boot() {
+        static::creating(function (Token $token) {
+            if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
+                throw new Throwable('Token Limit Exceeded');
+            }
+        });
+        parent::boot();
     }
 }

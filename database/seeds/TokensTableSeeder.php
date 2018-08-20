@@ -1,6 +1,7 @@
 <?php
 
 use App\Token;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class TokensTableSeeder extends Seeder
@@ -45,13 +46,9 @@ class TokensTableSeeder extends Seeder
 
         foreach($tokens as $token)
         {
-            Token::create([
-                'name' => $token['name'],
-                'xcp_core_asset_name' => $token['xcp_core_asset_name'],
-                'type' => $token['type'],
-                'image_url' => $token['image_url'],
-                'content' => $token['content'],
-            ]);
+            $token['approved_at'] = Carbon::now();
+
+            Token::create($token);
         }
     }
 }

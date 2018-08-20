@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * One Admin Account
+     * Enforce User Limit
      */
     public static function boot() {
         static::creating(function () {
