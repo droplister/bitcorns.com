@@ -53,7 +53,6 @@ class Harvest extends Model
         return $this->belongsTo(Dividend::class, 'xcp_core_tx_index', 'tx_index');
     }
 
-
     /**
      * Transaction
      * 

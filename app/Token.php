@@ -22,13 +22,27 @@ class Token extends Model
     protected $fillable = [
         'xcp_core_asset_name',
         'xcp_core_burn_tx_hash',
+        'harvest_id',
         'type',
         'name',
         'image_url',
         'content',
+        'meta_data',
+        'meta_data->harvest_ranking',
+        'meta_data->overall_ranking',
         'museumed_at',
         'approved_at',
         'rejected_at',
+        'published_at',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta_data' => 'array',
     ];
 
     /**
@@ -40,6 +54,7 @@ class Token extends Model
         'museumed_at',
         'approved_at',
         'rejected_at',
+        'published_at',
     ];
 
     /**
@@ -60,6 +75,54 @@ class Token extends Model
     public function balances()
     {
         return $this->hasMany(Balance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Paid For
+     */
+    public function scopePaidFor($query)
+    {
+        return $query->whereNotNull('xcp_core_burn_tx_hash');
+    }
+
+    /**
+     * Museumed
+     */
+    public function scopeMuseumed($query)
+    {
+        return $query->whereNotNull('museumed_at');
+    }
+
+    /**
+     * Approved
+     */
+    public function scopeApproved($query)
+    {
+        return $query->whereNotNull('approved_at')->whereNull('rejected_at');
+    }
+
+    /**
+     * Rejected
+     */
+    public function scopeRejected($query)
+    {
+        return $query->whereNotNull('rejected_at');
+    }
+
+    /**
+     * Publishable
+     */
+    public function scopePublishable($query)
+    {
+        return $query->paidFor()->museumed()->approved();
+    }
+
+    /**
+     * Published
+     */
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
     }
 
     /**
