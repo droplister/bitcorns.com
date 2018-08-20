@@ -53,7 +53,6 @@ class CreateFarm implements ShouldQueue
             'xcp_core_credit_id' => $this->credit->id, 
         ],[
             'name' => $this->getName($this->credit),
-            'address' => $this->credit->address,
             'image_url' => $this->getImageUrl(),
             'content' => $this->getContent(),
         ]);
@@ -67,9 +66,8 @@ class CreateFarm implements ShouldQueue
     private function getName()
     {
         if($this->credit->action === 'issuance') return 'Genesis Farm';
-        $rank = Farm::count();
 
-        return "Bitcorn Farm #{$rank}";
+        return 'Bitcorn Farm #' . Farm::count();
     }
 
     /**
@@ -107,6 +105,6 @@ class CreateFarm implements ShouldQueue
         $author = array_rand($quotes); // key
         $quote = $quotes[$author];     // value
 
-        return "\"{$quote}\" &ndash; {$author}";
+        return '"' . $quote .'" - ' . $author;
     }
 }

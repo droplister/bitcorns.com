@@ -5,11 +5,12 @@ namespace App;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    use Achiever;
+    use Achiever, Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,7 @@ class Farm extends Model
         'xcp_core_credit_id', 
         'coop_id',
         'name',
-        'address',
+        'slug',
         'image_url',
         'content',
         'total_harvested',
@@ -76,5 +77,19 @@ class Farm extends Model
     {
         return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')
             ->withPivot('quantity', 'dryasabone');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'xcp_core_address'
+            ]
+        ];
     }
 }

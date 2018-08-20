@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'btc' => [
+            'driver' => 'session',
+            'provider' => 'farms',
+        ],
     ],
 
     /*
@@ -70,10 +75,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'farms' => [
+            'driver' => 'eloquent',
+            'model' => App\Farm::class,
+        ],
     ],
 
     /*
