@@ -77,8 +77,7 @@ class Farm extends Model
      */
     public function harvests()
     {
-        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')
-            ->withPivot('coop_id', 'quantity', 'dryasabone');
+        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')->withPivot('quantity');
     }
 
     /**
@@ -122,7 +121,10 @@ class Farm extends Model
         return [
             'slug' => [
                 'source' => 'xcp_core_address'
-            ]
+            ],
+            'method' => function ($string, $separator) {
+                return $string;
+            },
         ];
     }
 }

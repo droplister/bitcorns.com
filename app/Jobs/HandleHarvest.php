@@ -97,11 +97,12 @@ class HandleHarvest implements ShouldQueue
     {
         $farm = Farm::findBySlug($credit->address);
 
+        // Report DAAB
+
         return $farm->harvests()->syncWithoutDetaching([
             $this->harvest->id => [
                 'coop_id' => $farm->coop_id,
-                'quantity' => $credit->quantity,
-                'dryasabone' => $farm->isDAAB(),
+                'quantity' => $farm->isDAAB() ? 0 : $credit->quantity,
             ]
         ]);
     }

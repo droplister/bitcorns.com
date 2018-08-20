@@ -58,8 +58,8 @@ class CreateFarm implements ShouldQueue
     {
         return Farm::firstOrCreate([
             'xcp_core_address' => $this->credit->address,
-            'xcp_core_credit_id' => $this->credit->id, 
         ],[
+            'xcp_core_credit_id' => $this->credit->id,
             'name' => $this->getName($this->credit),
             'image_url' => $this->getImageUrl(),
             'content' => $this->getContent(),

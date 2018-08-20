@@ -72,8 +72,7 @@ class Coop extends Model
      */
     public function harvests()
     {
-        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')
-            ->withPivot('quantity', 'dryasabone');
+        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')->withPivot('quantity');
     }
 
     /**

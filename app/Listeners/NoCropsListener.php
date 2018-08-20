@@ -21,7 +21,7 @@ class NoCropsListener
         if($this->isAccessToken($event))
         {
             // Get Farm
-            $farm = Farm::where('address', '=', $event->balance->address)->first();
+            $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
 
             $this->updateAccess($farm, $event);
         }

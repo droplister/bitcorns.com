@@ -18,7 +18,6 @@ class CreateFarmHarvestPivotTable extends Migration
             $table->unsignedInteger('harvest_id')->index();
             $table->unsignedInteger('coop_id')->nullable()->index();
             $table->unsignedBigInteger('quantity');
-            $table->boolean('dryasabone')->default(0);
         });
     }
 

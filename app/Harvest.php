@@ -39,8 +39,7 @@ class Harvest extends Model
      */
     public function farms()
     {
-        return $this->belongsToMany(Farm::class, 'farm_harvest', 'harvest_id', 'farm_id')
-            ->withPivot('quantity', 'dryasabone');
+        return $this->belongsToMany(Farm::class, 'farm_harvest', 'harvest_id', 'farm_id')->withPivot('quantity');
     }
 
     /**
