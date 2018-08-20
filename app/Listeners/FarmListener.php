@@ -17,9 +17,21 @@ class FarmListener
      */
     public function handle(CreditWasCreated $event)
     {
-        if($event->credit->asset === config('bitcorn.access_token'))
+        // Farms Only
+        if($this->isAccessToken($event))
         {
             CreateFarm::dispatch($event->credit);
         }
+    }
+
+    /**
+     * Is Access Token
+     *
+     * @param  \Droplister\XcpCore\App\Events\CreditWasCreated  $event
+     * @return boolean
+     */
+    private function isAccessToken($event)
+    {
+        return $event->credit->asset === config('bitcorn.access_token');
     }
 }

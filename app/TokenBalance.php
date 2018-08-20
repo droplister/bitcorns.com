@@ -15,8 +15,18 @@ class TokenBalance extends Balance
         parent::boot();
 
         static::addGlobalScope(function ($query) {
-            $query->gameTokens();
+            $query->gamePlayers()->gameTokens();
         });
+    }
+
+    /**
+     * Farm
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function farm()
+    {
+        return $this->belongsTo(Farm::class, 'address', 'xcp_core_address');
     }
 
     /**
@@ -27,6 +37,20 @@ class TokenBalance extends Balance
     public function token()
     {
         return $this->belongsTo(Token::class, 'asset_name', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Game Players
+     */
+    public function scopeGamePlayers($query, $access_required=true)
+    {
+        $farms = Farm::query();
+
+        if($access_required) $farms = $farms->where('access', '=', 1);
+
+        $farms = $farms->pluck('xcp_core_address');
+
+        return $query->whereIn('address', $farms);
     }
 
     /**

@@ -7,7 +7,6 @@ use App\Traits\Achievable;
 use App\Traits\Touchable;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
-use Droplister\XcpCore\App\Balance;
 use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
@@ -68,13 +67,13 @@ class Token extends Model
     }
 
     /**
-     * Balances
+     * Token Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function balances()
+    public function tokenBalances()
     {
-        return $this->hasMany(Balance::class, 'asset', 'xcp_core_asset_name');
+        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
     }
 
     /**

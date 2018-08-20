@@ -23,6 +23,7 @@ class CreateFarmsTable extends Migration
             $table->string('image_url');
             $table->text('content');
             $table->unsignedBigInteger('total_harvested')->default(0); // Convenience
+            $table->boolean('access')->default(1);
             $table->timestamps();
         });
     }

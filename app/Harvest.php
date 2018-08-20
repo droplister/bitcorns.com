@@ -62,4 +62,12 @@ class Harvest extends Model
     {
         return $this->belongsTo(Transaction::class, 'xcp_core_tx_index', 'tx_index');
     }
+
+    /**
+     * Upcoming
+     */
+    public function scopeUpcoming($query)
+    {
+        return $query->whereNull('xcp_core_tx_index')->oldest('scheduled_at');
+    }
 }

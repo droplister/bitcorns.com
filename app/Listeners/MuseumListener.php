@@ -3,9 +3,8 @@
 namespace App\Listeners;
 
 use App\Token;
-use App\Achievements\Tokens\GenerousBenefactor;
 use App\Achievements\Tokens\PermanentCollection;
-use Droplister\XcpCore\App\Events\CreditWasCreated;
+use Droplister\XcpCore\App\Events\SendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -14,45 +13,35 @@ class MuseumListener
     /**
      * Handle the event.
      *
-     * @param  \Droplister\XcpCore\App\Events\CreditWasCreated  $event
+     * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
      * @return void
      */
-    public function handle(CreditWasCreated $event)
+    public function handle(SendWasCreated $event)
     {
         // Museum Only
-        if($event->credit->address === config('bitcorn.museum_address'))
+        if($this->isMuseumDonation($event))
         {
             // Game Tokens Only
-            if($token = Token::where('xcp_core_asset_name', '=', $event->credit->asset)->first())
+            if($token = Token::where('xcp_core_asset_name', '=', $event->send->asset)->first())
             {
                 // Record Time
                 $token->touchTime('museumed_at');
 
                 // Achievement!
                 $token->unlockIfLocked(new PermanentCollection());
-
-                // Achievement!
-                $this->generousBenefactors($token, $event);
             }
         }
     }
 
     /**
-     * Generous Benefactors
+     * Is Museum Donation
      *
-     * @param  \App\Token  $token
-     * @param  \Droplister\XcpCore\App\Events\CreditWasCreated  $event
-     * @return void
+     * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
+     * @return boolean
      */
-    private function generousBenefactors(Token $token, CreditWasCreated $event)
+    private function isMuseumDonation($event)
     {
-        // Museum Address
-        $museum = Farm::findBySlug(config('bitcorn.museum_address'));
-
-        // Total Donations
-        $donations = number_format($museum->getTokenBalance($event->credit->asset)->quantity_normalized, 0);
-
-        // Achievement!
-        $token->setProgress(new GenerousBenefactor(), $donations);
+        return $event->send->status === 'valid' &&
+               $event->send->destination === config('bitcorn.museum_address');
     }
 }

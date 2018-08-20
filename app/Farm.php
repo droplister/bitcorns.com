@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Achievable;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    use Achiever, Sluggable;
+    use Achievable, Achiever, Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +27,7 @@ class Farm extends Model
         'image_url',
         'content',
         'total_harvested',
+        'access',
     ];
 
     /**
@@ -45,7 +47,7 @@ class Farm extends Model
      */
     public function tokenBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->with('token');
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address');
     }
 
     /**
@@ -76,18 +78,38 @@ class Farm extends Model
     public function harvests()
     {
         return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')
-            ->withPivot('quantity', 'dryasabone');
+            ->withPivot('coop_id', 'quantity', 'dryasabone');
     }
 
     /**
-     * Get Balance
+     * Has Balance
      *
-     * @param  string  $asset_name
      * @return \App\TokenBalance
      */
-    public function getTokenBalance($asset_name)
+    public function hasBalance($asset_name)
     {
-        return $this->tokenBalances()->where('asset', '=', $asset_name)->firstOrFail();
+        return $this->tokenBalances()->where('asset', '=', $asset_name)->where('quantity', '>', 0)->exists();
+    }
+
+    /**
+     * Is DAAB
+     *
+     * @return boolean
+     */
+    public function isDAAB()
+    {
+        $token = Token::where('xcp_core_asset_name', '=', config('bitcorn.daab_token'))->first();
+
+        $token_balances = $token->tokenBalances()->with('farms')->orderBy('quantity', 'desc')->get();
+
+        foreach($token_balances as $token_balance)
+        {
+            if($token_balance->farm->hasBalance(config('bitcorn.daab_save_token'))) continue;
+
+            return $token_balance->farm->id === $this->id;
+        }
+
+        return false;
     }
 
     /**

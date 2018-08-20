@@ -14,5 +14,5 @@ class PermanentCollection extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = "This token is now permanently on display at the Bitcorn Museum.";
+    public $description = "This token is part of the Bitcorn Museum\'s permanent collection.";
 }

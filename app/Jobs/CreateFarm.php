@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Credit;
+use App\Farm;
+use Droplister\XcpCore\App\Credit;
+use App\Achievements\Farms\SaltOfTheEarth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,19 +18,19 @@ class CreateFarm implements ShouldQueue
     /**
      * Credit
      *
-     * @var \App\Credit
+     * @var \Droplister\XcpCore\App\Credit
      */
-    protected $this->credit;
+    protected $credit;
 
     /**
      * Create a new job instance.
      *
-     * @param  \App\Credit  $this->credit
+     * @param  \Droplister\XcpCore\App\Credit  $credit
      * @return void
      */
-    public function __construct(Credit $this->credit)
+    public function __construct(Credit $credit)
     {
-        $this->credit = $this->credit;
+        $this->credit = $credit;
     }
 
     /**
@@ -38,7 +40,13 @@ class CreateFarm implements ShouldQueue
      */
     public function handle()
     {
-        $this->createFarm();
+        $farm = $this->createFarm();
+
+        if($farm->wasRecentlyCreated)
+        {
+            // Achievement!
+            $farm->unlockIfLocked(new SaltOfTheEarth());
+        }
     }
 
     /**

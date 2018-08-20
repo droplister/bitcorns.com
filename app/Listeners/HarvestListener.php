@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Jobs\HandleHarvest;
 use Droplister\XcpCore\App\Events\DividendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,7 +17,24 @@ class HarvestListener
      */
     public function handle(DividendWasCreated $event)
     {
-        // Check If Dividend Is Harvest
-        // Related Each Farm to Harvest
+        // Harvests Only
+        if($this->isHarvest($event))
+        {
+            HandleHarvest::dispatch($event->dividend);
+        }
+    }
+
+    /**
+     * Is Harvest
+     * 
+     * @param  \Droplister\XcpCore\App\Events\DividendWasCreated  $event
+     * @return boolean
+     */
+    private function isHarvest($event)
+    {
+        return $event->dividend->status === 'valid' &&
+               $event->dividend->source === config('bitcorn.genesis_farm') &&
+               $event->dividend->asset === config('bitcorn.access_token') &&
+               $event->dividend->dividend_asset === config('bitcorn.reward_token');
     }
 }
