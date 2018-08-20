@@ -10,5 +10,5 @@ return [
     /**
      * Reward Token
      */
-    'reward_token' => env('BITCORN_ACCESS_TOKEN', 'BITCORN'),
+    'reward_token' => env('BITCORN_REWARD_TOKEN', 'BITCORN'),
 ];

@@ -80,6 +80,16 @@ class Farm extends Model
     }
 
     /**
+     * Get Balance
+     *
+     * @return \App\Balance
+     */
+    public function getTokenBalance($token)
+    {
+        return $this->tokenBalances()->where('asset', '=', $token)->firstOrFail();
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

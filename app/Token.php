@@ -3,6 +3,8 @@
 namespace App;
 
 use Throwable;
+use App\Traits\Achievable;
+use App\Traits\Touchable;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Balance;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
-    use Achiever;
+    use Achievable, Achiever, Touchable;
 
     /**
      * The attributes that are mass assignable.

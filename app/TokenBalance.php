@@ -32,10 +32,14 @@ class TokenBalance extends Balance
     /**
      * Game Tokens
      */
-    public function scopeGameTokens($query)
+    public function scopeGameTokens($query, $type=null)
     {
-        $assets = Token::pluck('xcp_core_asset_name');
+        $tokens = Token::query();
 
-        return $query->whereIn('asset', $assets);
+        if($type) $tokens = $tokens->where('type', '=', $type);
+
+        $tokens = $tokens->pluck('xcp_core_asset_name');
+
+        return $query->whereIn('asset', $tokens);
     }
 }
