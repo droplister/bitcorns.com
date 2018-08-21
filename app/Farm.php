@@ -120,11 +120,11 @@ class Farm extends Model
     {
         return [
             'slug' => [
-                'source' => 'xcp_core_address'
+                'source' => 'xcp_core_address',
+                'method' => function ($string, $separator) {
+                    return $string;
+                },
             ],
-            'method' => function ($string, $separator) {
-                return $string;
-            },
         ];
     }
 }
