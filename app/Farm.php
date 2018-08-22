@@ -123,8 +123,8 @@ class Farm extends Model
                 'source' => 'xcp_core_address',
                 'method' => function ($string, $separator) {
                     return $string;
-                },
-            ],
+                }
+            ]
         ];
     }
 }
