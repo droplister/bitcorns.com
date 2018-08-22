@@ -22,8 +22,7 @@ return [
     /**
      * First Block
      */
-    // 'first_block' => env('XCP_CORE_ENV_NET', 'mainnet') === 'mainnet' ? 278270 : 310000,
-    'first_block' => 500000,
+    'first_block' => env('XCP_CORE_ENV_NET', 'mainnet') === 'mainnet' ? 278270 : 310000,
 
     /**
      * Sync Size (Maximum = 250)
