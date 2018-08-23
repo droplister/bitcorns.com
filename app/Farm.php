@@ -7,11 +7,12 @@ use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    use Achievable, Achiever, Sluggable;
+    use Achievable, Achiever, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
