@@ -39,7 +39,7 @@ class UpgradeTokensTableSeeder extends Seeder
 
             // Save Image
             $contents = file_get_contents($token['image_url']);
-            $name = substr($url, strrpos($url, '/') + 1);
+            $name = substr($token['image_url'], strrpos($token['image_url'], '/') + 1);
             $image_path = Storage::put('public/tokens/', $name, $contents);
             $image_url = Storage::url($image_path);
 
