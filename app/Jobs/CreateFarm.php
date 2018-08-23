@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Farm;
+use App\Quote;
 use Droplister\XcpCore\App\Credit;
 use App\Achievements\Farms\SaltOfTheEarth;
 use Illuminate\Bus\Queueable;
@@ -75,8 +76,24 @@ class CreateFarm implements ShouldQueue
     {
         if($this->credit->action === 'issuance') return 'Genesis Farm';
 
-        return 'Bitcorn Farm #' . Farm::count();
+        return 'Bitcorn Farm #' . $this->getSalt();
     }
+
+    /**
+     * Get Salt
+     *
+     * @return string
+     */
+    private function getSalt()
+    {
+        $a = chr(rand(65, 90));
+        $b = chr(rand(65, 90));
+        $c = chr(rand(65, 90));
+        $d = chr(rand(65, 90));
+
+        return $a . $b . $c . $d;
+    }
+
 
     /**
      * Get Image Url
@@ -95,24 +112,8 @@ class CreateFarm implements ShouldQueue
      */
     private function getContent()
     {
-        $quotes = [
-            'Torquato Tasso' => 'The day of fortune is like a harvest day, We must be busy when the corn is ripe.',
-            'Anne Bronte' => 'A light wind swept over the corn, and all nature laughed in the sunshine.',
-            'William Bernbach' => 'Today\'s smartest advertising style is tomorrow\'s corn.',
-            'Michael Pollan' => 'Corn is a greedy crop, as farmers will tell you.',
-            'Cato the Elder' => 'It is thus with farming: if you do one thing late, you will be late in all your work.',
-            'Arthur Keith' => 'The discovery of agriculture was the first big step toward a civilized life.',
-            'Samuel Johnson' => 'Agriculture not only gives riches to a nation, but the only riches she can call her own.',
-            'Sam Farr' => 'To make agriculture sustainable, the grower has got to be able to make a profit.',
-            'unknown' => 'You can make a small fortune in farming-provided you start with a large one.',
-            'George Washington' => 'Agriculture is the most healthful, most useful, and most noble employment of man.',
-            'Brian Brett' => 'Farming is a profession of hope.',
-            'Douglas Jerrold' => 'If you tickle the earth with a hoe she laughs with a harvest.',
-        ];
+        $quote = Quote::inRandomOrder()->first();
 
-        $author = array_rand($quotes); // key
-        $quote = $quotes[$author];     // value
-
-        return '"' . $quote .'" - ' . $author;
+        return $quote->formatted;
     }
 }

@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AssetsTableSeeder::class);
         $this->call(TokensTableSeeder::class);
         $this->call(HarvestsTableSeeder::class);
+        $this->call(QuotesTableSeeder::class);
     }
 }
