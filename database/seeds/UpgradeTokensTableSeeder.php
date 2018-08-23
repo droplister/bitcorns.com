@@ -1,6 +1,5 @@
 <?php
 
-use Storage;
 use App\Token;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
