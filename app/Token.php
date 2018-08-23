@@ -5,6 +5,7 @@ namespace App;
 use Throwable;
 use App\Traits\Achievable;
 use App\Traits\Touchable;
+use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,15 @@ use Illuminate\Database\Eloquent\Model;
 class Token extends Model
 {
     use Achievable, Achiever, Touchable;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => TokenWasCreated::class,
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -57,6 +67,17 @@ class Token extends Model
     ];
 
     /**
+     * Set Content
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setContentAttribute($value)
+    {
+        $this->attributes['content'] = strip_tags($value);
+    }
+
+    /**
      * Asset
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -74,6 +95,26 @@ class Token extends Model
     public function tokenBalances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Not Divisible
+     */
+    public function scopeNotDivisible($query)
+    {
+        return $query->whereHas('asset', function ($asset) {
+            return $asset->where('divisible', '=', 0);
+        });
+    }
+
+    /**
+     * Locked
+     */
+    public function scopeLocked($query)
+    {
+        return $query->whereHas('asset', function ($asset) {
+            return $asset->where('locked', '=', 1);
+        });
     }
 
     /**
@@ -109,11 +150,19 @@ class Token extends Model
     }
 
     /**
+     * Pending
+     */
+    public function scopePending($query)
+    {
+        return $query->whereNull('approved_at')->whereNull('rejected_at');
+    }
+
+    /**
      * Publishable
      */
     public function scopePublishable($query)
     {
-        return $query->paidFor()->museumed()->approved();
+        return $query->notDivisible()->locked()->paidFor()->museumed()->pending();
     }
 
     /**

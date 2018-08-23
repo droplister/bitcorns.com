@@ -63,6 +63,14 @@ class Harvest extends Model
     }
 
     /**
+     * Current
+     */
+    public function scopeCurrent($query)
+    {
+        return $query->whereNotNull('xcp_core_tx_index')->latest('scheduled_at');
+    }
+
+    /**
      * Upcoming
      */
     public function scopeUpcoming($query)
