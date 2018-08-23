@@ -40,7 +40,7 @@ class UpgradeTokensTableSeeder extends Seeder
                 'name' => $token['display_name'],
                 'image_url' => $image_url,
                 'content' => $token['content'],
-                'meta_data->harvest_ranking' = >$harvest_ranking,
+                'meta_data->harvest_ranking' => $harvest_ranking,
                 'meta_data->overall_ranking' => $overall_ranking,
                 'approved_at' => $token['public'] === 1 ? $token['updated_at'] : null,
                 'published_at' => $token['public'] === 1 ? $token['updated_at'] : null,
