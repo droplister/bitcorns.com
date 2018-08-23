@@ -66,6 +66,7 @@ class FarmsTableSeeder extends Seeder
 
         return Coop::firstOrCreate([
             'name' => $coop['name'],
+        ],[
             'content' => $coop['description'],
         ]);
     }

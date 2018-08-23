@@ -22,6 +22,7 @@ class CreateCoopsTable extends Migration
             $table->text('content');
             $table->unsignedBigInteger('total_harvested')->default(0); // Convenience
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
