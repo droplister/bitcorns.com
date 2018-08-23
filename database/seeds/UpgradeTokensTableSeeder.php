@@ -1,11 +1,22 @@
 <?php
 
+use Curl\Curl;
 use App\Token;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UpgradeTokensTableSeeder extends Seeder
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->curl = new Curl();
+    }
+
     /**
      * Run the database seeds.
      *
