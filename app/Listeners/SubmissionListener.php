@@ -25,11 +25,15 @@ class SubmissionListener
             // Check Museum
             $this->checkMuseumDonations($event->token);
 
-            // Tell Farmers
-            $this->publicAnnouncement($event->token);
+            // Submissions Only
+            if($this->isSubmission($event))
+            {
+                // Tell Farmers
+                $this->publicAnnouncement($event->token);
 
-            // & Foundation
-            $this->privateAnnouncement($event->token);
+                // & Foundation
+                $this->privateAnnouncement($event->token);
+            }
         }
     }
 
@@ -100,7 +104,17 @@ class SubmissionListener
      */
     private function isUpgradeToken($event)
     {
-        // Seeded Tokens Ignored (harvest_id)
-        return $event->token->type === 'upgrade' && $event->token->harvest_id === null;
+        return $event->token->type === 'upgrade';
+    }
+
+    /**
+     * Is Submission
+     *
+     * @param  \App\Events\TokenWasCreated  $event
+     * @return boolean
+     */
+    private function isSubmission($event)
+    {
+        return $event->token->harvest_id === null;
     }
 }

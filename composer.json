@@ -12,8 +12,9 @@
     ],
     "require": {
         "php": "^7.1.3",
-        "droplister/xcp-core": "dev-master",
+        "curl/curl": "^1.9",
         "cviebrock/eloquent-sluggable": "^4.5",
+        "droplister/xcp-core": "dev-master",
         "fideloper/proxy": "^4.0",
         "gstt/laravel-achievements": "^1.0",
         "irazasyed/telegram-bot-sdk": "^2.0",

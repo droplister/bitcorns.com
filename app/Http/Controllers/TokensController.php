@@ -16,7 +16,7 @@ class TokensController extends Controller
      */
     public function index()
     {
-        //
+        // Card Index
     }
 
     /**
@@ -26,7 +26,7 @@ class TokensController extends Controller
      */
     public function create()
     {
-        //
+        // Submission Form
     }
 
     /**
@@ -72,7 +72,7 @@ class TokensController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Approve / Deny
     }
 
     /**
@@ -84,6 +84,6 @@ class TokensController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Approve / Deny
     }
 }
