@@ -1,5 +1,6 @@
 <?php
 
+use Storage;
 use App\Token;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -37,7 +38,7 @@ class UpgradeTokensTableSeeder extends Seeder
                 'harvest_id' => $harvest_id,
                 'type' => 'upgrade',
                 'name' => $token['display_name'],
-                'image_url' $image_url,
+                'image_url' => $image_url,
                 'content' => $token['content'],
                 'meta_data->harvest_ranking' = >$harvest_ranking,
                 'meta_data->overall_ranking' => $overall_ranking,
