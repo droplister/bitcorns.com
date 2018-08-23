@@ -23,6 +23,8 @@ class NoCropsListener
             // Get Farm
             $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
 
+            $farm->mapMarkers()->delete();
+
             $this->updateAccess($farm, $event);
         }
     }

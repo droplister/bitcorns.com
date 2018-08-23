@@ -43,6 +43,8 @@ class Token extends Model
         'approved_at',
         'rejected_at',
         'published_at',
+        'created_at',
+        'updated_at',
     ];
 
     /**

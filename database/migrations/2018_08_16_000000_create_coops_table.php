@@ -15,7 +15,7 @@ class CreateCoopsTable extends Migration
     {
         Schema::create('coops', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('farm_id')->index(); // Owner
+            $table->unsignedInteger('farm_id')->nullable()->index(); // Owner
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('image_url')->nullable();

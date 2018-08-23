@@ -77,6 +77,14 @@ class Coop extends Model
     }
 
     /**
+     * Uploads
+     */
+    public function uploads()
+    {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

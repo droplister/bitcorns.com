@@ -82,6 +82,24 @@ class Farm extends Model
     }
 
     /**
+     * Map Markers
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mapMarkers()
+    {
+        return $this->hasMany(MapMarker::class, 'id', 'farm_id');
+    }
+
+    /**
+     * Uploads
+     */
+    public function uploads()
+    {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    /**
      * Has Balance
      *
      * @return \App\TokenBalance

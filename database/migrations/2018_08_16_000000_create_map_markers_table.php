@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUploadsTable extends Migration
+class CreateMapMarkersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateUploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('uploads', function (Blueprint $table) {
+        Schema::create('map_markers', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('uploadable'); 
-            $table->string('new_image_url');
-            $table->string('old_image_url')->nullable();
-            $table->timestamp('approved_at')->nullable();
-            $table->timestamp('rejected_at')->nullable();
+            $table->unsignedInteger('farm_id')->index(); // Owner
+            $table->decimal('latitude', 10, 6)->index();
+            $table->decimal('longitude', 10, 6)->index();
+            $table->json('settings')->nullable();
+            $table->boolean('major')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateUploadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploads');
+        Schema::dropIfExists('map_markers');
     }
 }
