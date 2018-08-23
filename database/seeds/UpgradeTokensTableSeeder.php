@@ -41,7 +41,7 @@ class UpgradeTokensTableSeeder extends Seeder
             $contents = file_get_contents($token['image_url']);
             $name = substr($token['image_url'], strrpos($token['image_url'], '/') + 1);
             $image_path = Storage::put('public/tokens/' . $name, $contents);
-            $image_url = Storage::url($image_path);
+            $image_url = '/storage/images/tokens/' . $name;
 
             Token::create([
                 'xcp_core_asset_name' => $token['name'],
