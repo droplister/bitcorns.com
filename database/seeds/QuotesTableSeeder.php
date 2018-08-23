@@ -25,7 +25,7 @@ class QuotesTableSeeder extends Seeder
      * 
      * @return array
      */
-    private function getHarvests()
+    private function getQuotes()
     {
         return [
             [
