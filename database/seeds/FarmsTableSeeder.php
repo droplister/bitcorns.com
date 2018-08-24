@@ -135,7 +135,7 @@ class FarmsTableSeeder extends Seeder
         $name = substr($url, strrpos($url, '/') + 1);
         $image_path = Storage::put('public/farms/' . $name, $contents);
 
-        return '/storage/images/farms/' . $name;
+        return '/storage/farms/' . $name;
     }
 
     /**
