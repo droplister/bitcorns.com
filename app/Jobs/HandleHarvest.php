@@ -24,13 +24,6 @@ class HandleHarvest implements ShouldQueue
     protected $dividend;
 
     /**
-     * Harvest
-     *
-     * @var \App\Harvest
-     */
-    protected $harvest;
-
-    /**
      * Create a new job instance.
      *
      * @param  \Droplister\XcpCore\App\Dividend  $dividend
@@ -39,7 +32,6 @@ class HandleHarvest implements ShouldQueue
     public function __construct(Dividend $dividend)
     {
         $this->dividend = $dividend;
-        $this->harvest = Harvest::upcoming()->first();
     }
 
     /**
@@ -49,27 +41,31 @@ class HandleHarvest implements ShouldQueue
      */
     public function handle()
     {
+        // Next Harvest (this)
+        $harvest = Harvest::upcoming()->first();
+
         // Handle The Credits
-        $this->handleCredits();
+        $this->handleCredits($harvest);
 
         // Update Harvest TX
-        $this->updateHarvest();
+        $this->updateHarvest($harvest);
 
         // Fire Harvest Event
     }
 
     /**
      * Handle Credits
-     * 
+     *
+     * @param  \App\Harvest  $harvest
      * @return void
      */
-    private function handleCredits()
+    private function handleCredits($harvest)
     {
         $credits = $this->getCredits();
 
         foreach($credits as $credit)
         {
-            $this->createFarmHarvest($credit);
+            $this->createFarmHarvest($harvest, $credit);
         }
     }
 
@@ -90,17 +86,18 @@ class HandleHarvest implements ShouldQueue
     /**
      * Create Farm Harvest
      *
+     * @param  \App\Harvest  $harvest
      * @param  \Droplister\XcpCore\App\Credit  $credit
      * @return mixed
      */
-    private function createFarmHarvest($credit)
+    private function createFarmHarvest($harvest, $credit)
     {
         $farm = Farm::findBySlug($credit->address);
 
         // Report DAAB
 
         return $farm->harvests()->syncWithoutDetaching([
-            $this->harvest->id => [
+            $harvest->id => [
                 'coop_id' => $farm->coop_id,
                 'quantity' => $farm->isDAAB() ? 0 : $credit->quantity,
             ]
@@ -112,9 +109,9 @@ class HandleHarvest implements ShouldQueue
      * 
      * @return \App\Harvest
      */
-    private function updateHarvest()
+    private function updateHarvest($harvest)
     {
-        return $this->harvest->update([
+        return $harvest->update([
             'xcp_core_tx_index' => $this->dividend->tx_index,
         ]);
     }

@@ -48,6 +48,11 @@ class CreateFarm implements ShouldQueue
             // Achievement!
             $farm->unlockIfLocked(new SaltOfTheEarth());
         }
+        else
+        {
+            // No Cropper -> Farm
+            $farm->update(['access' => 1]);
+        }
     }
 
     /**

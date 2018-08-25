@@ -38,6 +38,7 @@ class SubmissionFeeListener
     {
         return $event->send->status === 'valid' &&
                $event->send->asset === config('bitcorn.reward_token') &&
-               $event->send->address === config('bitcorn.subfee_address');
+               $event->send->address === config('bitcorn.subfee_address') &&
+               $event->send->quantity >= config('bitcorn.subfee_quantity');
     }
 }
