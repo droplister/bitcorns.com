@@ -18,7 +18,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Droplister\XcpCore\App\Events\SendWasCreated' => [
             'App\Listeners\MuseumListener',
-            'App\Listeners\SubmissionFeeListener',
         ],
         'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
             'App\Listeners\NoCropsListener',
