@@ -39,8 +39,9 @@ class UpgradeTokensTableSeeder extends Seeder
             // Save Image
             $image_url = $this->downloadUrl($token['image_url']);
 
-            Token::create([
+            Token::firstOrCreate([
                 'xcp_core_asset_name' => $token['name'],
+            ],[
                 'harvest_id' => $harvest_id,
                 'type' => 'upgrade',
                 'name' => $token['display_name'],
