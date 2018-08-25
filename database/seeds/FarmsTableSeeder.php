@@ -80,6 +80,8 @@ class FarmsTableSeeder extends Seeder
      */
     private function handleMapMarker($farm, $data)
     {
+        if($data['latitude'] === null) return false;
+
         return MapMarker::create([
             'farm_id' => $farm->id,
             'latitude' => $data['latitude'],
