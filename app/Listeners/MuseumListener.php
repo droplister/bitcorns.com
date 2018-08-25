@@ -25,7 +25,7 @@ class MuseumListener
             if($token = Token::where('xcp_core_asset_name', '=', $event->send->asset)->first())
             {
                 // Record Time
-                $token->touchTime('museumed_at');
+                $token->touchTime('museumed_at', true, $event->send->confirmed_at);
 
                 // Achievement!
                 $token->unlockIfLocked(new PermanentCollection());
