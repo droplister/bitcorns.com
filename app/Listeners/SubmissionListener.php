@@ -49,9 +49,19 @@ class SubmissionListener
         // so this is just a check to be sure its not missed.
         $museum = Farm::findBySlug(config('bitcorn.museum_address'));
 
-        if($museum->hasBalance($token->xcp_core_asset_name))
+        if($museum && $museum->hasBalance($token->xcp_core_asset_name))
         {
             $token->touchTime('museumed_at');
+        }
+        else
+        {
+            // Only used by the UpgradeTokensTableSeeder
+            $balances = $this->getMuseumBalances($token);
+
+            if(! empty($balances))
+            {
+                $token->touchTime('museumed_at');
+            }
         }
     }
 
@@ -116,5 +126,32 @@ class SubmissionListener
     private function isSubmission($event)
     {
         return $event->token->harvest_id === null;
+    }
+
+    /**
+     * Counterparty API
+     * https://counterparty.io/docs/api/#get_table
+     *
+     * @param  \App\Token  $token
+     * @return mixed
+     */
+    private function getMuseumBalances($token)
+    {
+        $counterparty = new Client(config('xcp-core.cp.api'));
+        $counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
+
+        return $counterparty->execute('get_balances', [
+            'filters' => [
+                [
+                    'field' => 'address',
+                    'op' => '==',
+                    'value' => config('bitcorn.museum_address'),
+                ],[
+                    'field' => 'asset',
+                    'op'    => '==',
+                    'value' => $token->xcp_core_asset_name,
+                ]
+            ]
+        ]);
     }
 }
