@@ -137,7 +137,7 @@ class SubmissionListener
      */
     private function getMuseumBalances($token)
     {
-        $counterparty = new Client(config('xcp-core.cp.api'));
+        $counterparty = new \JsonRPC\Client(config('xcp-core.cp.api'));
         $counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
 
         return $counterparty->execute('get_balances', [
