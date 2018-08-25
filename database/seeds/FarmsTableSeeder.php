@@ -30,11 +30,11 @@ class FarmsTableSeeder extends Seeder
 
         foreach($farms as $data)
         {
-            // Coop
-            $coop = $this->getCoop($data['group']);
-
             // Farm
             $farm = Farm::findBySlug($data['address']);
+            
+            // Coop
+            $coop = $this->getCoop($data['group']);
 
             // Map Marker
             $this->handleMapMarker($farm, $data);
@@ -47,9 +47,9 @@ class FarmsTableSeeder extends Seeder
 
             $farm->update([
                 'coop_id' => isset($coop) ? $coop->id : null,
-                'name' => $farm['name'],
+                'name' => $data['name'],
                 'image_url' => $image_url,
-                'content' => $farm['description'],
+                'content' => $data['description'],
             ]);
         }
     }
