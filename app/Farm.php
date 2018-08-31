@@ -2,18 +2,21 @@
 
 namespace App;
 
+use App\Token;
+use App\Traits\Signable;
 use App\Traits\Linkable;
 use App\Traits\Achievable;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
+use Droplister\XcpCore\App\Transaction;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    use Achievable, Achiever, Linkable, Sluggable, SluggableScopeHelpers;
+    use Achievable, Achiever, Linkable, Signable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +34,29 @@ class Farm extends Model
         'total_harvested',
         'access',
     ];
+
+    /**
+     * Map Radius
+     *
+     * @var string
+     */
+    public function getMapRadiusAttribute()
+    {
+        // Zero is Zero
+        if(! $this->access === 0) return 0;
+
+        // 0.00003810 CROPS = 1 Arce
+        $acres = $this->accessBalance()->quantity_normalized / 0.00003810;
+
+        // Area Formula (using meters squared)
+        $area = $meters_squared = $acres * 4046.85642;
+
+        // Radius Formula
+        $radius = sqrt($area / pi());
+
+        // 10x Multiplier
+        return $radius * 10;
+    }
 
     /**
      * Address
@@ -93,11 +119,69 @@ class Farm extends Model
     }
 
     /**
+     * Transactions
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'source', 'xcp_core_address');
+    }
+
+    /**
      * Uploads
      */
     public function uploads()
     {
         return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    /**
+     * Has Access
+     */
+    public function scopeHasAccess($query)
+    {
+        return $query->where('access', '=', 1);
+    }
+
+    /**
+     * Has Access
+     */
+    public function scopeDoesntHaveAccess($query)
+    {
+        return $query->where('access', '=', 0);
+    }
+
+    /**
+     * Access Balance
+     *
+     * @return \App\Balance
+     */
+    public function accessBalance()
+    {
+        return $this->getBalance(config('bitcorn.access_token'));
+    }
+
+    /**
+     * Reward Balance
+     *
+     * @return \App\Balance
+     */
+    public function rewardBalance()
+    {
+        return $this->getBalance(config('bitcorn.reward_token'));
+    }
+
+    /**
+     * Get Balance
+     *
+     * @return \App\Balance
+     */
+    public function getBalance($asset_name)
+    {
+        return $this->tokenBalances()
+            ->where('asset', '=', $asset_name)
+            ->first();
     }
 
     /**
@@ -107,7 +191,10 @@ class Farm extends Model
      */
     public function hasBalance($asset_name)
     {
-        return $this->tokenBalances()->where('asset', '=', $asset_name)->where('quantity', '>', 0)->exists();
+        return $this->tokenBalances()
+            ->where('asset', '=', $asset_name)
+            ->where('quantity', '>', 0)
+            ->exists();
     }
 
     /**
@@ -117,26 +204,24 @@ class Farm extends Model
      */
     public function isDAAB()
     {
+        // DAAB Token
         $token = Token::where('xcp_core_asset_name', '=', config('bitcorn.daab_token'))->first();
 
-        $token_balances = $token->tokenBalances()->with('farms')->orderBy('quantity', 'desc')->get();
+        // Balances (hi -> lo)
+        $token_balances = $token->tokenBalances()->with('farm')->orderBy('quantity', 'desc')->get();
 
+        // Check Whether DAAB
         foreach($token_balances as $token_balance)
         {
+            // Forever Moist!
             if($token_balance->farm->hasBalance(config('bitcorn.daab_save_token'))) continue;
 
+            // Dry as a Bone!
             return $token_balance->farm->id === $this->id;
         }
 
+        // Nope
         return false;
-    }
-
-    /**
-     * Has Access
-     */
-    public function scopeHasAccess($query)
-    {
-        return $query->where('access', '=', 1);
     }
 
     /**

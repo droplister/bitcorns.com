@@ -48,6 +48,26 @@ class TokenBalance extends Balance
     }
 
     /**
+     * Scope Tokens
+     */
+    public function scopeTokens($query)
+    {
+        return $query->whereHas('token', function($token) {
+            return $token->where('type', '=', 'access')->orWhere('type', '=', 'reward');
+        });
+    }
+
+    /**
+     * Scope Upgrades
+     */
+    public function scopeUpgrades($query)
+    {
+        return $query->whereHas('token', function($token) {
+            return $token->where('type', '=', 'upgrade')->published();
+        });
+    }
+
+    /**
      * Game Players
      */
     public function scopeGamePlayers($query, $access_required=true)
