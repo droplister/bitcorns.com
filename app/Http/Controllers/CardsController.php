@@ -14,7 +14,7 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Token::published()->
+        $cards = Token::published()
             ->whereType('upgrade')
             ->oldest()
             ->get();
