@@ -28,13 +28,10 @@ class CardsController extends Controller
      * @param  \App\Token  $token
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Token $token)
+    public function show(Request $request, Token $card)
     {
         // Token Redirect Guard
-        if($token->type !== 'upgrade') return redirect($token->url);
-
-        // Reassign
-        $card = $token;
+        if($card->type !== 'upgrade') return redirect($card->url);
 
         // Balances
         $balances = $card->tokenBalances()->with('farm')
