@@ -12,3 +12,4 @@
 */
 
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
+Route::resource('tokens', 'TokensController');

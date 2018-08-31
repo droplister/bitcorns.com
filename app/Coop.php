@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Linkable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Coop extends Model
 {
-    use Sluggable, SluggableScopeHelpers, SoftDeletes;
+    use Linkable, Sluggable, SluggableScopeHelpers, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

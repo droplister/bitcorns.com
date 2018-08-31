@@ -33,7 +33,7 @@ class CardsController extends Controller
         // Token Redirect Guard
         if($token->type !== 'upgrade')
         {
-            return redirect(route('tokens.show', ['token' => $token->name]));
+            return redirect($token->slug);
         }
 
         // Reassign

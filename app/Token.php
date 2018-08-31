@@ -3,16 +3,19 @@
 namespace App;
 
 use Throwable;
-use App\Traits\Achievable;
+use App\Traits\Linkable;
 use App\Traits\Touchable;
+use App\Traits\Achievable;
 use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
-    use Achievable, Achiever, Touchable;
+    use Achievable, Achiever, Linkable, Sluggable, SluggableScopeHelpers, Touchable;
 
     /**
      * The event map for the model.
@@ -34,6 +37,7 @@ class Token extends Model
         'harvest_id',
         'type',
         'name',
+        'slug',
         'image_url',
         'content',
         'meta_data',
@@ -205,5 +209,22 @@ class Token extends Model
             }
         });
         parent::boot();
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'method' => function ($string, $separator) {
+                    return $string;
+                }
+            ]
+        ];
     }
 }

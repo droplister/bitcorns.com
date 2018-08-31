@@ -19,6 +19,7 @@ class CreateTokensTable extends Migration
             $table->string('xcp_core_burn_tx_hash')->nullable()->index(); // Submission Fee
             $table->unsignedInteger('harvest_id')->nullable()->index();
             $table->string('name')->unique(); // Convenience
+            $table->string('slug')->unique();
             $table->string('type')->index();
             $table->string('image_url')->nullable();
             $table->text('content')->nullable();

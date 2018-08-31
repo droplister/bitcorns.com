@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Linkable;
 use App\Traits\Achievable;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    use Achievable, Achiever, Sluggable, SluggableScopeHelpers;
+    use Achievable, Achiever, Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
