@@ -131,6 +131,14 @@ class Farm extends Model
     }
 
     /**
+     * Has Access
+     */
+    public function scopeHasAccess($query)
+    {
+        return $query->where('access', '=', 1);
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

@@ -90,13 +90,23 @@ class Token extends Model
     }
 
     /**
+     * Farms
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function farms()
+    {
+        return $this->hasManyThrough(Farm::class, TokenBalance::class, 'asset', 'xcp_core_address', 'xcp_core_asset_name', 'address');
+    }
+
+    /**
      * Token Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tokenBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
+        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero();
     }
 
     /**
@@ -173,6 +183,16 @@ class Token extends Model
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'name';
     }
 
     /**

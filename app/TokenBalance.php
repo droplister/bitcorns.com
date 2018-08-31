@@ -26,7 +26,7 @@ class TokenBalance extends Balance
      */
     public function farm()
     {
-        return $this->belongsTo(Farm::class, 'address', 'xcp_core_address');
+        return $this->belongsTo(Farm::class, 'address', 'xcp_core_address')->hasAccess();
     }
 
     /**
@@ -40,13 +40,21 @@ class TokenBalance extends Balance
     }
 
     /**
+     * Non Zero
+     */
+    public function scopeNonZero($query)
+    {
+        return $query->where('quantity', '>', 0);
+    }
+
+    /**
      * Game Players
      */
     public function scopeGamePlayers($query, $access_required=true)
     {
         $farms = Farm::query();
 
-        if($access_required) $farms = $farms->where('access', '=', 1);
+        if($access_required) $farms = $farms->hasAccess();
 
         $farms = $farms->pluck('xcp_core_address');
 
