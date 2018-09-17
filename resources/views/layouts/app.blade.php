@@ -16,6 +16,9 @@
     <link href="{{ asset('favicon.ico') }}" rel="icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <!--
      /$$       /$$   /$$                                            
     | $$      |__/  | $$                                            
@@ -28,20 +31,20 @@
     -->
 </head>
 <body>
-<div id="app">
-    <header>
-        <div class="navbar navbar-dark navbar-expand bg-dark">
-            <div class="container-fluid d-flex justify-content-between">
-                <a href="{{ url('/') }}" class="navbar-brand">
-                    &#x1f33d; <span class="d-none d-lg-inline">{{ config('app.name', 'Laravel') }}</span>
-                </a>
+    <div id="app">
+        <header>
+            <div class="navbar navbar-dark navbar-expand bg-dark">
+                <div class="container-fluid d-flex justify-content-between">
+                    <a href="{{ url('/') }}" class="navbar-brand">
+                        &#x1f33d; <span class="d-none d-lg-inline">{{ config('app.name', 'Laravel') }}</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main role="main">
-        @yield('content')
-    </main>
-</div>
+        <main role="main">
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>
