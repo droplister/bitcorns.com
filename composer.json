@@ -22,7 +22,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravel/horizon": "^1.3",
-        "tightenco/parental": "0.4-alpha"
+        "tightenco/parental": "0.5"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
