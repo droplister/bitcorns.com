@@ -12,13 +12,11 @@ trait SortsFarms
      * Get Sorted Farms
      *
      * @param  \App\Http\Requests\Farms\IndexRequest  $request
+     * @param  string  $sort
+     * @return mixed
      */
-    public static function getSortedFarms(IndexRequest $request)
+    public static function getSortedFarms(IndexRequest $request, $sort)
     {
-        // Sort By
-        $sort = $request->has('q') ? 'search' : $request->input('sort', 'access');
-
-        // Sorting
         switch($sort)
         {
             case 'search':

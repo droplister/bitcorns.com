@@ -20,11 +20,14 @@ class FarmsController extends Controller
      */
     public function index(IndexRequest $request)
     {
-        // Build Query
-        $farms = Farm::getSortedFarms($request)->paginate(45);
+        // Sort Order
+        $sort = $request->has('q') ? 'search' : $request->input('sort', 'access');
 
-        // Return View
-        return view('farms.index', compact('farms', 'request'));
+        // List Farms
+        $farms = Farm::getSortedFarms($request, $sort)->paginate(45);
+
+        // Index View
+        return view('farms.index', compact('farms', 'sort'));
     }
 
     /**
