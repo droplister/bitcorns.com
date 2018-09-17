@@ -16,7 +16,7 @@ trait SortsFarms
      * @param  string  $sort
      * @return mixed
      */
-    public function getSortedFarms(IndexRequest $request, $sort)
+    public static function getSortedFarms(IndexRequest $request, $sort)
     {
         switch($sort)
         {
