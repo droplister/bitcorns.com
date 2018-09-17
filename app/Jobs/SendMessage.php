@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use Telegram;
-use Log, Throwable;
+use Log, Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -55,7 +55,7 @@ class SendMessage implements ShouldQueue
                 $this->sendMessage($chat_id);
             }
         }
-        catch(Throwable $e)
+        catch(Exception $e)
         {
             Log::error($e->getMessage());
         }

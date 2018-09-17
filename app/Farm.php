@@ -6,6 +6,7 @@ use App\Token;
 use App\Traits\Signable;
 use App\Traits\Linkable;
 use App\Traits\Achievable;
+use App\Traits\SortsFarms;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
 {
-    use Achievable, Achiever, Linkable, Signable, Sluggable, SluggableScopeHelpers;
+    use Achievable, Achiever, Linkable, Signable, Sluggable, SluggableScopeHelpers, SortsFarms;
 
     /**
      * The attributes that are mass assignable.

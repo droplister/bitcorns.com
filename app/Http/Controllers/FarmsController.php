@@ -6,29 +6,22 @@ use Auth;
 use App\Farm;
 use App\Token;
 use App\MapMarker;
-use App\Http\Controllers\Traits\SortsFarms;
+use App\Http\Requests\Farms\IndexRequest;
 use App\Http\Requests\Farms\UpdateRequest;
 use Illuminate\Http\Request;
 
 class FarmsController extends Controller
 {
-    use SortsFarms;
-
     /**
      * List Farms (Sortable)
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Farms\IndexRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(IndexRequest $request)
     {
-        // Validation
-        $request->validate([
-            'sort' => 'sometimes|in:access,reward,rewards,rewards-total,no-access,newest,oldest,updated'
-        ]);
-
         // Build Query
-        $farms = $this->getSortedFarms($request)->paginate(45);
+        $farms = Farm::getSortedFarms($request)->paginate(45);
 
         // Return View
         return view('farms.index', compact('farms', 'request'));

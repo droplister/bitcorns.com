@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use Throwable;
+use Exception;
 use Carbon\Carbon;
 use BitWasp\BitcoinLib\BitcoinLib;
 use App\Http\Requests\Farms\UpdateRequest;
@@ -51,7 +51,7 @@ trait Signable
                 return true; // Too old
             }
         }
-        catch(Throwable $e)
+        catch(Exception $e)
         {
             return true; // Invalid
         }
@@ -83,7 +83,7 @@ trait Signable
                 return true; // Invalid
             }
         }
-        catch(Throwable $e)
+        catch(Exception $e)
         {
             return true; // Errors
         }

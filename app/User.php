@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Throwable;
+use Exception;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -33,7 +33,7 @@ class User extends Authenticatable
      */
     public static function boot() {
         static::creating(function () {
-            if(static::count() > 0) throw new Throwable('User Limit Exceeded');
+            if(static::count() > 0) throw new Exception('User Limit Exceeded');
         });
         parent::boot();
     }

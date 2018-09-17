@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Throwable;
+use Exception;
 use App\Traits\Linkable;
 use App\Traits\Touchable;
 use App\Traits\Achievable;
@@ -205,7 +205,7 @@ class Token extends Model
     public static function boot() {
         static::creating(function (Token $token) {
             if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
-                throw new Throwable('Token Limit Exceeded');
+                throw new Exception('Token Limit Exceeded');
             }
         });
         parent::boot();
