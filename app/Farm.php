@@ -3,8 +3,8 @@
 namespace App;
 
 use App\Token;
-use App\Traits\Signable;
 use App\Traits\Linkable;
+use App\Traits\Signable;
 use App\Traits\Achievable;
 use App\Traits\SortsFarms;
 use Gstt\Achievements\Achiever;
