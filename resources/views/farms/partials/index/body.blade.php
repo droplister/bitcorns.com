@@ -1,0 +1,1 @@
+@include('farms.partials.index.farms', ['paginated' => true])

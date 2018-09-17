@@ -37,6 +37,16 @@ class Farm extends Model
     ];
 
     /**
+     * Display Name
+     *
+     * @var string
+     */
+    public function getDisplayNameAttribute()
+    {
+        return $this->accessBalance()->quantity > 0 ? $this->name : 'NO CROPPER';
+    }
+
+    /**
      * Map Radius
      *
      * @var string
