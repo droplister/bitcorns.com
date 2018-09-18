@@ -1,6 +1,6 @@
 <template>
   <div>
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="chartOptions" ref="highcharts"></highcharts>
   </div>
 </template>
 
@@ -61,9 +61,7 @@ export default {
   },
   watch:{
     source() {
-      this.chartOptions.series[0].setData([])
-      this.chartOptions.series[1].setData([])
-      this.$_corn_chart_update()
+      this.$refs.highcharts.redraw()
     }
   },
   methods: {
