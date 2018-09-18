@@ -6,16 +6,16 @@
         <h6 class="dropdown-header">
             By Resource
         </h6>
-        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'access'])) }}">
-            <i class="fa fa-{{ $sort === 'access' ? 'check-' : '' }}circle-o mr-1"></i>
+        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'crops'])) }}">
+            <i class="fa fa-{{ $sort === 'crops' ? 'check-' : '' }}circle-o mr-1"></i>
             Crops
         </a>
-        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'reward'])) }}">
-            <i class="fa fa-{{ $sort === 'reward' ? 'check-' : '' }}circle-o mr-1"></i>
+        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'bitcorn'])) }}">
+            <i class="fa fa-{{ $sort === 'bitcorn' ? 'check-' : '' }}circle-o mr-1"></i>
             Bitcorn
         </a>
-        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'rewards'])) }}">
-            <i class="fa fa-{{ $sort === 'rewards' ? 'check-' : '' }}circle-o mr-1"></i>
+        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'harvests'])) }}">
+            <i class="fa fa-{{ $sort === 'harvests' ? 'check-' : '' }}circle-o mr-1"></i>
             Harvests
         </a>
         <h6 class="dropdown-header">
@@ -36,8 +36,8 @@
         <h6 class="dropdown-header">
             Szaboan Desert
         </h6>
-        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'no-access'])) }}">
-            <i class="fa fa-{{ $sort === 'no-access' ? 'check-' : '' }}circle-o mr-1"></i>
+        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'no-crops'])) }}">
+            <i class="fa fa-{{ $sort === 'no-crops' ? 'check-' : '' }}circle-o mr-1"></i>
             No Crops
         </a>
     </div>

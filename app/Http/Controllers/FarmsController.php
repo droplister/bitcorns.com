@@ -21,7 +21,7 @@ class FarmsController extends Controller
     public function index(IndexRequest $request)
     {
         // Sort Order
-        $sort = $request->has('q') ? 'search' : $request->input('sort', 'access');
+        $sort = $request->has('q') ? 'search' : $request->input('sort', 'updated');
 
         // List Farms
         $farms = Farm::getSortedFarms($request, $sort)->paginate(45);
@@ -75,21 +75,14 @@ class FarmsController extends Controller
      */
     public function update(UpdateRequest $request, Farm $farm)
     {
-        /*
-         * Gate / Policy Needed
-         */
-
         // Authentication
         if(Auth::guard('farm')->check() && Auth::guard('farm')->user()->slug === $farm->slug)
         {
             // Logged In
         }
-        else
+        elseif($error = $farm->validateSignature($request))
         {
-            if($error = $farm->validateSignature($request))
-            {
-                return back()->with('error', $error);
-            }
+            return back()->with('error', $error);
         }
 
         // Validation
