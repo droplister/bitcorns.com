@@ -149,10 +149,10 @@ class CardsController extends Controller
                 ->where('forward_asset', '=', config('bitcorn.reward_token'));
 
             // Buy Average
-            $buy_average = $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
+            $buy_average = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
 
             // Sell Average
-            $sell_average = $sells->sum('forward_asset') / $sells->sum('backward_asset');
+            $sell_average = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
 
             // DEX Average
             return number_format($buy_average + $sell_average / 2);
