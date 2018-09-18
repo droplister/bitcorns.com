@@ -63,6 +63,18 @@ class Harvest extends Model
     }
 
     /**
+     * Calculator
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function calculateBitcorn($crops)
+    {
+        $quantity = $this->quantity / 100 * $crops;
+
+        return $quantity > 1 ? $quantity : 0;
+    }
+
+    /**
      * Current
      */
     public function scopeCurrent($query)

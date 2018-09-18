@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4 col-md-3">
             <a href="{{ route('harvests.show', ['harvest' => $harvest->id]) }}">
                 <img src="{{ $harvest->image_url }}" alt="{{ $harvest->name }}" width="100%" />
             </a>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-8 col-md-9">
             <div class="harvest-body">
                 <h5 class="card-title">
                     <a href="{{ route('harvests.show', ['harvest' => $harvest->id]) }}" class="text-dark">
