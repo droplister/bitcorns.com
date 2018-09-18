@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- the button -->
-  <b-btn v-b-modal.cornculatorModal variant="primary" class="float-right mt-3">
+  <b-btn v-b-modal.cornculatorModal variant="outline-success" class="float-right mt-3">
     <i class="fa fa-calculator"></i> Cornculator
   </b-btn>
 
