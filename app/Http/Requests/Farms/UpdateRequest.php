@@ -27,12 +27,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'sometimes|min:5|max:30',
-            'description' => 'sometimes|min:10|max:255',
-            'latitude' => 'sometimes|required_with:latitude|nullable|numeric|min:-90|max:90',
-            'lontitude' => 'sometimes|required_with:longitude|nullable|numeric|min:-180|max:180',
-            'timestamp' => 'sometimes',
-            'signature' => 'sometimes',
+            'name' => ['sometimes', 'min:5', 'max:30'],
+            'description' => ['sometimes', 'min:10', 'max:255'],
+            'latitude' => ['sometimes', 'nullable', 'required_with:latitude', 'numeric', 'min:-90', 'max:90'],
+            'lontitude' => ['sometimes', 'nullable', 'required_with:longitude', 'numeric', 'min:-180', 'max:180'],
+            'timestamp' => ['sometimes'],
+            'signature' => ['sometimes'],
         ];
     }
 }
