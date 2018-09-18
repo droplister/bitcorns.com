@@ -11,7 +11,7 @@
     <div slot="modal-footer" class="w-100">
       <div class="row">
         <div class="col-4 col-sm-3">
-          {{ quantity }} CROPS
+          {{ quantity.toFixed(1) }} CROPS
         </div>
         <div class="col-8 col-sm-9">
           <range-slider
