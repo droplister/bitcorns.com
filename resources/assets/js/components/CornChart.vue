@@ -58,7 +58,7 @@ export default {
     source: function () {
       return '/api/cornculator?crops=' + this.crops
     }
-  }
+  },
   methods: {
     $_corn_chart_update() {
       var api = source
