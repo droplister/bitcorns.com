@@ -80,7 +80,7 @@ class CardsController extends Controller
     public function store(StoreRequest $request)
     {
         // Validation+
-        if($error = $this->guardAgainstInvalidTokens($request->name))
+        if($error = $this->guardAgainstInvalidTokens($request->name) || $error = $this->guardAgainstInvalidBurns($request->burn))
         {
             return back()->withInput()->with('error', $error);
         }
@@ -140,6 +140,28 @@ class CardsController extends Controller
         elseif(! $asset->locked)
         {
             return 'Error - Asset issuance needs to be locked.';
+        }
+
+        // No Errors
+        return false;
+    }
+
+
+    /**
+     * Guard Against Invalid Burns
+     * 
+     * @param  string  $tx_hash
+     * @return mixed
+     */
+    private function guardAgainstInvalidBurns($tx_hash)
+    {
+        // Get Send
+        $send = Send::where('tx_hash', '=', $tx_hash)->first();
+
+        // Check It!
+        if($send->destination !== config('bitcorn.subfee_address'))
+        {
+            return 'Error - Burn TX invalid, wrong destination!';
         }
 
         // No Errors
