@@ -61,6 +61,8 @@ export default {
   },
   watch:{
     source() {
+      this.chartOptions.series[0].setData([])
+      this.chartOptions.series[1].setData([])
       this.$_corn_chart_update()
     }
   },
