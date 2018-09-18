@@ -20,8 +20,8 @@
                     How it Works
                 </h5>
                 <p>Start by creating a unique Bitcorn card that you think is creative, funny, or otherwise well-suited for a blockchain farming game. Browse the <a href="{{ route('cards.index') }}">card directory</a> for inspiration and examples. Be YOU-nique!</p>
-                <p>We provide two templates, one that looks like a card and one that is just its border. You are encouraged to be as creative as you wish, but for the sake of cards being easily recognizable, the border is a minimum requirement.</p>
-                <p>Once you have card art, <a href="https://hackernoon.com/how-to-create-a-token-using-counterparty-xcp-357b2890e744" target="_blank">create a Counterparty asset</a> to represent this card's supply on the blockchain.</p>
+                <p>We provide two templates, one that looks like a card and one that is just its border. For the sake of cards being easily recognizable, the border is a minimum requirement.</p>
+                <p>Once you have card art, <a href="https://hackernoon.com/how-to-create-a-token-using-counterparty-xcp-357b2890e744" target="_blank">create a Counterparty asset</a> to represent this card's supply on the blockchain. You can issue as many cards as you like, some artists prefer small runs.</p>
                 <p>Next, it's time to <em>burn</em>. Send the {{ config('bitcorn.subfee') }} BITCORN submission fee is to our burn address and 1 of your tokens to our <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> burn address for permanent display.</p>
                 <p>Lastly, use the form on this page to submit your card. If it is accepted (not guaranteed) it will become a Bitcorn Card<sup>&trade;</sup> and be supported by our platform and others.</p>
                 <h5 class="card-title">
