@@ -30,12 +30,12 @@ export default {
         },
         yAxis: [{
           title: {
-            text: 'Bitcorn'
+            text: ''
           },
           linkedTo: 1,
         },{
           title: {
-            text: 'Cumulative'
+            text: 'Bitcorn Harvested'
           },
           opposite: true
         }],
@@ -69,13 +69,13 @@ export default {
       var self = this
       $.get(api, function (response) {
         self.chartOptions.series.push({
-          name: 'Bitcorn Harvest',
+          name: 'Per Harvest',
           data: response.data,
           yAxis: 0,
           zIndex: 2,
         })
         self.chartOptions.series.push({
-          name: 'Total Bitcorn',
+          name: 'Cumulative',
           yAxis: 1,
           zIndex: 1,
           data: self.$_corn_chart_accumulate(response.data),
