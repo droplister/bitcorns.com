@@ -61,8 +61,7 @@ export default {
   },
   watch:{
     source() {
-      while(this.chartOptions.series.length > 0)
-        this.chartOptions.series[0].remove(true)
+      this.chartOptions.series = []
       this.$_corn_chart_update()
     }
   },
