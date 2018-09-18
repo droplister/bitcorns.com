@@ -31,7 +31,7 @@
                     Submission Fee
                 </h5>
                 <p>Send {{ config('bitcorn.subfee') }} BITCORN to this address: <a href="https://xchain.io/address/{{ config('bitcorn.subfee_address') }}" target="_blank">{{ config('bitcorn.subfee_address') }}</a>.</p>
-                <p><em>The average price for cards on the Counterparty DEX is {{ $dex_average }} {{ config('bitcorn.reward_token') }}.</em></p>
+                <p><em>The average card sells on the Counterparty DEX for {{ $dex_average }} {{ config('bitcorn.reward_token') }}.</em></p>
                 <h5 class="card-title">
                     Bitcorn Museum
                 </h5>

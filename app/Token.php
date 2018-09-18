@@ -9,6 +9,7 @@ use App\Traits\Achievable;
 use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
+use App\Http\Requests\Cards\StoreRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,18 @@ use Illuminate\Database\Eloquent\Model;
 class Token extends Model
 {
     use Achievable, Achiever, Linkable, Sluggable, SluggableScopeHelpers, Touchable;
+
+    /**
+     * Enforce Type Limit
+     */
+    public static function boot() {
+        static::creating(function (Token $token) {
+            if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
+                throw new Exception('Token Limit Exceeded');
+            }
+        });
+        parent::boot();
+    }
 
     /**
      * The event map for the model.
@@ -199,6 +212,25 @@ class Token extends Model
     }
 
     /**
+     * Create Card
+     * 
+     * @param  \App\Http\Requests\Cards\StoreRequest  $request
+     * @param  string  $image_url
+     * @return \App\Token
+     */
+    public static function createCard(StoreRequest $request, $image_url)
+    {
+        return static::create([
+            'xcp_core_asset_name' => $request->name,
+            'xcp_core_burn_tx_hash' => $request->burn,
+            'type' => 'upgrade',
+            'name' => $request->name,
+            'image_url' => $image_url,
+            'content' => $request->content,
+        ]);
+    }
+
+    /**
      * Get the route key for the model.
      *
      * @return string
@@ -206,18 +238,6 @@ class Token extends Model
     public function getRouteKeyName()
     {
         return 'name';
-    }
-
-    /**
-     * Enforce Type Limit
-     */
-    public static function boot() {
-        static::creating(function (Token $token) {
-            if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
-                throw new Exception('Token Limit Exceeded');
-            }
-        });
-        parent::boot();
     }
 
     /**

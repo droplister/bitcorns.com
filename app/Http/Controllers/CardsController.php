@@ -79,51 +79,30 @@ class CardsController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // Save Image(s)
-        $image_url = $this->storeImage($request->image);
-
-        // HD Optional
-        if($request->has('hd_image'))
+        // Extra Validation
+        if($error = $this->guardAgainstInvalidTokens($request->name))
         {
-            $hd_image_url = $this->storeImage($request->hd_image);
+            return back()->withInput()->with('error', $error);
         }
 
-        // Create Card
-        $card = Token::create([
-            'xcp_core_asset_name' => $request->name,
-            'xcp_core_burn_tx_hash' => $request->burn,
-            'type' => 'upgrade',
-            'name' => $request->name,
-            'image_url' => $image_url,
-            'content' => $request->content,
-        ]);
+        // Save Image
+        $image_url = $this->storeImage($request->image);
 
-        // Update Meta
+        // Create Card
+        $card = Token::createCard($request, $image_url);
+
+        // HD Optional
         if(isset($hd_image_url))
         {
+            // Save Image
+            $hd_image_url = $this->storeImage($request->hd_image);
+
+            // Update Meta
             $card->update(['meta_data->hd_image_url' => $hd_image_url]);
         }
 
         // Report Back
         return redirect(route('cards.create'))->with('success', 'Success - Card Submitted!');
-    }
-
-    /**
-     * Store Image
-     * 
-     * @param  string  $file
-     * @return string
-     */
-    private function storeImage($file)
-    {
-        // Put File
-        $image_path = Storage::putFile('public/tokens/', $file);
-
-        // Relative
-        $image_url = Storage::url($image_path);
-
-        // Absolute
-        return url($image_url);
     }
 
     /**
@@ -157,5 +136,23 @@ class CardsController extends Controller
             // DEX Average
             return number_format($buy_average + $sell_average / 2);
         });
+    }
+
+    /**
+     * Store Image
+     * 
+     * @param  string  $file
+     * @return string
+     */
+    private function storeImage($file)
+    {
+        // Put File
+        $image_path = Storage::putFile('public/tokens/', $file);
+
+        // Relative
+        $image_url = Storage::url($image_path);
+
+        // Absolute
+        return url($image_url);
     }
 }
