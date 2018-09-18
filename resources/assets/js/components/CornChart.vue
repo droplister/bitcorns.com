@@ -61,7 +61,7 @@ export default {
   },
   watch:{
     source() {
-      this.$refs.highcharts.redraw()
+      this.$refs.highcharts.chart.redraw()
     }
   },
   methods: {
