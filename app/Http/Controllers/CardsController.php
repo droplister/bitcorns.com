@@ -59,8 +59,11 @@ class CardsController extends Controller
      */
     public function create(Request $request)
     {
+        // Queue Count
+        $queue_count = Token::publishable()->upgrades()->count();
+
         // Create View
-        return view('cards.create');
+        return view('cards.create', compact('queue_count'));
     }
 
     /**

@@ -115,6 +115,14 @@ class Token extends Model
     }
 
     /**
+     * Upgrades
+     */
+    public function scopeUpgrades($query)
+    {
+        return $query->where('type', '=', 'upgrade');
+    }
+
+    /**
      * Not Divisible
      */
     public function scopeNotDivisible($query)
