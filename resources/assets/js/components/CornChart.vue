@@ -25,9 +25,6 @@ export default {
         title: {
           text: 'Bitcorn Forecast'
         },
-        subtitle: {
-          text: this.crops + ' Crops'
-        },
         xAxis: {
           type: 'datetime'
         },
