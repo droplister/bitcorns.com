@@ -11,6 +11,7 @@
 |
 */
 
-Route::resource('farms', 'FarmsController');
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
+Route::resource('farms', 'FarmsController');
+Route::resource('harvests', 'HarvestsController', ['only' => ['index', 'show']]);
 Route::resource('tokens', 'TokensController');
