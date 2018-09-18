@@ -7,6 +7,12 @@
 
   <!-- the modal -->
   <b-modal id="cornculatorModal" size="lg" title="Cornculator">
+    <div slot="modal-header" class="w-100">
+      <h5 class="modal-title">
+        <i class="fa fa-calculator"></i> Cornculator
+      </h5>
+      <button type="button" aria-label="Close" class="close">×</button>
+    </div>
     <corn-chart :crops="quantity"></corn-chart>
     <div slot="modal-footer" class="w-100">
       <div class="row">

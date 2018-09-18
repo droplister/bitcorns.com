@@ -23,7 +23,7 @@ export default {
           }
         },
         title: {
-          text: 'Bitcorn Forecast'
+          text: ''
         },
         xAxis: {
           type: 'datetime'
