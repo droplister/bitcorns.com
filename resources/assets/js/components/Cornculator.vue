@@ -7,7 +7,7 @@
 
   <!-- the modal -->
   <b-modal id="cornculatorModal" size="lg" title="Cornculator">
-    <corn-chart crops="quantity"></corn-chart>
+    <corn-chart :crops="quantity"></corn-chart>
     <div slot="modal-footer" class="w-100">
       <range-slider
         class="slider"
