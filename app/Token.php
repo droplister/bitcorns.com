@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Storage;
 use Exception;
 use App\Traits\Linkable;
 use App\Traits\Touchable;
@@ -215,19 +216,52 @@ class Token extends Model
      * Create Card
      * 
      * @param  \App\Http\Requests\Cards\StoreRequest  $request
-     * @param  string  $image_url
      * @return \App\Token
      */
-    public static function createCard(StoreRequest $request, $image_url)
+    public static function createCard(StoreRequest $request)
     {
-        return static::create([
+        $card = static::create([
             'xcp_core_asset_name' => $request->name,
             'xcp_core_burn_tx_hash' => $request->burn,
             'type' => 'upgrade',
             'name' => $request->name,
-            'image_url' => $image_url,
             'content' => $request->content,
         ]);
+
+        // Save Image
+        $card->storeImage($request->image);
+
+        // HD Optional
+        if(isset($hd_image_url))
+        {
+            // Save Image
+            $card->storeImage($request->hd_image, true);
+        }
+    }
+
+    /**
+     * Store Image
+     * 
+     * @param  string  $file
+     * @param  boolean  $hd
+     * @return string
+     */
+    private function storeImage($file, $hd=false)
+    {
+        // Get Key
+        $key = $hd ? 'meta_data->hd_image_url' : 'image_url';
+
+        // Put File
+        $image_path = Storage::putFile('public/tokens/', $file);
+
+        // Relative
+        $image_url = Storage::url($image_path);
+
+        // Absolute
+        $image_url = url($image_url);
+
+        // Save IMG
+        $this->update([$key => $image_url]);
     }
 
     /**

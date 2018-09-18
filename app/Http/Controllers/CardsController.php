@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Cache;
-use Storage;
 use App\Token;
+use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\StoreRequest;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class CardsController extends Controller
     {
         // Get Cards
         $cards = Token::published()
-            ->whereType('upgrade')
+            ->upgrades()
             ->oldest()
             ->get();
 
@@ -79,27 +79,14 @@ class CardsController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // Extra Validation
+        // Validation+
         if($error = $this->guardAgainstInvalidTokens($request->name))
         {
             return back()->withInput()->with('error', $error);
         }
 
-        // Save Image
-        $image_url = $this->storeImage($request->image);
-
         // Create Card
-        $card = Token::createCard($request, $image_url);
-
-        // HD Optional
-        if(isset($hd_image_url))
-        {
-            // Save Image
-            $hd_image_url = $this->storeImage($request->hd_image);
-
-            // Update Meta
-            $card->update(['meta_data->hd_image_url' => $hd_image_url]);
-        }
+        $card = Token::createCard($request);
 
         // Report Back
         return redirect(route('cards.create'))->with('success', 'Success - Card Submitted!');
@@ -122,37 +109,40 @@ class CardsController extends Controller
             // Buys
             $buys = OrderMatch::whereIn('forward_asset', $card_assets)
                 ->where('backward_asset', '=', config('bitcorn.reward_token'));
+            $average_buy = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
 
             // Sells
             $sells = OrderMatch::whereIn('backward_asset', $card_assets)
                 ->where('forward_asset', '=', config('bitcorn.reward_token'));
-
-            // Buy Average
-            $buy_average = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
-
-            // Sell Average
-            $sell_average = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
+            $average_sell = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
 
             // DEX Average
-            return number_format($buy_average + $sell_average / 2);
+            return number_format(($average_buy + $average_sell) / 2);
         });
     }
 
     /**
-     * Store Image
+     * Guard Against Invalid Tokens
      * 
-     * @param  string  $file
-     * @return string
+     * @param  string  $asset_name
+     * @return mixed
      */
-    private function storeImage($file)
+    private function guardAgainstInvalidTokens($asset_name)
     {
-        // Put File
-        $image_path = Storage::putFile('public/tokens/', $file);
+        // Get Asset
+        $asset = Asset::find($asset_name);
 
-        // Relative
-        $image_url = Storage::url($image_path);
+        // Check It!
+        if(! $asset->divisible)
+        {
+            return 'Error - Bitcorn Cards cannot be divisible.';
+        }
+        elseif(! $asset->locked)
+        {
+            return 'Error - Asset issuance needs to be locked.';
+        }
 
-        // Absolute
-        return url($image_url);
+        // No Errors
+        return false;
     }
 }
