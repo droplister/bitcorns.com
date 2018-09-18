@@ -61,7 +61,9 @@ export default {
   },
   watch:{
     source() {
-      this.chartOptions.redraw()
+      while(this.chartOptions.series.length > 0)
+        this.chartOptions.series[0].remove(true)
+      this.$_corn_chart_update()
     }
   },
   methods: {
