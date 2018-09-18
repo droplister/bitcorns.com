@@ -17,7 +17,7 @@
           <range-slider
             class="slider"
             min="0"
-            max="100"
+            max="1"
             step="0.1"
             v-model="quantity">
           </range-slider>
@@ -35,7 +35,7 @@ import 'vue-range-slider/dist/vue-range-slider.css'
 export default {
   data () {
     return {
-      quantity: 10
+      quantity: 0.5
     }
   },
   components: {
