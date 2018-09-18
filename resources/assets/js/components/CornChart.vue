@@ -32,11 +32,11 @@ export default {
           title: {
             text: 'Bitcorn'
           },
+          linkedTo: 1,
         },{
           title: {
             text: 'Cumulative'
           },
-          linkedTo: 0,
           opposite: true
         }],
         tooltip: {
