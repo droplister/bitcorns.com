@@ -23,10 +23,10 @@
                     How to Start
                 </h5>
                 <p class="card-text">
-                    Start by creating a unique Bitcorn card that you think is creative, funny, or otherwise well-suited for a blockchain farming game. Browse the <a href="{{ route('cards.index') }}">card directory</a> for inspiration and examples. Be YOU-nique!
+                    Start by creating a unique Bitcorn card that you think is creative, funny, or otherwise well-suited for our blockchain farming game. Browse the <a href="{{ route('cards.index') }}">card directory</a> for inspiration and examples. Be YOU-nique!
                 </p>
                 <p class="card-text">
-                    We provide two templates, one that looks like a card and one that is just its border. For the sake of cards being easily recognizable, the border is a minimum requirement.
+                    We provide two templates, one that looks like a trading card and one that is just a border. For the sake of cards being easily recognizable, the border is a minimum requirement.
                 </p>
                 <p class="card-text">
                     Once you have card art, <a href="https://hackernoon.com/how-to-create-a-token-using-counterparty-xcp-357b2890e744" target="_blank">create a Counterparty asset</a> to represent this card's supply on the blockchain. You can issue as many cards as you like, some artists prefer smaller runs.
