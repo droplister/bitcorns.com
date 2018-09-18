@@ -36,3 +36,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.slider {
+  width: 100%;
+}
+</style>
