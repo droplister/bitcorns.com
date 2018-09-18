@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use Storage;
 use App\Token;
+use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\StoreRequest;
 use Illuminate\Http\Request;
 
@@ -59,11 +61,14 @@ class CardsController extends Controller
      */
     public function create(Request $request)
     {
+        // DEX Average
+        $dex_average = $this->getAverageDexPrice();
+
         // Queue Count
         $queue_count = Token::publishable()->upgrades()->count();
 
         // Create View
-        return view('cards.create', compact('queue_count'));
+        return view('cards.create', compact('dex_average', 'queue_count'));
     }
 
     /**
@@ -119,5 +124,38 @@ class CardsController extends Controller
 
         // Absolute
         return url($image_url);
+    }
+
+    /**
+     * Get Average DEX Price
+     * 
+     * @return string
+     */
+    private function getAverageDexPrice()
+    {
+        // DEX Average
+        return Cache::remember('dex_average', 1440, function () {
+            // Cards
+            $card_assets = Token::published()->upgrades()
+                ->pluck('xcp_core_asset_name')
+                ->toArray();
+
+            // Buys
+            $buys = OrderMatch::whereIn('forward_asset', $card_assets)
+                ->where('backward_asset', '=', config('bitcorn.reward_token'));
+
+            // Sells
+            $sells = OrderMatch::whereIn('backward_asset', $card_assets)
+                ->where('forward_asset', '=', config('bitcorn.reward_token'));
+
+            // Buy Average
+            $buy_average = $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
+
+            // Sell Average
+            $sell_average = $sells->sum('forward_asset') / $sells->sum('backward_asset');
+
+            // DEX Average
+            return number_format($buy_average + $sell_average / 2);
+        });
     }
 }
