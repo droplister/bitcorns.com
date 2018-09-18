@@ -69,7 +69,7 @@ class Harvest extends Model
      */
     public function calculateBitcorn($crops)
     {
-        $quantity = $this->quantity / 100 * $crops;
+        $quantity = floor($this->quantity / 100 * $crops);
 
         return $quantity > 1 ? $quantity : 0;
     }

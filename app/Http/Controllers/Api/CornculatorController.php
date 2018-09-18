@@ -21,8 +21,8 @@ class CornculatorController extends Controller
             'crops' => ['required', 'numeric', 'min:0', 'max:100'],
         ]);
 
-        // Upcoming Harvests
-        $harvests = Harvest::upcoming()->get();
+        // Bitcorn Harvests
+        $harvests = Harvest::get();
 
         // Build Up An Array
         $data = [];
