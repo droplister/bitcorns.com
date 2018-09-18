@@ -61,7 +61,7 @@ export default {
   },
   watch:{
     source() {
-      this.redraw()
+      this.$_corn_chart_update()
     }
   },
   methods: {
