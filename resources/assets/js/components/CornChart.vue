@@ -54,9 +54,14 @@ export default {
   mounted() {
     this.$_corn_chart_update()
   },
+  computed: {
+    source: function () {
+      return '/api/cornculator?crops=' + this.crops
+    }
+  }
   methods: {
     $_corn_chart_update() {
-      var api = '/api/cornculator?crops=' + this.crops
+      var api = source
       var self = this
       $.get(api, function (response) {
         self.chartOptions.series.push({
