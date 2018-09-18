@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Storage;
 use Exception;
 use App\Traits\Linkable;
 use App\Traits\Touchable;
@@ -9,6 +10,7 @@ use App\Traits\Achievable;
 use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
+use App\Http\Requests\Cards\StoreRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +18,18 @@ use Illuminate\Database\Eloquent\Model;
 class Token extends Model
 {
     use Achievable, Achiever, Linkable, Sluggable, SluggableScopeHelpers, Touchable;
+
+    /**
+     * Enforce Type Limit
+     */
+    public static function boot() {
+        static::creating(function (Token $token) {
+            if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
+                throw new Exception('Token Limit Exceeded');
+            }
+        });
+        parent::boot();
+    }
 
     /**
      * The event map for the model.
@@ -41,6 +55,7 @@ class Token extends Model
         'image_url',
         'content',
         'meta_data',
+        'meta_data->hd_image_url',
         'meta_data->harvest_ranking',
         'meta_data->overall_ranking',
         'museumed_at',
@@ -111,6 +126,14 @@ class Token extends Model
     public function tokenBalances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero();
+    }
+
+    /**
+     * Upgrades
+     */
+    public function scopeUpgrades($query)
+    {
+        return $query->where('type', '=', 'upgrade');
     }
 
     /**
@@ -190,6 +213,58 @@ class Token extends Model
     }
 
     /**
+     * Create Card
+     * 
+     * @param  \App\Http\Requests\Cards\StoreRequest  $request
+     * @return \App\Token
+     */
+    public static function createCard(StoreRequest $request)
+    {
+        $card = static::create([
+            'xcp_core_asset_name' => $request->name,
+            'xcp_core_burn_tx_hash' => $request->burn,
+            'type' => 'upgrade',
+            'name' => $request->name,
+            'content' => $request->content,
+        ]);
+
+        // Save Image
+        $card->storeImage($request->image);
+
+        // HD Optional
+        if(isset($hd_image_url))
+        {
+            // Save Image
+            $card->storeImage($request->hd_image, true);
+        }
+    }
+
+    /**
+     * Store Image
+     * 
+     * @param  string  $file
+     * @param  boolean  $hd
+     * @return string
+     */
+    private function storeImage($file, $hd=false)
+    {
+        // Get Key
+        $key = $hd ? 'meta_data->hd_image_url' : 'image_url';
+
+        // Put File
+        $image_path = Storage::putFile('public/tokens/', $file);
+
+        // Relative
+        $image_url = Storage::url($image_path);
+
+        // Absolute
+        $image_url = url($image_url);
+
+        // Save IMG
+        $this->update([$key => $image_url]);
+    }
+
+    /**
      * Get the route key for the model.
      *
      * @return string
@@ -197,18 +272,6 @@ class Token extends Model
     public function getRouteKeyName()
     {
         return 'name';
-    }
-
-    /**
-     * Enforce Type Limit
-     */
-    public static function boot() {
-        static::creating(function (Token $token) {
-            if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
-                throw new Exception('Token Limit Exceeded');
-            }
-        });
-        parent::boot();
     }
 
     /**

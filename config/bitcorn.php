@@ -36,4 +36,14 @@ return [
      * Submmission Fee Address
      */
     'subfee_address' => env('BITCORN_SUBFEE_ADDRESS', '1BitcornSubmissionFeeAddressgL5Xg'),
+
+    /**
+     * Submmission Fee
+     */
+    'subfee' => env('BITCORN_SUBFEE', 500),
+
+    /**
+     * Telegram Chat
+     */
+    'telegram' => env('BITCORN_TELEGRAM', 'https://t.me/bitcorns'),
 ];
