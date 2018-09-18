@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Cards;
 
+use App\Rules\Locked;
 use App\Rules\Uppercase;
+use App\Rules\ValidBurn;
+use App\Rules\NotDivisible;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -27,8 +30,8 @@ class StoreRequest extends FormRequest
         return [
             'image' => ['required', 'image', 'mimes:png,gif', 'dimensions:width=375,height=520'],
             'hd_image' => ['sometimes', 'image', 'mimes:png,gif', 'dimensions:width=750,height=1040'],
-            'burn' => ['required', 'unique:tokens,xcp_core_burn_tx_hash', 'exists:transactions,tx_hash'],
-            'name' => ['required', 'alpha', 'unique:tokens', 'exists:assets,asset_name', new Uppercase],
+            'burn' => ['required', 'unique:tokens,xcp_core_burn_tx_hash', 'exists:transactions,tx_hash', new ValidBurn],
+            'name' => ['required', 'alpha', 'unique:tokens', 'exists:assets,asset_name', new Uppercase, new Locked, new Divisible],
             'content' => ['required', 'min:20', 'max:65535'],
         ];
     }

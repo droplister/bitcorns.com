@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Token;
-use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\StoreRequest;
 use Illuminate\Http\Request;
@@ -79,12 +78,6 @@ class CardsController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // Validation+
-        if($error = $this->guardAgainstInvalidTokens($request->name) || $error = $this->guardAgainstInvalidBurns($request->burn))
-        {
-            return back()->withInput()->with('error', $error);
-        }
-
         // Create Card
         $card = Token::createCard($request);
 
@@ -119,52 +112,5 @@ class CardsController extends Controller
             // DEX Average
             return number_format(($average_buy + $average_sell) / 2);
         });
-    }
-
-    /**
-     * Guard Against Invalid Tokens
-     * 
-     * @param  string  $asset_name
-     * @return mixed
-     */
-    private function guardAgainstInvalidTokens($asset_name)
-    {
-        // Get Asset
-        $asset = Asset::find($asset_name);
-
-        // Check It!
-        if(! $asset->divisible)
-        {
-            return 'Error - Bitcorn Cards cannot be divisible.';
-        }
-        elseif(! $asset->locked)
-        {
-            return 'Error - Asset issuance needs to be locked.';
-        }
-
-        // No Errors
-        return false;
-    }
-
-
-    /**
-     * Guard Against Invalid Burns
-     * 
-     * @param  string  $tx_hash
-     * @return mixed
-     */
-    private function guardAgainstInvalidBurns($tx_hash)
-    {
-        // Get Send
-        $send = Send::where('tx_hash', '=', $tx_hash)->first();
-
-        // Check It!
-        if($send->destination !== config('bitcorn.subfee_address'))
-        {
-            return 'Error - Burn TX invalid, wrong destination!';
-        }
-
-        // No Errors
-        return false;
     }
 }
