@@ -39,6 +39,7 @@ export default {
           title: {
             text: 'Cumulative'
           },
+          linkedTo: 0,
           opposite: true
         }],
         tooltip: {
@@ -71,13 +72,13 @@ export default {
       var self = this
       $.get(api, function (response) {
         self.chartOptions.series.push({
-          name: 'Bitcorn',
+          name: 'Bitcorn Harvest',
           data: response.data,
           yAxis: 0,
           zIndex: 2,
         })
         self.chartOptions.series.push({
-          name: 'Cumulative',
+          name: 'Total Bitcorn',
           yAxis: 1,
           zIndex: 1,
           data: self.$_corn_chart_accumulate(response.data),
