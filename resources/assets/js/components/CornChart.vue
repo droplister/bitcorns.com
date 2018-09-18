@@ -8,7 +8,7 @@
 import {Chart} from 'highcharts-vue'
 
 export default {
-  props: ['source'],
+  props: ['crops'],
   components: {
     highcharts: Chart
   },
@@ -25,12 +25,15 @@ export default {
         title: {
           text: 'Bitcorn Forecast'
         },
+        subtitle: {
+          text: this.crops + ' Crops'
+        },
         xAxis: {
           type: 'datetime'
         },
         yAxis: [{
           title: {
-            text: 'BITCORN'
+            text: 'Bitcorn'
           },
         },{
           title: {
@@ -53,11 +56,11 @@ export default {
   },
   methods: {
     $_corn_chart_update() {
-      var api = this.source
+      var api = '/api/cornculator?crops=' + this.crops
       var self = this
       $.get(api, function (response) {
         self.chartOptions.series.push({
-          name: 'BITCORN',
+          name: 'Bitcorn',
           data: response.data,
           yAxis: 0,
           zIndex: 2,

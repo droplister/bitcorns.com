@@ -36,6 +36,7 @@ class CornculatorController extends Controller
             ];
         }
 
-        return $data;
+        // Simple API Format
+        return compact('data');
     }
 }

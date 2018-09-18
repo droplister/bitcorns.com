@@ -7,11 +7,32 @@
 
   <!-- the modal -->
   <b-modal id="cornculatorModal" size="lg" title="Cornculator">
-    <corn-chart source="http://moon.bitcorns.com/api/cornculator?crops=1"></corn-chart>
+    <corn-chart crops="quantity"></corn-chart>
+    <div slot="modal-footer" class="w-100">
+      <range-slider
+        class="slider"
+        min="0"
+        max="100"
+        step="0.1"
+        v-model="quantity">
+      </range-slider>
+    </div>
   </b-modal>
 </div>
 </template>
 
 <script>
-export default {}
+import RangeSlider from 'vue-range-slider'
+import 'vue-range-slider/dist/vue-range-slider.css'
+
+export default {
+  data () {
+    return {
+      quantity: 1
+    }
+  },
+  components: {
+    RangeSlider
+  }
+}
 </script>
