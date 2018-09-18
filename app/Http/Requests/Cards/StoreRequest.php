@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Tokens;
+namespace App\Http\Requests\Cards;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,10 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'burn' => 'required|unique:tokens|exists:transactions,tx_hash',
+            'burn' => 'required|unique:tokens,xcp_core_burn_tx_hash|exists:transactions,tx_hash',
             'name' => 'required|unique:tokens|exists:assets,asset_name',
-            'image' => 'required|image|mimes:png,gif|dimensions:width=750,height=1040',
+            'image' => 'required|image|mimes:png,gif|dimensions:width=375,height=520',
+            'hd_image' => 'sometimes|image|mimes:png,gif|dimensions:width=750,height=1040',
             'content' => 'required|min:20|max:65535',
         ];
     }

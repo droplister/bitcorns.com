@@ -11,7 +11,8 @@
 |
 */
 
-Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
-Route::resource('farms', 'FarmsController');
-Route::resource('harvests', 'HarvestsController', ['only' => ['index', 'show']]);
-Route::resource('tokens', 'TokensController');
+Route::resource('/cards', 'CardsController', ['only' => ['index', 'show', 'create', 'store', 'update']]);
+Route::resource('/farms', 'FarmsController');
+Route::resource('/harvests', 'HarvestsController', ['only' => ['index', 'show']]);
+Route::resource('/tokens', 'TokensController');
+Route::redirect('/submit', '/cards/create', 301);
