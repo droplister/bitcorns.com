@@ -2,7 +2,7 @@
 <div>
   <!-- the button -->
   <b-btn v-b-modal.cornculatorModal variant="outline-success" class="float-right mt-3">
-    <i class="fa fa-calculator"></i> Cornculator
+    <i class="fa fa-calculator"></i> <span class="d-none d-sm-inline">Cornculator</span>
   </b-btn>
 
   <!-- the modal -->
