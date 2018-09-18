@@ -55,8 +55,13 @@ export default {
     this.$_corn_chart_update()
   },
   computed: {
-    source: function () {
+    source() {
       return '/api/cornculator?crops=' + this.crops
+    }
+  },
+  watch:{
+    source() {
+      this.redraw()
     }
   },
   methods: {

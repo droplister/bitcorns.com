@@ -9,13 +9,20 @@
   <b-modal id="cornculatorModal" size="lg" title="Cornculator">
     <corn-chart :crops="quantity"></corn-chart>
     <div slot="modal-footer" class="w-100">
-      <range-slider
-        class="slider"
-        min="0"
-        max="100"
-        step="0.1"
-        v-model="quantity">
-      </range-slider>
+      <div class="row">
+        <div class="col-4 col-sm-3">
+          {{ quantity }} CROPS
+        </div>
+        <div class="col-8 col-sm-9">
+          <range-slider
+            class="slider"
+            min="0"
+            max="100"
+            step="0.1"
+            v-model="quantity">
+          </range-slider>
+        </div>
+      </div>
     </div>
   </b-modal>
 </div>
@@ -28,7 +35,7 @@ import 'vue-range-slider/dist/vue-range-slider.css'
 export default {
   data () {
     return {
-      quantity: 1
+      quantity: 10
     }
   },
   components: {
