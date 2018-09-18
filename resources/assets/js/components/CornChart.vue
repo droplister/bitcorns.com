@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     $_corn_chart_update() {
-      var api = source
+      var api = this.source
       var self = this
       $.get(api, function (response) {
         self.chartOptions.series.push({

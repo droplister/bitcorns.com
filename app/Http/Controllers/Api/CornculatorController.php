@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Cache;
 use App\Harvest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,27 +17,33 @@ class CornculatorController extends Controller
      */
     public function index(Request $request)
     {
-        // Simple Validation
+        // Validation
         $request->validate([
             'crops' => ['required', 'numeric', 'min:0', 'max:100'],
         ]);
 
-        // Bitcorn Harvests
-        $harvests = Harvest::get();
+        // Cache Slug
+        $cache_slug = 'calculate_' . $request->crops;
 
-        // Build Up An Array
-        $data = [];
+        // Calculator
+        return Cache::rememberForever($cache_slug, function () use ($request) {
+            // Bitcorn Harvests
+            $harvests = Harvest::get();
 
-        // Calculate Bitcorn
-        foreach($harvests as $harvest)
-        {
-            $data[] = [
-                $harvest->scheduled_at->timestamp * 1000,
-                $harvest->calculateBitcorn($request->crops),
-            ];
-        }
+            // Build Up An Array
+            $data = [];
 
-        // Simple API Format
-        return compact('data');
+            // Calculate Bitcorn
+            foreach($harvests as $harvest)
+            {
+                $data[] = [
+                    $harvest->scheduled_at->timestamp * 1000,
+                    $harvest->calculateBitcorn($request->crops),
+                ];
+            }
+
+            // Simple API Format
+            return compact('data');
+        });
     }
 }
