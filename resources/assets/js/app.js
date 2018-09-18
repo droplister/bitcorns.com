@@ -15,7 +15,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue);
+
+Vue.component('corn-chart', require('./components/CornChart.vue'));
+Vue.component('cornculator', require('./components/Cornculator.vue'));
 
 const app = new Vue({
     el: '#app'
