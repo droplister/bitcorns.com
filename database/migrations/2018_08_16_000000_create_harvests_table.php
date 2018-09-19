@@ -20,7 +20,7 @@ class CreateHarvestsTable extends Migration
             $table->text('content');
             $table->string('image_url');
             $table->unsignedBigInteger('quantity');
-            $table->timestamp('scheduled_at');
+            $table->timestamp('scheduled_at')->nullable();
             $table->timestamps();
         });
     }
