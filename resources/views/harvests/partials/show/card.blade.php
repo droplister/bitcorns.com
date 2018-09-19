@@ -6,8 +6,9 @@
         <div class="col-sm-8 col-md-9">
             <div class="harvest-body">
                 <h5 class="card-title">
-                    Top-Level
+                    {{ $harvest->scheduled_at->toFormattedDateString() }}
                 </h5>
+                <p>{{ $harvest->content }}</p>
                 <table class="table mb-0">
                     <thead>
                         <tr>      
@@ -19,7 +20,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="d-none d-md-block">{{ $harvest->xcp_core_tx_index ? $harvest->transaction->confirmed_at->toDateString() :  $harvest->scheduled_at->toDateString() }}</td>
+                            @if($harvest->xcp_core_tx_index)
+                                <td class="d-none d-md-block">
+                                    <a href="https://xchain.io/tx/{{ $harvest->xcp_core_tx_index }}" target="_blank">
+                                        {{ $harvest->scheduled_at->toDateString() }}
+                                    </a>
+                                </td>
+                            @else
+                                <td class="d-none d-md-block">{{ $harvest->scheduled_at->toDateString() }}</td>
+                            @endif
                             <td>{{ number_format($harvest->quantity) }}</td>
                             <td>{{ number_format($harvest->farms()->count()) }}</td>
                             <td>{{ number_format($harvest->coops()->count()) }}</td>
