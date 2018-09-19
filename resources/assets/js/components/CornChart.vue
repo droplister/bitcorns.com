@@ -39,18 +39,6 @@ export default {
         credits: {
           enabled: false
         },
-        responsive: {
-          rules: [{
-            condition: {
-              maxWidth: 992
-            },
-            chartOptions: {
-              chart: {
-                width: 766
-              }
-            }
-          }]
-        },
         series: []
       }
     }
