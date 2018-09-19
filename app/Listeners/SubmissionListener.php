@@ -6,6 +6,7 @@ use App\Farm;
 use App\Token;
 use App\Jobs\SendMessage;
 use App\Events\TokenWasCreated;
+use Droplister\XcpCore\App\Address;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -137,21 +138,9 @@ class SubmissionListener
      */
     private function getMuseumBalances($token)
     {
-        $counterparty = new \JsonRPC\Client(config('xcp-core.cp.api'));
-        $counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
+        // Museum Address
+        $address = Address::find(config('bitcorn.museum_address'));
 
-        return $counterparty->execute('get_balances', [
-            'filters' => [
-                [
-                    'field' => 'address',
-                    'op' => '==',
-                    'value' => config('bitcorn.museum_address'),
-                ],[
-                    'field' => 'asset',
-                    'op'    => '==',
-                    'value' => $token->xcp_core_asset_name,
-                ]
-            ]
-        ]);
+        return $address->balances()->where('asset', '=', $token->xcp_core_asset_name)->get();
     }
 }
