@@ -31,6 +31,15 @@ class Harvest extends Model
         'scheduled_at',
     ];
 
+    /**
+     * Coops
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function coops()
+    {
+        return $this->belongsToMany(Coop::class, 'farm_harvest', 'harvest_id', 'coop_id')->withPivot('quantity');
+    }
 
     /**
      * Farms
