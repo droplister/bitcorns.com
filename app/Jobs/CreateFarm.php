@@ -47,6 +47,9 @@ class CreateFarm implements ShouldQueue
         {
             // Achievement!
             $farm->unlockIfLocked(new SaltOfTheEarth());
+
+            // Fix Name
+            $farm->update(['name' => substr($farm->name, 0, -4) . $farm->id]);
         }
         else
         {
