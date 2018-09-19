@@ -14,7 +14,7 @@
                         <tr>      
                             <th scope="col" class="d-none d-md-block border-bottom-0">{{ $harvest->xcp_core_tx_index ? 'Harvested' : 'Scheduled' }}</th>
                             <th scope="col" class="border-bottom-0">Bitcorn</th>
-                            <th scope="col" class="border-bottom-0">Farmers</th>
+                            <th scope="col" class="border-bottom-0">Farms</th>
                             <th scope="col" class="border-bottom-0">Coops</th>
                         </tr>
                     </thead>
