@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-4">
                 <img src="{{ asset('images/blank-card-example.png') }}" alt="Blank Card Example" width="100%" />
                 <h5 class="card-title mt-4">
                     Creative Assets
@@ -35,7 +35,7 @@
                     Submissions
                 </h5>
                 <p class="card-text">
-                    When you're ready to submit, it's time to <em>burn</em>. First, send {{ config('bitcorn.subfee') }} {{ config('bitcorn.reward_token') }} to our submission fee burn address. Next, send one of your new card to our <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> for permanent display.
+                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ config('bitcorn.subfee') }} {{ config('bitcorn.reward_token') }} to our submission fee address. After, send one of your new cards to our <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> for permanent display.
                 </p>
                 <p class="card-text">
                     After, you can use the form on this page to submit your card. If it is accepted (not guaranteed) it will become a Bitcorn Card and get integrated into the game.
