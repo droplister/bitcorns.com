@@ -1,6 +1,6 @@
 <template>
   <div>
-    <highcharts :options="chartOptions" style="max-width: 766px"></highcharts>
+    <highcharts :options="chartOptions"></highcharts>
   </div>
 </template>
 
@@ -38,6 +38,18 @@ export default {
         },
         credits: {
           enabled: false
+        },
+        responsive: {
+          rules: [{
+            condition: {
+              maxWidth: 992
+            },
+            chartOptions: {
+              chart: {
+                width: 766
+              }
+            }
+          }]
         },
         series: []
       }
