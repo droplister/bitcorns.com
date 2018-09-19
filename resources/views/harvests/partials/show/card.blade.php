@@ -11,7 +11,7 @@
                 <table class="table mb-0">
                     <thead>
                         <tr>      
-                            <th scope="col" class="d-none d-md-inline">Harvested</th>
+                            <th scope="col" class="d-none d-md-inline">{{ $harvest->xcp_core_tx_index ? 'Harvested' : 'Scheduled' }}</th>
                             <th scope="col">Bitcorn</th>
                             <th scope="col">Farmers</th>
                             <th scope="col">Coops</th>
@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="d-none d-md-inline">{{ $harvest->scheduled_at->toDateString() }}</td>
+                            <td class="d-none d-md-inline">{{ $harvest->xcp_core_tx_index ? $harvest->transaction->confirmed_at->toDateString() :  $harvest->scheduled_at->toDateString() }}</td>
                             <td>{{ number_format($harvest->quantity) }}</td>
                             <td>{{ number_format($harvest->farms()->count()) }}</td>
                             <td>{{ number_format($harvest->coops()->count()) }}</td>
