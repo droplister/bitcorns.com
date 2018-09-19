@@ -47,10 +47,27 @@ class HandleHarvest implements ShouldQueue
         // Handle The Credits
         $this->handleCredits($harvest);
 
+        // Update Genesis Farm
+        $this->updateGenesis($harvest);
+
         // Update Harvest TX
         $this->updateHarvest($harvest);
 
         // Fire Harvest Event
+    }
+
+    /**
+     * Get Credits
+     * 
+     * @return \Droplister\XcpCore\App\Credit
+     */
+    private function getCredits()
+    {
+        return Credit::where('event', '=', $this->dividend->tx_hash)
+            ->selectRaw('SUM(quantity) as quantity, address')
+            ->where('quantity', '>', 0)
+            ->groupBy('address')
+            ->get();
     }
 
     /**
@@ -70,20 +87,6 @@ class HandleHarvest implements ShouldQueue
     }
 
     /**
-     * Get Credits
-     * 
-     * @return \Droplister\XcpCore\App\Credit
-     */
-    private function getCredits()
-    {
-        return Credit::where('event', '=', $this->dividend->tx_hash)
-            ->selectRaw('SUM(quantity) as quantity, address')
-            ->where('quantity', '>', 0)
-            ->groupBy('address')
-            ->get();
-    }
-
-    /**
      * Create Farm Harvest
      *
      * @param  \App\Harvest  $harvest
@@ -92,6 +95,7 @@ class HandleHarvest implements ShouldQueue
      */
     private function createFarmHarvest($harvest, $credit)
     {
+        // Genesis Farm
         $farm = Farm::findBySlug($credit->address);
 
         // Report DAAB
@@ -100,6 +104,29 @@ class HandleHarvest implements ShouldQueue
             $harvest->id => [
                 'coop_id' => $farm->coop_id,
                 'quantity' => $farm->isDAAB() ? 0 : $credit->quantity,
+            ]
+        ]);
+    }
+
+    /**
+     * Create Farm Harvest
+     *
+     * @param  \App\Harvest  $harvest
+     * @return mixed
+     */
+    private function updateGenesis($harvest)
+    {
+        // Genesis Farm
+        $farm = Farm::findBySlug(config('bitcorn.genesis_address'));
+
+        // Issuer = Implicit
+        $quantity = $harvest->quantity - $harvest->farms()->sum('quantity');
+
+        // Update Genesis
+        return $farm->harvests()->syncWithoutDetaching([
+            $harvest->id => [
+                'coop_id' => $farm->coop_id,
+                'quantity' => $farm->isDAAB() ? 0 : $quantity,
             ]
         ]);
     }

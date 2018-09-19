@@ -13,7 +13,7 @@ class CreateFarmHarvestPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('farm_harvest_pivot', function (Blueprint $table) {
+        Schema::create('farm_harvest', function (Blueprint $table) {
             $table->unsignedInteger('farm_id')->index();
             $table->unsignedInteger('harvest_id')->index();
             $table->unsignedInteger('coop_id')->nullable()->index();
@@ -28,6 +28,6 @@ class CreateFarmHarvestPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farm_harvest_pivot');
+        Schema::dropIfExists('farm_harvest');
     }
 }
