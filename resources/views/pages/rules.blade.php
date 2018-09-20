@@ -28,7 +28,7 @@
                         Between harvests, players can customize their farm's look, location, and in-game assets, immersing themselves in the <a href="#">Bitcorn world</a>. It's even possible to join forces! (See: <a href="#">Co-Ops</a>.)
                     </p>
                     <p class="card-text text-muted">
-                        <em>If you have any questions, please <a href="mailto:bitcorncrops@gmail.com">contact us</a> or <a href="https://t.me/bitcorns" target="_blank">join our chat room</a>.</em>
+                        <em>If you have any questions, please <a href="mailto:{{ config('bitcorn.email') }}">contact us</a> or <a href="{{ config('bitcorn.telegram') }}" target="_blank">join our chat room</a>.</em>
                     </p>
                 </div>
             </div>

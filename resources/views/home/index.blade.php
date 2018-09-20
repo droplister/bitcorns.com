@@ -25,8 +25,8 @@
                     Receive an amount of CROPS sufficient to establish a Bitcorns.com farm and gain access to basic features, like updating farm names, locations, and descriptions.
                 </p>
                 <a href="{{ route('pages.buy') }}" class="btn btn-lg btn-block btn-primary">
-                    <i class="fa fa-credit-card-alt"></i>
-                    Buy Now
+                    <i class="fa fa-info-circle"></i>
+                    More Info
                 </a>
             </div>
         </div>
@@ -43,8 +43,8 @@
                     Receive an amount of CROPS sufficient to establish a Bitcorns.com farm and gain access to basic features, in addition to the ability to upload custom farm art.
                 </p>
                 <a href="{{ route('pages.buy') }}" class="btn btn-lg btn-block btn-primary">
-                    <i class="fa fa-credit-card-alt"></i>
-                    Buy Now
+                    <i class="fa fa-info-circle"></i>
+                    More Info
                 </a>
             </div>
         </div>

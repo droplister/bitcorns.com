@@ -43,9 +43,19 @@ return [
     'subfee' => env('BITCORN_SUBFEE', 500),
 
     /**
+     * Contact Email
+     */
+    'email' => env('BITCORN_EMAIL', 'bitcorncrops@gmail.com'),
+
+    /**
      * Telegram Chat
      */
     'telegram' => env('BITCORN_TELEGRAM', 'https://t.me/bitcorns'),
+
+    /**
+     * Twitter Account
+     */
+    'twitter' => env('BITCORN_TWITTER', 'https://twitter.com/bitcorncrops'),
 
     /**
      * Wufoo.com Form
