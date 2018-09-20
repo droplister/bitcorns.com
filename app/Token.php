@@ -119,13 +119,21 @@ class Token extends Model
     }
 
     /**
-     * Token Balances
+     * Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tokenBalances()
+    public function balances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero();
+    }
+
+    /**
+     * Tokens
+     */
+    public function scopeTokens($query)
+    {
+        return $query->where('type', '!=', 'upgrade');
     }
 
     /**

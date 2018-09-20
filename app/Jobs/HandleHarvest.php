@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Coop;
 use App\Farm;
 use App\Harvest;
 use Droplister\XcpCore\App\Credit;
@@ -50,6 +51,9 @@ class HandleHarvest implements ShouldQueue
         // Update Genesis Farm
         $this->updateGenesis($harvest);
 
+        // Update Coop Totals
+        $this->updateTotalHarvested();
+
         // Update Harvest TX
         $this->updateHarvest($harvest);
 
@@ -95,17 +99,11 @@ class HandleHarvest implements ShouldQueue
      */
     private function createFarmHarvest($harvest, $credit)
     {
-        // Genesis Farm
+        // Get The Farm
         $farm = Farm::findBySlug($credit->address);
 
-        // Report DAAB
-
-        return $farm->harvests()->syncWithoutDetaching([
-            $harvest->id => [
-                'coop_id' => $farm->coop_id,
-                'quantity' => $farm->isDAAB() ? 0 : $credit->quantity,
-            ]
-        ]);
+        // Sync Harvest
+        $this->syncFarmHarvest($farm, $harvest, $credit->quantity);
     }
 
     /**
@@ -119,21 +117,17 @@ class HandleHarvest implements ShouldQueue
         // Genesis Farm
         $farm = Farm::findBySlug(config('bitcorn.genesis_address'));
 
-        // Issuer = Implicit
+        // Calc Quantity
         $quantity = $harvest->quantity - $harvest->farms()->sum('quantity');
 
-        // Update Genesis
-        return $farm->harvests()->syncWithoutDetaching([
-            $harvest->id => [
-                'coop_id' => $farm->coop_id,
-                'quantity' => $farm->isDAAB() ? 0 : $quantity,
-            ]
-        ]);
+        // Sync Harvest
+        $this->syncFarmHarvest($farm, $harvest, $quantity);
     }
 
     /**
      * Update Harvest
-     * 
+     *
+     * @param  \App\Harvest  $harvest
      * @return \App\Harvest
      */
     private function updateHarvest($harvest)
@@ -141,5 +135,91 @@ class HandleHarvest implements ShouldQueue
         return $harvest->update([
             'xcp_core_tx_index' => $this->dividend->tx_index,
         ]);
+    }
+
+    /**
+     * Sync Farm Harvest
+     * 
+     * @param  \App\Farm  $farm
+     * @param  \App\Harvest  $harvest
+     * @param  integer  $quantity
+     * @return \App\Farm
+     */
+    private function syncFarmHarvest($farm, $harvest, $quantity)
+    {
+        // Multiplier
+        $multiplier = $this->getMultiplier($farm, $harvest);
+
+        // Update Total
+        $farm->update(['total_harvested' => $farm->total_harvested + $quantity]);
+
+        // Sync Harvest
+        return $farm->harvests()->syncWithoutDetaching([
+            $harvest->id => [
+                'coop_id' => $farm->coop_id,
+                'quantity' => $quantity,
+                'multiplier' => $multiplier,
+            ]
+        ]);    
+    }
+
+    /**
+     * Update Total Harvested
+     * 
+     * @return void
+     */
+    private function updateTotalHarvested()
+    {
+        // All Coops
+        $coops = Coop::get();
+
+        // Calc Totals
+        foreach($coops as $coop)
+        {
+            // All Time (with multiplier taken into consideration)
+            $total_harvested = $coop->harvests->sum(function ($harvest) {
+                return $harvest->pivot->quantity * $harvest->pivot->multiplier;
+            });
+
+            // Update Total
+            $coop->update(['total_harvested' => $total_harvested]);
+        }
+    }
+
+    /**
+     * Get Multiplier
+     *
+     * @param  \App\Farm  $farm
+     * @param  \App\Harvest  $harvest
+     * @return float
+     */
+    private function getMultiplier($farm, $harvest)
+    {
+        // Default
+        $multiplier = 1;
+
+        // Harvest 2-16
+        if($harvest->id > 1 && $farm->isDAAB())
+        {
+            // Dry As A Bone
+            $multiplier = $multiplier * 0;
+        }
+
+        // Harvest 3-16
+        if($harvest->id > 2 && $farm->coop && $farm->coop->isAC())
+        {
+            // Alpha Collectors
+            $multiplier = $multiplier * 1.5;
+        }
+
+        // Harvest 4-16
+        if($harvest->id > 3 && $farm->isCP())
+        {
+            // Corn Prayer
+            $multiplier = $multiplier * 2;
+        }
+
+        // 0.0/1.0/1.5/2.0/3.0
+        return $multiplier;
     }
 }

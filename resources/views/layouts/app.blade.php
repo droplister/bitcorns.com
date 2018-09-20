@@ -33,6 +33,24 @@
 <body>
     <div id="app">
         <header>
+            <div class="collapse bg-dark" id="navbarHeader">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-8 py-4">
+                            <h4 class="text-white">Bitcorn Crops</h4>
+                            <p class="text-muted">Bitcorns is an idle game of accumulation, similar to AdVenture Capitalist, where the only objective is to accumulate BITCORN. BITCORN cannot be bought, rather, it gets harvested by bitcoin addresses ("farms") proportionate to their share of 100 CROPS. Deceptively simple, accumulating BITCORN takes an amount of restraint most people do not possess.</p>
+                        </div>
+                        <div class="col-sm-4 py-4 d-none d-sm-inline">
+                            <h4 class="text-white">Contact</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="{{ config('bitcorn.telegram') }}" class="text-white" target="_blank">Telegram</a></li>
+                                <li><a href="{{ config('bitcorn.twitter') }}" class="text-white" target="_blank">Twitter</a></li>
+                                <li><a href="mailto:{{ config('bitcorn.email') }}" class="text-white">E-mail</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="navbar navbar-dark navbar-expand bg-dark">
                 <div class="container-fluid d-flex justify-content-between">
                     <a href="{{ url('/') }}" class="navbar-brand">

@@ -32,7 +32,7 @@ class CardsController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Token  $token
+     * @param  \App\Token  $card
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Token $card)
@@ -44,7 +44,7 @@ class CardsController extends Controller
         }
 
         // Get Farm Balances
-        $balances = $card->tokenBalances()->with('farm')
+        $balances = $card->balances()->with('farm')
             ->orderBy('quantity', 'desc')
             ->paginate(20);
 

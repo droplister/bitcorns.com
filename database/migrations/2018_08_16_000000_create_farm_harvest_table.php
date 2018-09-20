@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFarmHarvestPivotTable extends Migration
+class CreateFarmHarvestTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,7 @@ class CreateFarmHarvestPivotTable extends Migration
             $table->unsignedInteger('harvest_id')->index();
             $table->unsignedInteger('coop_id')->nullable()->index();
             $table->unsignedBigInteger('quantity');
+            $table->decimal('multiplier', 3, 2);
         });
     }
 

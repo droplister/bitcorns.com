@@ -2,12 +2,12 @@
 <div>
   <!-- the button -->
   <b-btn v-b-modal.cornculatorModal variant="outline-success" class="float-right mt-3">
-    <i class="fa fa-calculator"></i> <span class="d-none d-sm-inline">Cornculator</span>
+    <i class="fa fa-line-chart"></i> <span class="d-none d-sm-inline">Forecast</span>
   </b-btn>
 
   <!-- the modal -->
-  <b-modal id="cornculatorModal" size="lg" title="Cornculator">
-    <corn-chart :crops="quantity"></corn-chart>
+  <b-modal id="cornculatorModal" size="lg" title="Forecast">
+    <forecast-chart :crops="quantity"></forecast-chart>
     <div slot="modal-footer" class="w-100">
       <div class="row">
         <div class="col-4 col-sm-3">

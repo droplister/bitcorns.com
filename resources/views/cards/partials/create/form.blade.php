@@ -73,7 +73,7 @@
                     </small>
                 @endif
             </div>
-            <div class="form-group mb-0">
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-upload"></i> Submit for Review
                 </button>
