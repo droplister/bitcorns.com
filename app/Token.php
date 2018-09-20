@@ -129,6 +129,14 @@ class Token extends Model
     }
 
     /**
+     * Tokens
+     */
+    public function scopeTokens($query)
+    {
+        return $query->where('type', '!=', 'upgrade');
+    }
+
+    /**
      * Upgrades
      */
     public function scopeUpgrades($query)
