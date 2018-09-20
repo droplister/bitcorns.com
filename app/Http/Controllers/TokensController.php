@@ -8,7 +8,7 @@ use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\StoreRequest;
 use Illuminate\Http\Request;
 
-class TokenController extends Controller
+class TokensController extends Controller
 {
     /**
      * Display a listing of the resource.
