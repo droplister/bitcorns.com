@@ -23,10 +23,10 @@
                     How to Start
                 </h5>
                 <p class="card-text">
-                    Start by creating a unique Bitcorn card that you think is creative, funny, or otherwise well-suited for our blockchain farming game. Browse the <a href="{{ route('cards.index') }}">card directory</a> for inspiration and examples. Be YOU-nique!
+                    Start by creating a unique Bitcorn card that you think is creative, funny, or otherwise well-suited for a blockchain farming game. Browse the <a href="{{ route('cards.index') }}">card directory</a> for inspiration and examples. Be YOU-nique!
                 </p>
                 <p class="card-text">
-                    We provide two templates, one that looks like a <a href="{{ asset('assets/BitcornCardTemplatePSDfonts.zip') }}">trading card</a> and one that is <a href="{{ asset('assets/BitcornCardTemplateBorderOnly.psd') }}">just a border</a>. For the sake of Bitcorn cards being distinctive and easily recognizable, this border is required.
+                    We provide two templates, one that looks like a <a href="{{ asset('assets/BitcornCardTemplatePSDfonts.zip') }}">trading card</a> and one that is <a href="{{ asset('assets/BitcornCardTemplateBorderOnly.psd') }}">just a border</a>. For the sake of Bitcorn cards being distinctive and easily recognizable, the border is required.
                 </p>
                 <p class="card-text">
                     Once you have your card art, <a href="https://hackernoon.com/how-to-create-a-token-using-counterparty-xcp-357b2890e744" target="_blank">create a Counterparty asset</a> to represent it on the blockchain. You can issue as many copies of your card as you like, most artists prefer smaller runs.
@@ -35,10 +35,10 @@
                     Submissions
                 </h5>
                 <p class="card-text">
-                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ config('bitcorn.subfee') }} {{ config('bitcorn.reward_token') }} to our submission fee address. Afterwards, send one of your new cards to the <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> for permanent display.
+                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ config('bitcorn.subfee') }} {{ config('bitcorn.reward_token') }} to <a href="https://xchain.io/address/{{ config('bitcorn.subfee_address') }}" target="_blank">this</a> address. Afterwards, send one of your new cards to the <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> for permanent display. (See below.)
                 </p>
                 <p class="card-text">
-                    Now, you can use the form on this page to submit your card. If it is accepted (not guaranteed) it will become a Bitcorn Card and get integrated into the game.
+                    Now, you can use the form on this page to submit your card. If it gets accepted by <a href="https://bitcorn.org/" target="_blank">The Foundation</a>, it will become a Bitcorn Card and get integrated into the game.
                 </p>
                 <h5 class="card-title">
                     Submission Fee

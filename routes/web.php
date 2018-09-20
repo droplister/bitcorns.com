@@ -16,3 +16,4 @@ Route::resource('/farms', 'FarmsController');
 Route::resource('/harvests', 'HarvestsController', ['only' => ['index', 'show']]);
 Route::resource('/tokens', 'TokensController');
 Route::redirect('/submit', '/cards/create', 301);
+Route::redirect('/almanac', '/harvests', 301);
