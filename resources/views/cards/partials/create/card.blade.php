@@ -53,7 +53,7 @@
                     Bitcorn Museum
                 </h5>
                 <p class="card-text">
-                    Send one (1) of your cards here: <a href="https://xchain.io/address/{{ config('bitcorn.museum_address') }}" target="_blank">{{ config('bitcorn.museum_address') }}</a>.
+                    Send one of your cards to this address: <a href="https://xchain.io/address/{{ config('bitcorn.museum_address') }}" target="_blank">{{ config('bitcorn.museum_address') }}</a>.
                 </p>
                 <p class="card-text">
                     <em>It's important that we curate and save this art forever.</em>

@@ -19,8 +19,8 @@ import BootstrapVue from 'bootstrap-vue'
 
 Vue.use(BootstrapVue);
 
-Vue.component('corn-chart', require('./components/CornChart.vue'));
-Vue.component('cornculator', require('./components/Cornculator.vue'));
+Vue.component('forecast-chart', require('./components/ForecastChart.vue'));
+Vue.component('forecast', require('./components/Forecast.vue'));
 
 const app = new Vue({
     el: '#app'

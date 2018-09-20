@@ -46,4 +46,14 @@ return [
      * Telegram Chat
      */
     'telegram' => env('BITCORN_TELEGRAM', 'https://t.me/bitcorns'),
+
+    /**
+     * Wufoo.com Form
+     */
+    'wufoo' => env('BITCORN_WUFOO', 'https://bitcorns.wufoo.com/forms/crops-order-form/'),
+
+    /**
+     * Counterwallet
+     */
+    'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://wallet.counterwallet.io/'),
 ];
