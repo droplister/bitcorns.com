@@ -40,19 +40,19 @@ class FarmsController extends Controller
     public function show(Request $request, Farm $farm)
     {
         // Tokens: Access and Rewards
-        $balances = $farm->tokenBalances()->tokens()->get();
+        $tokens = $farm->tokenBalances()->get();
 
         // Tokens: Upgrades
-        $upgrades = $farm->tokenBalances()->upgrades()->nonZero()->get();
+        $upgrades = $farm->upgradeBalances()->get();
 
         // Tokens: Upgrades Total
-        $upgrades_total = Token::whereType('upgrade')->count();
+        $upgrades_total = Token::upgrades()->count();
 
         // Tokens: % of Progress
         $progress = round($upgrades->count() / $upgrades_total * 100);
 
         // Return View
-        return view('farms.show', compact('farm', 'balances', 'upgrades', 'progress'));
+        return view('farms.show', compact('farm', 'tokens', 'upgrades', 'progress'));
     }
 
     /**

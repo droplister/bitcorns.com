@@ -38,7 +38,7 @@ class Harvest extends Model
      */
     public function coops()
     {
-        return $this->belongsToMany(Coop::class, 'farm_harvest', 'harvest_id', 'coop_id')->withPivot('quantity');
+        return $this->belongsToMany(Coop::class, 'farm_harvest', 'harvest_id', 'coop_id')->withPivot('quantity', 'multiplier');
     }
 
     /**
@@ -48,7 +48,7 @@ class Harvest extends Model
      */
     public function farms()
     {
-        return $this->belongsToMany(Farm::class, 'farm_harvest', 'harvest_id', 'farm_id')->withPivot('quantity');
+        return $this->belongsToMany(Farm::class, 'farm_harvest', 'harvest_id', 'farm_id')->withPivot('quantity', 'multiplier');
     }
 
     /**

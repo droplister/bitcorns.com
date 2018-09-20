@@ -80,13 +80,33 @@ class Farm extends Model
     }
 
     /**
+     * Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function balances()
+    {
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address');
+    }
+
+    /**
      * Token Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tokenBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address');
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->tokens();
+    }
+
+    /**
+     * Upgrade Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function upgradeBalances()
+    {
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->upgrades()->nonZero();
     }
 
     /**
@@ -116,7 +136,7 @@ class Farm extends Model
      */
     public function harvests()
     {
-        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')->withPivot('quantity');
+        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')->withPivot('quantity', 'multiplier');
     }
 
     /**
@@ -190,7 +210,7 @@ class Farm extends Model
      */
     public function getBalance($asset_name)
     {
-        return $this->tokenBalances()
+        return $this->balances()
             ->where('asset', '=', $asset_name)
             ->first();
     }
@@ -202,7 +222,7 @@ class Farm extends Model
      */
     public function hasBalance($asset_name)
     {
-        return $this->tokenBalances()
+        return $this->balances()
             ->where('asset', '=', $asset_name)
             ->where('quantity', '>', 0)
             ->exists();
@@ -219,7 +239,7 @@ class Farm extends Model
         $token = Token::where('xcp_core_asset_name', '=', config('bitcorn.daab_token'))->first();
 
         // Balances (hi -> lo)
-        $token_balances = $token->tokenBalances()->with('farm')->orderBy('quantity', 'desc')->get();
+        $token_balances = $token->balances()->with('farm')->orderBy('quantity', 'desc')->get();
 
         // Check Whether DAAB
         foreach($token_balances as $token_balance)

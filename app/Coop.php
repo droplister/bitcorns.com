@@ -56,6 +56,15 @@ class Coop extends Model
         return $this->hasMany(Farm::class, 'coop_id', 'id');
     }
 
+    /**
+     * Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function balances()
+    {
+        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->with('token');
+    }
 
     /**
      * Token Balances
@@ -64,7 +73,17 @@ class Coop extends Model
      */
     public function tokenBalances()
     {
-        return $this->hasManyThrough(TokenBalance::class, Farm::class)->with('token');
+        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->tokens()->with('token');
+    }
+
+    /**
+     * Upgrade Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function upgradeBalances()
+    {
+        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->upgrades()->nonZero()->with('token');
     }
 
     /**
@@ -74,7 +93,7 @@ class Coop extends Model
      */
     public function harvests()
     {
-        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')->withPivot('quantity');
+        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')->withPivot('quantity', 'multiplier');
     }
 
     /**
@@ -83,6 +102,20 @@ class Coop extends Model
     public function uploads()
     {
         return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    /**
+     * Alpha Collectors
+     *
+     * @return boolean
+     */
+    public function isAC()
+    {
+        $top_coop = Coop::withCount('upgradeBalances')
+            ->orderBy('upgrade_balances_count', 'desc')
+            ->first();
+
+        return $this->id === $top_coop->id;
     }
 
     /**
