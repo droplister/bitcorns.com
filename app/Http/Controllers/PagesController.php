@@ -17,4 +17,16 @@ class PagesController extends Controller
         // Buy View
         return view('pages.buy');
     }
+
+    /**
+     * Game Rules
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function rules(Request $request)
+    {
+        // Rules View
+        return view('pages.rules');
+    }
 }

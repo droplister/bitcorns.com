@@ -13,9 +13,11 @@
 
 Route::resource('/', 'HomeController', ['only' => ['index']]);
 Route::resource('/cards', 'CardsController', ['only' => ['index', 'show', 'create', 'store', 'update']]);
+Route::resource('/coops', 'CoopsController');
 Route::resource('/farms', 'FarmsController');
 Route::resource('/harvests', 'HarvestsController', ['only' => ['index', 'show']]);
 Route::resource('/tokens', 'TokensController');
 Route::get('/buy', 'PagesController@buy')->name('pages.buy');
+Route::get('/rules', 'PagesController@rules')->name('pages.rules');
 Route::redirect('/submit', '/cards/create', 301);
 Route::redirect('/almanac', '/harvests', 301);

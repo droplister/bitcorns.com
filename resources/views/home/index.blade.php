@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bitcorn Crops')
+@section('title', 'Blockchain Farming Game')
 
 @section('content')
 <div class="container">
