@@ -55,7 +55,7 @@ export default {
     },
     $_harvest_calculate() {
       if(this.quantity !== null) {
-        this.crops = this.quantity.toFixed(8)
+        this.crops = this.quantity
         this.$_harvest_update()
       }
     },

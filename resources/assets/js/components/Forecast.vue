@@ -6,7 +6,7 @@
   </b-btn>
 
   <!-- the modal -->
-  <b-modal id="cornculatorModal" size="lg" title="Forecast" ok-only>
+  <b-modal id="cornculatorModal" size="lg" title="Forecast" hide-footer>
     <forecast-chart :crops="quantity"></forecast-chart>
   </b-modal>
 </div>
