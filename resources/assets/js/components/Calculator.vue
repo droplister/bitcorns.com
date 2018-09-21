@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th scope="col">Harvest</th>
-            <th scope="col">Date</th>
+            <th scope="col">Schedule</th>
             <th scope="col">Bitcorn Harvested</th>
             <th scope="col">Running Total</th>
           </tr>
@@ -31,10 +31,10 @@
         <tbody>
           <tr v-for="(harvest, index) in harvests">
             <th scope="row">
-              <a href="'/harvests/' + (index + 1)" class="text-dark">
+              <a :href="'/harvests/' + (index + 1)" class="text-dark">
                 Bitcorn Harvest #{{ index + 1 }}
               </a>
-              <small v-if="index + 1 === upcoming" class="text-muted">Upcoming</small>
+              <small v-if="upcoming && upcoming == index" class="text-muted">Upcoming</small>
             </th>
             <td>{{ harvest[0] | moment("ll") }}</td>
             <td>{{ harvest[1].toLocaleString() }}</td>
