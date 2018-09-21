@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="display-4 mt-5 mb-5">
+    <h1 class="display-4 my-5">
         Game Rules
     </h1>
     <div class="card mb-4">

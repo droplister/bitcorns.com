@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="input-group mb-4">
-      <input v-model="quantity" type="number" min="0" max="100" class="form-control" placeholder="0.01 CROPS">
+    <div class="input-group mb-5">
+      <input v-model="quantity" @keyup.enter="$_harvest_calculate" type="number" min="0" max="100" class="form-control" placeholder="0.01 CROPS">
       <div class="input-group-append">
         <button v-on:click="$_harvest_calculate" class="btn btn-primary" type="button">Cornculate!</button>
       </div>
