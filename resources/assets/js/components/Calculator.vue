@@ -42,7 +42,7 @@
       <table class="table table-bordered mb-0">
         <thead>
           <tr>
-            <th scope="col">Harvest Schedule <small>For {{ cropcalc }} CROPS</small></th>
+            <th scope="col">Harvest Schedule <small>For {{ crops }} CROPS</small></th>
             <th scope="col">Bitcorn Harvested</th>
             <th scope="col">Running Total</th>
             <th scope="col">Harvest Date</th>
@@ -81,9 +81,6 @@ export default {
   computed: {
     source() {
       return '/api/calculator?crops=' + this.crops
-    },
-    cropcalc() {
-      return this.crops
     },
     harvested() {
       return this.harvests.slice(0, this.upcoming)
