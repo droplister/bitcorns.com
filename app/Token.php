@@ -10,6 +10,7 @@ use App\Traits\Achievable;
 use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
+use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\StoreRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -270,6 +271,23 @@ class Token extends Model
 
         // Save IMG
         $this->update([$key => $image_url]);
+    }
+
+    /**
+     * Last Match
+     * 
+     * @return \Droplister\XcpCore\App\OrderMatch
+     */
+    public function lastMatch($quote_asset='XCP')
+    {
+        return OrderMatch::where('backward_asset', '=', $this->xcp_core_asset_name)
+            ->where('forward_asset', '=', $quote_asset)
+            ->where('status', '=', 'completed')
+            ->orWhere('backward_asset', '=', $quote_asset)
+            ->where('forward_asset', '=', $this->xcp_core_asset_name)
+            ->where('status', '=', 'completed')
+            ->orderBy('tx1_index', 'desc')
+            ->first();
     }
 
     /**

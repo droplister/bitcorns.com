@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Token;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -14,8 +15,12 @@ class PagesController extends Controller
      */
     public function buy(Request $request)
     {
+        // Last Price
+        $crops = Token::where('xcp_core_asset_name', '=', config('bitcorn.access_token'))->first();
+        $last_price = number_format($crops->lastMatch()->trading_price_normalized) . ' XCP';
+
         // Buy View
-        return view('pages.buy');
+        return view('pages.buy', compact('last_price'));
     }
 
     /**
