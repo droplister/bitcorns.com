@@ -98,4 +98,12 @@ class Harvest extends Model
     {
         return $query->whereNull('xcp_core_tx_index')->oldest('scheduled_at');
     }
+
+    /**
+     * Completed
+     */
+    public function scopeComplete($query)
+    {
+        return $query->whereNotNull('xcp_core_tx_index')->oldest('scheduled_at');
+    }
 }

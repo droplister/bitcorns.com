@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Token;
+use App\Harvest;
 use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\IndexRequest;
 use App\Http\Requests\Cards\StoreRequest;
@@ -25,8 +26,11 @@ class CardsController extends Controller
         // List Farms
         $cards = Token::getFilteredCards($request, $filter)->get();
 
+        // Harvests
+        $harvests = Harvest::complete()->get();
+
         // Index View
-        return view('cards.index', compact('cards', 'filter'));
+        return view('cards.index', compact('cards', 'filter', 'harvests'));
     }
 
     /**
