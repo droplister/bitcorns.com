@@ -20,7 +20,7 @@ class PagesController extends Controller
         // Last Price
         $last_price = Cache::remember('last_price', 60, function () {
             $crops = Token::where('xcp_core_asset_name', '=', config('bitcorn.access_token'))->first();
-            return number_format($crops->lastMatch()->trading_price_normalized) . ' XCP';
+            return $crops->lastMatch() ? number_format($crops->lastMatch()->trading_price_normalized) . ' XCP' : '0 XCP';
         });
 
         // Buy View

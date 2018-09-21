@@ -18,6 +18,26 @@
         </button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
+            <h5 class="card-title">Harvested <small class="text-muted d-none d-md-inline">Harvest #1 to Now</small></h5>
+            <h5 class="card-title mb-0">{{ harvested }} BITCORN</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
+            <h5 class="card-title">Remaining <small class="text-muted d-none d-md-inline">Now to Harvest #16</small></h5>
+            <h5 class="card-title mb-0">{{ remaining }} BITCORN</h5>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered mb-0">
         <thead>
@@ -55,12 +75,22 @@ export default {
     }
   },
   mounted() {
-    this.$_harvest_update()
     this.$_harvest_session_get()
+    this.$_harvest_update()
   },
   computed: {
     source() {
       return '/api/calculator?crops=' + this.crops
+    },
+    harvested() {
+      return this.harvests.slice(0, upcoming)
+        .reduce((sum, harvest) => sum + harvest[1], 0)
+        .toLocaleString()
+    },
+    remaining() {
+      return this.harvests.slice(-upcoming)
+        .reduce((sum, harvest) => sum + harvest[1], 0)
+        .toLocaleString()
     }
   },
   methods: {
