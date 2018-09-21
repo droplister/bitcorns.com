@@ -29,7 +29,14 @@
         </thead>
         <tbody>
           <tr v-for="(harvest, index) in harvests">
-            <th scope="row">Harvest #{{ index + 1 }}</th>
+            <th scope="row">
+              <a href="'/harvests/' + index + 1">
+                Harvest #{{ index + 1 }}
+              </a>
+              <small>
+                {{ harvest[0] | moment("MMM Do YYYY") }}
+              </small>
+            </th>
             <td>{{ harvest[1].toLocaleString() }}</td>
             <td>{{ $_harvest_subtotal(index) }}</td>
           </tr>
