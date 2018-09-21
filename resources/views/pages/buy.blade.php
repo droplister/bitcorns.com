@@ -17,14 +17,14 @@
                 <h4 class="my-0 font-weight-normal">Basic Access</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">$6.99</h1>
+                <h1 class="card-title pricing-card-title">$3.50</h1>
                 <ul class="list-unstyled mt-3 mb-3">
                     <li>0.001 CROPS</li>
                 </ul>
                 <p class="card-text mb-4">
                     Receive an amount of CROPS sufficient to establish a Bitcorns.com farm and gain access to basic features, like updating farm names, locations, and descriptions.
                 </p>
-                <a href="https://bitcorns.wufoo.com/forms/crops-order-form/" class="btn btn-lg btn-block btn-primary">
+                <a href="https://bitcorns.wufoo.com/forms/crops-order-form/" class="btn btn-lg btn-block btn-primary" target="_blank">
                     <i class="fa fa-credit-card-alt"></i>
                     Buy Now
                 </a>
@@ -35,14 +35,14 @@
                 <h4 class="my-0 font-weight-normal">Upload Access</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">$69</h1>
+                <h1 class="card-title pricing-card-title">$29.99</h1>
                 <ul class="list-unstyled mt-3 mb-3">
                     <li>0.01 CROPS</li>
                 </ul>
                 <p class="card-text mb-4">
                     Receive an amount of CROPS sufficient to establish a Bitcorns.com farm and gain access to basic features, in addition to the ability to upload custom farm art.
                 </p>
-                <a href="https://bitcorns.wufoo.com/forms/crops-order-form/" class="btn btn-lg btn-block btn-primary">
+                <a href="https://bitcorns.wufoo.com/forms/crops-order-form/" class="btn btn-lg btn-block btn-primary" target="_blank">
                     <i class="fa fa-credit-card-alt"></i>
                     Buy Now
                 </a>
@@ -55,7 +55,7 @@
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">{{ $last_price }}</h1>
                 <ul class="list-unstyled mt-3 mb-3">
-                    <li>1.0 CROPS</li>
+                    <li>1 CROPS</li>
                 </ul>
                 <p class="card-text mb-4">
                     Other amounts may be available on the Counterparty DEX or directly from other members of the community. The last trade on occurred at a strike price of {{ $last_price }}.

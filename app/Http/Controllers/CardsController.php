@@ -21,7 +21,7 @@ class CardsController extends Controller
         // Get Cards
         $cards = Token::published()
             ->upgrades()
-            ->oldest()
+            ->orderBy('meta_data->overall_ranking', 'asc')
             ->get();
 
         // Index View
