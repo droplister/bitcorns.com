@@ -11,7 +11,7 @@
                 <i class="fa fa-{{ $filter === $format ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ $format }}
             </a>
-        @endif
+        @endforeach
         <h6 class="dropdown-header">
             By Harvest
         </h6>
@@ -20,7 +20,7 @@
                 <i class="fa fa-{{ $filter === $harvest->id ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ str_replace('Bitcorn ', '', $harvest->name) }}
             </a>
-        @endif
+        @endforeach
     </div>
 </div>
 <h1 class="display-4 my-5">
