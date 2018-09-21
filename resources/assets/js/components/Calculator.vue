@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="input-group mb-5">
+    <div class="input-group mb-4">
       <input
         type="number"
         v-model="quantity"
