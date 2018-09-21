@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     source() {
-      return '/api/cornculator?crops=' + this.crops
+      return '/api/calculator?crops=' + this.crops
     }
   },
   watch:{
@@ -84,6 +84,6 @@ export default {
       }
       return accumulation
     }
-  },
+  }
 }
 </script>

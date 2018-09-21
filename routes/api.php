@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/cornculator', 'Api\CornculatorController@index')->name('cornculator.index');
+Route::get('/calculator', 'Api\CalculatorController@index')->name('api.calculator');

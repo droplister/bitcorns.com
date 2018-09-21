@@ -7,7 +7,7 @@ use App\Harvest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CornculatorController extends Controller
+class CalculatorController extends Controller
 {
     /**
      * Calculate Harvest

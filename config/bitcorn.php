@@ -48,6 +48,11 @@ return [
     'email' => env('BITCORN_EMAIL', 'bitcorncrops@gmail.com'),
 
     /**
+     * Counterwallet
+     */
+    'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://xcpkey.com/'),
+
+    /**
      * Telegram Chat
      */
     'telegram' => env('BITCORN_TELEGRAM', 'https://t.me/bitcorns'),
@@ -63,7 +68,7 @@ return [
     'wufoo' => env('BITCORN_WUFOO', 'https://bitcorns.wufoo.com/forms/crops-order-form/'),
 
     /**
-     * Counterwallet
+     * Counterparty Dex
      */
-    'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://wallet.counterwallet.io/'),
+    'xcpdex' => env('BITCORN_XCPDEX', 'https://xcpdex.com/market/CROPS_XCP'),
 ];

@@ -15,12 +15,16 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueSession from 'vue-session'
 import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(VueSession)
 Vue.use(BootstrapVue);
+Vue.use(require('vue-moment'));
 
-Vue.component('forecast-chart', require('./components/ForecastChart.vue'));
+Vue.component('calculator', require('./components/Calculator.vue'));
 Vue.component('forecast', require('./components/Forecast.vue'));
+Vue.component('forecast-chart', require('./components/ForecastChart.vue'));
 
 const app = new Vue({
     el: '#app'

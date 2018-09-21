@@ -56,6 +56,12 @@
                     <a href="{{ url('/') }}" class="navbar-brand">
                         &#x1f33d; <span class="d-none d-lg-inline">{{ config('app.name', 'Laravel') }}</span>
                     </a>
+                    <form action="{{ url(route('farms.index')) }}" method="GET" class="form-inline my-2 my-lg-0 d-none d-md-inline">
+                        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+                    </form>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
             </div>
         </header>
