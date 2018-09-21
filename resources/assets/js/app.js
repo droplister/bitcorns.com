@@ -15,8 +15,10 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueSession from 'vue-session'
 import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(VueSession)
 Vue.use(BootstrapVue);
 Vue.use(require('vue-moment'));
 

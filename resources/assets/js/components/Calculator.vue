@@ -22,7 +22,7 @@
       <table class="table table-bordered mb-0">
         <thead>
           <tr>
-            <th scope="col">Harvest Schedule <small>For {{ quantity }} CROPS</small></th>
+            <th scope="col">Harvest Schedule <small>For {{ crops }} CROPS</small></th>
             <th scope="col">Bitcorn Harvested</th>
             <th scope="col">Running Total</th>
             <th scope="col">Harvest Date</th>
@@ -56,6 +56,7 @@ export default {
   },
   mounted() {
     this.$_harvest_update()
+    this.$_harvest_session_get()
   },
   computed: {
     source() {
@@ -74,12 +75,21 @@ export default {
       if(this.quantity !== null) {
         this.crops = this.quantity
         this.$_harvest_update()
+        this.$_harvest_session_set()
       }
     },
     $_harvest_subtotal(index) {
       return this.harvests.slice(0, index + 1)
         .reduce((sum, harvest) => sum + harvest[1], 0)
         .toLocaleString()
+    },
+    $_harvest_session_get() {
+      if(this.$session.has('crops')) {
+        this.crops = this.$session.get('crops')
+      }
+    },
+    $_harvest_session_set() {
+      this.$session.set('crops', this.crops)
     }
   }
 }
