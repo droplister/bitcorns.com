@@ -42,10 +42,10 @@
       <table class="table table-bordered mb-0">
         <thead>
           <tr>
-            <th scope="col">Harvest Schedule <small>For {{ crops }} CROPS</small></th>
-            <th scope="col">Bitcorn Harvested</th>
-            <th scope="col">Running Total</th>
-            <th scope="col">Harvest Date</th>
+            <th scope="col">Schedule <small>For {{ crops }} CROPS</small></th>
+            <th scope="col">Harvested</th>
+            <th scope="col">BITCORN</th>
+            <th scope="col">Cumulative</th>
           </tr>
         </thead>
         <tbody>
@@ -54,9 +54,9 @@
               <a :href="'/harvests/' + (index + 1)" class="text-dark">Bitcorn Harvest #{{ index + 1 }}</a>
               <small v-if="upcoming && upcoming == index" class="text-muted">Upcoming</small>
             </th>
+            <td>{{ harvest[0] | moment("ll") }}</td>
             <td>{{ harvest[1].toLocaleString() }}</td>
             <td>{{ $_harvest_subtotal(index) }}</td>
-            <td>{{ harvest[0] | moment("ll") }}</td>
           </tr>
         </tbody>
       </table>
