@@ -83,12 +83,12 @@ export default {
       return '/api/calculator?crops=' + this.crops
     },
     harvested() {
-      return this.harvests.slice(0, upcoming)
+      return this.harvests.slice(0, this.upcoming)
         .reduce((sum, harvest) => sum + harvest[1], 0)
         .toLocaleString()
     },
     remaining() {
-      return this.harvests.slice(-upcoming)
+      return this.harvests.slice(-this.upcoming)
         .reduce((sum, harvest) => sum + harvest[1], 0)
         .toLocaleString()
     }
