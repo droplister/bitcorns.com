@@ -11,6 +11,6 @@
     <h1 class="display-4 mt-5 mb-4">
         Cornculator
     </h1>
-    <calculator crops="0.01"></calculator>
+    <calculator crops="0.01" upcoming="{{ $upcoming ? $upcoming->id : $upcoming }}"></calculator>
 </div>
 @endsection

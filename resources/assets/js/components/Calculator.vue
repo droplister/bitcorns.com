@@ -22,7 +22,8 @@
       <table class="table table-bordered mb-0">
         <thead>
           <tr>
-            <th scope="col">Harvesting Schedule</th>
+            <th scope="col">Harvest</th>
+            <th scope="col">Date</th>
             <th scope="col">Bitcorn Harvested</th>
             <th scope="col">Running Total</th>
           </tr>
@@ -30,13 +31,12 @@
         <tbody>
           <tr v-for="(harvest, index) in harvests">
             <th scope="row">
-              <a href="'/harvests/' + (index + 1)">
-                Harvest #{{ index + 1 }}
+              <a href="'/harvests/' + (index + 1)" class="text-dark">
+                Bitcorn Harvest #{{ index + 1 }}
               </a>
-              <small class="text-muted">
-                {{ harvest[0] | moment("ll") }}
-              </small>
+              <small v-if="index + 1 === upcoming" class="text-muted">Upcoming</small>
             </th>
+            <td>{{ harvest[0] | moment("ll") }}</td>
             <td>{{ harvest[1].toLocaleString() }}</td>
             <td>{{ $_harvest_subtotal(index) }}</td>
           </tr>
@@ -49,7 +49,7 @@
 <script>
 
 export default {
-  props: ['crops'],
+  props: ['crops', 'upcoming'],
   data() {
     return {
       harvests: [],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Token;
+use App\Harvest;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -34,8 +35,11 @@ class PagesController extends Controller
      */
     public function calculator(Request $request)
     {
+        // Upcoming Harvest
+        $upcoming = Harvest::upcoming()->first();
+
         // Calculator View
-        return view('pages.calculator');
+        return view('pages.calculator', compact('upcoming'));
     }
 
     /**
