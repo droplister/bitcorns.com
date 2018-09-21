@@ -25,7 +25,7 @@
             <th scope="col">Harvest Schedule <small>For {{ quantity }} CROPS</small></th>
             <th scope="col">Bitcorn Harvested</th>
             <th scope="col">Running Total</th>
-            <th scope="col">Planned</th>
+            <th scope="col">Harvest Date</th>
           </tr>
         </thead>
         <tbody>
