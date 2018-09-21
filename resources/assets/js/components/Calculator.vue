@@ -6,7 +6,7 @@
         v-model="quantity"
         placeholder="0.01 CROPS"
         class="form-control"
-        :class="{is-invalid:quantity < 0 || quantity > 100}"
+        :class="quantity < 0 || quantity > 100 ? 'is-invalid' : ''"
         @keyup.enter="$_harvest_calculate">
       <div class="input-group-append">
         <button
@@ -31,7 +31,7 @@
           <tr v-for="(harvest, index) in harvests">
             <th scope="row">Harvest #{{ index + 1 }}</th>
             <td>{{ harvest[1].toLocaleString() }}</td>
-            <td>{{ $_harvest_subtotal(index).toLocaleString() }}</td>
+            <td>{{ $_harvest_subtotal(index) }}</td>
           </tr>
         </tbody>
       </table>
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       harvests: [],
-      quantity: null
+      quantity: 0.1
     }
   },
   mounted() {
@@ -72,7 +72,9 @@ export default {
       }
     },
     $_harvest_subtotal(index) {
-      return this.harvests.slice(0, index + 1).reduce((sum, harvest) => sum + harvest[1], 0)
+      return this.harvests.slice(0, index + 1)
+        .reduce((sum, harvest) => sum + harvest[1], 0)
+        .toLocaleString()
     }
   }
 }
