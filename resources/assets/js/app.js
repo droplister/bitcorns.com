@@ -19,8 +19,9 @@ import BootstrapVue from 'bootstrap-vue'
 
 Vue.use(BootstrapVue);
 
-Vue.component('forecast-chart', require('./components/ForecastChart.vue'));
+Vue.component('calculator', require('./components/Calculator.vue'));
 Vue.component('forecast', require('./components/Forecast.vue'));
+Vue.component('forecast-chart', require('./components/ForecastChart.vue'));
 
 const app = new Vue({
     el: '#app'

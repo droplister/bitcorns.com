@@ -27,6 +27,18 @@ class PagesController extends Controller
     }
 
     /**
+     * Calculator
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function calculator(Request $request)
+    {
+        // Calculator View
+        return view('pages.calculator');
+    }
+
+    /**
      * Game Rules
      *
      * @param  \Illuminate\Http\Request  $request
