@@ -10,10 +10,10 @@ class CoopsController extends Controller
     /**
      * List Coops
      *
-     * @param  \App\Http\Requests\Farms\IndexRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(IndexRequest $request)
+    public function index(Request $request)
     {
         // Farm Coops
         $coops = Coop::get();
