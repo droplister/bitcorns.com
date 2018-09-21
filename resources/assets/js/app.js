@@ -15,7 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.use(require('bootstrap-vue'));
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue);
 Vue.use(require('vue-moment'));
 
 Vue.component('calculator', require('./components/Calculator.vue'));

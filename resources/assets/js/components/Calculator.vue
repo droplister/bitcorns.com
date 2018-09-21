@@ -30,11 +30,11 @@
         <tbody>
           <tr v-for="(harvest, index) in harvests">
             <th scope="row">
-              <a href="'/harvests/' + index + 1">
+              <a href="'/harvests/' + (index + 1)">
                 Harvest #{{ index + 1 }}
               </a>
-              <small>
-                {{ harvest[0] | moment("MMM Do YYYY") }}
+              <small class="text-muted">
+                {{ harvest[0] | moment("ll") }}
               </small>
             </th>
             <td>{{ harvest[1].toLocaleString() }}</td>
