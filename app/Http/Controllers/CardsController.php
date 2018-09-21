@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cache;
 use App\Token;
 use Droplister\XcpCore\App\OrderMatch;
+use App\Http\Requests\Cards\IndexRequest;
 use App\Http\Requests\Cards\StoreRequest;
 use Illuminate\Http\Request;
 
@@ -13,19 +14,19 @@ class CardsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Cards\IndexRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(IndexRequest $request)
     {
-        // Get Cards
-        $cards = Token::published()
-            ->upgrades()
-            ->orderBy('meta_data->overall_ranking', 'asc')
-            ->get();
+        // Get Filter
+        $filter = $request->input('filter', null);
+
+        // List Farms
+        $cards = Token::getFilteredCards($request, $filter)->get();
 
         // Index View
-        return view('cards.index', compact('cards'));
+        return view('cards.index', compact('cards', 'filter'));
     }
 
     /**

@@ -11,6 +11,7 @@ use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\OrderMatch;
+use App\Http\Requests\Cards\IndexRequest;
 use App\Http\Requests\Cards\StoreRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -288,6 +289,32 @@ class Token extends Model
             ->where('status', '=', 'completed')
             ->orderBy('tx1_index', 'desc')
             ->first();
+    }
+
+    /**
+     * Get Filtered Cards
+     *
+     * @param  \App\Http\Requests\Cards\IndexRequest  $request
+     * @param  mixed  $filter
+     * @return mixed
+     */
+    public static function getFilteredCards(IndexRequest $request, $filter)
+    {
+        // Cards to Filter
+        $cards = Token::published()->upgrades();
+
+        // Harvest
+        if($filter && is_int($filter))
+        {
+            $cards = $cards->where('harvest_id', '=', $filter);
+        }
+        // Format
+        elseif($filter && is_string($filter))
+        {
+            $cards = $cards->where('image_url', 'like', '%'. $filter);
+        }
+
+        return $cards->orderBy('meta_data->overall_ranking', 'asc');
     }
 
     /**
