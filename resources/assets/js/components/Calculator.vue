@@ -23,7 +23,7 @@
         <div class="card">
           <div class="card-body">
             <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
-            <h5 class="card-title">Harvested <small class="text-muted d-none d-md-inline">Harvest #1 to Now</small></h5>
+            <h5 class="card-title">Harvested <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Harvest #1 to Now</small></h5>
             <h5 class="card-title mb-0">{{ harvested }} BITCORN</h5>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="card">
           <div class="card-body">
             <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
-            <h5 class="card-title">Remaining <small class="text-muted d-none d-md-inline">Now to Harvest #16</small></h5>
+            <h5 class="card-title">Remaining <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Now to Harvest #16</small></h5>
             <h5 class="card-title mb-0">{{ remaining }} BITCORN</h5>
           </div>
         </div>
@@ -116,6 +116,7 @@ export default {
     $_harvest_session_get() {
       if(this.$session.has('crops')) {
         this.crops = this.$session.get('crops')
+        this.quantity = this.$session.get('crops')
       }
     },
     $_harvest_session_set() {
