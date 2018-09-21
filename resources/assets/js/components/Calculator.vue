@@ -1,9 +1,21 @@
 <template>
   <div>
     <div class="input-group mb-5">
-      <input v-model="quantity" @keyup.enter="$_harvest_calculate" type="number" min="0" max="100" class="form-control" placeholder="0.01 CROPS">
+      <input
+        type="number"
+        v-model="quantity"
+        placeholder="0.01 CROPS"
+        class="form-control"
+        :class="{is-invalid:quantity < 0 || quantity > 100}"
+        @keyup.enter="$_harvest_calculate">
       <div class="input-group-append">
-        <button v-on:click="$_harvest_calculate" class="btn btn-primary" type="button">Cornculate!</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          v-on:click="$_harvest_calculate"
+          :disabled="quantity < 0 || quantity > 100">
+        Cornculate!
+        </button>
       </div>
     </div>
     <div class="table-responsive">
@@ -19,7 +31,7 @@
           <tr v-for="(harvest, index) in harvests">
             <th scope="row">Harvest #{{ index + 1 }}</th>
             <td>{{ harvest[1].toLocaleString() }}</td>
-            <td>{{ $_harvest_subtotal(index) }}</td>
+            <td>{{ $_harvest_subtotal(index).toLocaleString() }}</td>
           </tr>
         </tbody>
       </table>
