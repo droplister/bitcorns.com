@@ -113,7 +113,7 @@ class CreateFarm implements ShouldQueue
      */
     private function getImageUrl()
     {
-        return '/image/default/' . rand(1, 12) . '.jpg';
+        return '/images/default/' . rand(1, 12) . '.jpg';
     }
 
     /**

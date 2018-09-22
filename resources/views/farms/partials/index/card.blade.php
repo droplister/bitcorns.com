@@ -12,7 +12,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ config('bitcorn.access_token') }}: {{ $farm->accessBalance()->display_quantity }}
+            {{ config('bitcorn.access_token') }}: {{ $farm->accessBalance()->quantity_normalized }}
         </p>
     </div>
     <div class="card-footer">
@@ -21,7 +21,7 @@
                 {{ $farm->tx ? $farm->tx->display_confirmed_at : $farm->confirmed_at }}
             </div>
             <div class="col text-right">
-                Harvests: {{ $farm->rewards_count }}
+                Harvests: {{ $farm->harvests_count }}
             </div>
         </div>
     </div>
