@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         'Droplister\XcpCore\App\Events\DividendWasCreated' => [
             'App\Listeners\HarvestListener',
         ],
+        'Gstt\Achievements\Event\Unlocked' => [
+            'App\Listeners\AchievementListener',
+        ],
         'App\Events\TokenWasCreated' => [
             'App\Listeners\SubmissionListener',
         ],
