@@ -23,9 +23,14 @@ class NoCropsListener
             // Get Farm
             $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
 
-            $farm->mapMarkers()->delete();
-
+            // Access Y/N
             $this->updateAccess($farm, $event);
+
+            // Un-Map No Croppers
+            if(! $farm->access)
+            {
+                $farm->mapMarkers()->delete();
+            }
         }
     }
 

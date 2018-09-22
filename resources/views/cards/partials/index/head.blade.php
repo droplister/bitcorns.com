@@ -4,9 +4,16 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
         <h6 class="dropdown-header">
+            Default
+        </h6>
+        <a class="dropdown-item" href="{{ url(route('cards.index')) }}">
+            <i class="fa fa-{{ ! $filter ? 'check-' : '' }}circle-o mr-1"></i>
+            None
+        </a>
+        <h6 class="dropdown-header">
             By Format
         </h6>
-        @foreach(['GIF', 'PNG', 'JPG'] as $format)
+        @foreach(['GIF', 'JPG', 'PNG'] as $format)
             <a class="dropdown-item" href="{{ url(route('cards.index', ['filter' => $format])) }}">
                 <i class="fa fa-{{ $filter === $format ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ $format }}
@@ -25,5 +32,5 @@
 </div>
 <h1 class="display-4 my-5">
     <span class="d-none d-sm-inline">Bitcorn</span> Cards
-    <small class="lead">{{ $cards->count() }} Total</small>
+    <small class="lead d-none d-sm-inline">{{ $cards->count() }} Total</small>
 </h1>

@@ -49,7 +49,7 @@ class CreateFarm implements ShouldQueue
             $farm->unlockIfLocked(new SaltOfTheEarth());
 
             // Fix Name
-            if($farm->name !=== 'Genesis Farm')
+            if($farm->name !== 'Genesis Farm')
             {
                 $farm->update(['name' => substr($farm->name, 0, -4) . $farm->id]);
             }
