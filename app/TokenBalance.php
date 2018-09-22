@@ -52,9 +52,9 @@ class TokenBalance extends Balance
      */
     public function scopeTokens($query)
     {
-        return $query->whereHas('token', function($token) {
-            return $token->where('type', '=', 'access')->orWhere('type', '=', 'reward');
-        });
+        $tokens = Token::tokens()->pluck('xcp_core_asset_name');
+
+        return $query->whereIn('asset', $tokens);
     }
 
     /**
@@ -62,21 +62,17 @@ class TokenBalance extends Balance
      */
     public function scopeUpgrades($query)
     {
-        return $query->whereHas('token', function($token) {
-            return $token->where('type', '=', 'upgrade')->published();
-        });
+        $tokens = Token::upgrades()->pluck('xcp_core_asset_name');
+
+        return $query->whereIn('asset', $tokens);
     }
 
     /**
      * Game Players
      */
-    public function scopeGamePlayers($query, $access_required=true)
+    public function scopeGamePlayers($query)
     {
-        $farms = Farm::query();
-
-        if($access_required) $farms = $farms->hasAccess();
-
-        $farms = $farms->pluck('xcp_core_address');
+        $farms = Farm::pluck('xcp_core_address');
 
         return $query->whereIn('address', $farms);
     }
@@ -84,13 +80,9 @@ class TokenBalance extends Balance
     /**
      * Game Tokens
      */
-    public function scopeGameTokens($query, $type=null)
+    public function scopeGameTokens($query)
     {
-        $tokens = Token::query();
-
-        if($type) $tokens = $tokens->where('type', '=', $type);
-
-        $tokens = $tokens->pluck('xcp_core_asset_name');
+        $tokens = Token::pluck('xcp_core_asset_name');
 
         return $query->whereIn('asset', $tokens);
     }
