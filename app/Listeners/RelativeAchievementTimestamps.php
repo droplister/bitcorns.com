@@ -7,7 +7,7 @@ use Gstt\Achievements\Event\Unlocked;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AchievementListener
+class RelativeAchievementTimestamps
 {
     /**
      * Handle the event.

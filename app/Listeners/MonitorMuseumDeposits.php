@@ -8,7 +8,7 @@ use Droplister\XcpCore\App\Events\SendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MuseumListener
+class MonitorMuseumDeposits
 {
     /**
      * Handle the event.

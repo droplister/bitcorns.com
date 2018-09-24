@@ -4,15 +4,15 @@ namespace App\Achievements\Tokens;
 
 use Gstt\Achievements\Achievement;
 
-class PermanentCollection extends Achievement
+class InsiderTrading extends Achievement
 {
     /*
      * The achievement name
      */
-    public $name = "Permanent Collection";
+    public $name = "Insider Trading";
 
     /*
      * A small description for the achievement
      */
-    public $description = "Part of the Bitcorn Museum permanent collection.";
+    public $description = "A lil wash trading never hurt anyone.";
 }

@@ -11,7 +11,7 @@ use Droplister\XcpCore\App\Address;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SubmissionListener
+class AnnounceNewCardSubmissions
 {
     /**
      * Handle the event.

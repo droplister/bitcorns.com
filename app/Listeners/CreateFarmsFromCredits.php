@@ -7,7 +7,7 @@ use Droplister\XcpCore\App\Events\CreditWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class FarmListener
+class CreateFarmsFromCredits
 {
     /**
      * Handle the event.

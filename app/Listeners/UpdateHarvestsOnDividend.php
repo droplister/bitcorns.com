@@ -7,7 +7,7 @@ use Droplister\XcpCore\App\Events\DividendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class HarvestListener
+class UpdateHarvestsOnDividend
 {
     /**
      * Handle the event.
