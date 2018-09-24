@@ -75,7 +75,7 @@ class TokenTradingAchievements
      */
     private function isGameToken($event)
     {
-        $tokens = Token::pluck('xcp_core_asset_name');
+        $tokens = Token::pluck('xcp_core_asset_name')->toArray();
 
         return in_array($event->order_match->backward_asset, $tokens) ||
             in_array($event->order_match->forward_asset, $tokens);

@@ -30,6 +30,9 @@ class Kernel extends ConsoleKernel
             $schedule->command('update:index')->everyMinute();
             $schedule->command('bitcorn:battle')->everyHour();
         }
+
+        // Horizon Stats
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
     /**
