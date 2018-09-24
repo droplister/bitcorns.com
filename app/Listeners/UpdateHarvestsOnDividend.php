@@ -7,7 +7,7 @@ use Droplister\XcpCore\App\Events\DividendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class HarvestListener
+class UpdateHarvestsOnDividend
 {
     /**
      * Handle the event.
@@ -33,7 +33,7 @@ class HarvestListener
     private function isHarvest($event)
     {
         return $event->dividend->status === 'valid' &&
-               $event->dividend->source === config('bitcorn.genesis_farm') &&
+               $event->dividend->source === config('bitcorn.genesis_address') &&
                $event->dividend->asset === config('bitcorn.access_token') &&
                $event->dividend->dividend_asset === config('bitcorn.reward_token');
     }

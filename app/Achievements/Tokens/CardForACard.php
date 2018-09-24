@@ -4,15 +4,15 @@ namespace App\Achievements\Tokens;
 
 use Gstt\Achievements\Achievement;
 
-class PermanentCollection extends Achievement
+class CardForACard extends Achievement
 {
     /*
      * The achievement name
      */
-    public $name = "Permanent Collection";
+    public $name = "Card for a Card";
 
     /*
      * A small description for the achievement
      */
-    public $description = "Part of the Bitcorn Museum permanent collection.";
+    public $description = "Traded for another Bitcorn Card. Straight up.";
 }

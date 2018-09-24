@@ -14,5 +14,5 @@ class BurnBabyBurn extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = "This farm has burned bitcorn in order to submit a new card. Moist.";
+    public $description = "This farm has burned bitcorn. Moist.";
 }

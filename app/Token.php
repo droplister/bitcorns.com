@@ -9,6 +9,7 @@ use App\Traits\Touchable;
 use App\Traits\Achievable;
 use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
+use Droplister\XcpCore\App\Send;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\IndexRequest;
@@ -128,6 +129,26 @@ class Token extends Model
     public function balances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero();
+    }
+
+    /**
+     * Balances (Including Zero)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function allBalances()
+    {
+        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Sends
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sends()
+    {
+        return $this->hasMany(Send::class, 'asset', 'xcp_core_asset_name');
     }
 
     /**

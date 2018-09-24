@@ -88,7 +88,7 @@ export default {
         .toLocaleString()
     },
     remaining() {
-      return this.harvests.slice(-this.upcoming)
+      return this.harvests.slice(this.upcoming)
         .reduce((sum, harvest) => sum + harvest[1], 0)
         .toLocaleString()
     }

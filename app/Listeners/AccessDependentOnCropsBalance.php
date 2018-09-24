@@ -7,7 +7,7 @@ use Droplister\XcpCore\App\Events\BalanceWasUpdated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NoCropsListener
+class AccessDependentOnCropsBalance
 {
     /**
      * Handle the event.

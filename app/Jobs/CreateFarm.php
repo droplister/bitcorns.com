@@ -41,23 +41,20 @@ class CreateFarm implements ShouldQueue
      */
     public function handle()
     {
+        // Make Farm
         $farm = $this->createFarm();
 
+        // New Farms
         if($farm->wasRecentlyCreated)
         {
             // Achievement!
             $farm->unlockIfLocked(new SaltOfTheEarth());
 
-            // Fix Name
+            // Farm Ordinal
             if($farm->name !== 'Genesis Farm')
             {
                 $farm->update(['name' => substr($farm->name, 0, -4) . $farm->id]);
             }
-        }
-        else
-        {
-            // No Cropper -> Farm
-            $farm->update(['access' => 1]);
         }
     }
 
@@ -97,6 +94,7 @@ class CreateFarm implements ShouldQueue
      */
     private function getSalt()
     {
+        // Avoid Collisions
         $a = chr(rand(65, 90));
         $b = chr(rand(65, 90));
         $c = chr(rand(65, 90));
@@ -113,7 +111,7 @@ class CreateFarm implements ShouldQueue
      */
     private function getImageUrl()
     {
-        return '/image/default/' . rand(1, 12) . '.jpg';
+        return '/images/default/' . rand(1, 12) . '.jpg';
     }
 
     /**

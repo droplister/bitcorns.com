@@ -13,20 +13,36 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        // Game Play
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
-            'App\Listeners\FarmListener',
-        ],
-        'Droplister\XcpCore\App\Events\SendWasCreated' => [
-            'App\Listeners\MuseumListener',
+            'App\Listeners\CreateFarmsFromCredits',
         ],
         'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
-            'App\Listeners\NoCropsListener',
+            'App\Listeners\AccessDependentOnCropsBalance',
         ],
         'Droplister\XcpCore\App\Events\DividendWasCreated' => [
-            'App\Listeners\HarvestListener',
+            'App\Listeners\UpdateHarvestsOnDividend',
         ],
+        // Achievements
+        'Gstt\Achievements\Event\Unlocked' => [
+            'App\Listeners\RelativeAchievementTimestamps',
+        ],
+        'Droplister\XcpCore\App\Events\BalanceWasCreated' => [
+            'App\Listeners\TokenBalanceAchievements',
+        ],
+        'Droplister\XcpCore\App\Events\OrderMatchWasCreated' => [
+            'App\Listeners\TokenTradingAchievements',
+        ],
+        // Bitcorn Cards
         'App\Events\TokenWasCreated' => [
-            'App\Listeners\SubmissionListener',
+            'App\Listeners\AnnounceNewCardSubmissions',
+        ],
+        'Droplister\XcpCore\App\Events\SendWasCreated' => [
+            // Bitcorn Cards
+            'App\Listeners\MonitorMuseumDeposits',
+            'App\Listeners\MonitorSubmissionFees',
+            // Achievements
+            'App\Listeners\TokenSendAchievements',
         ],
     ];
 
