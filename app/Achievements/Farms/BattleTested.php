@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Achievements\Farms;
+namespace App\Achievements;
 
 use Gstt\Achievements\Achievement;
 

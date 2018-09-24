@@ -3,10 +3,10 @@
 namespace App\Listeners;
 
 use App\Token;
-use App\Achievements\Tokens\YouGotMail;
-use App\Achievements\Tokens\PonyExpress;
-use App\Achievements\Tokens\GoingPostal;
-use App\Achievements\Tokens\HighSpeedInternet;
+use App\Achievements\YouGotMail;
+use App\Achievements\PonyExpress;
+use App\Achievements\GoingPostal;
+use App\Achievements\HighSpeedInternet;
 use Droplister\XcpCore\App\Events\SendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
