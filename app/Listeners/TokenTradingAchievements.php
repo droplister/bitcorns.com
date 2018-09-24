@@ -59,10 +59,10 @@ class TokenTradingAchievements
                     ->count();
 
                 // Set Progress
-                $token->setProgress(OpenForBusiness, $count);       // 1
-                $token->setProgress(TechnicalAnalysis, $count);     // 9
-                $token->setProgress(MerchantAdoption, $count);      // 100
-                $token->setProgress(HighFrequencyTrading, $count);  // 1000
+                $token->setProgress(new OpenForBusiness(), $count);       // 1
+                $token->setProgress(new TechnicalAnalysis(), $count);     // 9
+                $token->setProgress(new MerchantAdoption(), $count);      // 100
+                $token->setProgress(new HighFrequencyTrading(), $count);  // 1000
             }
         }
     }

@@ -3,10 +3,10 @@
 namespace App\Listeners;
 
 use App\Token;
-use App\Achievements\Tokens\YouGotMail;
-use App\Achievements\Tokens\PonyExpress;
-use App\Achievements\Tokens\GoingPostal;
-use App\Achievements\Tokens\HighSpeedInternet;
+use App\Achievements\YouGotMail;
+use App\Achievements\PonyExpress;
+use App\Achievements\GoingPostal;
+use App\Achievements\HighSpeedInternet;
 use Droplister\XcpCore\App\Events\SendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,10 +31,10 @@ class TokenSendAchievements
             $count = $token->sends()->count();
 
             // Progress (Sends Count)
-            $token->setProgress(YouGotMail, $count);        // 1
-            $token->setProgress(PonyExpress, $count);       // 10
-            $token->setProgress(GoingPostal, $count);       // 100
-            $token->setProgress(HighSpeedInternet, $count); // 1000
+            $token->setProgress(new YouGotMail(), $count);        // 1
+            $token->setProgress(new PonyExpress(), $count);       // 10
+            $token->setProgress(new GoingPostal(), $count);       // 100
+            $token->setProgress(new HighSpeedInternet(), $count); // 1000
         }
     }
 

@@ -31,10 +31,10 @@ class TokenBalanceAchievements
             $count = $token->allBalances()->count();
 
             // Progress (Holders Count)
-            $token->setProgress(MyFirstHodler, $count);     // 1
-            $token->setProgress(ATokensDozen, $count);      // 13
-            $token->setProgress(ThreeHundred, $count);      // 300
-            $token->setProgress(PopularityContest, $count); // 1000
+            $token->setProgress(new MyFirstHodler(), $count);     // 1
+            $token->setProgress(new ATokensDozen(), $count);      // 13
+            $token->setProgress(new ThreeHundred(), $count);      // 300
+            $token->setProgress(new PopularityContest(), $count); // 1000
         }
     }
 
