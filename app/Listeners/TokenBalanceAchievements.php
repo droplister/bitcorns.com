@@ -3,10 +3,10 @@
 namespace App\Listeners;
 
 use App\Token;
-use App\Achievements\Tokens\MyFirstHodler;
-use App\Achievements\Tokens\ATokensDozen;
-use App\Achievements\Tokens\ThreeHundred;
-use App\Achievements\Tokens\PopularityContest;
+use App\Achievements\MyFirstHodler;
+use App\Achievements\ATokensDozen;
+use App\Achievements\ThreeHundred;
+use App\Achievements\PopularityContest;
 use Droplister\XcpCore\App\Events\BalanceWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
