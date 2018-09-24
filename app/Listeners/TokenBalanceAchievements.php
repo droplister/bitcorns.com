@@ -46,7 +46,7 @@ class TokenBalanceAchievements
      */
     private function isGameToken($event)
     {
-        $tokens = Token::pluck('xcp_core_asset_name');
+        $tokens = Token::pluck('xcp_core_asset_name')->toArray();
 
         return in_array($event->balance->asset, $tokens);
     }
