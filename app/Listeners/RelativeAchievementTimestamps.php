@@ -21,8 +21,7 @@ class RelativeAchievementTimestamps
         $block = Block::latest('block_index')->first();
 
         // Timestamp
-        $event->progress->update([
-            'unlocked_at' => $block->confirmed_at,
-        ]);
+        $event->progress->unlocked_at = $block->confirmed_at;
+        $event->progress->save();
     }
 }
