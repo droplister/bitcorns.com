@@ -31,10 +31,10 @@ class TokenSendAchievements
             $count = $token->sends()->count();
 
             // Progress (Sends Count)
-            $token->setProgress(YouGotMail, $count);        // 1
-            $token->setProgress(PonyExpress, $count);       // 10
-            $token->setProgress(GoingPostal, $count);       // 100
-            $token->setProgress(HighSpeedInternet, $count); // 1000
+            $token->setProgress(new YouGotMail(), $count);        // 1
+            $token->setProgress(new PonyExpress(), $count);       // 10
+            $token->setProgress(new GoingPostal(), $count);       // 100
+            $token->setProgress(new HighSpeedInternet(), $count); // 1000
         }
     }
 
