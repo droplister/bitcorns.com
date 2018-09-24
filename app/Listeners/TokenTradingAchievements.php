@@ -4,12 +4,12 @@ namespace App\Listeners;
 
 use App\Token;
 use Droplister\XcpCore\App\OrderMatch;
-use App\Achievements\Tokens\InsiderTrading;
-use App\Achievements\Tokens\CardForACard;
-use App\Achievements\Tokens\OpenForBusiness;
-use App\Achievements\Tokens\TechnicalAnalysis;
-use App\Achievements\Tokens\MerchantAdoption;
-use App\Achievements\Tokens\HighFrequencyTrading;
+use App\Achievements\CardForACard;
+use App\Achievements\InsiderTrading;
+use App\Achievements\OpenForBusiness;
+use App\Achievements\MerchantAdoption;
+use App\Achievements\TechnicalAnalysis;
+use App\Achievements\HighFrequencyTrading;
 use Droplister\XcpCore\App\Events\OrderMatchWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
