@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use DB;
 use Droplister\XcpCore\App\Block;
 use Gstt\Achievements\Event\Unlocked;
 use Illuminate\Queue\InteractsWithQueue;
@@ -21,7 +22,8 @@ class RelativeAchievementTimestamps
         $block = Block::latest('block_index')->first();
 
         // Timestamp
-        $event->progress->unlocked_at = $block->confirmed_at;
-        $event->progress->save();
+        DB::table('achievement_progress')
+            ->where('id', '=', $event->progress->id)
+            ->update(['unlocked_at' => $block->confirmed_at]);
     }
 }
