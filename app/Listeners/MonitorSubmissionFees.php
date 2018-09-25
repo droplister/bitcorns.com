@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Farm;
-use App\Achievements\Farms\BurnBabyBurn;
+use App\Achievements\BurnBabyBurn;
 use Droplister\XcpCore\App\Events\SendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
