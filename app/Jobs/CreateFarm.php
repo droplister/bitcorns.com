@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Farm;
 use App\Quote;
 use Droplister\XcpCore\App\Credit;
-use App\Achievements\Farms\SaltOfTheEarth;
+use App\Achievements\SaltOfTheEarth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

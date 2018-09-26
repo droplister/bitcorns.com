@@ -42,6 +42,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\MonitorMuseumDeposits',
             'App\Listeners\MonitorSubmissionFees',
             // Achievements
+            'App\Listeners\FarmSendAchievements',
             'App\Listeners\TokenSendAchievements',
         ],
     ];
