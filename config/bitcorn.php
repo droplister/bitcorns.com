@@ -33,6 +33,11 @@ return [
     'museum_address' => env('BITCORN_MUSEUM_ADDRESS', '1BitcornCropsMuseumAddressy149ZDr'),
 
     /**
+     * Voting Address
+     */
+    'voting_address' => env('BITCORN_VOTING_ADDRESS', '1VoteMg3ENEknHm6WyJMcXMaFdQqz9GvQ'),
+
+    /**
      * Submmission Fee Address
      */
     'subfee_address' => env('BITCORN_SUBFEE_ADDRESS', '1BitcornSubmissionFeeAddressgL5Xg'),
