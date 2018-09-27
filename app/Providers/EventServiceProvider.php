@@ -27,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         'Gstt\Achievements\Event\Unlocked' => [
             'App\Listeners\RelativeAchievementTimestamps',
         ],
+        'App\Events\UploadWasCreated' => [
+            'App\Listeners\UploadAchievements',
+        ],
         'Droplister\XcpCore\App\Events\BalanceWasCreated' => [
             'App\Listeners\TokenBalanceAchievements',
         ],

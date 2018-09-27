@@ -325,7 +325,7 @@ class Token extends Model
         $cards = Token::published()->upgrades();
 
         // Harvest
-        if($filter && is_int($filter))
+        if($filter && is_int((int) $filter) && (int) $filter !== 0)
         {
             $cards = $cards->where('harvest_id', '=', $filter);
         }

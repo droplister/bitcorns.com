@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Traits\Linkable;
+use App\Traits\Achievable;
+use Gstt\Achievements\Achiever;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Coop extends Model
 {
-    use Linkable, Sluggable, SluggableScopeHelpers, SoftDeletes;
+    use Achievable, Achiever, Linkable, Sluggable, SluggableScopeHelpers, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
