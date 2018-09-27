@@ -24,7 +24,7 @@
         </h6>
         @foreach($harvests as $harvest)
             <a class="dropdown-item" href="{{ url(route('cards.index', ['filter' => $harvest->id])) }}">
-                <i class="fa fa-{{ $filter === $harvest->id ? 'check-' : '' }}circle-o mr-1"></i>
+                <i class="fa fa-{{ (int) $filter === $harvest->id ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ str_replace('Bitcorn ', '', $harvest->name) }}
             </a>
         @endforeach

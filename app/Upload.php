@@ -2,10 +2,20 @@
 
 namespace App;
 
+use App\Events\UploadWasCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Upload extends Model
 {
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => UploadWasCreated::class,
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
