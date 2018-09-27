@@ -17,12 +17,12 @@ class AccessDependentOnCropsBalance
      */
     public function handle(BalanceWasUpdated $event)
     {
-        // Get Farm
-        $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
-
         // Farms Only
-        if($this->isAccessToken($event) && $farm)
+        if($this->isAccessToken($event))
         {
+            // Get Farm
+            $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
+
             // Access Y/N
             $this->updateAccess($farm, $event);
 
