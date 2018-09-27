@@ -23,6 +23,11 @@ return [
     'daab_save_token' => env('BITCORN_DAAB_SAVE_TOKEN', 'FOREVERMOIST'),
 
     /**
+     * ICO Block Index
+     */
+    'ico_block_index' => env('BITCORN_ICO_BLOCK_INDEX', 507151),
+
+    /**
      * Genesis Address
      */
     'genesis_address' => env('BITCORN_GENESIS_ADDRESS', '19QWXpMXeLkoEKEJv2xo9rn8wkPCyxACSX'),

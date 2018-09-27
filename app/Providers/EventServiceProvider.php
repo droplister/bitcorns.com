@@ -26,6 +26,10 @@ class EventServiceProvider extends ServiceProvider
         // Achievements
         'Gstt\Achievements\Event\Unlocked' => [
             'App\Listeners\RelativeAchievementTimestamps',
+            'App\Listeners\AchievementAchievements',
+        ],
+        'App\Events\FarmWasCreated' => [
+            'App\Listeners\FarmCreationAchievements',
         ],
         'App\Events\UploadWasCreated' => [
             'App\Listeners\UploadAchievements',
@@ -34,6 +38,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\TokenBalanceAchievements',
         ],
         'Droplister\XcpCore\App\Events\OrderMatchWasCreated' => [
+            'App\Listeners\FarmTradingAchievements',
             'App\Listeners\TokenTradingAchievements',
         ],
         // Bitcorn Cards
