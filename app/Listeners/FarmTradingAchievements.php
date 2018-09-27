@@ -4,6 +4,9 @@ namespace App\Listeners;
 
 use App\Farm;
 use App\Token;
+use App\Achievements\TradingCards;
+use App\Achievements\AccumulationPhase;
+use App\Achievements\MarketManipulation;
 use Droplister\XcpCore\App\OrderMatch;
 use Droplister\XcpCore\App\Events\OrderMatchWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
@@ -39,7 +42,7 @@ class FarmTradingAchievements
                     ->sum('backward_quantity');
 
                 // Progress (Total Traded For)
-                $seller->setProgress(new TechnicalAnalysis(), $total_traded_for);  // 10,000
+                $seller->setProgress(new TradingCards(), $total_traded_for);  // 10,000
                 $seller->setProgress(new AccumulationPhase(), $total_traded_for);  // 100,000
                 $seller->setProgress(new MarketManipulation(), $total_traded_for); // 1,000,000
             }

@@ -4,12 +4,12 @@ namespace App\Achievements;
 
 use Gstt\Achievements\Achievement;
 
-class TechnicalAnalysis extends Achievement
+class TradingCards extends Achievement
 {
     /*
      * The achievement name
      */
-    public $name = "Technical Analysis";
+    public $name = "Trading Cards";
 
     /*
      * A small description for the achievement
