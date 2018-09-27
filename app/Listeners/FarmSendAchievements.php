@@ -13,6 +13,7 @@ use App\Achievements\JPMorganChase;
 use App\Achievements\FarmerWarbucks;
 use App\Achievements\SavingsAndLoan;
 use App\Achievements\DemocracyInAction;
+use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Debit;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Events\SendWasCreated;
@@ -32,25 +33,26 @@ class FarmSendAchievements
         // Farms Only / Tokens Only
         if($this->isFarmAddress($event) && $this->isGameToken($event))
         {
-            // Pertinent
+            // Source
             $source = Farm::where('xcp_core_address', '=', $event->send->source)->first();
+
+            // Destination
             $destination = Farm::where('xcp_core_address', '=', $event->send->destination)->first();
-            $token = Token::where('xcp_core_asset_name', '=', $event->send->asset)->first();
 
             // Highest Bid
-            if($this->isAuctionLot($event))
+            if($this->isAuctionLot($event) && $destination)
             {
                 $destination->unlockIfLocked(new HighestBid());
             }
 
             // High Class
-            if($this->isBuyingCrops($event))
+            if($this->isBuyingCrops($event) && $destination)
             {
                 $destination->unlockIfLocked(new HighClass());
             }
 
             // Democracy In Action
-            if($this->isElectionVote($event))
+            if($this->isElectionVote($event) && $source)
             {
                 $source->unlockIfLocked(new DemocracyInAction());
             }
@@ -70,15 +72,23 @@ class FarmSendAchievements
                     ->where('asset', '=', config('bitcorn.reward_token'))
                     ->sum('quantity');
 
-                // Progress (Total Sent)
-                $source->setProgress(new HeyBigSender(), $total_sent); // 10,000
-                $source->setProgress(new DegenFarming(), $total_sent); // 100,000
-                $source->setProgress(new CornVelocity(), $total_sent); // 1,000,000
+                // Farms Only
+                if($source)
+                {
+                    // Progress (Total Sent)
+                    $source->setProgress(new HeyBigSender(), $total_sent); // 10,000
+                    $source->setProgress(new DegenFarming(), $total_sent); // 100,000
+                    $source->setProgress(new CornVelocity(), $total_sent); // 1,000,000
+                }
 
-                // Progress (Total Received)
-                $destination->setProgress(new SavingsAndLoan(), $total_received); // 10,000
-                $destination->setProgress(new FarmerWarbucks(), $total_received); // 100,000
-                $destination->setProgress(new JPMorganChase(), $total_received);  // 1,000,000
+                // Farms Only
+                if($destination)
+                {
+                    // Progress (Total Received)
+                    $destination->setProgress(new SavingsAndLoan(), $total_received); // 10,000
+                    $destination->setProgress(new FarmerWarbucks(), $total_received); // 100,000
+                    $destination->setProgress(new JPMorganChase(), $total_received);  // 1,000,000
+                }
             }
         }
     }
@@ -91,7 +101,6 @@ class FarmSendAchievements
      */
     private function isAuctionLot($event)
     {
-        // Decode Memo
         $memo = hex2bin($event->send->memo);
 
         return $event->send->source === config('bitcorn.genesis_address') &&
@@ -117,7 +126,6 @@ class FarmSendAchievements
      */
     private function isBuyingCrops($event)
     {
-        // Decode Memo
         $memo = hex2bin($event->send->memo);
 
         return $event->send->asset === config('bitcorn.access_token') &&
@@ -133,10 +141,11 @@ class FarmSendAchievements
      */
     private function isElectionVote($event)
     {
-        // Decode Memo
         $memo = hex2bin($event->send->memo);
+        $asset = Asset::find($event->send->asset);
 
         return $event->send->destination === config('bitcorn.voting_address') &&
+            substr($asset->asset_longname, 0, 10) === 'CROPS.VOTE' &&
             preg_match('/E\d+C\d+/', $memo) !== 0;
     }
 
