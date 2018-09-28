@@ -34,7 +34,7 @@
                             {{ $farm->display_name }}
                         </h5>
                         <p class="card-text">
-                            {{ $farm->description }}
+                            {{ $farm->content }}
                         </p>
                         <a href="https://xcpfox.com/address/{{ $farm->slug }}" class="btn btn-primary" target="_blank">
                             <i class="fa fa-search"></i> View Address
