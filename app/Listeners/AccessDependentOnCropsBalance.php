@@ -58,13 +58,13 @@ class AccessDependentOnCropsBalance
 
         if($access)
         {
-            $farm->update([
+            return $farm->update([
                 'access' => 1,
             ]);
         }
         else
         {
-            $farm->update([
+            return $farm->update([
                 'access' => 0,
                 'image_url' => '/images/default/0.jpg',
             ]);
