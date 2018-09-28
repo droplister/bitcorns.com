@@ -41,7 +41,7 @@
             @foreach($farms as $farm)
                 <tr>
                     <th>{{ $loop->iteration }}.</th>
-                    <td>{{ $farm->name }}</td>
+                    <td>{{ $farm->display_name }}</td>
                     <td>{{ $farm->harvestCoop($harvest) ? $farm->harvestCoop($harvest)->name : ''  }}</td>
                     <td>{{ number_format($farm->pivot->multiplier, 1) }}x</td>
                     <td>{{ number_format($farm->pivot->quantity * $farm->pivot->multiplier) }} </td>

@@ -31,7 +31,7 @@
                 <div class="tab-content" id="playerTabContent">
                     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <h5 class="card-title">
-                            {{ $farm->name }}
+                            {{ $farm->display_name }}
                         </h5>
                         <p class="card-text">
                             {{ $farm->description }}
@@ -45,7 +45,7 @@
                             Farm Deed #{{ $farm->firstCrops->transaction->tx_index }}
                         </h5>
                         <p class="card-text">
-                            {{ $farm->name }} was established {{ $farm->firstCrops->confirmed_at->format('M d, Y') }} by a {{ config('bitcorn.access_token') }} {{ $farm->firstCrops->action }}.
+                            {{ $farm->display_name }} was established {{ $farm->firstCrops->confirmed_at->format('M d, Y') }} by a {{ config('bitcorn.access_token') }} {{ $farm->firstCrops->action }}.
                         </p>
                         <a href="https://xcpfox.com/tx/{{ $farm->firstCrops->transaction->tx_index }}" class="btn btn-primary" target="_blank">
                             <i class="fa fa-search"></i> View Transaction

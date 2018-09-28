@@ -1,6 +1,6 @@
 <div class="card">
     <a href="{{ url(route('farms.show', ['show' => $farm->slug])) }}">
-        <img src="{{ $farm->image_url }}" alt="{{ $farm->name }}" class="card-img-top" />
+        <img src="{{ $farm->display_image_url }}" alt="{{ $farm->display_name }}" class="card-img-top" />
     </a>
     <div class="card-body">
         <a href="{{ url(route('farms.show', ['show' => $farm->slug])) }}" class="btn btn-outline-primary pull-right">
