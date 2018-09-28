@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use App\Farm;
 use App\Token;
 use App\Feature;
 use Illuminate\Http\Request;
