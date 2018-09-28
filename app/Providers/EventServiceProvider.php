@@ -37,6 +37,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\FeatureWasCreated' => [
             'App\Listeners\FeatureAchievements',
         ],
+        'App\Events\MapMarkerWasCreated' => [
+            'App\Listeners\MapMarkerAchievements',
+        ],
         'App\Events\UploadWasCreated' => [
             'App\Listeners\UploadAchievements',
         ],

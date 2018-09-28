@@ -3,11 +3,21 @@
 namespace App;
 
 use App\Traits\Mappable;
+use App\Events\MapMarkerWasCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class MapMarker extends Model
 {
     use Mappable;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => MapMarkerWasCreated::class,
+    ];
 
     /**
      * The attributes that are mass assignable.
