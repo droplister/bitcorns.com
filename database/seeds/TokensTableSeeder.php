@@ -18,6 +18,7 @@ class TokensTableSeeder extends Seeder
         foreach($tokens as $token)
         {
             $token['approved_at'] = Carbon::now();
+            $token['published_at'] = Carbon::now();
 
             Token::create($token);
         }

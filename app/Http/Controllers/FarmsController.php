@@ -21,7 +21,7 @@ class FarmsController extends Controller
     public function index(IndexRequest $request)
     {
         // Sort Order
-        $sort = $request->has('q') ? 'search' : $request->input('sort', 'updated');
+        $sort = $request->has('q') ? 'search' : $request->input('sort', 'crops');
 
         // List Farms
         $farms = Farm::getSortedFarms($request, $sort)->withCount('harvests')->paginate(45);

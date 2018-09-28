@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bitcorn Tokens')
+@section('title', 'Game Tokens')
 
 @section('content')
 <div class="container">

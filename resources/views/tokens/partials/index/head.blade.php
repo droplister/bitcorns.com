@@ -1,4 +1,4 @@
 <h1 class="display-4 my-5">
-    <span class="d-none d-sm-inline">Bitcorn</span> Tokens
+    <span class="d-none d-sm-inline">Game</span> Tokens
     <small class="lead d-none d-sm-inline">{{ $tokens->count() }} Total</small>
 </h1>
