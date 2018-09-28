@@ -15,7 +15,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         // Game Play
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
+            // Game Play
             'App\Listeners\CreateFarmsFromCredits',
+            // Achievements
+            'App\Listeners\FarmCreditAchievements',
         ],
         'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
             'App\Listeners\AccessDependentOnCropsBalance',
