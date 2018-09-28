@@ -51,8 +51,9 @@ class UpdateFeatured implements ShouldQueue
             $memo = trim(hex2bin($send->memo));
 
             // New Feature
-            $feature = new Feature([
+            $feature = Feature::firstOrNew([
                 'xcp_core_tx_index' => $send->tx_index,
+            ],[
                 'address' => $send->source,
                 'bid' => $send->quantity,
             ]);
