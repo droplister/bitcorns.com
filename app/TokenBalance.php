@@ -36,7 +36,7 @@ class TokenBalance extends Balance
      */
     public function token()
     {
-        return $this->belongsTo(Token::class, 'asset_name', 'xcp_core_asset_name');
+        return $this->belongsTo(Token::class, 'asset', 'xcp_core_asset_name');
     }
 
     /**

@@ -42,10 +42,10 @@
       <table class="table table-bordered mb-0">
         <thead>
           <tr>
-            <th scope="col">Schedule <small>For {{ crops }} CROPS</small></th>
-            <th scope="col">Harvested</th>
-            <th scope="col">BITCORN</th>
-            <th scope="col">Cumulative</th>
+            <th scope="col">Harvest Schedule <small>For {{ crops }} CROPS</small></th>
+            <th scope="col">Date</th>
+            <th scope="col">Bitcorn</th>
+            <th scope="col">All-Time</th>
           </tr>
         </thead>
         <tbody>
