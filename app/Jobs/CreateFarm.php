@@ -51,9 +51,9 @@ class CreateFarm implements ShouldQueue
             $farm->unlockIfLocked(new SaltOfTheEarth());
 
             // Farm Ordinal
-            if($farm->name !== 'Genesis Farm')
+            if($farm->display_name !== 'Genesis Farm')
             {
-                $farm->update(['name' => substr($farm->name, 0, -4) . $farm->id]);
+                $farm->update(['name' => substr($farm->display_name, 0, -4) . $farm->id]);
             }
         }
     }

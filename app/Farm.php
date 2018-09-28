@@ -59,6 +59,16 @@ class Farm extends Model
     }
 
     /**
+     * Display Image URL
+     *
+     * @var string
+     */
+    public function getDisplayImageUrlAttribute()
+    {
+        return $this->accessBalance()->quantity > 0 ? $this->image_url : '/images/default/0.jpg';
+    }
+
+    /**
      * Map Radius
      *
      * @var string
