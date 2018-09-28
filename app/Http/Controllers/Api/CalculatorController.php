@@ -39,6 +39,7 @@ class CalculatorController extends Controller
                 $data[] = [
                     $harvest->scheduled_at->timestamp * 1000,
                     $harvest->calculateBitcorn($request->crops),
+                    $harvest->content,
                 ];
             }
 
