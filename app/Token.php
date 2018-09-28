@@ -112,16 +112,6 @@ class Token extends Model
     }
 
     /**
-     * Farms
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function farms()
-    {
-        return $this->hasManyThrough(Farm::class, TokenBalance::class, 'asset', 'xcp_core_address', 'xcp_core_asset_name', 'address');
-    }
-
-    /**
      * Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -139,6 +129,24 @@ class Token extends Model
     public function allBalances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Farms
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function farms()
+    {
+        return $this->hasManyThrough(Farm::class, TokenBalance::class, 'asset', 'xcp_core_address', 'xcp_core_asset_name', 'address');
+    }
+
+    /**
+     * Features
+     */
+    public function features()
+    {
+        return $this->morphMany(Feature::class, 'featurable');
     }
 
     /**

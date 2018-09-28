@@ -59,19 +59,19 @@
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('farms.index') }}">Farms</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('coops.index') }}">Coops</a>
                             </li>
-                            <li class="nav-item d-none d-sm-inline">
-                                <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
-                            </li>
-                            <li class="nav-item d-none d-sm-inline">
-                                <a class="nav-link" href="{{ route('tokens.index') }}">Tokens</a>
-                            </li>
-                            <li class="nav-item d-none d-sm-inline">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cards.index') }}">Cards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tokens.index') }}">Tokens</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="almanac_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>

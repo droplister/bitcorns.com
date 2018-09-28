@@ -39,26 +39,6 @@ class Coop extends Model
     ];
 
     /**
-     * Owner
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function owner()
-    {
-        return $this->belongsTo(Farm::class, 'farm_id', 'id');
-    }
-
-    /**
-     * Farms
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function farms()
-    {
-        return $this->hasMany(Farm::class, 'coop_id', 'id');
-    }
-
-    /**
      * Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -89,6 +69,24 @@ class Coop extends Model
     }
 
     /**
+     * Farms
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function farms()
+    {
+        return $this->hasMany(Farm::class, 'coop_id', 'id');
+    }
+
+    /**
+     * Features
+     */
+    public function features()
+    {
+        return $this->morphMany(Feature::class, 'featurable');
+    }
+
+    /**
      * Harvests
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -96,6 +94,16 @@ class Coop extends Model
     public function harvests()
     {
         return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')->withPivot('farm_id', 'quantity', 'multiplier');
+    }
+
+    /**
+     * Owner
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo(Farm::class, 'farm_id', 'id');
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use App\Farm;
 use App\Token;
+use App\Feature;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,7 +24,13 @@ class HomeController extends Controller
             return $crops->lastMatch('XCP') ? number_format($crops->lastMatch('XCP')->trading_price_normalized) . ' XCP' : '0 XCP';
         });
 
+        // Features
+        $cards = Feature::where('featurable_type', '=', 'App\Card')->highestBids()->take(4)->get();
+        $coops = Feature::where('featurable_type', '=', 'App\Coop')->highestBids()->take(3)->get();
+        $farms = Feature::where('featurable_type', '=', 'App\Farm')->highestBids()->take(2)->get();
+        $field = Farm::findBySlug(config('bitcorn.field_of_dreams'));
+
         // Index View
-        return view('home.index', compact('last_price'));
+        return view('home.index', compact('last_price', 'cards', 'coops', 'farms', 'field'));
     }
 }

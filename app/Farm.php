@@ -142,6 +142,14 @@ class Farm extends Model
     }
 
     /**
+     * Features
+     */
+    public function features()
+    {
+        return $this->morphMany(Feature::class, 'featurable');
+    }
+
+    /**
      * Harvests
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

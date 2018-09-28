@@ -15,7 +15,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         // Game Play
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
+            // Game Play
             'App\Listeners\CreateFarmsFromCredits',
+            // Achievements
+            'App\Listeners\FarmCreditAchievements',
         ],
         'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
             'App\Listeners\AccessDependentOnCropsBalance',
@@ -30,6 +33,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\FarmWasCreated' => [
             'App\Listeners\FarmCreationAchievements',
+        ],
+        'App\Events\FeatureWasCreated' => [
+            'App\Listeners\FeatureAchievements',
+        ],
+        'App\Events\MapMarkerWasCreated' => [
+            'App\Listeners\MapMarkerAchievements',
         ],
         'App\Events\UploadWasCreated' => [
             'App\Listeners\UploadAchievements',
@@ -52,6 +61,10 @@ class EventServiceProvider extends ServiceProvider
             // Achievements
             'App\Listeners\FarmSendAchievements',
             'App\Listeners\TokenSendAchievements',
+        ],
+        // Home Features
+        'Droplister\XcpCore\App\Events\BlockWasCreated' => [
+            'App\Listeners\FeatureListener',
         ],
     ];
 
