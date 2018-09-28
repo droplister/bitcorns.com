@@ -23,8 +23,12 @@
         <div class="card">
           <div class="card-body">
             <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
-            <h5 class="card-title">Harvested <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Harvest #1 to Now</small></h5>
-            <h5 class="card-title mb-0">{{ harvested }} BITCORN</h5>
+            <h5 class="card-title">
+              Harvested <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Harvest #1 to Now</small>
+            </h5>
+            <h5 class="card-title mb-0">
+              <a href="https://xcpdex.com/market/BITCORN_XCP" class="text-primary" target="_blank">{{ harvested }} BITCORN</a>
+            </h5>
           </div>
         </div>
       </div>
@@ -32,8 +36,12 @@
         <div class="card">
           <div class="card-body">
             <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
-            <h5 class="card-title">Remaining <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Now to Harvest #16</small></h5>
-            <h5 class="card-title mb-0">{{ remaining }} BITCORN</h5>
+            <h5 class="card-title">
+              Remaining <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Now to Harvest #16</small>
+            </h5>
+            <h5 class="card-title mb-0">
+              <a href="https://xcpdex.com/market/BITCORN_XCP" class="text-primary" target="_blank">{{ remaining }} BITCORN</a>
+            </h5>
           </div>
         </div>
       </div>
