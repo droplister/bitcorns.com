@@ -75,7 +75,18 @@ class FarmsTableSeeder extends Seeder
             'name' => $coop['name'],
         ],[
             'content' => $coop['description'],
+            'image_url' => $this->getImageUrl(),
         ]);
+    }
+
+    /**
+     * Get Image Url
+     *
+     * @return string
+     */
+    private function getImageUrl()
+    {
+        return '/images/default/coops/' . rand(1, 6) . '.jpg';
     }
 
     /**

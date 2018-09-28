@@ -103,7 +103,6 @@ class CreateFarm implements ShouldQueue
         return $a . $b . $c . $d;
     }
 
-
     /**
      * Get Image Url
      *

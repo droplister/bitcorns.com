@@ -24,9 +24,11 @@
         Featured Farms
     </h2>
     <div class="row mb-4">
-        <div class="col-12 col-sm-6 col-md-4 mb-5">
-            @include('farms.partials.index.card', ['farm' => $field])
-        </div>
+        @if($field)
+            <div class="col-12 col-sm-6 col-md-4 mb-5">
+                @include('farms.partials.index.card', ['farm' => $field])
+            </div>
+        @endif
         @foreach($farms as $farm)
             <div class="col-12 col-sm-6 col-md-4 mb-5">
                 @include('farms.partials.index.card')
