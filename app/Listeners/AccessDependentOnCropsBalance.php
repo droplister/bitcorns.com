@@ -56,6 +56,18 @@ class AccessDependentOnCropsBalance
     {
         $access = $event->balance->quantity > 0;
 
-        return $farm->update(['access' => $access]);
+        if($access)
+        {
+            $farm->update([
+                'access' => 1,
+            ]);
+        }
+        else
+        {
+            $farm->update([
+                'access' => 0,
+                'image_url' => '/images/default/0.jpg',
+            ]);
+        }
     }
 }
