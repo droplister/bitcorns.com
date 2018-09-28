@@ -196,6 +196,12 @@ class FarmsTableSeeder extends Seeder
      */
     private function currentImage($image_url)
     {
+        // Default Image
+        if(substr($image_url, 0, 31) === 'https://bitcorns.com/img/farms/')
+        {
+            return str_replace('https://bitcorns.com/img/farms/', '/images/default/', $image_url);
+        }
+
         return str_replace('https://bitcorns.com/storage/custom/', '/storage/farms/', $image_url);
     }
 
