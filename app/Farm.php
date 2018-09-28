@@ -248,7 +248,7 @@ class Farm extends Model
      */
     public function harvestCoop(Harvest $harvest)
     {
-        $result = $this->harvests()->where('harvest_id', '=', $harvest)->first();
+        $result = $this->harvests()->where('harvest_id', '=', $harvest->id)->first();
 
         return Coop::find($result->pivot->coop_id);
     }
