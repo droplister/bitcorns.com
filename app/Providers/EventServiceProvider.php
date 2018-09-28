@@ -56,6 +56,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\FarmSendAchievements',
             'App\Listeners\TokenSendAchievements',
         ],
+        // Home Features
+        'Droplister\XcpCore\App\Events\BlockWasCreated' => [
+            'App\Listeners\FeatureListener',
+        ],
     ];
 
     /**
