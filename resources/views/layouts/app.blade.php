@@ -59,13 +59,13 @@
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('farms.index') }}">Farms</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('coops.index') }}">Coops</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cards.index') }}">Cards</a>
