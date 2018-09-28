@@ -37,7 +37,7 @@ class FarmTradingAchievements
             if($this->isSellingForBitcorn($event) && $seller)
             {
                 // Total Bitcorn "Bought"
-                $total_trade_for = OrderMatch::where('tx0_address', '=', $seller->xcp_core_address)
+                $total_traded_for = OrderMatch::where('tx0_address', '=', $seller->xcp_core_address)
                     ->where('backward_asset', '=', config('bitcorn.reward_token'))
                     ->sum('backward_quantity');
 
