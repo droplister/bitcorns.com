@@ -188,7 +188,7 @@ class FarmsTableSeeder extends Seeder
      */
     private function getOldImage($url)
     {
-        if(substr($image_url, 0, 31) === 'https://bitcorns.com/img/farms/')
+        if(substr($url, 0, 31) === 'https://bitcorns.com/img/farms/')
         {
             return '/images/default/' . substr($url, -5);
         }

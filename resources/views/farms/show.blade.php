@@ -11,8 +11,6 @@
 @endsection
 
 @section('content')
-<div class="container">
     @include('farms.partials.show.head')
     @include('farms.partials.show.body')
-</div>
 @endsection
