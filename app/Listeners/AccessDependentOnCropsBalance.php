@@ -23,6 +23,9 @@ class AccessDependentOnCropsBalance
             // Get Farm
             $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
 
+            // No Farm
+            if(! $farm) return false;
+
             // Access Y/N
             $this->updateAccess($farm, $event);
 
