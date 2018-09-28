@@ -43,6 +43,18 @@ class PagesController extends Controller
     }
 
     /**
+     * Forecast
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function rules(Request $request)
+    {
+        // Forecast View
+        return view('pages.forecast');
+    }
+
+    /**
      * Game Rules
      *
      * @param  \Illuminate\Http\Request  $request
