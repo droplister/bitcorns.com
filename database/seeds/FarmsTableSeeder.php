@@ -50,7 +50,7 @@ class FarmsTableSeeder extends Seeder
             $this->handleUploads($farm, $data['uploads']);
 
             // Image URL
-            $image_url = $this->currentImage($data['image_url']);
+            $image_url = $this->getOldImage($data['image_url']);
 
             $farm->update([
                 'coop_id' => isset($coop) ? $coop->id : null,
@@ -188,7 +188,7 @@ class FarmsTableSeeder extends Seeder
      */
     private function getOldImage($url)
     {
-        if(substr($url, 0, 15) === 'https://bitcorns.com/img/')
+        if(substr($image_url, 0, 31) === 'https://bitcorns.com/img/farms/')
         {
             return '/images/default/' . substr($url, -5);
         }
@@ -196,23 +196,6 @@ class FarmsTableSeeder extends Seeder
         {
             return $this->downloadUrl($url);
         }
-    }
-
-    /**
-     * Current Image
-     * 
-     * @param  string  $image_url
-     * @return string
-     */
-    private function currentImage($image_url)
-    {
-        // Default Image
-        if(substr($image_url, 0, 31) === 'https://bitcorns.com/img/farms/')
-        {
-            return str_replace('https://bitcorns.com/img/farms/', '/images/default/', $image_url);
-        }
-
-        return str_replace('https://bitcorns.com/storage/custom/', '/storage/farms/', $image_url);
     }
 
     /**
