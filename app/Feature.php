@@ -2,10 +2,20 @@
 
 namespace App;
 
+use App\Events\FeatureWasCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Feature extends Model
 {
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => FeatureWasCreated::class,
+    ];
+
     /**
      * The attributes that are mass assignable.
      *

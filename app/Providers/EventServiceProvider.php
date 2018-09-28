@@ -34,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\FarmWasCreated' => [
             'App\Listeners\FarmCreationAchievements',
         ],
+        'App\Events\FeatureWasCreated' => [
+            'App\Listeners\FeatureAchievements',
+        ],
         'App\Events\UploadWasCreated' => [
             'App\Listeners\UploadAchievements',
         ],
