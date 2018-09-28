@@ -61,8 +61,8 @@
                     Other amounts may be available on the Counterparty DEX or directly from other members of the community. The last trade on occurred at a strike price of {{ $last_price }}.
                 </p>
                 <a href="{{ config('bitcorn.xcpdex') }}" class="btn btn-lg btn-block btn-primary" target="_blank">
-                    <i class="fa fa-info-circle"></i>
-                    More Info
+                    <i class="fa fa-credit-card-alt"></i>
+                    Buy Now
                 </a>
             </div>
         </div>
