@@ -107,6 +107,17 @@ class Coop extends Model
     }
 
     /**
+     * Harvest Farms
+     *
+     * @param \App\Harvest  $harvest
+     * @var string
+     */
+    public function harvestFarms($harvest)
+    {
+        return $this->harvests()->where('harvest_id', '=', $harvest->id)->count();
+    }
+
+    /**
      * Harvest Total
      *
      * @param \App\Harvest  $harvest
