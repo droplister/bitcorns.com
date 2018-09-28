@@ -78,6 +78,7 @@ return [
                 'balance' => 'simple',
                 'processes' => 1,
                 'tries' => 3,
+                'force' => true,
             ],
         ],
 
@@ -88,6 +89,7 @@ return [
                 'balance' => 'simple',
                 'processes' => 1,
                 'tries' => 3,
+                'force' => true,
             ],
         ],
     ],
