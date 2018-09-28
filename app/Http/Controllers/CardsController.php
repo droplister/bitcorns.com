@@ -48,13 +48,17 @@ class CardsController extends Controller
             return redirect(route('tokens.show', ['token' => $card->slug]));
         }
 
+        // Convenience
+        $asset = $card->asset;
+        $last_match = $card->lastMatch();
+
         // Get Farm Balances
         $balances = $card->balances()->with('farm')
             ->orderBy('quantity', 'desc')
             ->paginate(20);
 
         // Show View
-        return view('cards.show', compact('card', 'balances'));
+        return view('cards.show', compact('card', 'asset', 'balances', 'last_match'));
     }
 
     /**

@@ -1,8 +1,10 @@
-@include('cards.partials.show.card')
 @if($balances->total() > 0)
+<h2 class="display-4">
+    Bitcorn Farms
+</h2>
 <div class="card mb-4">
     <div class="card-header">
-        Leaderboard
+        Owned By:
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
