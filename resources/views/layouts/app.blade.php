@@ -56,6 +56,42 @@
                     <a href="{{ url('/') }}" class="navbar-brand">
                         &#x1f33d; <span class="d-none d-lg-inline">{{ config('app.name', 'Laravel') }}</span>
                     </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('farms.index') }}">Farms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('coops.index') }}">Coops</a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline">
+                                <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline">
+                                <a class="nav-link" href="{{ route('tokens.index') }}">Tokens</a>
+                            </li>
+                            <li class="nav-item d-none d-sm-inline">
+                                <a class="nav-link" href="{{ route('cards.index') }}">Cards</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="almanac_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+                                <div class="dropdown-menu" aria-labelledby="almanac_dropdown">
+                                    <a class="dropdown-item" href="{{ route('pages.rules') }}">Game Rules</a>
+                                    <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Assets</a>
+                                    <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">News &amp; Updates</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    @if(Auth::guard('player')->check())
+                    <ul class="navbar-nav mr-auto d-none d-md-inline">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="{{ url(route('players.show', ['player' => Auth::guard('player')->user()->address])) }}">
+                                My&nbsp;Farm
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
                     <form action="{{ url(route('farms.index')) }}" method="GET" class="form-inline my-2 my-lg-0 d-none d-md-inline">
                         <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
                     </form>

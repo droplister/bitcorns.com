@@ -63,6 +63,11 @@ return [
     'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://xcpkey.com/'),
 
     /**
+     * Medium
+     */
+    'medium' => env('BITCORN_MEDIUM', 'https://medium.com/@BitcornCrops'),
+
+    /**
      * Telegram Chat
      */
     'telegram' => env('BITCORN_TELEGRAM', 'https://t.me/bitcorns'),
