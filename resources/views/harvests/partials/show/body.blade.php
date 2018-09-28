@@ -2,7 +2,7 @@
     Bitcorn Farms
 </h2>
 <div class="responsive-table">
-    <table class="table mb-0">
+    <table class="table table-bordered mb-0">
         <thead>
             <tr>      
                 <th scope="col">Rank</th>
