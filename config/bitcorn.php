@@ -38,6 +38,11 @@ return [
     'feature_address' => env('BITCORN_FEATURE_ADDRESS', '1HomeYDQs6uNahNdT4SYDa1zQeQN4k8iYK'),
 
     /**
+     * Field of Dreams
+     */
+    'field_of_dreams' => env('BITCORN_WHEELER_ADDRESS', '1KacrYMuQW5eqLbrYUotQ1mdsVpxin6hC9'),
+
+    /**
      * Genesis Address
      */
     'genesis_address' => env('BITCORN_GENESIS_ADDRESS', '19QWXpMXeLkoEKEJv2xo9rn8wkPCyxACSX'),

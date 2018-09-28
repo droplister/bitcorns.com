@@ -4,6 +4,35 @@
 
 @section('content')
 <div class="container">
+    <h2 class="display-4 my-5">
+        Featured Cards
+    </h2>
+    @foreach($cards as $card)
+        <div class="col-6 col-sm-4 col-lg-3 mb-4 text-center">
+            @include('cards.partials.index.card')
+        </div>
+    @endforeach
+    <h2 class="display-4 my-5">
+        Featured Coops
+    </h2>
+    <div class="row mb-4">
+        @foreach($coops as $coop)
+
+        @endforeach
+    </div>
+    <h2 class="display-4 my-5">
+        Featured Farms
+    </h2>
+    <div class="row mb-4">
+        <div class="col-12 col-sm-6 col-md-4 mb-5">
+            @include('farms.partials.index.card', ['farm' => $field])
+        </div>
+        @foreach($farms as $farm)
+            <div class="col-12 col-sm-6 col-md-4 mb-5">
+                @include('farms.partials.index.card')
+            </div>
+        @endforeach
+    </div>
     <h2 class="display-4 my-5" style="white-space: nowrap;">
         <img src="{{ asset('/images/tokens/CROPS.png') }}" alt="CROPS access token" class="float-left mr-3" width="60" />
         Buy CROPS
