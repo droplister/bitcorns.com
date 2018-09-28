@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Coop;
 use App\Harvest;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,14 @@ class HarvestsController extends Controller
     public function show(Request $request, Harvest $harvest)
     {
         // The Coops
-        $coops = $harvest->coops()->orderBy('quantity', 'desc')->get();
+        $coops = Coop::whereHas('harvests', function ($h) use ($harvest) {
+            return $h->where('id', '=', $harvest->id);
+        })->get();
+
+        // Sort By
+        $coops = $coops->sortByDesc(function ($coop) use ($harvest)  {
+            return $coop->harvestTotal($harvest, true);
+        });
 
         // The Farms
         $farms = $harvest->farms()->orderBy('quantity', 'desc')->get();

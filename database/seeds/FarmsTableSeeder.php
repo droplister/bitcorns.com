@@ -1,6 +1,5 @@
 <?php
 
-use DB;
 use Curl\Curl;
 use App\Coop;
 use App\Farm;
@@ -55,7 +54,7 @@ class FarmsTableSeeder extends Seeder
 
             $farm->update([
                 'coop_id' => isset($coop) ? $coop->id : null,
-                'name' => $data['name'],
+                'name' => strlen($data['name']) <= 30 ? $data['name'] : $farm->name,
                 'image_url' => $image_url,
                 'content' => $data['description'],
             ]);

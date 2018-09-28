@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Coop;
 use App\Token;
+use App\Harvest;
 use App\Traits\Linkable;
 use App\Traits\Signable;
 use App\Traits\Achievable;
@@ -146,7 +148,7 @@ class Farm extends Model
      */
     public function harvests()
     {
-        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')->withPivot('quantity', 'multiplier');
+        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'farm_id', 'harvest_id')->withPivot('coop_id', 'quantity', 'multiplier');
     }
 
     /**
@@ -236,6 +238,19 @@ class Farm extends Model
             ->where('asset', '=', $asset_name)
             ->where('quantity', '>', 0)
             ->exists();
+    }
+
+    /**
+     * Harvest Coop
+     *
+     * @param \App\Harvest  $harvest
+     * @return boolean
+     */
+    public function harvestCoop(Harvest $harvest)
+    {
+        $result = $this->harvests()->where('harvest_id', '=', $harvest)->first();
+
+        return Coop::find($result->pivot->coop_id);
     }
 
     /**

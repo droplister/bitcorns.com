@@ -95,7 +95,7 @@ class Coop extends Model
      */
     public function harvests()
     {
-        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')->withPivot('quantity', 'multiplier');
+        return $this->belongsToMany(Harvest::class, 'farm_harvest', 'coop_id', 'harvest_id')->withPivot('farm_id', 'quantity', 'multiplier');
     }
 
     /**
@@ -104,6 +104,25 @@ class Coop extends Model
     public function uploads()
     {
         return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    /**
+     * Harvest Total
+     *
+     * @param \App\Harvest  $harvest
+     * @param boolean  $multiply
+     * @var string
+     */
+    public function harvestTotal($harvest, $multiply=false)
+    {
+        return $this->harvests()->where('harvest_id', '=', $harvest->id)->get()->sum(function ($harvest) use ($multiply) {
+            if($multiply)
+            {
+                return $harvest->pivot->quantity * $harvest->pivot->multiplier;
+            }
+
+            return $harvest->pivot->quantity;
+        });
     }
 
     /**
