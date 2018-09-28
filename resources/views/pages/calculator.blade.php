@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Cornculator')
+@section('title', 'Calculator')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
         &#x1f33d; Harvests
     </a>
     <h1 class="display-4 mt-5 mb-4">
-        Cornculator
+        Calculator
     </h1>
     <calculator crops="0.1" upcoming="{{ $upcoming ? $upcoming->id - 1 : $upcoming }}"></calculator>
 </div>

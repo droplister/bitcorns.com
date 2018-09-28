@@ -42,12 +42,12 @@
                     </div>
                     <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
                         <h5 class="card-title">
-                            Farm Deed #{{ $farm->firstCrops->tx_index }}
+                            Farm Deed #{{ $farm->firstCrops->transaction->tx_index }}
                         </h5>
                         <p class="card-text">
-                            {{ $farm->name }} was established {{ $farm->firstCrops->confirmed_at->toDateString() }} by a CROPS {{ $farm->firstCrops->action }}.
+                            {{ $farm->name }} was established {{ $farm->firstCrops->confirmed_at->format('M d, Y') }} by a {{ config('bitcorn.access_token') }} {{ $farm->firstCrops->action }}.
                         </p>
-                        <a href="https://xcpfox.com/tx/{{ $farm->firstCrops->tx_index }}" class="btn btn-primary" target="_blank">
+                        <a href="https://xcpfox.com/tx/{{ $farm->firstCrops->transaction->tx_index }}" class="btn btn-primary" target="_blank">
                             <i class="fa fa-search"></i> View Transaction
                         </a>
                     </div>
