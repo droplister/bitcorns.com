@@ -1,22 +1,88 @@
 <template>
-<div>
-  <!-- the button -->
-  <b-btn v-b-modal.cornculatorModal variant="outline-success" class="float-right mt-3">
-    <i class="fa fa-line-chart"></i> <span class="d-none d-sm-inline">Forecast</span>
-  </b-btn>
-
-  <!-- the modal -->
-  <b-modal id="cornculatorModal" size="lg" title="Forecast" hide-footer>
-    <forecast-chart :crops="quantity"></forecast-chart>
-  </b-modal>
-</div>
+  <div>
+    <highcharts :options="chartOptions" style="max-width: 766px"></highcharts>
+  </div>
 </template>
 
 <script>
+import {Chart} from 'highcharts-vue'
+
 export default {
-  data () {
+  props: ['crops'],
+  components: {
+    highcharts: Chart
+  },
+  data() {
     return {
-      quantity: 100
+      chartOptions: {
+        chart: {
+          events: {
+            load() {
+              setTimeout(this.reflow.bind(this))
+            }
+          }
+        },
+        title: {
+          text: ''
+        },
+        xAxis: {
+          type: 'datetime'
+        },
+        yAxis: {
+          title: {
+            text: 'Bitcorn Harvested'
+          }
+        },
+        tooltip: {
+          shared: true
+        },
+        credits: {
+          enabled: false
+        },
+        series: []
+      }
+    }
+  },
+  mounted() {
+    this.$_corn_chart_update()
+  },
+  computed: {
+    source() {
+      return '/api/calculator?crops=' + this.crops
+    }
+  },
+  watch:{
+    source() {
+      this.chartOptions.series = []
+      this.$_corn_chart_update()
+    }
+  },
+  methods: {
+    $_corn_chart_update() {
+      var api = this.source
+      var self = this
+      $.get(api, function (response) {
+        self.chartOptions.series.push({
+          name: 'Per Harvest',
+          data: response.data,
+          zIndex: 2,
+        })
+        self.chartOptions.series.push({
+          name: 'Cumulative',
+          zIndex: 1,
+          data: self.$_corn_chart_accumulate(response.data),
+        })
+      })
+    },
+    $_corn_chart_accumulate(data) {
+      var accumulation = new Array()
+      var runningTotal = 0
+      var i = 0
+      for (i = 0; i < data.length; i++) {
+        runningTotal += data[i][1]
+        accumulation.push([data[i][0], runningTotal])
+      }
+      return accumulation
     }
   }
 }
