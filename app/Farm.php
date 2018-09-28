@@ -289,6 +289,16 @@ class Farm extends Model
     }
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
