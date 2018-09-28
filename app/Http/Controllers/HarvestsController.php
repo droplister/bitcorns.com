@@ -29,7 +29,13 @@ class HarvestsController extends Controller
      */
     public function show(Request $request, Harvest $harvest)
     {
+        // The Coops
+        $coops = $harvest->coops()->orderBy('quantity', 'desc')->get();
+
+        // The Farms
+        $farms = $harvest->farms()->orderBy('quantity', 'desc')->get();
+
         // Show View
-        return view('harvests.show', compact('harvest'));
+        return view('harvests.show', compact('harvest', 'coops', 'farms'));
     }
 }

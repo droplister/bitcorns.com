@@ -1,5 +1,6 @@
 <?php
 
+use DB;
 use Curl\Curl;
 use App\Coop;
 use App\Farm;
@@ -27,14 +28,21 @@ class FarmsTableSeeder extends Seeder
     public function run()
     {
         $farms = $this->getFarms();
+        $coops = $this->getCoops();
 
         foreach($farms as $data)
         {
             // Farm
             $farm = Farm::findBySlug($data['address']);
+
+            // Edge Case
+            if(! $farm) continue;
             
             // Coop
             $coop = $this->getCoop($data['group']);
+
+            // Harvests
+            $this->updateHarvests($farm, $coops);
 
             // Map Marker
             $this->handleMapMarker($farm, $data);
@@ -69,6 +77,28 @@ class FarmsTableSeeder extends Seeder
         ],[
             'content' => $coop['description'],
         ]);
+    }
+
+    /**
+     * Update Harvests
+     * 
+     * @param  \App\Farm  $farm
+     * @param  array  $coops
+     * @return void
+     */
+    private function updateHarvests($farm, $coops)
+    {
+        $harvests = $this->getRewards($farm->xcp_core_address);
+
+        foreach($harvests as $harvest)
+        {
+            $coop_id = $harvest['pivot']['group_id'] ? Coop::findBySlug($coops[$harvest['pivot']['group_id']])->id : null;
+
+            DB::table('farm_harvest')
+                ->where('harvest_id', '=', $harvest['pivot']['reward_id'])
+                ->where('farm_id', '=', $farm->id)
+                ->update(['coop_id' => $coop_id]);
+        }
     }
 
     /**
@@ -170,6 +200,20 @@ class FarmsTableSeeder extends Seeder
     }
 
     /**
+     * Get Coops
+     * 
+     * @return array
+     */
+    private function getCoops()
+    {
+        $this->curl->get('https://bitcorns.com/api/migrate/groups');
+
+        if ($this->curl->error) return []; // Some Error
+
+        return json_decode($this->curl->response, true);
+    }
+
+    /**
      * Get Farms
      * 
      * @return array
@@ -177,6 +221,20 @@ class FarmsTableSeeder extends Seeder
     private function getFarms()
     {
         $this->curl->get('https://bitcorns.com/api/migrate/farms');
+
+        if ($this->curl->error) return []; // Some Error
+
+        return json_decode($this->curl->response, true);
+    }
+
+    /**
+     * Get Rewards
+     * 
+     * @return array
+     */
+    private function getRewards($address)
+    {
+        $this->curl->get('https://bitcorns.com/api/migrate/rewards/' . $address);
 
         if ($this->curl->error) return []; // Some Error
 

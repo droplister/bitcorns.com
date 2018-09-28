@@ -5,6 +5,7 @@
 @section('content')
 <div class="container">
     @include('harvests.partials.show.head')
+    @include('harvests.partials.show.card')
     @include('harvests.partials.show.body')
 </div>
 @endsection

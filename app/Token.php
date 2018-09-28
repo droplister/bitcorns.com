@@ -300,13 +300,23 @@ class Token extends Model
      * 
      * @return \Droplister\XcpCore\App\OrderMatch
      */
-    public function lastMatch($quote_asset='XCP')
+    public function lastMatch($quote_asset=null)
     {
+        if($quote_asset)
+        {
+            return OrderMatch::where('backward_asset', '=', $this->xcp_core_asset_name)
+                ->where('forward_asset', '=', $quote_asset)
+                ->where('status', '=', 'completed')
+                ->orWhere('backward_asset', '=', $quote_asset)
+                ->where('forward_asset', '=', $this->xcp_core_asset_name)
+                ->where('status', '=', 'completed')
+                ->orderBy('tx1_index', 'desc')
+                ->first();
+        }
+        
         return OrderMatch::where('backward_asset', '=', $this->xcp_core_asset_name)
-            ->where('forward_asset', '=', $quote_asset)
             ->where('status', '=', 'completed')
-            ->orWhere('backward_asset', '=', $quote_asset)
-            ->where('forward_asset', '=', $this->xcp_core_asset_name)
+            ->orWhere('forward_asset', '=', $this->xcp_core_asset_name)
             ->where('status', '=', 'completed')
             ->orderBy('tx1_index', 'desc')
             ->first();
