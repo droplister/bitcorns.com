@@ -48,7 +48,7 @@ class PagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function rules(Request $request)
+    public function forecast(Request $request)
     {
         // Forecast View
         return view('pages.forecast');
