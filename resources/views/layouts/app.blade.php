@@ -83,15 +83,6 @@
                             </li>
                         </ul>
                     </div>
-                    @if(Auth::guard('player')->check())
-                    <ul class="navbar-nav mr-auto d-none d-md-inline">
-                        <li class="nav-item mr-4">
-                            <a class="nav-link" href="{{ url(route('players.show', ['player' => Auth::guard('player')->user()->address])) }}">
-                                My&nbsp;Farm
-                            </a>
-                        </li>
-                    </ul>
-                    @endif
                     <form action="{{ url(route('farms.index')) }}" method="GET" class="form-inline my-2 my-lg-0 d-none d-md-inline">
                         <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
                     </form>
