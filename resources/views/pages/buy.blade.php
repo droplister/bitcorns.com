@@ -19,7 +19,7 @@
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">$3.50</h1>
                 <ul class="list-unstyled mt-3 mb-3">
-                    <li>0.001 CROPS</li>
+                    <li><a href="{{ route('pages.calculator') }}">0.001 CROPS</a></li>
                 </ul>
                 <p class="card-text mb-4">
                     Receive an amount of CROPS sufficient to establish a Bitcorns.com farm and gain access to basic features, like updating farm names, locations, and descriptions.
@@ -37,7 +37,7 @@
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">$29.99</h1>
                 <ul class="list-unstyled mt-3 mb-3">
-                    <li>0.01 CROPS</li>
+                    <li><a href="{{ route('pages.calculator') }}">0.01 CROPS</a></li>
                 </ul>
                 <p class="card-text mb-4">
                     Receive an amount of CROPS sufficient to establish a Bitcorns.com farm and gain access to basic features, in addition to the ability to upload custom farm art.
@@ -55,7 +55,7 @@
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">{{ $last_price }}</h1>
                 <ul class="list-unstyled mt-3 mb-3">
-                    <li>1 CROPS</li>
+                    <li><a href="{{ route('pages.calculator') }}">1 CROPS</a></li>
                 </ul>
                 <p class="card-text mb-4">
                     Other amounts may be available on the Counterparty DEX or directly from other members of the community. The last trade on occurred at a strike price of {{ $last_price }}.
