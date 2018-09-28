@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Support\MessageBag;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,6 +48,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // https://gist.github.com/jrmadsen67/bd0f9ad0ef1ed6bb594e
+        if ($exception instanceof TokenMismatchException)
+        {
+            $errors = new MessageBag([
+                'password' => 'For security purposes, the form expired after sitting idle for too long. Please try again.'
+            ]);
+
+            return redirect()->back()
+                ->withInput($request->except($this->dontFlash))
+                ->with(['errors' => $errors]);
+        }
+
         return parent::render($request, $exception);
     }
 }

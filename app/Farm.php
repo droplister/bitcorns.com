@@ -282,7 +282,7 @@ class Farm extends Model
         $token = Token::where('xcp_core_asset_name', '=', config('bitcorn.daab_token'))->first();
 
         // Balances (hi -> lo)
-        $token_balances = $token->balances()->with('farm')->orderBy('quantity', 'desc')->get();
+        $token_balances = $token->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
 
         // Check Whether DAAB
         foreach($token_balances as $token_balance)

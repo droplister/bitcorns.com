@@ -9,7 +9,7 @@
 @yield('meta')
 
     <!-- Title Tags -->
-    <title>@yield('title') &ndash; {{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') &ndash; Bitcorn Crops</title>
     <meta name="description" content="@yield('description')">
 
     <!-- Stylesheets -->
@@ -54,7 +54,7 @@
             <div class="navbar navbar-dark navbar-expand bg-dark">
                 <div class="container-fluid d-flex justify-content-between">
                     <a href="{{ url('/') }}" class="navbar-brand">
-                        &#x1f33d; <span class="d-none d-lg-inline">{{ config('app.name', 'Laravel') }}</span>
+                        &#x1f33d; <span class="d-none d-lg-inline">Bitcorn</span>
                     </a>
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
