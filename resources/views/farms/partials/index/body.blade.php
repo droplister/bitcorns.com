@@ -1,6 +1,6 @@
 <div class="row mb-4">
     @foreach($farms as $farm)
-        <div class="col-12 col-sm-6 col-md-4 mt-4 mb-2">
+        <div class="col-12 col-sm-6 col-md-4 mb-4">
             @include('farms.partials.index.card')
         </div>
         @if($loop->iteration % 3 === 0 && ! $loop->last)
