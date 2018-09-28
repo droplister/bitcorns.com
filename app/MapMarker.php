@@ -48,6 +48,6 @@ class MapMarker extends Model
      */
     public function farm()
     {
-        return $this->belongsTo(Farm::class, 'address', 'xcp_core_address')->hasAccess();
+        return $this->belongsTo(Farm::class);
     }
 }
