@@ -75,7 +75,7 @@ class AnnounceNewCardSubmissions
      */
     private function publicAnnouncement($token)
     {
-        $depth = ordinal(Token::pending()->count());
+        $depth = ordinal(Token::publishable()->upgrades()->count());
         $message = "{$token->name} was submitted. {$depth} in queue.";
 
         SendMessage::dispatch($message, 'public');
