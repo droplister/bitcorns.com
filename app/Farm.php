@@ -176,7 +176,17 @@ class Farm extends Model
      */
     public function mapMarkers()
     {
-        return $this->hasMany(MapMarker::class, 'id', 'farm_id');
+        return $this->hasMany(MapMarker::class);
+    }
+
+    /**
+     * Map Marker
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mapMarker()
+    {
+        return $this->hasOne(MapMarker::class)->major();
     }
 
     /**
