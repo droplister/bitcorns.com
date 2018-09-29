@@ -4,14 +4,14 @@
     :center="center"
     style="width: 100%; height: 400px"
   >
-    <InfoWindow
+    <GmapInfoWindow
       :options="infoOptions"
       :position="infoPosition"
       :opened="infoWinOpen"
       @closeclick="infoWinOpen=false"
     >
       <a :href="href">{{ name }}</a>
-    </InfoWindow>
+    </GmapInfoWindow>
 
     <GmapCircle
       :key="index"
@@ -27,6 +27,7 @@
       :position="m.position"
       :clickable="true"
       :draggable="false"
+      :icon="{ url: require('../../assets/corn-icon.png')}"
       @click="toggleInfo(m,index)"
     ></GmapMarker>
   </GmapMap>

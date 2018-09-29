@@ -62,7 +62,7 @@
                             <i class="fa fa-search"></i> Learn More
                         </a>
                     </div>
-                    @if($farm->group_id)
+                    @if($farm->coop_id)
                     <div class="tab-pane fade" id="coop" role="tabpanel" aria-labelledby="coop-tab">
                         <h5 class="card-title">
                             {{ $farm->coop->name }}
