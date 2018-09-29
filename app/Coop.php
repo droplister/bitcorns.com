@@ -55,7 +55,7 @@ class Coop extends Model
      */
     public function tokenBalances()
     {
-        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->tokens()->with('token');
+        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->published()->tokens()->with('token');
     }
 
     /**
@@ -65,7 +65,7 @@ class Coop extends Model
      */
     public function upgradeBalances()
     {
-        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->upgrades()->nonZero()->with('token');
+        return $this->hasManyThrough(TokenBalance::class, Farm::class, 'coop_id', 'address', 'id', 'xcp_core_address')->published()->upgrades()->nonZero()->with('token');
     }
 
     /**

@@ -118,7 +118,7 @@ class Farm extends Model
      */
     public function tokenBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->tokens();
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->published()->tokens();
     }
 
     /**
@@ -128,7 +128,7 @@ class Farm extends Model
      */
     public function upgradeBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->upgrades()->nonZero();
+        return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address')->published()->upgrades()->nonZero();
     }
 
     /**
