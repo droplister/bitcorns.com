@@ -20,7 +20,7 @@ class NotDivisible implements Rule
         $asset = Asset::find($value);
 
         // Check it!
-        return $asset && $asset->divisible;
+        return $asset && $asset->divisible === 0;
     }
 
     /**

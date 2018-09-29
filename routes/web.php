@@ -11,6 +11,7 @@
 |
 */
 
+Auth::routes();
 Route::resource('/', 'HomeController', ['only' => ['index']]);
 Route::resource('/cards', 'CardsController', ['only' => ['index', 'show', 'create', 'store', 'update']]);
 Route::resource('/coops', 'CoopsController');

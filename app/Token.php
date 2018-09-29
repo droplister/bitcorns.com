@@ -291,7 +291,7 @@ class Token extends Model
         $key = $hd ? 'meta_data->hd_image_url' : 'image_url';
 
         // Put File
-        $image_path = Storage::putFile('public/tokens/', $file);
+        $image_path = Storage::putFile('public/tokens', $file);
 
         // Relative
         $image_url = Storage::url($image_path);
