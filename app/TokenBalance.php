@@ -40,6 +40,16 @@ class TokenBalance extends Balance
     }
 
     /**
+     * Published
+     */
+    public function scopePublished($query)
+    {
+        return $query->whereHas('token', function ($token) {
+            return $token->whereNotNull('published_at');
+        });
+    }
+
+    /**
      * Non Zero
      */
     public function scopeNonZero($query)
