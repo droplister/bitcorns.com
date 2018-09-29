@@ -88,6 +88,11 @@ return [
     'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://xcpkey.com/'),
 
     /**
+     * GitHub
+     */
+    'github' => env('BITCORN_GITHUB', 'https://github.com/droplister/bitcorns.com'),
+
+    /**
      * Medium
      */
     'medium' => env('BITCORN_MEDIUM', 'https://medium.com/@BitcornCrops'),
