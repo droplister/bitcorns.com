@@ -30,9 +30,9 @@ class FarmCreditAchievements
             $surplus = $farm->rewardBalance()->quantity - $farm->total_harvested;
 
             // Progress (Bitcorn Surplus)
-            $source->setProgress(new FarmersMarket(), $surplus);   // 1,000
-            $source->setProgress(new Cornucopia(), $surplus);      // 10,000
-            $source->setProgress(new CornFlowethOver(), $surplus); // 100,000
+            $farm->setProgress(new FarmersMarket(), $surplus);   // 1,000
+            $farm->setProgress(new Cornucopia(), $surplus);      // 10,000
+            $farm->setProgress(new CornFlowethOver(), $surplus); // 100,000
         }
     }
 
