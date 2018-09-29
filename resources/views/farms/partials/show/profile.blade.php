@@ -70,7 +70,7 @@
                         <p class="card-text">
                             {{ $farm->coop->content }}
                         </p>
-                        <a href="{{ route('groups.show', ['group' => $farm->group->slug]) }}" class="btn btn-primary">
+                        <a href="{{ route('coops.show', ['coop' => $farm->coop->slug]) }}" class="btn btn-primary">
                             <i class="fa fa-edit"></i> Join Cooperative
                         </a>
                     </div>
