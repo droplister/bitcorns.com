@@ -25,12 +25,11 @@ class HomeController extends Controller
         });
 
         // Features
-        $cards = Feature::where('featurable_type', '=', 'App\Card')->highestBids()->take(4)->get();
-        $coops = Feature::where('featurable_type', '=', 'App\Coop')->highestBids()->take(3)->get();
-        $farms = Feature::where('featurable_type', '=', 'App\Farm')->highestBids()->take(2)->get();
+        $cards = Feature::where('featurable_type', '=', 'App\Token')->with('featurable')->highestBids()->take(4)->get();
+        $farms = Feature::where('featurable_type', '=', 'App\Farm')->with('featurable')->highestBids()->take(2)->get();
         $field = Farm::findBySlug(config('bitcorn.field_of_dreams'));
 
         // Index View
-        return view('home.index', compact('last_price', 'cards', 'coops', 'farms', 'field'));
+        return view('home.index', compact('last_price', 'cards', 'farms', 'field'));
     }
 }

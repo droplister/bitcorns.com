@@ -30,8 +30,8 @@
                                 <td class="d-none d-md-block">{{ $harvest->scheduled_at->toDateString() }}</td>
                             @endif
                             <td>{{ number_format($harvest->quantity) }}</td>
-                            <td>{{ number_format($harvest->farms()->count()) }}</td>
-                            <td>{{ number_format($harvest->coops()->count()) }}</td>
+                            <td>{{ number_format($farms->count()) }}</td>
+                            <td>{{ number_format($coops->count()) }}</td>
                         </tr>
                     </tbody>
                 </table>
