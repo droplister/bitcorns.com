@@ -28,6 +28,7 @@ class FarmCreditAchievements
 
             // Surplus
             $surplus = $farm->rewardBalance()->quantity - $farm->total_harvested;
+            if($surplus < 0) $surplus = 0;
 
             // Progress (Bitcorn Surplus)
             $farm->setProgress(new FarmersMarket(), $surplus);   // 1,000

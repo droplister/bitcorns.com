@@ -10,9 +10,11 @@
     <a href="{{ route('harvests.index') }}" class="btn btn-outline-success d-none d-md-inline float-right mt-3 mr-3">
         &#x1f33d; Harvests
     </a>
-    <h1 class="display-4 mt-5 mb-4">
+    <h1 class="display-4 my-5">
         Forecast
     </h1>
-    <forecast crops="100"></forecast>
+    <div class="card mb-4">
+        <forecast crops="100"></forecast>
+    </div>
 </div>
 @endsection
