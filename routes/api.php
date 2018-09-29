@@ -12,3 +12,4 @@
 */
 
 Route::get('/calculator', 'Api\CalculatorController@index')->name('api.calculator');
+Route::get('/map', 'Api\MapController@index')->name('api.map');

@@ -54,7 +54,7 @@ class FarmsTableSeeder extends Seeder
 
             $farm->update([
                 'coop_id' => isset($coop) ? $coop->id : null,
-                'name' => strlen($data['name']) <= 30 ? $data['name'] : $farm->name,
+                'name' => strlen($data['name']) <= 30 && preg_match('/Bitcorn Farm #\d+/', $data['name']) === 0 ? $data['name'] : $farm->name,
                 'image_url' => $image_url,
                 'content' => $data['description'],
             ]);

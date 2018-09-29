@@ -25,6 +25,7 @@
         "highcharts": "^6.1.1",
         "highcharts-vue": "^1.1.0",
         "vue-moment": "^4.0.0",
-        "vue-session": "^1.0.0"
+        "vue-session": "^1.0.0",
+        "vue2-google-maps": "^0.10.2"
     }
 }
