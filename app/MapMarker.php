@@ -50,4 +50,20 @@ class MapMarker extends Model
     {
         return $this->belongsTo(Farm::class);
     }
+
+    /**
+     * Major
+     */
+    public function scopeMajor($query)
+    {
+        return $query->where('major', '=', 1);
+    }
+
+    /**
+     * Minor
+     */
+    public function scopeMinor($query)
+    {
+        return $query->where('minor', '=', 0);
+    }
 }
