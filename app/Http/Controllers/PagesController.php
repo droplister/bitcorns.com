@@ -10,6 +10,18 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     /**
+     * API
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function api(Request $request)
+    {
+        // API View
+        return view('pages.api');
+    }
+
+    /**
      * Buy CROPS
      *
      * @param  \Illuminate\Http\Request  $request
@@ -55,6 +67,18 @@ class PagesController extends Controller
     }
 
     /**
+     * Privacy Policy
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function privacy(Request $request)
+    {
+        // Privacy View
+        return view('pages.privacy');
+    }
+
+    /**
      * Game Rules
      *
      * @param  \Illuminate\Http\Request  $request
@@ -64,5 +88,17 @@ class PagesController extends Controller
     {
         // Rules View
         return view('pages.rules');
+    }
+
+    /**
+     * Terms of Service
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function terms(Request $request)
+    {
+        // Terms View
+        return view('pages.terms');
     }
 }
