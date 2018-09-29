@@ -46,7 +46,7 @@ class FarmsController extends Controller
         $upgrades = $farm->upgradeBalances()->get();
 
         // Tokens: Upgrades Total
-        $upgrades_total = Token::upgrades()->count();
+        $upgrades_total = Token::published()->upgrades()->count();
 
         // Tokens: % of Progress
         $progress = round($upgrades->count() / $upgrades_total * 100);

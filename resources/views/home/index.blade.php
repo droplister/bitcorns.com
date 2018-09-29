@@ -42,7 +42,7 @@
         </div>
     </div>
     <h2 class="display-4 my-5">
-        Featured Farms
+        Bitcorn Farms
     </h2>
     <div class="row">
         @foreach($farms as $farm)
@@ -120,7 +120,7 @@
         </div>
     </div>
     <h2 class="display-4 mb-5">
-        Featured Cards
+        Bitcorn Cards
     </h2>
     <div class="row">
         @foreach($cards as $card)
