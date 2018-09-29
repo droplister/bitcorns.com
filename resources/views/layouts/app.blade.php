@@ -92,10 +92,23 @@
                 </div>
             </div>
         </header>
-
         <main role="main">
             @yield('content')
         </main>
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-right d-none d-sm-inline">
+                    <a href="#">Top ^</a>
+                </p>
+                <p>
+                    <a href="mailto:{{ config('bitcorn.email') }}" class="mr-3">Contact</a>
+                    <a href="{{ config('bitcorn.github') }}" target="_blank" class="mr-3">Github</a>
+                    <a href="{{ route('pages.privacy') }}" class="mr-3">Privacy</a>
+                    <a href="{{ route('pages.terms') }}" class="mr-3">Terms</a>
+                    <a href="{{ route('pages.api') }}">API</a>
+                </p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

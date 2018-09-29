@@ -33,6 +33,16 @@ return [
     'ico_block_index' => env('BITCORN_ICO_BLOCK_INDEX', 507151),
 
     /**
+     * Public Chat ID
+     */
+    'public_chat_id' => env('PUBLIC_CHAT_ID'),
+
+    /**
+     * Private Chat ID
+     */
+    'private_chat_id' => env('PRIVATE_CHAT_ID'),
+
+    /**
      * Feature Address
      */
     'feature_address' => env('BITCORN_FEATURE_ADDRESS', '1HomeYDQs6uNahNdT4SYDa1zQeQN4k8iYK'),
