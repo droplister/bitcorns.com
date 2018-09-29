@@ -9,24 +9,24 @@
                 <div id="carouselExampleControls" class="carousel mb-0 slide" data-ride="carousel" data-interval="false" data-wrap="false">
                     <div class="carousel-inner">
                         @foreach($farm->uploads()->whereNull('rejected_at')->latest()->get() as $upload)
-                        <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-                            <a href="{{ $upload->new_image_url }}">
-                                <img class="d-block w-100" src="{{ $upload->new_image_url }}" /></a>
-                            </a>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>{{ $upload->created_at->format('M d, Y') }}</h5>
+                            <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
+                                <a href="{{ $upload->new_image_url }}">
+                                    <img class="d-block w-100" src="{{ $upload->new_image_url }}" /></a>
+                                </a>
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{ $upload->created_at->format('M d, Y') }}</h5>
+                                </div>
                             </div>
-                        </div>
-                        @if($loop->last)
-                        <div class="carousel-item">
-                            <a href="{{ $upload->old_image_url }}">
-                                <img class="d-block w-100" src="{{ $upload->old_image_url }}" />
-                            </a>
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>{{ $farm->tx->display_confirmed_at }}</h5>
-                            </div>
-                        </div>
-                        @endif
+                            @if($loop->last)
+                                <div class="carousel-item">
+                                    <a href="{{ $upload->old_image_url }}">
+                                        <img class="d-block w-100" src="{{ $upload->old_image_url }}" />
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>{{ $farm->firstCrops->confirmed_at->format('M d, Y') }}</h5>
+                                    </div>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
