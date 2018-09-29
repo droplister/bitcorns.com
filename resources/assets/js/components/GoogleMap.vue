@@ -27,7 +27,7 @@
       :position="m.position"
       :clickable="true"
       :draggable="false"
-      :icon="{ url: require('../../assets/corn-icon.png')}"
+      :icon="{ url: require('../../assets/img/corn-icon.png')}"
       @click="toggleInfo(m,index)"
     ></GmapMarker>
   </GmapMap>

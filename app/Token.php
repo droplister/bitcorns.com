@@ -271,7 +271,7 @@ class Token extends Model
         $card->storeImage($request->image);
 
         // HD Optional
-        if(isset($hd_image_url))
+        if($request->has('hd_image'))
         {
             // Save Image
             $card->storeImage($request->hd_image, true);
