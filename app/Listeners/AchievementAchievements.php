@@ -18,7 +18,7 @@ class AchievementAchievements
     public function handle(Unlocked $event)
     {
         // Count
-        $count = $event->progress->achiever->achievements()->count();
+        $count = $event->progress->achiever->achievements()->whereNotNull('unlocked_at')->count();
 
         // Progress
         $event->progress->achiever->setProgress(new AchieverOfAchievements(), $count); // 10

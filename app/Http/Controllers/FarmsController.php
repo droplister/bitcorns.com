@@ -52,13 +52,20 @@ class FarmsController extends Controller
         $progress = round($upgrades->count() / $upgrades_total * 100);
 
         // Farm Achievements
-        $achievements = $farm->achievements()->with('details')
+        $unlocked_achievements = $farm->achievements()
+            ->with('details')
             ->whereNotNull('unlocked_at')
             ->oldest('unlocked_at')
             ->get();
 
+        $locked_achievements = $farm->achievements()
+            ->with('details')
+            ->whereNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get();
+
         // Return View
-        return view('farms.show', compact('farm', 'tokens', 'upgrades', 'progress', 'achievements'));
+        return view('farms.show', compact('farm', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));
     }
 
     /**
