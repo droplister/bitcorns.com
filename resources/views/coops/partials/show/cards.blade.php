@@ -4,7 +4,7 @@
 <div class="row text-left">
     @foreach($upgrades as $balance)
         <div class="col-6 col-md-4 col-lg-3 mb-5 text-center">
-            @include('coops.partials.show.card', ['card' => $upgrade->token])
+            @include('coops.partials.show.card', ['card' => $balance->token])
         </div>
     @endforeach
 </div>

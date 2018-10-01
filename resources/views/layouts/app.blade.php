@@ -77,8 +77,8 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="almanac_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                                 <div class="dropdown-menu" aria-labelledby="almanac_dropdown">
                                     <a class="dropdown-item" href="{{ route('pages.rules') }}">Game Rules</a>
-                                    <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Assets</a>
-                                    <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">News &amp; Updates</a>
+                                    <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Card</a>
+                                    <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">Medium.com</a>
                                 </div>
                             </li>
                         </ul>

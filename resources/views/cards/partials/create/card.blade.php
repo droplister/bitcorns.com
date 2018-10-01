@@ -35,7 +35,7 @@
                     Submissions
                 </h5>
                 <p class="card-text">
-                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ config('bitcorn.subfee') }} {{ config('bitcorn.reward_token') }} to <a href="https://xchain.io/address/{{ config('bitcorn.subfee_address') }}" target="_blank">this</a> address. Afterwards, send one of your new cards to the <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> for permanent display. (See below.)
+                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ config('bitcorn.subfee') }} {{ config('bitcorn.reward_token') }} to <a href="https://xchain.io/address/{{ config('bitcorn.subfee_address') }}" target="_blank">this address</a>. Afterwards, send one of your new cards to the <a href="https://bitcornmuseum.org/" target="_blank">Bitcorn Museum</a> for permanent display. (See below.)
                 </p>
                 <p class="card-text">
                     Now, you can use the form on this page to submit your card. If it gets accepted by <a href="https://bitcorn.org/" target="_blank">The Foundation</a>, it will become a Bitcorn Card and get integrated into the game.
