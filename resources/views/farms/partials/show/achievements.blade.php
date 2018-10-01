@@ -22,9 +22,9 @@
                             <table class="table mb-0 text-left" style="overflow-y: auto;white-space: nowrap;">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Unlocked</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Unlocked</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,9 +44,9 @@
                             <table class="table mb-0 text-left" style="overflow-y: auto;white-space: nowrap;">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Progress</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Progress</th>
                                     </tr>
                                 </thead>
                                 <tbody>

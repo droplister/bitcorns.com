@@ -5,7 +5,7 @@
     <table class="table table-bordered mb-0">
         <thead>
             <tr>      
-                <th scope="col">#</th>
+                <th scope="col" style="width: 40px">#</th>
                 <th scope="col">Coop</th>
                 <th scope="col">Farms</th>
                 <th scope="col">Harvested</th>
@@ -30,7 +30,7 @@
     <table class="table table-bordered mb-0">
         <thead>
             <tr>      
-                <th scope="col">#</th>
+                <th scope="col" style="width: 40px">#</th>
                 <th scope="col">Farm</th>
                 <th scope="col">Coop</th>
                 <th scope="col">Harvested</th>
