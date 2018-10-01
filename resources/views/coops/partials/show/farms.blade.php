@@ -1,12 +1,12 @@
 <div class="row mt-1 mb-2 text-left">
-    @foreach($tokens as $token)
+    @foreach($tokens as $balance)
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4">
             <a href="{{ url(route('tokens.show', ['token' => $balance->token->slug])) }}">
-                <img src="{{ $balance->token->image_url }}" class="float-left mr-3" />
+                <img src="{{ $balance->token->image_url }}" alt="{{ $balance->token->name }}" class="float-left mr-3" width="30" />
             </a>
             <h4 class="card-title">
                 <a href="{{ url(route('tokens.show', ['token' => $balance->token->slug])) }}" class="text-dark">
-                    {{ $balance->token->display_name }}
+                    {{ $balance->token->name }}
                 </a>
             </h4>
             <p class="card-text">
