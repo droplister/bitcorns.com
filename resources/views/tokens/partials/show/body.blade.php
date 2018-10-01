@@ -20,7 +20,7 @@
                         <th scope="row">{{ $loop->iteration }}.</th>
                         <td><a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a></td>
                         <td>{{ $balance->assetModel->divisible ? $balance->quantity_normalized : number_format($balance->quantity_normalized) }}</td>
-                        <td>{{ number_format($balance->quantity_normalized / $token->asset->supply_normalized * 100, 2) }}%</td>
+                        <td>{{ number_format($balance->quantity_normalized / $asset->supply_normalized * 100, 2) }}%</td>
                     </tr>
                 @endforeach
             </tbody>
