@@ -3,10 +3,10 @@
     <table class="table mb-0 text-left" style="overflow-y: auto;white-space: nowrap;">
         <thead>
             <tr>
-                <th>Farm</th>
-                <th>{{ config('bitcorn.access_token') }}</th>
-                <th>{{ config('bitcorn.reward_token') }}</th>
-                <th>Harvested</th>
+                <th scope="col">Farm</th>
+                <th scope="col">{{ config('bitcorn.access_token') }}</th>
+                <th scope="col">{{ config('bitcorn.reward_token') }}</th>
+                <th scope="col">Harvested</th>
             </tr>
         </thead>
         <tbody>
