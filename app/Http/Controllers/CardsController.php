@@ -58,14 +58,14 @@ class CardsController extends Controller
             ->get();
 
         // Unlocked Achievements
-        $unlocked_achievements = $farm->achievements()
+        $unlocked_achievements = $card->achievements()
             ->with('details')
             ->whereNotNull('unlocked_at')
             ->oldest('unlocked_at')
             ->get();
 
         // Locked Achievements
-        $locked_achievements = $farm->achievements()
+        $locked_achievements = $card->achievements()
             ->with('details')
             ->whereNull('unlocked_at')
             ->oldest('unlocked_at')
