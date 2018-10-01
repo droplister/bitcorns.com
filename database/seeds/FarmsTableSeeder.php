@@ -190,7 +190,7 @@ class FarmsTableSeeder extends Seeder
     {
         if(substr($url, 0, 31) === 'https://bitcorns.com/img/farms/')
         {
-            return '/images/default/' . substr($url, -5);
+            return '/images/default/' . str_replace('https://bitcorns.com/img/farms/', '', $url);
         }
         else
         {

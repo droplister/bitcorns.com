@@ -6,6 +6,7 @@
 @section('content')
 <div class="container">
     @include('tokens.partials.show.head')
+    @include('tokens.partials.show.card')
     @include('tokens.partials.show.body')
 </div>
 @endsection

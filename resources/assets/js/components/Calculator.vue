@@ -60,7 +60,7 @@
           <tr v-for="(harvest, index) in harvests">
             <th scope="row">
               <a :href="'/harvests/' + (index + 1)" class="text-dark">Bitcorn Harvest #{{ index + 1 }}</a>
-              <small v-if="upcoming && upcoming == index" class="text-muted">Upcoming</small>
+              <small v-if="upcoming && upcoming == index" class="text-success"><-- Upcoming</small>
               <p class="text-muted font-weight-normal mb-0 ">{{ harvest[2] }}</p>
             </th>
             <td>{{ harvest[0] | moment("ll") }}</td>
