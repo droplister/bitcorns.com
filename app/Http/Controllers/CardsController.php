@@ -57,8 +57,25 @@ class CardsController extends Controller
             ->orderBy('quantity', 'desc')
             ->get();
 
+        // Unlocked Achievements
+        $unlocked_achievements = $farm->achievements()
+            ->with('details')
+            ->whereNotNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get();
+
+        // Locked Achievements
+        $locked_achievements = $farm->achievements()
+            ->with('details')
+            ->whereNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get()
+            ->sortByDesc(function ($achievement) {
+                return $achievement->points / $achievement->details->points;
+            });
+
         // Show View
-        return view('cards.show', compact('card', 'asset', 'balances', 'last_match'));
+        return view('cards.show', compact('card', 'asset', 'balances', 'last_match' 'unlocked_achievements', 'locked_achievements'));
     }
 
     /**
