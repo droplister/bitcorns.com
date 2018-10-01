@@ -13,7 +13,7 @@
                 Supply
             </div>
             <div class="card-body">
-                <p class="display-4">{{ $token->asset->divisible ? $token->asset->supply_normalized : number_format($token->asset->supply_normalized) }}</p>
+                <p class="display-4">{{ $asset->divisible ? $asset->supply_normalized : number_format($asset->supply_normalized) }}</p>
             </div>
         </div>
     </div>

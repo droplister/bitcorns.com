@@ -43,12 +43,16 @@ class TokensController extends Controller
             return redirect(route('cards.show', ['card' => $token->slug]));
         }
 
+        // Convenience
+        $asset = $token->asset;
+        $last_match = $token->lastMatch();
+
         // Get Farm Balances
         $balances = $token->balances()->has('farm')->with('farm')
             ->orderBy('quantity', 'desc')
             ->get();
 
         // Show View
-        return view('tokens.show', compact('token', 'balances'));
+        return view('tokens.show', compact('token', 'asset', 'balances', 'last_match'));
     }
 }
