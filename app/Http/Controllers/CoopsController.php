@@ -31,8 +31,26 @@ class CoopsController extends Controller
      */
     public function show(Request $request, Coop $coop)
     {
-        // Return View
-        return view('coops.show', compact('coop'));
+        // Coop Farms
+        $farms = $coop->farms()->hasAccess()
+            ->withCount('harvests')
+            ->orderBy('total_harvested', 'desc')
+            ->get();
+
+        // Tokens: Access and Rewards
+        $tokens = $coop->tokenBalances()->get();
+
+        // Tokens: Upgrades
+        $upgrades = $coop->upgradeBalances()->get();
+
+        // Tokens: Upgrades Total
+        $upgrades_total = Token::published()->upgrades()->count();
+
+        // Tokens: % of Progress
+        $progress = round($upgrades->count() / $upgrades_total * 100);
+
+        // Show View
+        return view('coops.show', compact('coop', 'farms', 'tokens', 'upgrades', 'progress'));
     }
 
 }

@@ -53,7 +53,7 @@ class CardsController extends Controller
         $last_match = $card->lastMatch();
 
         // Get Farm Balances
-        $balances = $card->balances()->with('farm')
+        $balances = $card->balances()->has('farm')->with('farm')
             ->orderBy('quantity', 'desc')
             ->paginate(20);
 
