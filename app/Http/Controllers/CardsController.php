@@ -55,7 +55,7 @@ class CardsController extends Controller
         // Get Farm Balances
         $balances = $card->balances()->has('farm')->with('farm')
             ->orderBy('quantity', 'desc')
-            ->paginate(20);
+            ->get();
 
         // Show View
         return view('cards.show', compact('card', 'asset', 'balances', 'last_match'));
