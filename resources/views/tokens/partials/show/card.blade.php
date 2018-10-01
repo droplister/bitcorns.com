@@ -23,7 +23,7 @@
                 Last Price
             </div>
             <div class="card-body">
-                <p class="display-4"><a href="https://xcpdex.com/market/{{ $last_match ? str_replace('/', '_', $last_match->trading_pair_normalized) : '' }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('Syncing') }}</a></p>
+                <p class="display-4"><a href="{{ $last_match ? 'https://xcpdex.com/market/' . str_replace('/', '_', $last_match->trading_pair_normalized) : 'https://xcpdex.com/markets' }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('No Trades') }}</a></p>
             </div>
         </div>
     </div>
