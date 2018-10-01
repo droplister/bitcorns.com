@@ -2,6 +2,9 @@
 <div class="card mb-4">
     <div class="card-header">
         Bitcorn Farms
+        <span class="badge badge-dark">
+            {{ $balances->count() }}
+        </span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
