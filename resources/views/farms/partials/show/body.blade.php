@@ -4,5 +4,6 @@
         @include('farms.partials.show.map')
         @include('farms.partials.show.cards')
         @include('farms.partials.show.gallery')
+        @include('farms.partials.show.achievements')
     </div>
 </div>

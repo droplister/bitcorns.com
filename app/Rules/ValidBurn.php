@@ -20,7 +20,10 @@ class ValidBurn implements Rule
         $send = Send::where('tx_hash', '=', $value)->first();
 
         // Check it!
-        return $send && $send->status === 'valid' && $send->destination === config('bitcorn.subfee_address');
+        return $send &&
+            $send->status === 'valid' &&
+            $send->quantity === config('bitcorn.subfee') &&
+            $send->destination === config('bitcorn.subfee_address');
     }
 
     /**

@@ -75,7 +75,7 @@ return [
     /**
      * Submmission Fee
      */
-    'subfee' => env('BITCORN_SUBFEE', 500),
+    'subfee' => env('BITCORN_SUBFEE', 1000),
 
     /**
      * Contact Email
