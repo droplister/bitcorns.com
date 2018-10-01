@@ -1,3 +1,11 @@
+<div class="card mb-4">
+    <div class="card-header">
+        Description
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ $token->content }}</p>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-4">
         <div class="card mb-4">
@@ -5,7 +13,7 @@
                 Supply
             </div>
             <div class="card-body">
-                <p class="display-4">{{ $token->asset->divisible ? $token->supply_normalized : number_format($token->supply_normalized) }}</p>
+                <p class="display-4">{{ $token->asset->divisible ? $token->asset->supply_normalized : number_format($token->asset->supply_normalized) }}</p>
             </div>
         </div>
     </div>

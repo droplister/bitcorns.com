@@ -10,6 +10,7 @@
                     <th scope="col" style="width: 40px">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Balance</th>
+                    <th scope="col">Percent</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                     <th scope="row">{{ $loop->iteration }}.</th>
                     <td><a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a></td>
                     <td>{{ number_format($balance->quantity_normalized) }}</td>
+                    <td>{{ number_format($balance->quantity_normalized / $card->asset->supply_normalized * 100, 2) }}%</td>
                 </tr>
                 @endforeach
             </tbody>
