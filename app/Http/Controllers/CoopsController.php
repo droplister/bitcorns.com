@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Coop;
+use App\Token;
 use Illuminate\Http\Request;
 
 class CoopsController extends Controller

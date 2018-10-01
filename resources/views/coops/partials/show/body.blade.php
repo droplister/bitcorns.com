@@ -21,7 +21,7 @@
                         @include('coops.partials.show.farms')
                     </div>
                     <div class="tab-pane fade" id="cards" role="tabpanel" aria-labelledby="cards-tab">
-                        @include('coops.partials.show.upgrades')
+                        @include('coops.partials.show.cards')
                     </div>
                     <div class="tab-pane fade" id="join" role="tabpanel" aria-labelledby="join-tab">
                     </div>

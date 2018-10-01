@@ -37,7 +37,7 @@ class MapController extends Controller
 
         // World Map
         return Cache::remember($cache_slug, 60, function () use ($coop) {
-            $map_markers = MapMarker::with('farm')->whereHas('farm', function () use ($coop) {
+            $map_markers = MapMarker::with('farm')->whereHas('farm', function ($farm) use ($coop) {
                 return $farm->where('coop_id', '=', $coop->id);
             })->get();
             return MapMarkerResource::collection($map_markers);

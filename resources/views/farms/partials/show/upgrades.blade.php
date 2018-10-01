@@ -17,9 +17,9 @@
                         </div>
                         <div class="row text-left">
                             @foreach($upgrades as $upgrade)
-                            <div class="col-6 col-md-4 col-lg-3 mb-5 text-center">
-                                @include('farms.partials.show.upgrade', ['card' => $upgrade->token])
-                            </div>
+                                <div class="col-6 col-md-4 col-lg-3 mb-5 text-center">
+                                    @include('farms.partials.show.upgrade', ['card' => $upgrade->token])
+                                </div>
                             @endforeach
                         </div>
                     </div>
