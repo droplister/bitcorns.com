@@ -75,7 +75,7 @@ class CardsController extends Controller
             });
 
         // Show View
-        return view('cards.show', compact('card', 'asset', 'balances', 'last_match' 'unlocked_achievements', 'locked_achievements'));
+        return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'unlocked_achievements', 'locked_achievements'));
     }
 
     /**
