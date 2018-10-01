@@ -12,4 +12,5 @@
 */
 
 Route::get('/calculator', 'Api\CalculatorController@index')->name('api.calculator');
-Route::get('/map', 'Api\MapController@index')->name('api.map');
+Route::get('/map', 'Api\MapController@index')->name('api.map.index');
+Route::get('/map/{coop?}', 'Api\MapController@show')->name('api.map.show');

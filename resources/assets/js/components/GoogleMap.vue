@@ -43,7 +43,7 @@ Vue.use(VueGoogleMaps, {
 });
  
 export default {
-  props: ['lat', 'lng', 'zoom'],
+  props: ['lat', 'lng', 'zoom', 'coop'],
   data () {
     return {
       center: {lat: this.lat, lng: this.lng},
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     fetchData: function () {
-      var api = '/api/map'
+      var api = !this.coop ? '/api/map' : '/api/map/' + this.coop;
       var self = this
       $.get(api, function (response) {
         self.markers = response.data
@@ -80,7 +80,7 @@ export default {
       this.name = marker.name
       this.href = marker.href
       if (this.currentMidx == idx) {
-        this.infoWinOpen = ! this.infoWinOpen
+        this.infoWinOpen = !this.infoWinOpen
       }
       else {
         this.infoWinOpen = true
