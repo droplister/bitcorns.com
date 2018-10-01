@@ -27,7 +27,7 @@ class FarmCreditAchievements
             $farm = Farm::where('xcp_core_address', '=', $event->credit->address)->first();
 
             // Surplus
-            $surplus = $farm->rewardBalance()->quantity - $farm->total_harvested;
+            $surplus = $farm->total_harvested !== 0 ? $farm->rewardBalance()->quantity - $farm->total_harvested : 0;
             if($surplus < 0) $surplus = 0;
 
             // Progress (Bitcorn Surplus)
