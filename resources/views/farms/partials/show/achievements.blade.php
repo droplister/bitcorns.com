@@ -39,7 +39,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="unlocked" role="tabpanel" aria-labelledby="unlocked-tab">
+                    <div class="tab-pane fade" id="locked" role="tabpanel" aria-labelledby="locked-tab">
                         <div class="table-responsive">
                             <table class="table mb-0 text-left" style="overflow-y: auto;white-space: nowrap;">
                                 <thead>
