@@ -53,13 +53,14 @@ class FarmsController extends Controller
         // Tokens: % of Progress
         $progress = round($upgrades->count() / $upgrades_total * 100);
 
-        // Farm Achievements
+        // Unlocked Achievements
         $unlocked_achievements = $farm->achievements()
             ->with('details')
             ->whereNotNull('unlocked_at')
             ->oldest('unlocked_at')
             ->get();
 
+        // Locked Achievements
         $locked_achievements = $farm->achievements()
             ->with('details')
             ->whereNull('unlocked_at')
