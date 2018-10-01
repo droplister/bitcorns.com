@@ -26,7 +26,7 @@
             <div class="col-sm-6">
                 <div class="card mb-4">
                     <div class="card-header">
-                        Price
+                        Last Price
                     </div>
                     <div class="card-body">
                         <p class="card-text">

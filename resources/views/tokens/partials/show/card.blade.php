@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-sm-6">
         <div class="card mb-4">
             <div class="card-header">
                 Supply
@@ -17,13 +17,13 @@
             </div>
         </div>
     </div>
-    <div class="col-6 col-lg-4">
+    <div class="col-sm-6">
         <div class="card mb-4">
             <div class="card-header">
-                Holders
+                Last Price
             </div>
             <div class="card-body">
-                <p class="display-4">{{ number_format($balances->count()) }}</p>
+                <p class="display-4"><a href="https://xcpdex.com/market/{{ $last_match ? str_replace('/', '_', $last_match->trading_pair_normalized) : '' }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('Syncing') }}</a></p>
             </div>
         </div>
     </div>
