@@ -6,7 +6,7 @@
         @include('cards.partials.show.head')
         <div class="card my-4">
             <div class="card-header">
-                #{{ $card->harvest_id }} / #{{ $card->meta_data['overall_ranking'] }}
+                Harvest #{{ $card->harvest_id }} / Card #{{ $card->meta_data['overall_ranking'] }}
             </div>
             <div class="card-body">
                 <p class="card-text">{{ $card->content }}</p>

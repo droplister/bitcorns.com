@@ -44,9 +44,9 @@ class TokensController extends Controller
         }
 
         // Get Farm Balances
-        $balances = $token->balances()->with('farm')
+        $balances = $token->balances()->has('farm')->with('farm')
             ->orderBy('quantity', 'desc')
-            ->paginate(20);
+            ->get();
 
         // Show View
         return view('tokens.show', compact('token', 'balances'));

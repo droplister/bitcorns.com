@@ -1,6 +1,6 @@
 <template>
   <div>
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="chartOptions" style="max-width: 1108px"></highcharts>
   </div>
 </template>
 

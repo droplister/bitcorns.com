@@ -10,7 +10,5 @@
             </a>
         </h4>
         <p class="card-text">{{ $token->content }}</p>
-        <a href="#" class="card-link"><i class="fa fa-info-circle"></i> More Info</a>
-        <a href="#" class="card-link" target="_blank"><i class="fa fa-external-link-square"></i> Explorer</a>
     </div>
 </div>
