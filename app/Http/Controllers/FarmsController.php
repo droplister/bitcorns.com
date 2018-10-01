@@ -24,7 +24,9 @@ class FarmsController extends Controller
         $sort = $request->has('q') ? 'search' : $request->input('sort', 'crops');
 
         // List Farms
-        $farms = Farm::getSortedFarms($request, $sort)->with('firstCrops')->withCount('harvests')->paginate(45);
+        $farms = Farm::getSortedFarms($request, $sort)->with('firstCrops')
+            ->withCount('harvests')
+            ->paginate(45);
 
         // Index View
         return view('farms.index', compact('farms', 'sort'));
@@ -62,7 +64,10 @@ class FarmsController extends Controller
             ->with('details')
             ->whereNull('unlocked_at')
             ->oldest('unlocked_at')
-            ->get();
+            ->get()
+            ->sortByDesc(function ($achievement) {
+                return $achievement->points / $achievement->details->points;
+            });
 
         // Return View
         return view('farms.show', compact('farm', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));

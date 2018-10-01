@@ -1,20 +1,26 @@
-@if($balances->total() > 0)
-<h2 class="display-4">
+@if($balances->count() > 0)
+<h2 class="display-4 my-4">
     Bitcorn Farms
 </h2>
 <div class="card mb-4">
     <div class="card-header">
-        Owned By:
+        Proud Owners
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
             <tbody>
                 @foreach($balances as $balance)
                 <tr>
-                    <th scope="row" class="pl-4">{{ $loop->iteration }}.</th>
-                    <td><a href="{{ route('farms.show', ['slug' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a></td>
-                    <td class="text-muted d-none d-sm-block"><small>{{ $balance->farm->slug }}</small></td>
-                    <td class="text-right">{{ $balance->quantity_normalized }} <span class="d-none d-sm-inline">{{ $card->asset->display_name }}</span></td>
+                    <th scope="row">{{ $loop->iteration }}.</th>
+                    <td><a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a></td>
+                    <td class="text-right">{{ number_format($balance->quantity_normalized) }}</td>
                 </tr>
                 @endforeach
             </tbody>
