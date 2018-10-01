@@ -1,0 +1,5 @@
+@include('home.partials.map')
+@include('home.partials.how-to')
+@include('home.partials.farms')
+@include('home.partials.buy')
+@include('home.partials.cards')
