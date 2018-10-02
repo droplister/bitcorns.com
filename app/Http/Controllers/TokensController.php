@@ -52,7 +52,17 @@ class TokensController extends Controller
             ->orderBy('quantity', 'desc')
             ->get();
 
+        // Top Farm
+        $top_farm = $token->balances()->has('farm')->with('farm')
+            ->orderBy('quantity', 'desc')
+            ->first()->farm;
+
+        // Top Coop
+        $top_coop = $token->balances()->has('farm')->with('farm')
+            ->orderBy('quantity', 'desc')
+            ->first()->farm;
+
         // Show View
-        return view('tokens.show', compact('token', 'asset', 'balances', 'last_match'));
+        return view('tokens.show', compact('token', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));
     }
 }
