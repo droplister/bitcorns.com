@@ -47,7 +47,7 @@ class TokensController extends Controller
 
         // Get Farm Balances
         $balances = Cache::remember('token_balances_' . $token->slug, 60, function () use ($token) {
-            return $token->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
+            return $token->balances()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc')->get();
         });
 
         // Top Coop
