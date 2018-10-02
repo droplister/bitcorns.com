@@ -1,4 +1,4 @@
-@if($coops->count() + $farms->count() > 1)
+@if($harvest->xcp_core_tx_index)
 <div class="row my-4">
     <div class="col-12 col-sm-6">
         @include('harvests.partials.show.coop', ['coop' => $coops[0]])
@@ -7,7 +7,6 @@
         @include('harvests.partials.show.farm', ['farm' => $farms[0]])
     </div>
 </div>
-@endif
 <div class="card my-4">
     <div class="card-header">
         Bitcorn Coops
@@ -75,3 +74,4 @@
         </table>
     </div>
 </div>
+@endif
