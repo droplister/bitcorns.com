@@ -80,7 +80,7 @@ class Harvest extends Model
     {
         $quantity = floor($this->quantity / 100 * $crops);
 
-        return $quantity > 1 ? $quantity : 0;
+        return $quantity >= 1 ? $quantity : 0;
     }
 
     /**
