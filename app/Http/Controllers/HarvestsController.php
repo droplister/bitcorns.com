@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Coop;
 use App\Harvest;
 use Illuminate\Http\Request;
@@ -9,39 +10,52 @@ use Illuminate\Http\Request;
 class HarvestsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Harvest Schedule
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        // Harvest Schedule
-        $harvests = Harvest::oldest('scheduled_at')->get();
+        // Harvests
+        $harvests = Cache::remember('harvests_index', 60, function() {
+            return Harvest::oldest('scheduled_at')->get();
+        });
 
         // Index View
         return view('harvests.index', compact('harvests'));
     }
 
     /**
-     * Display the specified resource.
+     * Specific Harvest
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Harvest  $harvest
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Harvest $harvest)
     {
         // The Coops
-        $coops = Coop::whereHas('harvests', function ($h) use ($harvest) {
-            return $h->where('id', '=', $harvest->id);
-        })->get();
+        $coops = Cache::remember('harvest_coops_' . $harvest->id, 1440, function () use ($harvest) {
+            $unsorted = Coop::whereHas('harvests', function ($h) use ($harvest) {
+                return $h->where('id', '=', $harvest->id);
+            })->get();
 
-        // Sort By
-        $coops = $coops->sortByDesc(function ($coop) use ($harvest)  {
-            return $coop->harvestTotal($harvest, true);
+            // Sorted
+            return $unsorted->sortByDesc(function ($c) use ($harvest) {
+                return $c->harvestTotal($harvest, true);
+            });
         });
 
         // The Farms
-        $farms = $harvest->farms()->orderBy('quantity', 'desc')->get();
+        $farms = Cache::remember('harvest_farms_' . $harvest->id, 1440, function () use ($harvest) {
+            $unsorted = $harvest->farms()->orderBy('quantity', 'desc')->get();
+
+            // Sorted
+            return $unsorted->sortByDesc(function ($f) {
+                return $f->pivot->quantity * $f->pivot->multiplier;
+            });
+        });
 
         // Show View
         return view('harvests.show', compact('harvest', 'coops', 'farms'));
