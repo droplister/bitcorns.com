@@ -24,10 +24,28 @@ class HomeController extends Controller
             return $crops->lastMatch('XCP') ? number_format($crops->lastMatch('XCP')->trading_price_normalized) . ' XCP' : '0 XCP';
         });
 
-        // Features
-        $cards = Feature::where('featurable_type', '=', 'App\Token')->with('featurable')->highestBids()->take(4)->get();
-        $farms = Feature::where('featurable_type', '=', 'App\Farm')->with('featurable')->highestBids()->take(2)->get();
-        $field = Farm::findBySlug(config('bitcorn.field_of_dreams'));
+        // Featured Cards
+        $cards = Cache::remember('featured_cards', 60, function () {
+            return Feature::where('featurable_type', '=', 'App\Token')
+                ->with('featurable')
+                ->highestBids()
+                ->take(4)
+                ->get();
+        });
+
+        // Featured Farms
+        $farms = Cache::remember('featured_farms', 60, function () {
+            return Feature::where('featurable_type', '=', 'App\Farm')
+                ->with('featurable')
+                ->highestBids()
+                ->take(2)
+                ->get();
+        });
+
+        // Field of Dreams
+        $field = Cache::remember('field_of_dreams', 60, function () {
+            return Farm::findBySlug(config('bitcorn.field_of_dreams'));
+        });
 
         // Index View
         return view('home.index', compact('last_price', 'cards', 'farms', 'field'));
