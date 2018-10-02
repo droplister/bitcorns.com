@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         if(config('xcp-core.indexing'))
         {
             $schedule->command('update:index')->everyMinute();
-            $schedule->command('bitcorn:battle')->everyHour();
+            $schedule->command('bitcorn:battle')->hourly();
         }
 
         // Horizon Stats
