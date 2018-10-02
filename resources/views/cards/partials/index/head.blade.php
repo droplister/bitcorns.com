@@ -1,12 +1,12 @@
 <div class="dropdown float-right mt-3 show">
-    <a role="button" id="dropdownMenuLink" class="btn btn-primary dropdown-toggle" href="{{ url(route('cards.index')) }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a role="button" id="dropdownMenuLink" class="btn btn-primary dropdown-toggle" href="{{ route('cards.index') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
        Filter
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
         <h6 class="dropdown-header">
             Default
         </h6>
-        <a class="dropdown-item" href="{{ url(route('cards.index')) }}">
+        <a class="dropdown-item" href="{{ route('cards.index') }}">
             <i class="fa fa-{{ ! $filter ? 'check-' : '' }}circle-o mr-1"></i>
             None
         </a>
@@ -14,7 +14,7 @@
             By Format
         </h6>
         @foreach(['GIF', 'JPG', 'PNG'] as $format)
-            <a class="dropdown-item" href="{{ url(route('cards.index', ['filter' => $format])) }}">
+            <a class="dropdown-item" href="{{ route('cards.index', ['filter' => $format]) }}">
                 <i class="fa fa-{{ $filter === $format ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ $format }}
             </a>
@@ -23,7 +23,7 @@
             By Harvest
         </h6>
         @foreach($harvests as $harvest)
-            <a class="dropdown-item" href="{{ url(route('cards.index', ['filter' => $harvest->id])) }}">
+            <a class="dropdown-item" href="{{ route('cards.index', ['filter' => $harvest->id]) }}">
                 <i class="fa fa-{{ (int) $filter === $harvest->id ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ str_replace('Bitcorn ', '', $harvest->name) }}
             </a>

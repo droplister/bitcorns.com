@@ -5,7 +5,7 @@
                 <ul class="nav nav-tabs card-header-tabs" id="achievementsTabContent" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="unlocked-tab" data-toggle="tab" href="#unlocked" role="tab" aria-controls="unlocked" aria-selected="true">
-                            Unlocked <span class="badge badge-dark">{{ $unlocked_achievements->count() }}</span>
+                            Achievements <span class="badge badge-dark">{{ $unlocked_achievements->count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">

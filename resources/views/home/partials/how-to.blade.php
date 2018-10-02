@@ -18,7 +18,7 @@
                     By owning <a href="{{ route('tokens.show', ['token' => 'CROPS']) }}">CROPS</a>, players establish their Bitcoin addresses as <a href="{{ route('farms.index') }}">farms</a> on Bitcorns.com. With a farm, players can <a href="{{ route('harvests.index') }}">harvest crops</a> for a bitcorn reward.
                 </p>
                 <p class="card-text">
-                    Between harvests, players can customize their farm's look, location, and in-game assets, immersing themselves in the <a href="#">Bitcorn world</a>. It's even possible to <a href="{{ route('coops.index') }}">join forces</a>!
+                    Between harvests, players can customize their farm's look, location, and <a href="{{ route('cards.index') }}">in-game assets</a>, immersing themselves in the <a href="#">Bitcorn world</a>. It's even possible to <a href="{{ route('coops.index') }}">join forces</a>!
                 </p>
                 <p class="cart-text">
                     <a href="{{ route('pages.rules') }}" class="btn btn-sm btn-outline-primary">

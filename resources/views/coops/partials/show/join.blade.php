@@ -1,6 +1,6 @@
 @if(Auth::guard('player')->guest() || Auth::guard('player')->check() && Auth::guard('player')->user()->group_id !== $group->id)
 @if('open' === $group->type)
-<form role="form" method="POST" action="{{ url(route('memberships.store', ['group' => $group->slug])) }}">
+<form role="form" method="POST" action="{{ route('memberships.store', ['group' => $group->slug]) }}">
     {{ csrf_field() }}
     @if(Auth::guard('player')->check())
     <input id="address" type="hidden" name="address" value="{{ Auth::guard('player')->user()->address }}">

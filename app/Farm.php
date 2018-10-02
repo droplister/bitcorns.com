@@ -316,7 +316,7 @@ class Farm extends Model
      */
     public function getBattleStats()
     {
-        return Cache::get('battle_stats_' . $this->xcp_core_address, 60, function () {
+        return Cache::remember('battle_stats_' . $this->xcp_core_address, 60, function () {
             $data = file_get_contents('https://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
             return json_decode($data, true);
         });
