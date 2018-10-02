@@ -44,3 +44,11 @@
         </div>
     </div>
 </div>
+<div class="row mb-4">
+    <div class="col-12 col-sm-6">
+        @include('cards.partials.show.coop', ['coop' => $top_coop])
+    </div>
+    <div class="col-12 col-sm-6">
+        @include('cards.partials.show.farm', ['farm' => $top_farm])
+    </div>
+</div>

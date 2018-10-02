@@ -23,11 +23,18 @@ class CardsController extends Controller
         // Get Filter
         $filter = $request->input('filter', null);
 
-        // List Farms
-        $cards = Token::getFilteredCards($request, $filter)->get();
+        // Cache Slug
+        $cache_slug = str_slug(serialize($request->all()));
+
+        // List Cards
+        $cards = Cache::remember($cache_slug, 60, function () use ($request, $filter) {
+            return Token::getFilteredCards($request, $filter)->get();
+        });
 
         // Harvests
-        $harvests = Harvest::complete()->get();
+        $harvests = Cache::remember('harvests_completed', 60, function () {
+            return Harvest::complete()->get();
+        });
 
         // Index View
         return view('cards.index', compact('cards', 'filter', 'harvests'));
@@ -53,26 +60,22 @@ class CardsController extends Controller
         $last_match = $card->lastMatch();
 
         // Get Farm Balances
-        $balances = $card->balances()->has('farm')->with('farm')
-            ->orderBy('quantity', 'desc')
-            ->get();
+        $balances = Cache::remember('card_balances_' . $card->slug, 60, function () use ($card) {
+            return $card->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
+        });
 
         // Unlocked Achievements
-        $unlocked_achievements = $card->achievements()
-            ->with('details')
-            ->whereNotNull('unlocked_at')
-            ->oldest('unlocked_at')
-            ->get();
+        $unlocked_achievements = Cache::remember('card_u_achievements_' . $card->slug, 60, function () use ($card) {
+            return $card->achievements()->with('details')->whereNotNull('unlocked_at')->oldest('unlocked_at')->get();
+        });
 
         // Locked Achievements
-        $locked_achievements = $card->achievements()
-            ->with('details')
-            ->whereNull('unlocked_at')
-            ->oldest('unlocked_at')
-            ->get()
-            ->sortByDesc(function ($achievement) {
-                return $achievement->points / $achievement->details->points;
-            });
+        $locked_achievements = Cache::remember('card_l_achievements_' . $card->slug, 60, function () use ($card) {
+            return $card->achievements()->with('details')->whereNull('unlocked_at')->oldest('unlocked_at')->get()
+                ->sortByDesc(function ($achievement) {
+                    return $achievement->points / $achievement->details->points;
+                });
+        });
 
         // Show View
         return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'unlocked_achievements', 'locked_achievements'));
@@ -121,18 +124,14 @@ class CardsController extends Controller
         // DEX Average
         return Cache::remember('dex_average', 1440, function () {
             // Cards
-            $card_assets = Token::published()->upgrades()
-                ->pluck('xcp_core_asset_name')
-                ->toArray();
+            $card_assets = Token::published()->upgrades()->pluck('xcp_core_asset_name')->toArray();
 
             // Buys
-            $buys = OrderMatch::whereIn('forward_asset', $card_assets)
-                ->where('backward_asset', '=', config('bitcorn.reward_token'));
+            $buys = OrderMatch::whereIn('forward_asset', $card_assets)->where('backward_asset', '=', config('bitcorn.reward_token'));
             $average_buy = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
 
             // Sells
-            $sells = OrderMatch::whereIn('backward_asset', $card_assets)
-                ->where('forward_asset', '=', config('bitcorn.reward_token'));
+            $sells = OrderMatch::whereIn('backward_asset', $card_assets)->where('forward_asset', '=', config('bitcorn.reward_token'));
             $average_sell = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
 
             // DEX Average
