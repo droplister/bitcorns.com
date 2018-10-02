@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Coop;
 use App\Token;
 use Illuminate\Http\Request;
@@ -45,7 +46,9 @@ class CoopsController extends Controller
         $upgrades = $coop->upgradeBalances()->get();
 
         // Tokens: Upgrades Total
-        $upgrades_total = Token::published()->upgrades()->count();
+        $upgrades_total = Cache::remember('upgrades_total', 60, function () {
+            return Token::published()->upgrades()->count();
+        });
 
         // Tokens: % of Progress
         $progress = round($upgrades->count() / $upgrades_total * 100);

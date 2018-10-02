@@ -5,3 +5,6 @@
         </div>
     </div>
 </div>
+<h3 class="mt-3 lead text-muted text-center">
+    <em>Bitcorns is an idle game of accumulation, similar to AdVenture Capitalist, where the only objective is to accumulate the most BITCORN.  Deceptively simple, accumulating BITCORN takes an amount of restraint most people do not possess.</em>
+</h3>

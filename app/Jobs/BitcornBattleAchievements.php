@@ -31,7 +31,7 @@ class BitcornBattleAchievements implements ShouldQueue
         foreach($farms as $farm)
         {
             // Battle API
-            $stats = $this->getStats($farm->xcp_core_address);
+            $data = $farm->getBattleStats();
 
             // Simple Guard
             if(isset($data['wins']))
@@ -40,24 +40,11 @@ class BitcornBattleAchievements implements ShouldQueue
                 $won = (int) $data['wins'];
 
                 // Progress (Battles Won)
-                $farm->setProgress(BattleTested, $won);   // 1
-                $farm->setProgress(BattleHardened, $won); // 100
-                $farm->setProgress(BattleChampion, $won); // 1000
-                $farm->setProgress(BattleLegend, $won);   // 9001
+                $farm->setProgress(new BattleTested(), $won);   // 1
+                $farm->setProgress(new BattleHardened(), $won); // 100
+                $farm->setProgress(new BattleChampion(), $won); // 1000
+                $farm->setProgress(new BattleLegend(), $won);   // 9001
             }
         }
-    }
-
-    /**
-     * Get Stats
-     * 
-     * @param  string $address
-     * @return array
-     */
-    private function getStats($address)
-    {
-        $data = file_get_contents('http://bitcornbattle.com/api/winloss.php?a=' . $address);
-
-        return json_decode($data, true);
     }
 }

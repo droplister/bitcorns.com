@@ -14,7 +14,7 @@ class Famous extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = "Was featured on 10+ times.";
+    public $description = "Was featured 10+ times.";
 
     /*
      * The amount of "points" this user need to obtain in order to complete this achievement

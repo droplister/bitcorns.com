@@ -6,6 +6,10 @@
         <h6 class="dropdown-header">
             By Resource
         </h6>
+        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'cards'])) }}">
+            <i class="fa fa-{{ $sort === 'cards' ? 'check-' : '' }}circle-o mr-1"></i>
+            Cards
+        </a>
         <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'crops'])) }}">
             <i class="fa fa-{{ $sort === 'crops' ? 'check-' : '' }}circle-o mr-1"></i>
             Crops
@@ -13,10 +17,6 @@
         <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'bitcorn'])) }}">
             <i class="fa fa-{{ $sort === 'bitcorn' ? 'check-' : '' }}circle-o mr-1"></i>
             Bitcorn
-        </a>
-        <a class="dropdown-item" href="{{ url(route('farms.index', ['sort' => 'harvests'])) }}">
-            <i class="fa fa-{{ $sort === 'harvests' ? 'check-' : '' }}circle-o mr-1"></i>
-            Harvests
         </a>
         <h6 class="dropdown-header">
             Chronological

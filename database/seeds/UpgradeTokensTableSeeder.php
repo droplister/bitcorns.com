@@ -31,6 +31,7 @@ class UpgradeTokensTableSeeder extends Seeder
         {
             // Harvest
             if($token['name'] === 'CORNBADGER') $harvest_id = 2;
+            if($token['name'] === 'RETROFARMER') $harvest_id = 3;
 
             // Ranking
             $harvest_ranking = Token::published()->whereType('upgrade')->where('harvest_id', '=', $harvest_id)->count() + 1;
