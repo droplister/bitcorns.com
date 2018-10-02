@@ -30,6 +30,7 @@
     </div>
 </div>
 @endif
+@if($unlocked_achievements->count() + $locked_achievements->count() > 0)
 <div class="row mt-5">
     <div class="col">
         <div class="card">
@@ -98,3 +99,4 @@
         </div>
     </div>
 </div>
+@endif

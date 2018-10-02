@@ -1,3 +1,12 @@
+@if($harvest->xcp_core_tx_index)
+<div class="row my-4">
+    <div class="col-12 col-sm-6">
+        @include('harvests.partials.show.coop', ['coop' => $coops[0]])
+    </div>
+    <div class="col-12 col-sm-6">
+        @include('harvests.partials.show.farm', ['farm' => $farms[0]])
+    </div>
+</div>
 <div class="card my-4">
     <div class="card-header">
         Bitcorn Coops
@@ -20,8 +29,8 @@
                     <tr>
                         <th>{{ $loop->iteration }}.</th>
                         <td><a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">{{ $coop->name }}</a></td>
-                        <td>{{ number_format($coop->harvestFarms($harvest)) }} </td>
-                        <td>{{ number_format($coop->harvestTotal($harvest, true)) }} </td>
+                        <td>{{ number_format($coop->harvestFarms($harvest)) }}</td>
+                        <td>{{ number_format($coop->harvestTotal($harvest, true)) }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -65,3 +74,4 @@
         </table>
     </div>
 </div>
+@endif
