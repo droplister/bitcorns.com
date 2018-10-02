@@ -55,13 +55,15 @@ class TokensController extends Controller
             $unsorted = Coop::get();
 
             // Sorted
-            return $unsorted->sortByDesc(function ($c) use ($token) {
-                return $c->getBalance($token->xcp_core_asset_name)->quantity;
+            $sorted = $unsorted->sortByDesc(function ($c) use ($token) {
+                return $c->getBalance($token->xcp_core_asset_name);
             });
+
+            return $sorted->first();
         });
 
         // Top Farm
-        $top_farm = $balances[0]->farm;
+        $top_farm = $balances->first()->farm;
 
         // Show View
         return view('tokens.show', compact('token', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));

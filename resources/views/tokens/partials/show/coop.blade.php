@@ -3,7 +3,7 @@
         Top Coop
     </div>
     <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
-        <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="w-100">
+        <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="w-100 border-bottom">
     </a>
     <div class="card-body">
         <h4 class="card-title">
@@ -12,7 +12,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ $token->name }}: {{ $asset->divisible ? $coop->getBalance($token->xcp_core_asset_name)->quantity_normalized : number_format($coop->getBalance($token->xcp_core_asset_name)->quantity_normalized) }}
+            {{ $token->name }}: {{ $asset->divisible ? $coop->getBalance($token->xcp_core_asset_name) : number_format($coop->getBalance($token->xcp_core_asset_name)) }}
         </p>
     </div>
 </div>

@@ -64,6 +64,21 @@ class CardsController extends Controller
             return $card->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
         });
 
+        // Top Coop
+        $top_coop = Cache::remember('card_top_coop_' . $card->slug, 60, function () use ($card) {
+            $unsorted = Coop::get();
+
+            // Sorted
+            $sorted = $unsorted->sortByDesc(function ($c) use ($card) {
+                return $c->getBalance($card->xcp_core_asset_name);
+            });
+
+            return $sorted->first();
+        });
+
+        // Top Farm
+        $top_farm = $balances->first()->farm;
+
         // Unlocked Achievements
         $unlocked_achievements = Cache::remember('card_u_achievements_' . $card->slug, 60, function () use ($card) {
             return $card->achievements()->with('details')->whereNotNull('unlocked_at')->oldest('unlocked_at')->get();
@@ -78,7 +93,7 @@ class CardsController extends Controller
         });
 
         // Show View
-        return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'unlocked_achievements', 'locked_achievements'));
+        return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm', 'unlocked_achievements', 'locked_achievements'));
     }
 
     /**
@@ -121,7 +136,7 @@ class CardsController extends Controller
      */
     private function getAverageDexPrice()
     {
-        // DEX Average
+        // DEX Average (All Cards)
         return Cache::remember('dex_average', 1440, function () {
             // Cards
             $card_assets = Token::published()->upgrades()->pluck('xcp_core_asset_name')->toArray();
