@@ -1,6 +1,7 @@
 <div class="card">
+    <div class="card-header">Top Coop</div>
     <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
-        <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="card-img-top" />
+        <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="w-100">
     </a>
     <div class="card-body">
         <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}" class="btn btn-outline-primary pull-right">
@@ -12,10 +13,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ str_limit($coop->content, 30) }}
+            {{ $token->name }}: {{ $coop->getBalance($token->xcp_core_asset_name) }}
         </p>
-    </div>
-    <div class="card-footer text-muted">
-        Member Farms: {{ $coop->farms_count }}
     </div>
 </div>

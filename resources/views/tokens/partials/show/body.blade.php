@@ -10,8 +10,8 @@
         <table class="table mb-0" style="overflow-y: auto;white-space: nowrap;">
             <thead>
                 <th scope="col" style="width: 40px">#</th>
-                <th scope="col">Farm</th>
-                <th scope="col">Balance</th>
+                <th scope="col">Name</th>
+                <th scope="col">{{ $token->name }}</th>
                 <th scope="col">Percent</th>
             </thead>
             <tbody>

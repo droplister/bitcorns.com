@@ -10,21 +10,29 @@
     <div class="col-sm-6">
         <div class="card mb-4">
             <div class="card-header">
-                Supply
+                Last Price
             </div>
             <div class="card-body">
-                <p class="display-4">{{ $asset->divisible ? $asset->supply_normalized : number_format($asset->supply_normalized) }}</p>
+                <p class="card-text"><a href="{{ $last_match ? 'https://xcpdex.com/market/' . str_replace('/', '_', $last_match->trading_pair_normalized) : 'https://xcpdex.com/markets' }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('No Trades') }}</a></p>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card mb-4">
             <div class="card-header">
-                Last Price
+                Supply
             </div>
             <div class="card-body">
-                <p class="display-4"><a href="{{ $last_match ? 'https://xcpdex.com/market/' . str_replace('/', '_', $last_match->trading_pair_normalized) : 'https://xcpdex.com/markets' }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('No Trades') }}</a></p>
+                <p class="card-text">{{ $asset->divisible ? $asset->supply_normalized : number_format($asset->supply_normalized) }}</p>
             </div>
         </div>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-12 col-sm-6">
+        @include('tokens.partials.show.coop')
+    </div>
+    <div class="col-12 col-sm-6">
+        @include('tokens.partials.show.farm')
     </div>
 </div>
