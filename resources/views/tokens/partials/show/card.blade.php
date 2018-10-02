@@ -30,9 +30,8 @@
 </div>
 <div class="row mb-4">
     <div class="col-12 col-sm-6">
-        @include('tokens.partials.show.coop')
     </div>
     <div class="col-12 col-sm-6">
-        @include('tokens.partials.show.farm')
+        @include('tokens.partials.show.farm', ['farm' => $top_farm])
     </div>
 </div>
