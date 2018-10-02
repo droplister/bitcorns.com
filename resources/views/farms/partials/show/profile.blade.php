@@ -15,7 +15,7 @@
                     </li>
                     <li class="nav-item d-none d-sm-inline">
                         <a class="nav-link" id="battle-tab" data-toggle="tab" href="#battle" role="tab" aria-controls="battle" aria-selected="true">
-                            Battle
+                            Battles
                         </a>
                     </li>
                     @if($farm->coop_id)
@@ -53,12 +53,12 @@
                     </div>
                     <div class="tab-pane fade" id="battle" role="tabpanel" aria-labelledby="battle-tab">
                         <h5 class="card-title">
-                            Bitcorn Battle
+                            Wins: {{ isset($battle['wins']) ? $battle['wins'] : '0' }} - Losses: {{ isset($battle['losses']) ? $battle['losses'] : '0' }}
                         </h5>
                         <p class="card-text">
-                            Battle other bitcorn farms! (Requires <a href="{{ route('cards.show', ['card' => 'BATTLECORN']) }}">1 BATTLECORN</a>.)
+                            Battle other farms in Bitcorn Battle!
                         </p>
-                        <a href="http://bitcornbattle.com/?ref={{ $farm->slug }}" class="btn btn-primary" target="_blank">
+                        <a href="{{ config('bitcorn.bitcornbattle') }}" class="btn btn-primary" target="_blank">
                             <i class="fa fa-search"></i> Learn More
                         </a>
                     </div>
@@ -71,7 +71,7 @@
                             {{ $farm->coop->content }}
                         </p>
                         <a href="{{ route('coops.show', ['coop' => $farm->coop->slug]) }}" class="btn btn-primary">
-                            <i class="fa fa-edit"></i> Join Cooperative
+                            <i class="fa fa-search"></i> Learn More
                         </a>
                     </div>
                     @endif

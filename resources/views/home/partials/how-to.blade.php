@@ -1,4 +1,4 @@
-<h2 class="display-4 my-5">
+<h2 class="display-4 mb-5">
     How to Play
 </h2>
 <div class="card">
@@ -12,13 +12,13 @@
             </div>
             <div class="col-sm-8 col-lg-9">
                 <p class="card-text">
-                    The object of the <strong>BITCORN CROPS</strong> game is to become the wealthiest player through harvesting and collecting <a href="{{ route('tokens.show', ['token' => 'BITCORN']) }}">BITCORN</a>. The player who collects the most bitcorn at the end of the game wins. (See: <a href="{{ route('pages.rules') }}#winning">Winning</a>.)
+                    The object of the <strong>BITCORN CROPS</strong> game is to become the wealthiest player through harvesting and collecting <a href="{{ route('tokens.show', ['token' => 'BITCORN']) }}">BITCORN</a>. The player who collects the most bitcorn at the end of the game wins.
                 </p>
                 <p class="card-text">
-                    By owning <a href="{{ route('tokens.show', ['token' => 'CROPS']) }}">CROPS</a>, players establish their Bitcoin addresses as <a href="{{ route('farms.index') }}">farms</a> on Bitcorns.com. With a farm, players can harvest crops for a bitcorn reward. (See: <a href="{{ route('harvests.index') }}">Harvests</a>.)
+                    By owning <a href="{{ route('tokens.show', ['token' => 'CROPS']) }}">CROPS</a>, players establish their Bitcoin addresses as <a href="{{ route('farms.index') }}">farms</a> on Bitcorns.com. With a farm, players can <a href="{{ route('harvests.index') }}">harvest crops</a> for a bitcorn reward.
                 </p>
                 <p class="card-text">
-                    Between harvests, players can customize their farm's look, location, and in-game assets, immersing themselves in the <a href="#">Bitcorn world</a>. It's even possible to join forces! (See: <a href="{{ route('coops.index') }}">Co-Ops</a>.)
+                    Between harvests, players can customize their farm's look, location, and in-game assets, immersing themselves in the <a href="#">Bitcorn world</a>. It's even possible to <a href="{{ route('coops.index') }}">join forces</a>!
                 </p>
                 <p class="cart-text">
                     <a href="{{ route('pages.rules') }}" class="btn btn-sm btn-outline-primary">

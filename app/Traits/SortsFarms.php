@@ -20,8 +20,13 @@ trait SortsFarms
         switch($sort)
         {
             case 'search':
-                return static::hasAccess()->where('name', 'like', '%' . $request->q . '%')
+                return static::hasAccess()
+                    ->where('name', 'like', '%' . $request->q . '%')
                     ->orWhere('slug', 'like', '%' . $request->q . '%');
+            case 'cards':
+                return static::hasAccess()
+                    ->withCount('upgradeBalances')
+                    ->orderBy('upgrade_balances_count', 'desc');
             case 'bitcorn':
                 return Token::whereType('reward')->first()->farms()->hasAccess()
                     ->orderBy('quantity', 'desc');
@@ -32,7 +37,8 @@ trait SortsFarms
                 return static::doesntHaveAccess()
                     ->orderBy('created_at', 'desc');
             case 'harvests':
-                return static::hasAccess()->withCount('harvests')
+                return static::hasAccess()
+                    ->withCount('harvests')
                     ->orderBy('harvests_count', 'desc')
                     ->orderBy('created_at', 'asc');
             case 'newest':

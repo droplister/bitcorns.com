@@ -24,7 +24,7 @@ class IndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'sort' => ['sometimes', 'in:crops,bitcorn,harvests,no-crops,newest,oldest,updated'],
+            'sort' => ['sometimes', 'in:cards,crops,bitcorn,harvests,no-crops,newest,oldest,updated'],
         ];
     }
 }

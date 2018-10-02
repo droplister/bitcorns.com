@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use App\Coop;
 use App\Token;
 use App\Harvest;
@@ -306,6 +307,19 @@ class Farm extends Model
 
         // Nope
         return false;
+    }
+
+    /**
+     * Get Battle Stats
+     * 
+     * @return array
+     */
+    public function getBattleStats()
+    {
+        return Cache::get('battle_stats_' . $this->xcp_core_address, 60, function () {
+            $data = file_get_contents('https://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
+            return json_decode($data, true);
+        });
     }
 
     /**

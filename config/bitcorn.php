@@ -83,9 +83,24 @@ return [
     'email' => env('BITCORN_EMAIL', 'bitcorncrops@gmail.com'),
 
     /**
+     * Bitcorn Battle
+     */
+    'battle' => env('BITCORN_BATTLE', 'https://bitcornbattle.com'),
+
+    /**
+     * Bitcorn Battle (About)
+     */
+    'bitcornbattle' => env('BITCORN_BITCORNBATTLE', 'http://bitcornbattle.com/howtobattle'),
+
+    /**
      * Counterwallet
      */
-    'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://xcpkey.com/'),
+    'counterwallet' => env('BITCORN_COUNTERWALLET', 'https://xcpkey.com'),
+
+    /**
+     * Bitcorn Foundation
+     */
+    'foundation' => env('BITCORN_FOUNDATION', 'https://bitcorn.org'),
 
     /**
      * GitHub
@@ -96,6 +111,11 @@ return [
      * Medium
      */
     'medium' => env('BITCORN_MEDIUM', 'https://medium.com/@BitcornCrops'),
+
+    /**
+     * Bitcorn Museum
+     */
+    'museum' => env('BITCORN_MUSEUM', 'https://bitcornmuseum.org'),
 
     /**
      * Telegram Chat

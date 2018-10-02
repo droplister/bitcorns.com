@@ -1,5 +1,5 @@
 <h2 class="display-4 mb-5">
-    Bitcorn Cards
+    Featured Cards
 </h2>
 <div class="row">
     @foreach($cards as $card)
@@ -7,4 +7,9 @@
             @include('home.partials.card', ['card' => $card->featurable])
         </div>
     @endforeach
+</div>
+<div class="text-center mb-5">
+    <a href="{{ route('cards.index') }}" class="btn btn-primary btn-lg">
+        <i aria-hidden="true" class="fa fa-list"></i> Card Directory
+    </a>
 </div>

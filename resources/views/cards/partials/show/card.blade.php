@@ -16,22 +16,22 @@
             <div class="col-sm-6">
                 <div class="card mb-4">
                     <div class="card-header">
-                        Supply
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{ $asset ? number_format($asset->supply_normalized) : __('Syncing') }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card mb-4">
-                    <div class="card-header">
                         Last Price
                     </div>
                     <div class="card-body">
                         <p class="card-text">
                             <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('No Trades') }}</a>
                         </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Supply
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ $asset ? number_format($asset->supply_normalized) : __('Syncing') }}</p>
                     </div>
                 </div>
             </div>

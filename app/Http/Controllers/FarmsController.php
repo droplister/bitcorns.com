@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Farm;
 use App\Token;
 use App\MapMarker;
+use Auth, Cache;
 use App\Http\Requests\Farms\IndexRequest;
 use App\Http\Requests\Farms\UpdateRequest;
 use Illuminate\Http\Request;
@@ -48,7 +48,9 @@ class FarmsController extends Controller
         $upgrades = $farm->upgradeBalances()->get();
 
         // Tokens: Upgrades Total
-        $upgrades_total = Token::published()->upgrades()->count();
+        $upgrades_total = Cache::remember('upgrades_total', 60, function () {
+            return Token::published()->upgrades()->count();
+        });
 
         // Tokens: % of Progress
         $progress = round($upgrades->count() / $upgrades_total * 100);
@@ -70,8 +72,11 @@ class FarmsController extends Controller
                 return $achievement->points / $achievement->details->points;
             });
 
+        // Bitcorn Battle API
+        $battle = $farm->getBattleStats();
+
         // Return View
-        return view('farms.show', compact('farm', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));
+        return view('farms.show', compact('farm', 'battle', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));
     }
 
     /**
