@@ -13,7 +13,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ $token->name }}: {{ $coop->getBalance($token->xcp_core_asset_name) }}
+            Harvested: {{ number_format($coop->harvestTotal($harvest, true)) }} {{ config('bitcorn.reward_token') }}
         </p>
     </div>
 </div>

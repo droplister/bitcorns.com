@@ -3,7 +3,7 @@
         Top Farm
     </div>
     <a href="{{ route('farms.show', ['farm' => $farm->slug]) }}">
-        <img src="{{ $farm->display_image_url }}" alt="{{ $farm->name }}" class="w-100">
+        <img src="{{ $farm->display_image_url }}" alt="{{ $farm->name }}" class="w-100 border-bottom">
     </a>
     <div class="card-body">
         <h4 class="card-title">
