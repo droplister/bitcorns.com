@@ -8,6 +8,11 @@
 // Theme
 @import "components/Theme";
 
+.table {
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
 .table-responsive {
   white-space: nowrap;
 }
@@ -20,7 +25,7 @@
 }
 
 @media (min-width: 40em) {
-     .harvest-body {
-      padding-left: 0;
-    }
+  .harvest-body {
+    padding-left: 0;
+  }
 }

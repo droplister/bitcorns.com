@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use App\Coop;
 use App\Token;
 use App\Harvest;
 use Droplister\XcpCore\App\OrderMatch;
@@ -61,7 +62,7 @@ class CardsController extends Controller
 
         // Get Farm Balances
         $balances = Cache::remember('card_balances_' . $card->slug, 60, function () use ($card) {
-            return $card->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
+            return $card->balances()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc')->get();
         });
 
         // Top Coop

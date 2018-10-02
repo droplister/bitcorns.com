@@ -12,6 +12,7 @@
                 <tr>
                     <th scope="col" style="width: 40px">#</th>
                     <th scope="col">Name</th>
+                    <td scope="col">Coop</th>
                     <th scope="col">Balance</th>
                     <th scope="col">Percent</th>
                 </tr>
@@ -20,13 +21,30 @@
                 @foreach($balances as $balance)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}.</th>
-                    <td><a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a></td>
+                    <td>
+                        <a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a>
+                    </td>
+                    <td>
+                        @if($balance->farm->coop)
+                            <a href="{{ route('coops.show', ['coop' => $balance->farm->coop->slug]) }}">{{ $balance->farm->coop->name }}</a>
+                        @endif
+                    </td>
                     <td>{{ number_format($balance->quantity_normalized) }}</td>
                     <td>{{ number_format($balance->quantity_normalized / $card->asset->supply_normalized * 100, 2) }}%</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+</div>
+@endif
+@if($top_coop && $top_farm)
+<div class="row mb-4">
+    <div class="col-12 col-sm-6">
+        @include('cards.partials.show.coop', ['coop' => $top_coop])
+    </div>
+    <div class="col-12 col-sm-6">
+        @include('cards.partials.show.farm', ['farm' => $top_farm])
     </div>
 </div>
 @endif

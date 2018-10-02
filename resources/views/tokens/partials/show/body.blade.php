@@ -11,6 +11,7 @@
             <thead>
                 <th scope="col" style="width: 40px">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Coop</th>
                 <th scope="col">{{ $token->name }}</th>
                 <th scope="col">Percent</th>
             </thead>
@@ -18,7 +19,14 @@
                 @foreach($balances as $balance)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}.</th>
-                        <td><a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a></td>
+                        <td>
+                            <a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a>
+                        </td>
+                        <td>
+                            @if($balance->farm->coop)
+                                <a href="{{ route('coops.show', ['coop' => $balance->farm->coop->slug]) }}">{{ $balance->farm->coop->name }}</a>
+                            @endif
+                        </td>
                         <td>{{ $balance->assetModel->divisible ? $balance->quantity_normalized : number_format($balance->quantity_normalized) }}</td>
                         <td>{{ number_format($balance->quantity_normalized / $asset->supply_normalized * 100, 2) }}%</td>
                     </tr>
