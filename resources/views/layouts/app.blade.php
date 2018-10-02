@@ -83,7 +83,7 @@
                             </li>
                         </ul>
                     </div>
-                    <form action="{{ url(route('farms.index')) }}" method="GET" class="form-inline my-2 my-lg-0 d-none d-md-inline">
+                    <form action="{{ route('farms.index') }}" method="GET" class="form-inline my-2 my-lg-0 d-none d-md-inline">
                         <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
                     </form>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
