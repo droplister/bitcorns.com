@@ -75,7 +75,7 @@ class Coop extends Model
      */
     public function farms()
     {
-        return $this->hasMany(Farm::class, 'coop_id', 'id');
+        return $this->hasMany(Farm::class, 'coop_id', 'id')->hasAccess();
     }
 
     /**
@@ -115,6 +115,19 @@ class Coop extends Model
     }
 
     /**
+     * Get Balance
+     *
+     * @param string  $asset
+     * @var string
+     */
+    public function getBalance($asset)
+    {
+        return $this->balances()->where('asset', '=', $asset)->get()->sum(function ($balance) {
+            return $balance->quantity_normalized;
+        });
+    }
+
+    /**
      * Harvest Farms
      *
      * @param \App\Harvest  $harvest
@@ -135,10 +148,7 @@ class Coop extends Model
     public function harvestTotal($harvest, $multiply=false)
     {
         return $this->harvests()->where('harvest_id', '=', $harvest->id)->get()->sum(function ($harvest) use ($multiply) {
-            if($multiply)
-            {
-                return $harvest->pivot->quantity * $harvest->pivot->multiplier;
-            }
+            if($multiply) return $harvest->pivot->quantity * $harvest->pivot->multiplier;
 
             return $harvest->pivot->quantity;
         });

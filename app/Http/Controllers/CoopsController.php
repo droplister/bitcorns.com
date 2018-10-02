@@ -18,7 +18,7 @@ class CoopsController extends Controller
     public function index(Request $request)
     {
         // Farm Coops
-        $coops = Coop::has('farms')->orderBy('total_harvested', 'desc')->get();
+        $coops = Coop::has('farms')->withCount('farms')->orderBy('total_harvested', 'desc')->get();
 
         // Index View
         return view('coops.index', compact('coops'));
