@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use App\Coop;
 use App\Token;
-use Droplister\XcpCore\App\OrderMatch;
-use App\Http\Requests\Cards\StoreRequest;
 use Illuminate\Http\Request;
 
 class TokensController extends Controller
@@ -19,10 +18,9 @@ class TokensController extends Controller
     public function index(Request $request)
     {
         // Get Tokens
-        $tokens = Token::published()
-            ->tokens()
-            ->oldest()
-            ->get();
+        $tokens = Cache::remember('tokens_index', 60, function () {
+            return Token::published()->tokens()->oldest()->get();
+        });
 
         // Index View
         return view('tokens.index', compact('tokens'));
@@ -48,19 +46,24 @@ class TokensController extends Controller
         $last_match = $token->lastMatch();
 
         // Get Farm Balances
-        $balances = $token->balances()->has('farm')->with('farm')
-            ->orderBy('quantity', 'desc')
-            ->get();
-
-        // Top Farm
-        $top_farm = $token->balances()->has('farm')->with('farm')
-            ->orderBy('quantity', 'desc')
-            ->first()->farm;
+        $balances = Cache::remember('token_balances_' . $token->slug, 60, function () use ($token) {
+            return $token->balances()->has('farm')->with('farm')
+                ->orderBy('quantity', 'desc')
+                ->get();
+        });
 
         // Top Coop
-        $top_coop = $token->balances()->has('farm')->with('farm')
-            ->orderBy('quantity', 'desc')
-            ->first()->farm;
+        $top_coop = Cache::remember('token_top_coop_' . $token->slug, 60, function () use ($token) {
+            $unsorted = Coop::get();
+
+            // Sorted
+            return $unsorted->sortByDesc(function ($c) use ($token) {
+                return $c->getBalance($token->xcp_core_asset_name)->quantity;
+            });
+        });
+
+        // Top Farm
+        $top_farm = $balances[0]->farm;
 
         // Show View
         return view('tokens.show', compact('token', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));
