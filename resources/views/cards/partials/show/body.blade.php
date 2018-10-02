@@ -39,7 +39,7 @@
 </div>
 @endif
 @if($top_coop && $top_farm)
-<div class="row mb-4">
+<div class="row">
     <div class="col-12 col-sm-6">
         @include('cards.partials.show.coop', ['coop' => $top_coop])
     </div>
@@ -49,7 +49,7 @@
 </div>
 @endif
 @if($unlocked_achievements->count() + $locked_achievements->count() > 0)
-<div class="row mt-5">
+<div class="row">
     <div class="col">
         <div class="card">
             <div class="card-header">

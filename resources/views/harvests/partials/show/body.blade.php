@@ -1,10 +1,10 @@
 @if($harvest->xcp_core_tx_index)
 <div class="row my-4">
     <div class="col-12 col-sm-6">
-        @include('harvests.partials.show.coop', ['coop' => $coops[0]])
+        @include('harvests.partials.show.coop', ['coop' => $coops->first()])
     </div>
     <div class="col-12 col-sm-6">
-        @include('harvests.partials.show.farm', ['farm' => $farms[0]])
+        @include('harvests.partials.show.farm', ['farm' => $farms->first()])
     </div>
 </div>
 <div class="card my-4">
@@ -66,7 +66,11 @@
                         </td>
                         <td>
                             {{ number_format($farm->pivot->quantity * $farm->pivot->multiplier) }}
-                            <small class="text-muted">{{ number_format($farm->pivot->multiplier, 1) }}x</small>
+                            @if($farm->pivot->multiplier !== '1.00')
+                                <span class="float-right {{ $farm->pivot->multiplier === '0.00' ? 'text-danger' : 'text-success' }}">
+                                    {{ number_format(abs($farm->pivot->multiplier * 100 - 100)) }}%
+                                </span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
