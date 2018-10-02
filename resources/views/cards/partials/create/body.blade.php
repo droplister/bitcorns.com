@@ -2,6 +2,7 @@
 <div class="card my-4">
     <div class="card-header">
         Submit Card
+        <span class="badge badge-success">Fee: {{ number_format(config('bitcorn.subfee')) }} {{ config('bitcorn.reward_token') }}</span>
     </div>
     <div class="card-body">
         <form action="{{ route('cards.store') }}" method="POST" enctype="multipart/form-data">
@@ -43,7 +44,7 @@
                     </div>
                 @else
                     <small class="form-text text-muted">
-                        Look up your send tx in <a href="https://xchain.io/asset/BITCORN#sends" target="_blank">an explorer</a>. This is proof of submission fee.
+                        Look up your send tx in <a href="https://xcpfox.com/transactions/sends" target="_blank">an explorer</a>. This is proof of submission fee.
                     </small>
                 @endif
             </div>
