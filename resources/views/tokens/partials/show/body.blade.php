@@ -1,4 +1,4 @@
-@if($balances->count())
+@if($balances->count() && $token->type !== 'trophy')
 <div class="card mb-4">
     <div class="card-header">
         Bitcorn Farms
