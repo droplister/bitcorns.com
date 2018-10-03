@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <p class="card-text">
                             @if($last_match)
-                                <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ $asset->divisible ? $last_match->trading_price_normalized : number_format($last_match->trading_price_normalized) }} {{ $last_match->trading_pair_quote_asset }}</a>
+                                <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($last_match->trading_price_normalized, 8) }} {{ $last_match->trading_pair_quote_asset }}</a>
                             @else
                                 <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">No Trades</a>
                             @endif

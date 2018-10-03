@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card mb-5">
     <div class="row">
         <div class="col-sm-4 col-md-3">
             <img src="{{ $harvest->image_url }}" alt="{{ $harvest->name }}" width="100%" />

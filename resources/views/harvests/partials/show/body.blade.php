@@ -1,13 +1,19 @@
 @if($harvest->xcp_core_tx_index)
-<div class="row my-4">
-    <div class="col-12 col-sm-6">
-        @include('harvests.partials.show.coop', ['coop' => $coops->first()])
-    </div>
-    <div class="col-12 col-sm-6">
+<h2 class="display-4 my-5">
+    Noteworthy
+</h2>
+<div class="row">
+    <div class="col-12 col-sm-6 mb-5">
         @include('harvests.partials.show.farm', ['farm' => $farms->first()])
     </div>
+    <div class="col-12 col-sm-6 mb-5">
+        @include('harvests.partials.show.coop', ['coop' => $coops->first()])
+    </div>
 </div>
-<div class="card my-4">
+<h2 class="display-4 my-5">
+    Top Coops
+</h2>
+<div class="card">
     <div class="card-header">
         Bitcorn Coops
         <span class="badge badge-dark">
@@ -19,9 +25,9 @@
             <thead>
                 <tr>      
                     <th scope="col" style="width: 40px">#</th>
-                    <th scope="col">Coop</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Farms</th>
-                    <th scope="col">Harvested</th>
+                    <th scope="col">Harvest</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +43,10 @@
         </table>
     </div>
 </div>
-<div class="card my-4">
+<h2 class="display-4 my-5">
+    Top Farms
+</h2>
+<div class="card">
     <div class="card-header">
         Bitcorn Farms
         <span class="badge badge-dark">
@@ -49,9 +58,9 @@
             <thead>
                 <tr>      
                     <th scope="col" style="width: 40px">#</th>
-                    <th scope="col">Farm</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Coop</th>
-                    <th scope="col">Harvested</th>
+                    <th scope="col">Harvest</th>
                 </tr>
             </thead>
             <tbody>
