@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="cardsTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="cards-tab" data-toggle="tab" href="#cards" role="tab" aria-controls="cards" aria-selected="true">Cards <span class="badge badge-dark">{{ $upgrades->count()) }}</span></a>
+                            <a class="nav-link active" id="cards-tab" data-toggle="tab" href="#cards" role="tab" aria-controls="cards" aria-selected="true">Cards <span class="badge badge-dark">{{ $upgrades->count() }}</span></a>
                         </li>
                     </ul>
                 </div>
