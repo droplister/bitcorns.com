@@ -1,10 +1,10 @@
 <div class="card">
-    <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
+    <a href="{{ $coop->url }}">
         <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="card-img-top border-bottom" />
     </a>
     <div class="card-body">
         <h4 class="card-title">
-            <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
+            <a href="{{ $coop->url }}">
                 {{ $coop->name }}
             </a>
         </h4>

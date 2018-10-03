@@ -18,7 +18,7 @@
                             Battles
                         </a>
                     </li>
-                    @if($farm->coop_id)
+                    @if($farm->coop)
                         <li class="nav-item">
                             <a class="nav-link" id="coop-tab" data-toggle="tab" href="#coop" role="tab" aria-controls="coop" aria-selected="true">
                                 Co-Op
@@ -62,18 +62,18 @@
                             <i class="fa fa-search"></i> Learn More
                         </a>
                     </div>
-                    @if($farm->coop_id)
-                    <div class="tab-pane fade" id="coop" role="tabpanel" aria-labelledby="coop-tab">
-                        <h5 class="card-title">
-                            {{ $farm->coop->name }}
-                        </h5>
-                        <p class="card-text">
-                            {{ $farm->coop->content }}
-                        </p>
-                        <a href="{{ route('coops.show', ['coop' => $farm->coop->slug]) }}" class="btn btn-primary">
-                            <i class="fa fa-search"></i> Learn More
-                        </a>
-                    </div>
+                    @if($farm->coop)
+                        <div class="tab-pane fade" id="coop" role="tabpanel" aria-labelledby="coop-tab">
+                            <h5 class="card-title">
+                                {{ $farm->coop->name }}
+                            </h5>
+                            <p class="card-text">
+                                {{ $farm->coop->content }}
+                            </p>
+                            <a href="{{ $farm->coop->url }}" class="btn btn-primary">
+                                <i class="fa fa-search"></i> Learn More
+                            </a>
+                        </div>
                     @endif
                 </div>
             </div>

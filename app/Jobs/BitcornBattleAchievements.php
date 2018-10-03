@@ -3,10 +3,10 @@
 namespace App\Jobs;
 
 use App\Farm;
-use App\Achievements\BattleTested;
-use App\Achievements\BattleHardened;
-use App\Achievements\BattleChampion;
 use App\Achievements\BattleLegend;
+use App\Achievements\BattleTested;
+use App\Achievements\BattleChampion;
+use App\Achievements\BattleHardened;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -29,20 +29,14 @@ class BitcornBattleAchievements implements ShouldQueue
 
         // Check 'Em All
         foreach ($farms as $farm) {
-            // Battle API
-            $data = $farm->getBattleStats();
+            // Bitcorn Battle API
+            $total = $farm->getBattleStat('wins');
 
-            // Simple Guard
-            if (isset($data['wins'])) {
-                // Win Count
-                $won = (int) $data['wins'];
-
-                // Progress (Battles Won)
-                $farm->setProgress(new BattleTested(), $won);   // 1
-                $farm->setProgress(new BattleHardened(), $won); // 100
-                $farm->setProgress(new BattleChampion(), $won); // 1000
-                $farm->setProgress(new BattleLegend(), $won);   // 9001
-            }
+            // Progress (Total Wins)
+            $farm->setProgress(new BattleTested(), $total);   // 1
+            $farm->setProgress(new BattleHardened(), $total); // 100
+            $farm->setProgress(new BattleChampion(), $total); // 1000
+            $farm->setProgress(new BattleLegend(), $total);   // 9001
         }
     }
 }

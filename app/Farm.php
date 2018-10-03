@@ -357,7 +357,7 @@ class Farm extends Model
             return json_decode($data, true);
         });
 
-        return isset($data[$key]) ? $data[$key] : 0;
+        return isset($data[$key]) ? (int) $data[$key] : 0;
     }
 
     /**
