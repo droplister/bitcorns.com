@@ -8,6 +8,6 @@
 @endsection
 
 @section('content')
-    @include(farms.partials.edit.head')
-    @include(farms.partials.edit.body')
+    @include('farms.partials.edit.head')
+    @include('farms.partials.edit.body')
 @endsection

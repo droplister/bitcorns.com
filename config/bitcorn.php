@@ -43,6 +43,11 @@ return [
     'private_chat_id' => env('PRIVATE_CHAT_ID'),
 
     /**
+     * Bitcorn Message
+     */
+    'message' => env('BITCORN_MESSAGE', 'I authorize this change.'),
+
+    /**
      * Feature Address
      */
     'feature_address' => env('BITCORN_FEATURE_ADDRESS', '1HomeYDQs6uNahNdT4SYDa1zQeQN4k8iYK'),

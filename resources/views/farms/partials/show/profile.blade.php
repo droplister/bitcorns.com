@@ -2,7 +2,7 @@
     <div class="col">
         <div class="card text-center">
             <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs" id="playerTab" role="tablist">
+                <ul class="nav nav-tabs card-header-tabs" id="farmTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">
                             Profile
@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="card-body">
-                <div class="tab-content" id="playerTabContent">
+                <div class="tab-content" id="farmTabContent">
                     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <h5 class="card-title">
                             {{ $farm->display_name }}
