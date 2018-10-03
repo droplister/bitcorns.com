@@ -1,4 +1,7 @@
 <div class="card">
+    <div class="card-header">
+        Top Coop
+    </div>
     <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
         <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="w-100 border-bottom">
     </a>
@@ -14,8 +17,5 @@
         <p class="card-text">
             {{ $card->name }}: {{ $asset->divisible ? $coop->getBalance($card->xcp_core_asset_name) : number_format($coop->getBalance($card->xcp_core_asset_name)) }}
         </p>
-    </div>
-    <div class="card-footer">
-        Top Coop
     </div>
 </div>

@@ -50,10 +50,10 @@
 </h2>
 <div class="row">
     <div class="col-12 col-sm-6 mb-5">
-        @include('cards.partials.show.coop', ['coop' => $top_coop])
+        @include('cards.partials.show.farm', ['farm' => $top_farm])
     </div>
     <div class="col-12 col-sm-6 mb-5">
-        @include('cards.partials.show.farm', ['farm' => $top_farm])
+        @include('cards.partials.show.coop', ['coop' => $top_coop])
     </div>
 </div>
 @endif
