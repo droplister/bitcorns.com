@@ -77,14 +77,17 @@
         <div class="card-body">
             <p class="card-text">
                 <strong>All digital goods are delivered via the Bitcoin blockchain.</strong>
+                <br class="d-block d-md-none" />
                 A Counterparty-enabled wallet, like <a href="{{ config('bitcorn.counterwallet') }}" target="_blank">Counterwallet</a>, is required.
             </p>
             <p class="card-text">
                 <strong>All orders are subject to cancellation.</strong>
+                <br class="d-block d-md-none" />
                 We reserve the right to cancel and refund your order, for any reason, if we choose.
             </p>
             <p class="card-text">
                 <strong>All orders are processed manually.</strong>
+                <br class="d-block d-md-none" />
                 Please allow up to 5-10 business days before inquiring about the status of your order.
             </p>
         </div>
