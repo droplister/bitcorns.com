@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Farms;
 
-use App\Farm;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -14,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $farm = Farm::findBySlug($this->route('farm'));
+        $farm = $this->route('farm');
 
         return $farm && $farm->access === 1;
     }

@@ -97,6 +97,35 @@ class Farm extends Model
     }
 
     /**
+     * Map Type
+     *
+     * @var string
+     */
+    public function getMapTypeAttribute()
+    {
+        return $this->hasBalance('HAYABUSATWO') ? 'satellite' : 'terrain';
+    }
+
+    /**
+     * Progress
+     *
+     * @var string
+     */
+    public function getProgressAttribute()
+    {
+        // Tokens: Upgrades Owned
+        $upgrades_owned = $this->upgradeBalances()->count();
+
+        // Tokens: Upgrades Total
+        $upgrades_total = Cache::remember('upgrades_total', 60, function () {
+            return Token::published()->upgrades()->count();
+        });
+
+        // Tokens: % of Progress
+        return round($upgrades_owned / $upgrades_total * 100);
+    }
+
+    /**
      * Address
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -274,6 +303,35 @@ class Farm extends Model
     }
 
     /**
+     * Locked Achievements
+     *
+     * @return \Gstt\Achievements\Model\AchievementProgress
+     */
+    public function lockedAchievements()
+    {
+        return $this->achievements()->with('details')
+            ->whereNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get()
+            ->sortByDesc(function ($achievement) {
+                return $achievement->points / $achievement->details->points;
+            });
+    }
+
+    /**
+     * Unlocked Achievements
+     *
+     * @return \Gstt\Achievements\Model\AchievementProgress
+     */
+    public function unlockedAchievements()
+    {
+        return $this->achievements()->with('details')
+            ->whereNotNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get();
+    }
+
+    /**
      * Harvest Coop
      *
      * @param \App\Harvest  $harvest
@@ -284,6 +342,22 @@ class Farm extends Model
         $result = $this->harvests()->where('harvest_id', '=', $harvest->id)->first();
 
         return Coop::find($result->pivot->coop_id);
+    }
+
+    /**
+     * Get Battle Stat
+     *
+     * @param string  $key
+     * @return array
+     */
+    public function getBattleStat($key)
+    {
+        $data = Cache::remember('battle_stats_' . $this->xcp_core_address, 60, function () {
+            $data = file_get_contents('https://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
+            return json_decode($data, true);
+        });
+
+        return isset($data[$key]) ? $data[$key] : 0;
     }
 
     /**
@@ -315,19 +389,6 @@ class Farm extends Model
     }
 
     /**
-     * Get Battle Stats
-     *
-     * @return array
-     */
-    public function getBattleStats()
-    {
-        return Cache::remember('battle_stats_' . $this->xcp_core_address, 60, function () {
-            $data = file_get_contents('https://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
-            return json_decode($data, true);
-        });
-    }
-
-    /**
      * Update Farm
      *
      * @param  \App\Http\Requests\Farms\UpdateRequest  $request
@@ -341,7 +402,7 @@ class Farm extends Model
         }
 
         /// Update Farm
-        return $this->update($request->except('image'));
+        return $this->update($request->only(['name', 'content']));
     }
 
     /**

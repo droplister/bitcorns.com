@@ -63,7 +63,7 @@
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">
-            <i class="fa fa-save"></i> Save Farm
+            <i class="fa fa-save"></i> Update
         </button>
     </div>
 </form>

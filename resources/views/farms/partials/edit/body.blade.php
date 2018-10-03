@@ -8,12 +8,12 @@
                         <ul class="nav nav-tabs card-header-tabs" id="editTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="farm-tab" data-toggle="tab" href="#farm" role="tab" aria-controls="farm" aria-selected="true">
-                                    Farm
+                                    Your Farm
                                 </a>
                             </li>
                             <li class="nav-item d-none d-sm-inline">
                                 <a class="nav-link" id="coop-tab" data-toggle="tab" href="#coop" role="tab" aria-controls="coop" aria-selected="true">
-                                    Coop
+                                    Your Coop
                                 </a>
                             </li>
                         </ul>

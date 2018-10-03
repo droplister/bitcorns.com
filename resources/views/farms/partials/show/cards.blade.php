@@ -13,7 +13,7 @@
                 <div class="tab-content" id="cardsTabContent">
                     <div class="tab-pane fade show active" id="cards" role="tabpanel" aria-labelledby="cards-tab">
                         <div class="progress mt-1 mb-5">
-                            <div class="progress-bar progress-bar-striped {{ $progress < 50 ? 'bg-warning' : 'bg-success' }}" role="progressbar" style="width: {{ $progress }}%" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">{{ $progress }}%</div>
+                            <div class="progress-bar progress-bar-striped {{ $farm->progress < 50 ? 'bg-warning' : 'bg-success' }}" role="progressbar" style="width: {{ $farm->progress }}%" aria-valuenow="{{ $farm->progress }}" aria-valuemin="0" aria-valuemax="100">{{ $farm->progress }}%</div>
                         </div>
                         <div class="row text-left">
                             @foreach($upgrades as $balance)

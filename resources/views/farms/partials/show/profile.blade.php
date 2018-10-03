@@ -53,7 +53,7 @@
                     </div>
                     <div class="tab-pane fade" id="battle" role="tabpanel" aria-labelledby="battle-tab">
                         <h5 class="card-title">
-                            Wins: {{ isset($battle['wins']) ? $battle['wins'] : '0' }} - Losses: {{ isset($battle['losses']) ? $battle['losses'] : '0' }}
+                            Wins: {{ $farm->getBattleStat('wins') }} - Losses: {{ $farm->getBattleStat('losses') }}
                         </h5>
                         <p class="card-text">
                             Battle other farms in Bitcorn Battle!
