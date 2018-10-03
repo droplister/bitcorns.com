@@ -2,7 +2,7 @@
     <div class="col-md-4 mb-4">
         @if(isset($card->meta_data['orientation']) && $card->meta_data['orientation'] === 'portrait')
             @include('cards.partials.show.modal')
-            <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px" role="button" data-toggle="modal" data-target="#imageModal" style="cursor: pointer" />
+            <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px; cursor: pointer;" role="button" data-toggle="modal" data-target="#imageModal" />
         @else
             <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px" />
         @endif
