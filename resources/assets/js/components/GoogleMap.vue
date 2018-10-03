@@ -2,6 +2,7 @@
   <GmapMap
     :zoom="zoom"
     :center="center"
+    :map-type-id="mapType"
     style="width: 100%; height: 400px"
   >
     <GmapInfoWindow
@@ -43,13 +44,14 @@ Vue.use(VueGoogleMaps, {
 });
  
 export default {
-  props: ['lat', 'lng', 'zoom', 'coop'],
+  props: ['lat', 'lng', 'zoom', 'coop', 'type'],
   data () {
     return {
       center: {lat: this.lat, lng: this.lng},
       markers: null,
       name: '',
       href: '',
+      mapType: this.type ? this.type : 'terrain',
       infoPosition: {
         lat: 0,
         lng: 0

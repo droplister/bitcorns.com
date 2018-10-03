@@ -9,6 +9,7 @@ use App\Traits\Touchable;
 use App\Traits\Achievable;
 use App\Events\TokenWasCreated;
 use Gstt\Achievements\Achiever;
+use Droplister\XcpCore\App\Burn;
 use Droplister\XcpCore\App\Send;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\OrderMatch;
@@ -131,6 +132,16 @@ class Token extends Model
     public function allBalances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Burn
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function burn()
+    {
+        return $this->belongsTo(Burn::class, 'xcp_core_burn_tx_hash', 'tx_hash');
     }
 
     /**
