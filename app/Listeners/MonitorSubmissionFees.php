@@ -19,11 +19,9 @@ class MonitorSubmissionFees
     public function handle(SendWasCreated $event)
     {
         // Burns Only
-        if($this->isSubmissionFee($event))
-        {
+        if ($this->isSubmissionFee($event)) {
             // Farms Only
-            if($farm = Farm::where('xcp_core_address', '=', $event->send->source)->first())
-            {
+            if ($farm = Farm::where('xcp_core_address', '=', $event->send->source)->first()) {
                 // Achievement!
                 $farm->unlockIfLocked(new BurnBabyBurn());
             }

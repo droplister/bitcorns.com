@@ -21,14 +21,15 @@ class FarmCreditAchievements
     public function handle(CreditWasCreated $event)
     {
         // Bitcorn & Farms Only
-        if($this->isBitcorn($event) && $this->isFarmAddress($event))
-        {
+        if ($this->isBitcorn($event) && $this->isFarmAddress($event)) {
             // Farm
             $farm = Farm::where('xcp_core_address', '=', $event->credit->address)->first();
 
             // Surplus
             $surplus = $farm->total_harvested !== 0 ? $farm->rewardBalance()->quantity - $farm->total_harvested : 0;
-            if($surplus < 0) $surplus = 0;
+            if ($surplus < 0) {
+                $surplus = 0;
+            }
 
             // Progress (Bitcorn Surplus)
             $farm->setProgress(new FarmersMarket(), $surplus);   // 1,000

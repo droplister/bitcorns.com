@@ -22,14 +22,12 @@ class AnnounceNewCardSubmissions
     public function handle(TokenWasCreated $event)
     {
         // Upgrades Only
-        if($this->isUpgradeToken($event))
-        {
+        if ($this->isUpgradeToken($event)) {
             // Check Museum
             $this->checkMuseumDonations($event->token);
 
             // Submissions Only
-            if($this->isSubmission($event))
-            {
+            if ($this->isSubmission($event)) {
                 // Tell Farmers
                 $this->publicAnnouncement($event->token);
 
@@ -51,17 +49,13 @@ class AnnounceNewCardSubmissions
         // so this is just a check to be sure its not missed.
         $museum = Farm::findBySlug(config('bitcorn.museum_address'));
 
-        if($museum && $museum->hasBalance($token->xcp_core_asset_name))
-        {
+        if ($museum && $museum->hasBalance($token->xcp_core_asset_name)) {
             $token->touchTime('museumed_at');
-        }
-        else
-        {
+        } else {
             // Only used by the UpgradeTokensTableSeeder
             $balances = $this->getMuseumBalances($token);
 
-            if(! empty($balances))
-            {
+            if (! empty($balances)) {
                 $token->touchTime('museumed_at');
             }
         }
@@ -93,12 +87,9 @@ class AnnounceNewCardSubmissions
         $message.= "{$token->image_url}\n";
         $message.= "Issued: {$token->asset->issuance_normalized}\n";
         
-        if(Token::publishable()->where('id', '=', $token->id)->exists())
-        {
+        if (Token::publishable()->where('id', '=', $token->id)->exists()) {
             $message.= "Publishable submission!";
-        }
-        else
-        {
+        } else {
             $message.= "Not okay to publish yet...";
             $message.= "- Locked: {$token->asset->locked}\n";
             $message.= "- Divisible: {$token->asset->divisible}\n";

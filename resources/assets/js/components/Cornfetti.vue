@@ -1,6 +1,6 @@
 <template>
   <main>
-    <img @click="toggle" src="/storage/tokens/CORNFETTI.png" width="100%" alt="CORNFETTI" class="mb-3" style="cursor: pointer" />
+    <img @click="toggle" src="/storage/tokens/CORNFETTI.png" width="100%" alt="CORNFETTI" title="PARTY" class="mb-3" style="cursor: pointer" />
   </main>
 </template>
 

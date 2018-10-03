@@ -3,7 +3,8 @@
 namespace App\Jobs;
 
 use Telegram;
-use Log, Exception;
+use Log;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -33,7 +34,7 @@ class SendMessage implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($message, $chat=null)
+    public function __construct($message, $chat = null)
     {
         $this->chat = $chat;
         $this->message = $message;
@@ -46,24 +47,20 @@ class SendMessage implements ShouldQueue
      */
     public function handle()
     {
-        try
-        {
+        try {
             $chats = $this->getChats();
 
-            foreach($chats as $chat => $chat_id)
-            {
+            foreach ($chats as $chat => $chat_id) {
                 $this->sendMessage($chat_id);
             }
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
         }
     }
 
     /**
      * Select Chat(s)
-     * 
+     *
      * @return array
      */
     private function getChats()
@@ -74,7 +71,9 @@ class SendMessage implements ShouldQueue
         ];
 
         // One
-        if($this->chat) return [$chats[$this->chat]];
+        if ($this->chat) {
+            return [$chats[$this->chat]];
+        }
 
         // All
         return $chats;
@@ -83,7 +82,7 @@ class SendMessage implements ShouldQueue
     private function sendMessage($chat_id)
     {
         return Telegram::sendMessage([
-            'chat_id' => $chat_id, 
+            'chat_id' => $chat_id,
             'text' => $this->message,
             'parse_mode' => 'Markdown',
             'disable_notification' => true,

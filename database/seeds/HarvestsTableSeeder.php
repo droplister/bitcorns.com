@@ -14,15 +14,14 @@ class HarvestsTableSeeder extends Seeder
     {
         $harvests = $this->getHarvests();
 
-        foreach($harvests as $harvest)
-        {
+        foreach ($harvests as $harvest) {
             Harvest::create($harvest);
         }
     }
 
     /**
      * Get Harvests
-     * 
+     *
      * @return array
      */
     private function getHarvests()
@@ -125,6 +124,6 @@ class HarvestsTableSeeder extends Seeder
                 'quantity' => 525000,
                 'scheduled_at' => '2022-01-01 12:00:00',
             ]
-        ];        
+        ];
     }
 }

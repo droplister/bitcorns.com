@@ -24,7 +24,7 @@ class MapMarkerWasCreated
 
     /**
      * Create a new event instance.
-     * 
+     *
      * @param  \App\MapMarker  $map_marker
      * @return void
      */

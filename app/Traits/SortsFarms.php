@@ -17,8 +17,7 @@ trait SortsFarms
      */
     public static function getSortedFarms(IndexRequest $request, $sort)
     {
-        switch($sort)
-        {
+        switch ($sort) {
             case 'search':
                 return static::hasAccess()
                     ->where('name', 'like', '%' . $request->q . '%')

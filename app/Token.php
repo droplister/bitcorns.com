@@ -25,9 +25,10 @@ class Token extends Model
     /**
      * Enforce Type Limit
      */
-    public static function boot() {
+    public static function boot()
+    {
         static::creating(function (Token $token) {
-            if(in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
+            if (in_array($token->type, ['access', 'reward']) && static::whereType($token->type)->exists()) {
                 throw new Exception('Token Limit Exceeded');
             }
         });
@@ -104,7 +105,7 @@ class Token extends Model
 
     /**
      * Asset
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function asset()
@@ -114,7 +115,7 @@ class Token extends Model
 
     /**
      * Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function balances()
@@ -124,7 +125,7 @@ class Token extends Model
 
     /**
      * Balances (Including Zero)
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function allBalances()
@@ -134,7 +135,7 @@ class Token extends Model
 
     /**
      * Farms
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function farms()
@@ -152,7 +153,7 @@ class Token extends Model
 
     /**
      * Sends
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function sends()
@@ -254,7 +255,7 @@ class Token extends Model
 
     /**
      * Create Card
-     * 
+     *
      * @param  \App\Http\Requests\Cards\StoreRequest  $request
      * @return \App\Token
      */
@@ -272,8 +273,7 @@ class Token extends Model
         $card->storeImage($request->image);
 
         // HD Optional
-        if($request->has('hd_image'))
-        {
+        if ($request->has('hd_image')) {
             // Save Image
             $card->storeImage($request->hd_image, true);
         }
@@ -281,12 +281,12 @@ class Token extends Model
 
     /**
      * Store Image
-     * 
+     *
      * @param  string  $file
      * @param  boolean  $hd
      * @return string
      */
-    private function storeImage($file, $hd=false)
+    private function storeImage($file, $hd = false)
     {
         // Get Key
         $key = $hd ? 'meta_data->hd_image_url' : 'image_url';
@@ -306,13 +306,12 @@ class Token extends Model
 
     /**
      * Last Match
-     * 
+     *
      * @return \Droplister\XcpCore\App\OrderMatch
      */
-    public function lastMatch($quote_asset=null)
+    public function lastMatch($quote_asset = null)
     {
-        if($quote_asset)
-        {
+        if ($quote_asset) {
             return OrderMatch::where('backward_asset', '=', $this->xcp_core_asset_name)
                 ->where('forward_asset', '=', $quote_asset)
                 ->where('status', '=', 'completed')
@@ -344,13 +343,10 @@ class Token extends Model
         $cards = Token::published()->upgrades();
 
         // Harvest
-        if($filter && is_int((int) $filter) && (int) $filter !== 0)
-        {
+        if ($filter && is_int((int) $filter) && (int) $filter !== 0) {
             $cards = $cards->where('harvest_id', '=', $filter);
-        }
-        // Format
-        elseif($filter && is_string($filter))
-        {
+        } // Format
+        elseif ($filter && is_string($filter)) {
             $cards = $cards->where('image_url', 'like', '%'. $filter);
         }
 

@@ -18,15 +18,14 @@ class UpdateHarvestsOnDividend
     public function handle(DividendWasCreated $event)
     {
         // Harvests Only
-        if($this->isHarvest($event))
-        {
+        if ($this->isHarvest($event)) {
             HandleHarvest::dispatch($event->dividend);
         }
     }
 
     /**
      * Is Harvest
-     * 
+     *
      * @param  \Droplister\XcpCore\App\Events\DividendWasCreated  $event
      * @return boolean
      */

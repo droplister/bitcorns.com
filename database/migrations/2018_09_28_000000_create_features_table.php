@@ -16,7 +16,7 @@ class CreateFeaturesTable extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
             $table->string('xcp_core_tx_index')->unique();
-            $table->morphs('featurable'); 
+            $table->morphs('featurable');
             $table->string('address');
             $table->unsignedBigInteger('bid');
             $table->timestamps();

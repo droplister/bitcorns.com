@@ -45,35 +45,29 @@ class UpdateFeatured implements ShouldQueue
         // API Data
         $sends = $this->getSends();
 
-        foreach($sends as $send)
-        {
+        foreach ($sends as $send) {
             // Decode Memo
             $memo = trim(hex2bin($send->memo));
 
             // New Feature
             $feature = Feature::firstOrNew([
                 'xcp_core_tx_index' => $send->tx_index,
-            ],[
+            ], [
                 'address' => $send->source,
                 'bid' => $send->quantity,
             ]);
 
             // Card Feature
-            if($card = Token::upgrades()->where('name', '=', $memo)->first())
-            {
+            if ($card = Token::upgrades()->where('name', '=', $memo)->first()) {
                 $card->features()->save($feature);
-            }
-            // Coop Feature
-            elseif($coop = Coop::findBySlug($memo))
-            {
+            } // Coop Feature
+            elseif ($coop = Coop::findBySlug($memo)) {
                 $coop->features()->save($feature);
-            }
-            // Farm Feature
-            elseif($farm = Farm::findBySlug($memo))
-            {
+            } // Farm Feature
+            elseif ($farm = Farm::findBySlug($memo)) {
                 $farm->features()->save($feature);
             }
-        }    
+        }
     }
 
     /**
