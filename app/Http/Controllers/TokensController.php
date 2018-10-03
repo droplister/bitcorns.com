@@ -64,20 +64,7 @@ class TokensController extends Controller
         // Top Farm
         $top_farm = $balances->first()->farm;
 
-        // Unlocked Achievements
-        $unlocked_achievements = Cache::remember('token_u_achievements_' . $token->slug, 60, function () use ($token) {
-            return $token->achievements()->with('details')->whereNotNull('unlocked_at')->oldest('unlocked_at')->get();
-        });
-
-        // Locked Achievements
-        $locked_achievements = Cache::remember('token_l_achievements_' . $token->slug, 60, function () use ($token) {
-            return $token->achievements()->with('details')->whereNull('unlocked_at')->oldest('unlocked_at')->get()
-                ->sortByDesc(function ($achievement) {
-                    return $achievement->points / $achievement->details->points;
-                });
-        });
-
         // Show View
-        return view('tokens.show', compact('token', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm', 'unlocked_achievements', 'locked_achievements'));
+        return view('tokens.show', compact('token', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));
     }
 }

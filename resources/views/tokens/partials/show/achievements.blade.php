@@ -1,4 +1,4 @@
-@if($card->unlockedAchievements()->count() + $card->lockedAchievements()->count() > 0)
+@if($token->unlockedAchievements()->count() + $token->lockedAchievements()->count() > 0)
     <h2 class="display-4 mb-5">
         Achievements
     </h2>
@@ -9,12 +9,12 @@
                     <ul class="nav nav-tabs card-header-tabs" id="achievementsTabContent" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="unlocked-tab" data-toggle="tab" href="#unlocked" role="tab" aria-controls="unlocked" aria-selected="true">
-                                Unlocked <span class="badge badge-dark">{{ $card->unlockedAchievements()->count() }}</span>
+                                Unlocked <span class="badge badge-dark">{{ $token->unlockedAchievements()->count() }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="locked-tab" data-toggle="tab" href="#locked" role="tab" aria-controls="locked" aria-selected="true">
-                                Locked <span class="badge badge-dark">{{ $card->lockedAchievements()->count() }}</span>
+                                Locked <span class="badge badge-dark">{{ $token->lockedAchievements()->count() }}</span>
                             </a>
                         </li>
                     </ul>
@@ -32,7 +32,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($card->unlockedAchievements() as $achievement)
+                                        @foreach($token->unlockedAchievements() as $achievement)
                                             <tr>
                                                 <td>{{ $achievement->details->name }}</td>
                                                 <td>{{ $achievement->details->description }}</td>
@@ -54,7 +54,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($card->lockedAchievements() as $achievement)
+                                        @foreach($token->lockedAchievements() as $achievement)
                                             <tr>
                                                 <td>{{ $achievement->details->name }}</td>
                                                 <td>{{ $achievement->details->description }}</td>
