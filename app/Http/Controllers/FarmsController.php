@@ -100,11 +100,7 @@ class FarmsController extends Controller
     public function update(UpdateRequest $request, Farm $farm)
     {
         // Authentication
-        if(Auth::guard('farm')->check() && Auth::guard('farm')->user()->slug === $farm->slug)
-        {
-            // Logged In
-        }
-        elseif($error = $farm->validateSignature($request))
+        if($error = $farm->validateSignature($request))
         {
             return back()->with('error', $error);
         }

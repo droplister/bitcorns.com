@@ -16,7 +16,7 @@ class UpdateRequest extends FormRequest
     {
         $farm = Farm::find($this->route('farm'));
 
-        return $farm && $farm->access === 0 ? false : true;
+        return $farm && $farm->access === 1;
     }
 
     /**
@@ -31,8 +31,8 @@ class UpdateRequest extends FormRequest
             'description' => ['sometimes', 'min:10', 'max:255'],
             'latitude' => ['sometimes', 'nullable', 'required_with:latitude', 'numeric', 'min:-90', 'max:90'],
             'lontitude' => ['sometimes', 'nullable', 'required_with:longitude', 'numeric', 'min:-180', 'max:180'],
-            'timestamp' => ['sometimes'],
-            'signature' => ['sometimes'],
+            'message' => ['required'],
+            'signature' => ['required'],
         ];
     }
 }
