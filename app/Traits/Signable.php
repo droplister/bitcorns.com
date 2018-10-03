@@ -12,6 +12,7 @@ trait Signable
      * Verify Signature
      *
      * @param  \App\Http\Requests\Farms\UpdateRequest  $request
+     * @return mixed
      */
     public function validateSignature(UpdateRequest $request)
     {
@@ -30,7 +31,7 @@ trait Signable
      * @param  \App\Http\Requests\Farms\UpdateRequest  $request
      * @return boolean
      */
-    private function guardAgainstInvalidSignature(UpdateRequest $request)
+    public function guardAgainstInvalidSignature(UpdateRequest $request)
     {
         try {
             // Bitcoin Lib

@@ -83,6 +83,21 @@ return [
     'subfee' => env('BITCORN_SUBFEE', 1000),
 
     /**
+     * Min Update
+     */
+    'min_update' => env('BITCORN_MIN_ACCESS_UPDATE', 3810),
+    
+    /**
+     * Min Upload
+     */
+    'min_upload' => env('BITCORN_MIN_ACCESS_UPLOAD', 1000000),
+
+    /**
+     * Min Coop
+     */
+    'min_coop' => env('BITCORN_MIN_ACCESS_COOP', 10000000),
+
+    /**
      * Min Cornfetti
      */
     'min_cornfetti' => env('BITCORN_MIN_CORNFETTI', 800),

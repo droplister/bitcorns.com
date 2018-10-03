@@ -2,15 +2,15 @@
     <div class="card-header">
         Top Coop
     </div>
-    <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
+    <a href="{{ $coop->url }}">
         <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="w-100 border-bottom">
     </a>
     <div class="card-body">
-        <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}" class="btn btn-outline-primary pull-right">
+        <a href="{{ $coop->url }}" class="btn btn-outline-primary pull-right">
             <i class="fa fa-map-marker"></i>
         </a>
         <h4 class="card-title">
-            <a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">
+            <a href="{{ $coop->url }}">
                 {{ $coop->name }}
             </a>
         </h4>

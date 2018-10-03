@@ -17,6 +17,12 @@
   white-space: nowrap;
 }
 
+.btn-absolute {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+
 .glasses {
   margin: 10em 0 !important;
   text-shadow: -0.3em 0 red,  0.3em 0 cyan !important; /* This creates the 3D effect, pretty easy, eh? */

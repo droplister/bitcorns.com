@@ -34,7 +34,7 @@
                 @foreach($coops as $coop)
                     <tr>
                         <th>{{ $loop->iteration }}.</th>
-                        <td><a href="{{ route('coops.show', ['coop' => $coop->slug]) }}">{{ $coop->name }}</a></td>
+                        <td><a href="{{ $coop->url }}">{{ $coop->name }}</a></td>
                         <td>{{ number_format($coop->harvestFarms($harvest)) }}</td>
                         <td>{{ number_format($coop->harvestTotal($harvest, true)) }}</td>
                     </tr>
@@ -70,7 +70,7 @@
                             {{ $loop->iteration }}.
                         </th>
                         <td>
-                            <a href="{{ route('farms.show', ['farm' => $farm->slug]) }}">{{ $farm->display_name }}</a>
+                            <a href="{{ $farm->url }}">{{ $farm->display_name }}</a>
                         </td>
                         <td>
                             @if($farm->harvestCoop($harvest))

@@ -13,7 +13,7 @@
             @foreach($farms as $farm)
                 <tr>
                     <td>
-                        <a href="{{ route('farms.show', ['farm' => $farm->slug]) }}">{{ $farm->name }}</a>
+                        <a href="{{ $farm->url }}">{{ $farm->name }}</a>
                     </td>
                     <td>{{ number_format($farm->accessBalance()->quantity_normalized, 8) }}</td>
                     <td>{{ number_format($farm->rewardBalance()->quantity_normalized) }}</td>
