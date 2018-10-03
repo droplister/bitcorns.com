@@ -10,7 +10,7 @@
         @include('harvests.partials.show.coop', ['coop' => $coops->first()])
     </div>
 </div>
-<h2 class="display-4 my-5">
+<h2 class="display-4 mb-5">
     Top Coops
 </h2>
 <div class="card">

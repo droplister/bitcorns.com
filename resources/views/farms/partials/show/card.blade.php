@@ -1,4 +1,4 @@
-@if($card->name === 'CORNFETTI' && $balance->quantity_normalized >= 600)
+@if($card->name === 'CORNFETTI' && $balance->quantity_normalized >= config('bitcorn.min_cornfetti'))
     <cornfetti></cornfetti>
 @else
     <a href="{{ route('cards.show', ['card' => $card->slug]) }}">

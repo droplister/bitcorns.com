@@ -78,6 +78,11 @@ return [
     'subfee' => env('BITCORN_SUBFEE', 1000),
 
     /**
+     * Min Cornfetti
+     */
+    'min_cornfetti' => env('BITCORN_MIN_CORNFETTI', 800),
+
+    /**
      * Contact Email
      */
     'email' => env('BITCORN_EMAIL', 'bitcorncrops@gmail.com'),
