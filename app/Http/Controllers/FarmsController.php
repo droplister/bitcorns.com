@@ -49,39 +49,8 @@ class FarmsController extends Controller
         // Tokens: Upgrades
         $upgrades = $farm->upgradeBalances()->get();
 
-        // Tokens: Upgrades Total
-        $upgrades_total = Cache::remember('upgrades_total', 60, function () {
-            return Token::published()->upgrades()->count();
-        });
-
-        // Tokens: % of Progress
-        $progress = round($upgrades->count() / $upgrades_total * 100);
-
-        // Unlocked Achievements
-        $unlocked_achievements = $farm->achievements()
-            ->with('details')
-            ->whereNotNull('unlocked_at')
-            ->oldest('unlocked_at')
-            ->get();
-
-        // Locked Achievements
-        $locked_achievements = $farm->achievements()
-            ->with('details')
-            ->whereNull('unlocked_at')
-            ->oldest('unlocked_at')
-            ->get()
-            ->sortByDesc(function ($achievement) {
-                return $achievement->points / $achievement->details->points;
-            });
-
-        // Bitcorn Battle
-        $battle = $farm->getBattleStats();
-
-        // Google Map Type
-        $map_type = $farm->hasBalance('HAYABUSATWO') ? 'satellite' : 'terrain';
-
-        // Return View
-        return view('farms.show', compact('farm', 'battle', 'map_type', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));
+        // Show View
+        return view('farms.show', compact('farm', 'tokens', 'upgrades'));
     }
 
     /**
@@ -115,7 +84,7 @@ class FarmsController extends Controller
         }
 
         // Update Farm
-        $farm->updateFarm($request->only(['name', 'content', 'image']));
+        $farm->updateFarm($request);
 
         // Return Back
         return back()->with('success', 'Success - Update Complete!');
