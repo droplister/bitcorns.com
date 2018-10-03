@@ -265,6 +265,35 @@ class Token extends Model
     }
 
     /**
+     * Locked Achievements
+     *
+     * @return \Gstt\Achievements\Model\AchievementProgress
+     */
+    public function lockedAchievements()
+    {
+        return $this->achievements()->with('details')
+            ->whereNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get()
+            ->sortByDesc(function ($achievement) {
+                return $achievement->points / $achievement->details->points;
+            });
+    }
+
+    /**
+     * Unlocked Achievements
+     *
+     * @return \Gstt\Achievements\Model\AchievementProgress
+     */
+    public function unlockedAchievements()
+    {
+        return $this->achievements()->with('details')
+            ->whereNotNull('unlocked_at')
+            ->oldest('unlocked_at')
+            ->get();
+    }
+
+    /**
      * Create Card
      *
      * @param  \App\Http\Requests\Cards\StoreRequest  $request

@@ -14,18 +14,18 @@ use Illuminate\Http\Request;
 class CardsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Cards (Sortable)
      *
      * @param  \App\Http\Requests\Cards\IndexRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function index(IndexRequest $request)
     {
-        // Get Filter
+        // Set Filter
         $filter = $request->input('filter', null);
 
         // Cache Slug
-        $cache_slug = str_slug(serialize($request->all()));
+        $cache_slug = str_slug(serialize($request->all() . $filter));
 
         // List Cards
         $cards = Cache::remember($cache_slug, 60, function () use ($request, $filter) {
@@ -79,21 +79,8 @@ class CardsController extends Controller
         // Top Farm
         $top_farm = $balances->first()->farm;
 
-        // Unlocked Achievements
-        $unlocked_achievements = Cache::remember('card_u_achievements_' . $card->slug, 60, function () use ($card) {
-            return $card->achievements()->with('details')->whereNotNull('unlocked_at')->oldest('unlocked_at')->get();
-        });
-
-        // Locked Achievements
-        $locked_achievements = Cache::remember('card_l_achievements_' . $card->slug, 60, function () use ($card) {
-            return $card->achievements()->with('details')->whereNull('unlocked_at')->oldest('unlocked_at')->get()
-                ->sortByDesc(function ($achievement) {
-                    return $achievement->points / $achievement->details->points;
-                });
-        });
-
         // Show View
-        return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm', 'unlocked_achievements', 'locked_achievements'));
+        return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));
     }
 
     /**
