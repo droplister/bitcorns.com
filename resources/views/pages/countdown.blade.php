@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     @if($request->has('vision'))
-        <a href="{{ route('pages.countdown', ['vision' => '2020']) }">
+        <a href="{{ route('pages.countdown', ['vision' => '2020']) }}">
             <img src="{{ asset('images/3d-glasses.png') }}" alt="Dan's Vision" width="200" style="cursor: pointer" class="float-right mt-3" />
         </a>
         <h1 class="display-4 my-5">

@@ -1,5 +1,5 @@
 @if($balances->count() && $token->type !== 'trophy')
-<div class="card mb-4">
+<div class="card mb-5">
     <div class="card-header">
         Bitcorn Farms
         <span class="badge badge-dark">
