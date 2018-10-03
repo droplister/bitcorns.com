@@ -25,7 +25,7 @@ class CardsController extends Controller
         $filter = $request->input('filter', null);
 
         // Cache Slug
-        $cache_slug = str_slug(serialize($request->all() . $filter));
+        $cache_slug = str_slug(serialize($request->all()) . $filter);
 
         // List Cards
         $cards = Cache::remember($cache_slug, 60, function () use ($request, $filter) {
