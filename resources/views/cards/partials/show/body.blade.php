@@ -12,7 +12,7 @@
                 <tr>
                     <th scope="col" style="width: 40px">#</th>
                     <th scope="col">Name</th>
-                    <td scope="col">Coop</th>
+                    <th scope="col">Coop</th>
                     <th scope="col">Balance</th>
                     <th scope="col">Percent</th>
                 </tr>
@@ -22,6 +22,9 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}.</th>
                     <td>
+                        @if($asset->owner === $balance->farm->xcp_core_address)
+                            <small><i class="fa fa-paint-brush text-success" title="Card Owner"></i></small>
+                        @endif
                         <a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a>
                     </td>
                     <td>
