@@ -56,5 +56,4 @@ class CoopsController extends Controller
         // Show View
         return view('coops.show', compact('coop', 'farms', 'tokens', 'upgrades', 'progress'));
     }
-
 }

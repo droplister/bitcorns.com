@@ -18,20 +18,20 @@ class AccessDependentOnCropsBalance
     public function handle(BalanceWasUpdated $event)
     {
         // Farms Only
-        if($this->isAccessToken($event))
-        {
+        if ($this->isAccessToken($event)) {
             // Get Farm
             $farm = Farm::where('xcp_core_address', '=', $event->balance->address)->first();
 
             // No Farm
-            if(! $farm) return false;
+            if (! $farm) {
+                return false;
+            }
 
             // Access Y/N
             $this->updateAccess($farm, $event);
 
             // Un-Map No Croppers
-            if(! $farm->access)
-            {
+            if (! $farm->access) {
                 $farm->mapMarkers()->delete();
             }
         }

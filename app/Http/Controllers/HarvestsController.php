@@ -18,7 +18,7 @@ class HarvestsController extends Controller
     public function index(Request $request)
     {
         // Harvests
-        $harvests = Cache::remember('harvests_index', 60, function() {
+        $harvests = Cache::remember('harvests_index', 60, function () {
             return Harvest::oldest('scheduled_at')->get();
         });
 

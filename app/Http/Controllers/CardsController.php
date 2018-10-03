@@ -51,8 +51,7 @@ class CardsController extends Controller
     public function show(Request $request, Token $card)
     {
         // Token Redirect Guard
-        if($card->type !== 'upgrade')
-        {
+        if ($card->type !== 'upgrade') {
             return redirect(route('tokens.show', ['token' => $card->slug]));
         }
 
@@ -132,7 +131,7 @@ class CardsController extends Controller
 
     /**
      * Get Average DEX Price
-     * 
+     *
      * @return string
      */
     private function getAverageDexPrice()

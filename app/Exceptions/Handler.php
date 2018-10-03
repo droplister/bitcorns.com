@@ -49,8 +49,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         // https://gist.github.com/jrmadsen67/bd0f9ad0ef1ed6bb594e
-        if ($exception instanceof TokenMismatchException)
-        {
+        if ($exception instanceof TokenMismatchException) {
             $errors = new MessageBag([
                 'password' => 'For security purposes, the form expired after sitting idle for too long. Please try again.'
             ]);

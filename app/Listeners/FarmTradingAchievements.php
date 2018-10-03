@@ -23,8 +23,7 @@ class FarmTradingAchievements
     public function handle(OrderMatchWasCreated $event)
     {
         // Farms Only / Tokens Only
-        if($this->isFarmAddress($event) && $this->isGameToken($event))
-        {
+        if ($this->isFarmAddress($event) && $this->isGameToken($event)) {
             // Relies heavily on BITCORN being defined as a quote asset in the core config.
 
             // Buyer
@@ -34,8 +33,7 @@ class FarmTradingAchievements
             $seller = Farm::where('xcp_core_address', '=', $event->order_match->trading_seller_normalized)->first();
 
             // Trading Achievements
-            if($this->isSellingForBitcorn($event) && $seller)
-            {
+            if ($this->isSellingForBitcorn($event) && $seller) {
                 // Total Bitcorn "Bought"
                 $total_traded_for = OrderMatch::where('tx0_address', '=', $seller->xcp_core_address)
                     ->where('backward_asset', '=', config('bitcorn.reward_token'))
@@ -51,7 +49,7 @@ class FarmTradingAchievements
 
     /**
      * Is Selling For BITCORN
-     * 
+     *
      * @param  \Droplister\XcpCore\App\Events\OrderMatchWasCreated  $event
      * @return boolean
      */

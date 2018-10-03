@@ -15,7 +15,7 @@ class CreateUploadsTable extends Migration
     {
         Schema::create('uploads', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('uploadable'); 
+            $table->morphs('uploadable');
             $table->string('new_image_url');
             $table->string('old_image_url')->nullable();
             $table->timestamp('approved_at')->nullable();

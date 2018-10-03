@@ -14,15 +14,14 @@ class QuotesTableSeeder extends Seeder
     {
         $quotes = $this->getQuotes();
 
-        foreach($quotes as $quote)
-        {
+        foreach ($quotes as $quote) {
             Quote::create($quote);
         }
     }
 
     /**
      * Get Harvests
-     * 
+     *
      * @return array
      */
     private function getQuotes()

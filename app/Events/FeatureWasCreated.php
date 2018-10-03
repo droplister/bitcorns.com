@@ -24,7 +24,7 @@ class FeatureWasCreated
 
     /**
      * Create a new event instance.
-     * 
+     *
      * @param  \App\Feature  $feature
      * @return void
      */

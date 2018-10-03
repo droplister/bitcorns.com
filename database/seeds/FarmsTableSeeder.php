@@ -29,13 +29,14 @@ class FarmsTableSeeder extends Seeder
         $farms = $this->getFarms();
         $coops = $this->getCoops();
 
-        foreach($farms as $data)
-        {
+        foreach ($farms as $data) {
             // Farm
             $farm = Farm::findBySlug($data['address']);
 
             // Edge Case
-            if(! $farm) continue;
+            if (! $farm) {
+                continue;
+            }
             
             // Coop
             $coop = $this->getCoop($data['group']);
@@ -63,17 +64,19 @@ class FarmsTableSeeder extends Seeder
 
     /**
      * Get Coop
-     * 
+     *
      * @param  array  $coop
      * @return mixed
      */
     private function getCoop($coop)
     {
-        if(! $coop) return null;
+        if (! $coop) {
+            return null;
+        }
 
         return Coop::firstOrCreate([
             'name' => $coop['name'],
-        ],[
+        ], [
             'content' => $coop['description'],
             'image_url' => $this->getImageUrl(),
         ]);
@@ -91,7 +94,7 @@ class FarmsTableSeeder extends Seeder
 
     /**
      * Update Harvests
-     * 
+     *
      * @param  \App\Farm  $farm
      * @param  array  $coops
      * @return void
@@ -100,8 +103,7 @@ class FarmsTableSeeder extends Seeder
     {
         $harvests = $this->getRewards($farm->xcp_core_address);
 
-        foreach($harvests as $harvest)
-        {
+        foreach ($harvests as $harvest) {
             $coop_id = $harvest['pivot']['group_id'] ? Coop::findBySlug($coops[$harvest['pivot']['group_id']])->id : null;
 
             DB::table('farm_harvest')
@@ -120,7 +122,9 @@ class FarmsTableSeeder extends Seeder
      */
     private function handleMapMarker($farm, $data)
     {
-        if($data['latitude'] === null) return false;
+        if ($data['latitude'] === null) {
+            return false;
+        }
 
         return MapMarker::create([
             'farm_id' => $farm->id,
@@ -139,7 +143,7 @@ class FarmsTableSeeder extends Seeder
 
     /**
      * Handle Uploads
-     * 
+     *
      * @param  \App\Farm  $farm
      * @param  array  $uploads
      * @return void
@@ -147,8 +151,7 @@ class FarmsTableSeeder extends Seeder
     private function handleUploads($farm, $uploads)
     {
         // Uploads
-        foreach($uploads as $data)
-        {
+        foreach ($uploads as $data) {
             $new_image_url = $this->downloadUrl($data['new_image_url']);
             $old_image_url = $this->getOldImage($data['old_image_url']);
 
@@ -167,7 +170,7 @@ class FarmsTableSeeder extends Seeder
 
     /**
      * Download URL
-     * 
+     *
      * @param  string  $url
      * @return string
      */
@@ -188,54 +191,57 @@ class FarmsTableSeeder extends Seeder
      */
     private function getOldImage($url)
     {
-        if(substr($url, 0, 31) === 'https://bitcorns.com/img/farms/')
-        {
+        if (substr($url, 0, 31) === 'https://bitcorns.com/img/farms/') {
             return '/images/default/' . str_replace('https://bitcorns.com/img/farms/', '', $url);
-        }
-        else
-        {
+        } else {
             return $this->downloadUrl($url);
         }
     }
 
     /**
      * Get Coops
-     * 
+     *
      * @return array
      */
     private function getCoops()
     {
         $this->curl->get('https://bitcorns.com/api/migrate/groups');
 
-        if ($this->curl->error) return []; // Some Error
+        if ($this->curl->error) {
+            return []; // Some Error
+        }
 
         return json_decode($this->curl->response, true);
     }
 
     /**
      * Get Farms
-     * 
+     *
      * @return array
      */
     private function getFarms()
     {
         $this->curl->get('https://bitcorns.com/api/migrate/farms');
 
-        if ($this->curl->error) return []; // Some Error
+        if ($this->curl->error) {
+            return []; // Some Error
+        }
 
         return json_decode($this->curl->response, true);
     }
 
     /**
      * Get Rewards
-     * 
+     *
      * @return array
      */
     private function getRewards($address)
     {
         $this->curl->get('https://bitcorns.com/api/migrate/rewards/' . $address);
 
-        if ($this->curl->error) return []; // Some Error
+        if ($this->curl->error) {
+            return []; // Some Error
+        }
 
         return json_decode($this->curl->response, true);
     }

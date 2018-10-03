@@ -16,8 +16,7 @@ trait Signable
     public function validateSignature(UpdateRequest $request)
     {
         // Validate Signature
-        if($this->guardAgainstInvalidSignature($request))
-        {
+        if ($this->guardAgainstInvalidSignature($request)) {
             return 'Invalid Signature';
         }
 
@@ -27,14 +26,13 @@ trait Signable
 
     /**
      * Guard Against Invalid Signature
-     * 
+     *
      * @param  \App\Http\Requests\Farms\UpdateRequest  $request
      * @return boolean
      */
     private function guardAgainstInvalidSignature(UpdateRequest $request)
     {
-        try
-        {
+        try {
             // Bitcoin Lib
             $messageVerification = BitcoinLib::verifyMessage(
                 $this->xcp_core_address,
@@ -43,13 +41,10 @@ trait Signable
             );
 
             // Verification
-            if(! $messageVerification)
-            {
+            if (! $messageVerification) {
                 return true; // Invalid
             }
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             return true; // Errors
         }
 

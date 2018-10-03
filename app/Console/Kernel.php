@@ -25,8 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Useful Switch
-        if(config('xcp-core.indexing'))
-        {
+        if (config('xcp-core.indexing')) {
             $schedule->command('update:index')->everyMinute();
             $schedule->command('bitcorn:battle')->hourly();
         }

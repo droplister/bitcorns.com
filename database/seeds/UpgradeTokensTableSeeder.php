@@ -27,11 +27,14 @@ class UpgradeTokensTableSeeder extends Seeder
 
         $harvest_id = 1;
 
-        foreach($tokens as $token)
-        {
+        foreach ($tokens as $token) {
             // Harvest
-            if($token['name'] === 'CORNBADGER') $harvest_id = 2;
-            if($token['name'] === 'RETROFARMER') $harvest_id = 3;
+            if ($token['name'] === 'CORNBADGER') {
+                $harvest_id = 2;
+            }
+            if ($token['name'] === 'RETROFARMER') {
+                $harvest_id = 3;
+            }
 
             // Ranking
             $harvest_ranking = Token::published()->whereType('upgrade')->where('harvest_id', '=', $harvest_id)->count() + 1;
@@ -42,7 +45,7 @@ class UpgradeTokensTableSeeder extends Seeder
 
             Token::firstOrCreate([
                 'xcp_core_asset_name' => $token['name'],
-            ],[
+            ], [
                 'harvest_id' => $harvest_id,
                 'type' => 'upgrade',
                 'name' => $token['display_name'],
@@ -60,7 +63,7 @@ class UpgradeTokensTableSeeder extends Seeder
 
     /**
      * Download URL
-     * 
+     *
      * @param  string  $url
      * @return string
      */
@@ -75,14 +78,16 @@ class UpgradeTokensTableSeeder extends Seeder
 
     /**
      * Get Tokens
-     * 
+     *
      * @return array
      */
     private function getTokens()
     {
         $this->curl->get('https://bitcorns.com/api/migrate/cards');
 
-        if ($this->curl->error) return []; // Some Error
+        if ($this->curl->error) {
+            return []; // Some Error
+        }
 
         return json_decode($this->curl->response, true);
     }

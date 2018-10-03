@@ -62,7 +62,7 @@ class HandleHarvest implements ShouldQueue
 
     /**
      * Get Credits
-     * 
+     *
      * @return \Droplister\XcpCore\App\Credit
      */
     private function getCredits()
@@ -84,8 +84,7 @@ class HandleHarvest implements ShouldQueue
     {
         $credits = $this->getCredits();
 
-        foreach($credits as $credit)
-        {
+        foreach ($credits as $credit) {
             $this->createFarmHarvest($harvest, $credit);
         }
     }
@@ -139,7 +138,7 @@ class HandleHarvest implements ShouldQueue
 
     /**
      * Sync Farm Harvest
-     * 
+     *
      * @param  \App\Farm  $farm
      * @param  \App\Harvest  $harvest
      * @param  integer  $quantity
@@ -160,12 +159,12 @@ class HandleHarvest implements ShouldQueue
                 'quantity' => $quantity,
                 'multiplier' => $multiplier,
             ]
-        ]);    
+        ]);
     }
 
     /**
      * Update Total Harvested
-     * 
+     *
      * @return void
      */
     private function updateTotalHarvested()
@@ -174,8 +173,7 @@ class HandleHarvest implements ShouldQueue
         $coops = Coop::get();
 
         // Calc Totals
-        foreach($coops as $coop)
-        {
+        foreach ($coops as $coop) {
             // All Time (with multiplier taken into consideration)
             $total_harvested = $coop->harvests->sum(function ($harvest) {
                 return $harvest->pivot->quantity * $harvest->pivot->multiplier;
@@ -199,22 +197,19 @@ class HandleHarvest implements ShouldQueue
         $multiplier = 1;
 
         // Harvest 2-16
-        if($harvest->id > 1 && $farm->isDAAB())
-        {
+        if ($harvest->id > 1 && $farm->isDAAB()) {
             // Dry As A Bone
             $multiplier = $multiplier * 0;
         }
 
         // Harvest 3-16
-        if($harvest->id > 2 && $farm->coop && $farm->coop->isAC())
-        {
+        if ($harvest->id > 2 && $farm->coop && $farm->coop->isAC()) {
             // Alpha Collectors
             $multiplier = $multiplier * 1.5;
         }
 
         // Harvest 4-16
-        if($harvest->id > 3 && $farm->isCP())
-        {
+        if ($harvest->id > 3 && $farm->isCP()) {
             // Corn Prayer
             $multiplier = $multiplier * 2;
         }

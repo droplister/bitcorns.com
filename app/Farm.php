@@ -39,7 +39,7 @@ class Farm extends Model
      */
     protected $fillable = [
         'xcp_core_address',
-        'xcp_core_credit_id', 
+        'xcp_core_credit_id',
         'coop_id',
         'name',
         'slug',
@@ -77,7 +77,9 @@ class Farm extends Model
     public function getMapRadiusAttribute()
     {
         // Zero is Zero
-        if(! $this->access === 0) return 0;
+        if (! $this->access === 0) {
+            return 0;
+        }
 
         // 0.00003810 CROPS = 1 Arce
         $acres = $this->accessBalance()->quantity_normalized / 0.00003810;
@@ -94,7 +96,7 @@ class Farm extends Model
 
     /**
      * Address
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function address()
@@ -104,7 +106,7 @@ class Farm extends Model
 
     /**
      * Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function balances()
@@ -114,7 +116,7 @@ class Farm extends Model
 
     /**
      * Token Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tokenBalances()
@@ -124,7 +126,7 @@ class Farm extends Model
 
     /**
      * Upgrade Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function upgradeBalances()
@@ -134,7 +136,7 @@ class Farm extends Model
 
     /**
      * Coop
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function coop()
@@ -144,7 +146,7 @@ class Farm extends Model
 
     /**
      * First CROPS (Credit Event)
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function firstCrops()
@@ -162,7 +164,7 @@ class Farm extends Model
 
     /**
      * Harvests
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function harvests()
@@ -172,7 +174,7 @@ class Farm extends Model
 
     /**
      * Map Markers
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function mapMarkers()
@@ -182,7 +184,7 @@ class Farm extends Model
 
     /**
      * Map Marker
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function mapMarker()
@@ -192,7 +194,7 @@ class Farm extends Model
 
     /**
      * Transactions
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function transactions()
@@ -296,10 +298,11 @@ class Farm extends Model
         $token_balances = $token->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
 
         // Check Whether DAAB
-        foreach($token_balances as $token_balance)
-        {
+        foreach ($token_balances as $token_balance) {
             // Forever Moist!
-            if($token_balance->farm->hasBalance(config('bitcorn.daab_save_token'))) continue;
+            if ($token_balance->farm->hasBalance(config('bitcorn.daab_save_token'))) {
+                continue;
+            }
 
             // Dry as a Bone!
             return $token_balance->farm->id === $this->id;
@@ -311,7 +314,7 @@ class Farm extends Model
 
     /**
      * Get Battle Stats
-     * 
+     *
      * @return array
      */
     public function getBattleStats()

@@ -25,34 +25,28 @@ class TokenTradingAchievements
     public function handle(OrderMatchWasCreated $event)
     {
         // Tokens Only
-        if($this->isGameToken($event))
-        {
+        if ($this->isGameToken($event)) {
             // Get Tokens
             $tokens = $this->getTokens($event);
 
             // Self-Trade
-            if($event->order_match->tx0_address === $event->order_match->tx1_address)
-            {
-                foreach($tokens as $token)
-                {
+            if ($event->order_match->tx0_address === $event->order_match->tx1_address) {
+                foreach ($tokens as $token) {
                     // Achievement!
                     $token->unlockIfLocked(new InsiderTrading());
                 }
             }
 
             // Card 4 Card
-            if(count($tokens) === 2 && $tokens[0]->type === 'upgrade' && $tokens[1]->type === 'upgrade')
-            {
-                foreach($tokens as $token)
-                {
+            if (count($tokens) === 2 && $tokens[0]->type === 'upgrade' && $tokens[1]->type === 'upgrade') {
+                foreach ($tokens as $token) {
                     // Achievement!
                     $token->unlockIfLocked(new CardForACard());
                 }
             }
 
             // Progress (Trade Count)
-            foreach($tokens as $token)
-            {
+            foreach ($tokens as $token) {
                 // Trade Count
                 $count = OrderMatch::where('backward_asset', '=', $token->xcp_core_asset_name)
                     ->orWhere('forward_asset', '=', $token->xcp_core_asset_name)
@@ -96,13 +90,10 @@ class TokenTradingAchievements
         $token_two = Token::where('xcp_core_asset_name', '=', $event->order_match->forward_asset)->first();
 
         // Tokens []
-        if($token_one && $token_two)
-        {
+        if ($token_one && $token_two) {
             // Both
             $tokens = [$token_one, $token_two];
-        }
-        else
-        {
+        } else {
             // One
             $tokens = $token_one ? [$token_one] : [$token_two];
         }
