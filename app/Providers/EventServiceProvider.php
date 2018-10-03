@@ -16,55 +16,55 @@ class EventServiceProvider extends ServiceProvider
         // Game Play
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
             // Game Play
-            'App\Listeners\CreateFarmsFromCredits',
+            \App\Listeners\CreateFarmsFromCredits::class,
             // Achievements
-            'App\Listeners\FarmCreditAchievements',
+            \App\Listeners\FarmCreditAchievements::class,
         ],
         'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
-            'App\Listeners\AccessDependentOnCropsBalance',
+            \App\Listeners\AccessDependentOnCropsBalance::class,
         ],
         'Droplister\XcpCore\App\Events\DividendWasCreated' => [
-            'App\Listeners\UpdateHarvestsOnDividend',
+            \App\Listeners\UpdateHarvestsOnDividend::class,
         ],
         // Achievements
         'Gstt\Achievements\Event\Unlocked' => [
-            'App\Listeners\RelativeAchievementTimestamps',
-            'App\Listeners\AchievementAchievements',
+            \App\Listeners\RelativeAchievementTimestamps::class,
+            \App\Listeners\AchievementAchievements::class,
         ],
-        'App\Events\FarmWasCreated' => [
-            'App\Listeners\FarmCreationAchievements',
+        \App\Events\FarmWasCreated::class => [
+            \App\Listeners\FarmCreationAchievements::class,
         ],
-        'App\Events\FeatureWasCreated' => [
-            'App\Listeners\FeatureAchievements',
+        \App\Events\FeatureWasCreated::class => [
+            \App\Listeners\FeatureAchievements::class,
         ],
-        'App\Events\MapMarkerWasCreated' => [
-            'App\Listeners\MapMarkerAchievements',
+        \App\Events\MapMarkerWasCreated::class => [
+            \App\Listeners\MapMarkerAchievements::class,
         ],
-        'App\Events\UploadWasCreated' => [
-            'App\Listeners\UploadAchievements',
+        \App\Events\UploadWasCreated::class => [
+            \App\Listeners\UploadAchievements::class,
         ],
         'Droplister\XcpCore\App\Events\BalanceWasCreated' => [
-            'App\Listeners\TokenBalanceAchievements',
+            \App\Listeners\TokenBalanceAchievements::class,
         ],
         'Droplister\XcpCore\App\Events\OrderMatchWasCreated' => [
-            'App\Listeners\FarmTradingAchievements',
-            'App\Listeners\TokenTradingAchievements',
+            \App\Listeners\FarmTradingAchievements::class,
+            \App\Listeners\TokenTradingAchievements::class,
         ],
         // Bitcorn Cards
-        'App\Events\TokenWasCreated' => [
-            'App\Listeners\AnnounceNewCardSubmissions',
+        \App\Events\TokenWasCreated::class => [
+            \App\Listeners\AnnounceNewCardSubmissions::class,
         ],
         'Droplister\XcpCore\App\Events\SendWasCreated' => [
             // Bitcorn Cards
-            'App\Listeners\MonitorMuseumDeposits',
-            'App\Listeners\MonitorSubmissionFees',
+            \App\Listeners\MonitorMuseumDeposits::class,
+            \App\Listeners\MonitorSubmissionFees::class,
             // Achievements
-            'App\Listeners\FarmSendAchievements',
-            'App\Listeners\TokenSendAchievements',
+            \App\Listeners\FarmSendAchievements::class,
+            \App\Listeners\TokenSendAchievements::class,
         ],
         // Home Features
         'Droplister\XcpCore\App\Events\BlockWasCreated' => [
-            'App\Listeners\FeatureListener',
+            \App\Listeners\FeatureListener::class,
         ],
     ];
 
