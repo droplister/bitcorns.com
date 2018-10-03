@@ -23,11 +23,11 @@
                 <p class="cart-text">
                     <a href="{{ route('pages.rules') }}" class="btn btn-sm btn-outline-primary">
                         <i class="fa fa-list"></i>
-                        Full Rules
+                        Game Rules
                     </a>
-                    <a href="{{ config('bitcorn.telegram') }}" class="btn btn-sm btn-outline-primary" target="_blank">
-                        <i class="fa fa-telegram"></i>
-                        Telegram
+                    <a href="{{ config('bitcorn.wiki') }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                        <i class="fa fa-github"></i>
+                        Game Wiki
                     </a>
                 </p>
             </div>
