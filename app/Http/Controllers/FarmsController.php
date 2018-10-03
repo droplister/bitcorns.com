@@ -73,11 +73,14 @@ class FarmsController extends Controller
                 return $achievement->points / $achievement->details->points;
             });
 
-        // Bitcorn Battle API
+        // Bitcorn Battle
         $battle = $farm->getBattleStats();
 
+        // Google Map Type
+        $map_type = $farm->hasBalance('HAYABUSATWO') ? 'satellite' : 'terrain';
+
         // Return View
-        return view('farms.show', compact('farm', 'battle', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));
+        return view('farms.show', compact('farm', 'battle', 'map_type', 'tokens', 'upgrades', 'progress', 'unlocked_achievements', 'locked_achievements'));
     }
 
     /**

@@ -23,6 +23,11 @@
   letter-spacing: 0.5em !important; /* make sure the letters don't overlap */
 }
 
+.glasses li:after {
+  right: -36px !important;
+  font-size: 9em !important;
+}
+
 .portrait {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
