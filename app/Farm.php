@@ -3,6 +3,7 @@
 namespace App;
 
 use Cache;
+use Storage;
 use App\Coop;
 use App\Token;
 use App\Upload;

@@ -1,4 +1,4 @@
-<div class="row mb-5">
+<div class="row">
     @foreach($farms as $farm)
         <div class="col-12 col-sm-6 col-md-4 mb-5">
             @include('farms.partials.index.card')
