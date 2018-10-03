@@ -12,13 +12,19 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ config('bitcorn.access_token') }}: {{ $farm->accessBalance()->quantity_normalized }}
+            @if($sort === 'cards')
+                Cards: {{ $farm->upgrade_balances_count }}
+            @elseif($sort === 'crops')
+                {{ config('bitcorn.access_token') }}: {{ $farm->accessBalance()->quantity_normalized }}
+            @elseif($sort === 'bitcorns')
+                {{ config('bitcorn.reward_token') }}: {{ $farm->rewardBalance()->quantity_normalized }}
+            @endif
         </p>
     </div>
     <div class="card-footer">
         <div class="row text-muted">
             <div class="col">
-                {{ $farm->firstCrops ? $farm->firstCrops->confirmed_at->format('M d, Y') : $farm->created_at->format('M d, Y') }}
+                {{ $farm->firstCrops->confirmed_at->format('M d, Y') }}
             </div>
             <div class="col text-right">
                 Harvests: {{ $farm->harvests_count }}
