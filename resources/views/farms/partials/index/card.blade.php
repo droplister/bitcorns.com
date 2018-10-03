@@ -13,11 +13,11 @@
         </h4>
         <p class="card-text">
             @if($sort === 'cards')
-                Cards: {{ $farm->upgrade_balances_count }}
+                CARDS: {{ $farm->upgrade_balances_count }}
             @elseif($sort === 'crops')
                 {{ config('bitcorn.access_token') }}: {{ $farm->accessBalance()->quantity_normalized }}
-            @elseif($sort === 'bitcorns')
-                {{ config('bitcorn.reward_token') }}: {{ $farm->rewardBalance()->quantity_normalized }}
+            @elseif($sort === 'bitcorn')
+                {{ config('bitcorn.reward_token') }}: {{ number_format($farm->rewardBalance()->quantity_normalized) }}
             @endif
         </p>
     </div>
