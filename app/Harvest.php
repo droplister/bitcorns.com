@@ -33,7 +33,7 @@ class Harvest extends Model
 
     /**
      * Coops
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function coops()
@@ -43,7 +43,7 @@ class Harvest extends Model
 
     /**
      * Farms
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function farms()
@@ -53,7 +53,7 @@ class Harvest extends Model
 
     /**
      * Dividend
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function dividend()
@@ -63,7 +63,7 @@ class Harvest extends Model
 
     /**
      * Transaction
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function transaction()
@@ -73,7 +73,7 @@ class Harvest extends Model
 
     /**
      * Calculator
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function calculateBitcorn($crops)

@@ -34,8 +34,7 @@ class CalculatorController extends Controller
             $data = [];
 
             // Calculate Bitcorn
-            foreach($harvests as $harvest)
-            {
+            foreach ($harvests as $harvest) {
                 $data[] = [
                     $harvest->scheduled_at->timestamp * 1000,
                     $harvest->calculateBitcorn($request->crops),

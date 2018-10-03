@@ -31,8 +31,7 @@ class FarmSendAchievements
     public function handle(SendWasCreated $event)
     {
         // Farms Only / Tokens Only
-        if($this->isFarmAddress($event) && $this->isGameToken($event))
-        {
+        if ($this->isFarmAddress($event) && $this->isGameToken($event)) {
             // Source
             $source = Farm::where('xcp_core_address', '=', $event->send->source)->first();
 
@@ -40,26 +39,22 @@ class FarmSendAchievements
             $destination = Farm::where('xcp_core_address', '=', $event->send->destination)->first();
 
             // Highest Bid
-            if($this->isAuctionLot($event) && $destination)
-            {
+            if ($this->isAuctionLot($event) && $destination) {
                 $destination->unlockIfLocked(new HighestBid());
             }
 
             // High Class
-            if($this->isBuyingCrops($event) && $destination)
-            {
+            if ($this->isBuyingCrops($event) && $destination) {
                 $destination->unlockIfLocked(new HighClass());
             }
 
             // Democracy In Action
-            if($this->isElectionVote($event) && $source)
-            {
+            if ($this->isElectionVote($event) && $source) {
                 $source->unlockIfLocked(new DemocracyInAction());
             }
 
             // Big Send Achievements
-            if($this->isBitcornSend($event))
-            {
+            if ($this->isBitcornSend($event)) {
                 // Total Bitcorn Sent
                 $total_sent = Debit::where('action', '=', 'send')
                     ->where('address', '=', $event->send->source)
@@ -73,8 +68,7 @@ class FarmSendAchievements
                     ->sum('quantity');
 
                 // Farms Only
-                if($source)
-                {
+                if ($source) {
                     // Progress (Total Sent)
                     $source->setProgress(new HeyBigSender(), $total_sent); // 10,000
                     $source->setProgress(new DegenFarming(), $total_sent); // 100,000
@@ -82,8 +76,7 @@ class FarmSendAchievements
                 }
 
                 // Farms Only
-                if($destination)
-                {
+                if ($destination) {
                     // Progress (Total Received)
                     $destination->setProgress(new SavingsAndLoan(), $total_received); // 10,000
                     $destination->setProgress(new FarmerWarbucks(), $total_received); // 100,000
@@ -95,7 +88,7 @@ class FarmSendAchievements
 
     /**
      * Is Auction Lot
-     * 
+     *
      * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
      * @return boolean
      */
@@ -109,7 +102,7 @@ class FarmSendAchievements
 
     /**
      * Is Bitcorn Send
-     * 
+     *
      * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
      * @return boolean
      */
@@ -120,7 +113,7 @@ class FarmSendAchievements
 
     /**
      * Is Buying CROPS
-     * 
+     *
      * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
      * @return boolean
      */
@@ -135,7 +128,7 @@ class FarmSendAchievements
 
     /**
      * Is Election Vote
-     * 
+     *
      * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
      * @return boolean
      */

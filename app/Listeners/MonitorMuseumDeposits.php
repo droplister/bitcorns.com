@@ -19,11 +19,9 @@ class MonitorMuseumDeposits
     public function handle(SendWasCreated $event)
     {
         // Museum Only
-        if($this->isMuseumDonation($event))
-        {
+        if ($this->isMuseumDonation($event)) {
             // Game Tokens Only
-            if($token = Token::where('xcp_core_asset_name', '=', $event->send->asset)->first())
-            {
+            if ($token = Token::where('xcp_core_asset_name', '=', $event->send->asset)->first()) {
                 // Record Time
                 $token->touchTime('museumed_at', true, $event->send->confirmed_at);
 

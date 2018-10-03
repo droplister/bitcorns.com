@@ -24,7 +24,7 @@ class UploadWasCreated
 
     /**
      * Create a new event instance.
-     * 
+     *
      * @param  \App\Upload  $upload
      * @return void
      */

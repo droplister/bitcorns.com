@@ -40,7 +40,7 @@ class Coop extends Model
 
     /**
      * Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function balances()
@@ -50,7 +50,7 @@ class Coop extends Model
 
     /**
      * Token Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tokenBalances()
@@ -60,7 +60,7 @@ class Coop extends Model
 
     /**
      * Upgrade Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function upgradeBalances()
@@ -70,7 +70,7 @@ class Coop extends Model
 
     /**
      * Farms
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function farms()
@@ -88,7 +88,7 @@ class Coop extends Model
 
     /**
      * Harvests
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function harvests()
@@ -98,7 +98,7 @@ class Coop extends Model
 
     /**
      * Owner
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function owner()
@@ -145,10 +145,12 @@ class Coop extends Model
      * @param boolean  $multiply
      * @var string
      */
-    public function harvestTotal($harvest, $multiply=false)
+    public function harvestTotal($harvest, $multiply = false)
     {
         return $this->harvests()->where('harvest_id', '=', $harvest->id)->get()->sum(function ($harvest) use ($multiply) {
-            if($multiply) return $harvest->pivot->quantity * $harvest->pivot->multiplier;
+            if ($multiply) {
+                return $harvest->pivot->quantity * $harvest->pivot->multiplier;
+            }
 
             return $harvest->pivot->quantity;
         });

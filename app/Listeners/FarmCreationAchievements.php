@@ -17,8 +17,7 @@ class FarmCreationAchievements
      */
     public function handle(FarmWasCreated $event)
     {
-        if($event->farm->firstCrops->block_index < config('bitcorn.ico_block_index'))
-        {
+        if ($event->farm->firstCrops->block_index < config('bitcorn.ico_block_index')) {
             $event->farm->unlockIfLocked(new EarlyAcropter());
         }
     }

@@ -21,8 +21,7 @@ class FeatureAchievements
     public function handle(FeatureWasCreated $event)
     {
         // Publicist
-        if($farm = Farm::findBySlug($event->feature->address))
-        {
+        if ($farm = Farm::findBySlug($event->feature->address)) {
             $farm->unlockIfLocked(new Publicist());
         }
 

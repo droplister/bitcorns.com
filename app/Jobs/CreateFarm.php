@@ -45,14 +45,12 @@ class CreateFarm implements ShouldQueue
         $farm = $this->createFarm();
 
         // New Farms
-        if($farm->wasRecentlyCreated)
-        {
+        if ($farm->wasRecentlyCreated) {
             // Achievement!
             $farm->unlockIfLocked(new SaltOfTheEarth());
 
             // Farm Ordinal
-            if($farm->name !== 'Genesis Farm')
-            {
+            if ($farm->name !== 'Genesis Farm') {
                 $farm->update(['name' => substr($farm->name, 0, -4) . $farm->id]);
             }
         }
@@ -60,14 +58,14 @@ class CreateFarm implements ShouldQueue
 
     /**
      * Create Farm
-     * 
+     *
      * @return \App\Farm
      */
     private function createFarm()
     {
         return Farm::firstOrCreate([
             'xcp_core_address' => $this->credit->address,
-        ],[
+        ], [
             'xcp_core_credit_id' => $this->credit->id,
             'name' => $this->getName(),
             'image_url' => $this->getImageUrl(),
@@ -82,7 +80,9 @@ class CreateFarm implements ShouldQueue
      */
     private function getName()
     {
-        if($this->credit->action === 'issuance') return 'Genesis Farm';
+        if ($this->credit->action === 'issuance') {
+            return 'Genesis Farm';
+        }
 
         return 'Bitcorn Farm #' . $this->getSalt();
     }

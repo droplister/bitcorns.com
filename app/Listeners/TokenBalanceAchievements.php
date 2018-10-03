@@ -22,8 +22,7 @@ class TokenBalanceAchievements
     public function handle(BalanceWasCreated $event)
     {
         // Tokens Only
-        if($this->isGameToken($event))
-        {
+        if ($this->isGameToken($event)) {
             // The Token
             $token = Token::where('xcp_core_asset_name', '=', $event->balance->asset)->first();
 

@@ -43,7 +43,7 @@ class MapMarker extends Model
 
     /**
      * Farm
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function farm()

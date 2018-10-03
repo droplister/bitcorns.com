@@ -36,8 +36,7 @@ class TokensController extends Controller
     public function show(Request $request, Token $token)
     {
         // Card Redirect Guard
-        if($token->type === 'upgrade')
-        {
+        if ($token->type === 'upgrade') {
             return redirect(route('cards.show', ['card' => $token->slug]));
         }
 

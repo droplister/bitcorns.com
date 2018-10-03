@@ -15,8 +15,7 @@ class TokensTableSeeder extends Seeder
     {
         $tokens = $this->getTokens();
 
-        foreach($tokens as $token)
-        {
+        foreach ($tokens as $token) {
             $token['approved_at'] = Carbon::now();
             $token['published_at'] = Carbon::now();
 
@@ -26,7 +25,7 @@ class TokensTableSeeder extends Seeder
 
     /**
      * Get Tokens
-     * 
+     *
      * @return array
      */
     private function getTokens()

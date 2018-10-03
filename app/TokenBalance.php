@@ -21,7 +21,7 @@ class TokenBalance extends Balance
 
     /**
      * Farm
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function farm()
@@ -31,7 +31,7 @@ class TokenBalance extends Balance
 
     /**
      * Token
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function token()

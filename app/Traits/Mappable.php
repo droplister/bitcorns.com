@@ -15,8 +15,7 @@ trait Mappable
      */
     static function validateCoordinates(UpdateRequest $request, Farm $farm)
     {
-        if($this->isCoordinateRequest($request))
-        {
+        if ($this->isCoordinateRequest($request)) {
             // Configurable
             $unit = 6378100; // meters
 
@@ -32,8 +31,7 @@ trait Mappable
                 ->first();
 
             // Possible Conflict Found
-            if($nearby)
-            {
+            if ($nearby) {
                 // Distance Between
                 $between = distance($request->latitude, $request->longitude, $nearby->latitude, $nearby->longitude); // meters
 
@@ -41,8 +39,7 @@ trait Mappable
                 $required = $farm->map_radius + $nearby->farm->map_radius; // meters
 
                 // Not Enough Space
-                if($between < $required)
-                {
+                if ($between < $required) {
                     return 'No Tresspassing (' . $nearby->farm->name . ')';
                 }
             }

@@ -24,7 +24,7 @@ class TokenWasCreated
 
     /**
      * Create a new event instance.
-     * 
+     *
      * @param  \App\Token  $token
      * @return void
      */

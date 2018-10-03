@@ -31,9 +31,12 @@ class User extends Authenticatable
     /**
      * Enforce User Limit
      */
-    public static function boot() {
+    public static function boot()
+    {
         static::creating(function () {
-            if(static::count() > 0) throw new Exception('User Limit Exceeded');
+            if (static::count() > 0) {
+                throw new Exception('User Limit Exceeded');
+            }
         });
         parent::boot();
     }

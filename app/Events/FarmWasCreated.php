@@ -24,7 +24,7 @@ class FarmWasCreated
 
     /**
      * Create a new event instance.
-     * 
+     *
      * @param  \App\Farm  $farm
      * @return void
      */

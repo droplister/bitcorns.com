@@ -28,14 +28,12 @@ class BitcornBattleAchievements implements ShouldQueue
         $farms = Farm::get();
 
         // Check 'Em All
-        foreach($farms as $farm)
-        {
+        foreach ($farms as $farm) {
             // Battle API
             $data = $farm->getBattleStats();
 
             // Simple Guard
-            if(isset($data['wins']))
-            {
+            if (isset($data['wins'])) {
                 // Win Count
                 $won = (int) $data['wins'];
 

@@ -18,8 +18,7 @@ class CreateFarmsFromCredits
     public function handle(CreditWasCreated $event)
     {
         // Farms Only
-        if($this->isAccessToken($event))
-        {
+        if ($this->isAccessToken($event)) {
             CreateFarm::dispatch($event->credit);
         }
     }
