@@ -43,11 +43,11 @@ class TokensController extends Controller
 
         // Convenience
         $asset = $token->asset;
-        $last_match = $token->lastMatch();
+        $last_match = $token->lastMatch('XCP');
 
         // Get Farm Balances
         $balances = Cache::remember('token_balances_' . $token->slug, 60, function () use ($token) {
-            return $token->balances()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc')->paginate(100);
+            return $token->balances()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc')->get();
         });
 
         // Top Coop

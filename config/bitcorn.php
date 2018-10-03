@@ -128,6 +128,11 @@ return [
     'twitter' => env('BITCORN_TWITTER', 'https://twitter.com/bitcorncrops'),
 
     /**
+     * GitHub Wiki
+     */
+    'wiki' => env('BITCORN_WIKI', 'https://github.com/droplister/bitcorns.com/wiki'),
+
+    /**
      * Wufoo.com Form
      */
     'wufoo' => env('BITCORN_WUFOO', 'https://bitcorns.wufoo.com/forms/crops-order-form/'),
