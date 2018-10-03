@@ -58,6 +58,7 @@ class Token extends Model
         'image_url',
         'content',
         'meta_data',
+        'meta_data->orientation',
         'meta_data->hd_image_url',
         'meta_data->harvest_ranking',
         'meta_data->overall_ranking',

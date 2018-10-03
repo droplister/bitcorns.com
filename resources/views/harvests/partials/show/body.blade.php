@@ -57,8 +57,12 @@
             <tbody>
                 @foreach($farms as $farm)
                     <tr>
-                        <th>{{ $loop->iteration }}.</th>
-                        <td><a href="{{ route('farms.show', ['farm' => $farm->slug]) }}">{{ $farm->display_name }}</a></td>
+                        <th>
+                            {{ $loop->iteration }}.
+                        </th>
+                        <td>
+                            <a href="{{ route('farms.show', ['farm' => $farm->slug]) }}">{{ $farm->display_name }}</a>
+                        </td>
                         <td>
                             @if($farm->harvestCoop($harvest))
                                 <a href="{{ route('coops.show', ['coop' => $farm->harvestCoop($harvest)->slug]) }}">{{ $farm->harvestCoop($harvest)->name }}</a>
@@ -68,7 +72,7 @@
                             {{ number_format($farm->pivot->quantity * $farm->pivot->multiplier) }}
                             @if($farm->pivot->multiplier !== '1.00')
                                 <span class="float-right {{ $farm->pivot->multiplier === '0.00' ? 'text-danger' : 'text-success' }}">
-                                    {{ number_format(abs($farm->pivot->multiplier * 100 - 100)) }}%
+                                    {{ $farm->pivot->multiplier === '0.00' ? '-' : '+' }}{{ number_format(abs($farm->pivot->multiplier * 100 - 100)) }}%
                                 </span>
                             @endif
                         </td>
