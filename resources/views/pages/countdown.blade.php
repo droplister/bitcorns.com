@@ -3,7 +3,7 @@
 @section('title', 'Countdown')
 
 @section('content')
-<div class="container{{ $request->has('vision') ? ' glasses' : '' }}">
+<div class="{{ $request->has('vision') ? 'glasses' : 'container' }}">
     @if(! $request->has('vision'))
         <a href="{{ route('pages.countdown', ['vision' => '2020']) }}" class="d-none d-md-inline">
             <img src="{{ asset('images/3d-glasses.png') }}" alt="Dan's Vision" width="200" style="cursor: pointer" class="float-right mt-3" />
