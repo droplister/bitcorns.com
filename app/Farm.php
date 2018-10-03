@@ -5,6 +5,7 @@ namespace App;
 use Cache;
 use App\Coop;
 use App\Token;
+use App\Upload;
 use App\Harvest;
 use App\Traits\Linkable;
 use App\Traits\Signable;
@@ -15,6 +16,7 @@ use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
 use Droplister\XcpCore\App\Transaction;
+use App\Http\Requests\Farms\UpdateRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -323,6 +325,50 @@ class Farm extends Model
             $data = file_get_contents('https://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
             return json_decode($data, true);
         });
+    }
+
+    /**
+     * Update Farm
+     *
+     * @param  \App\Http\Requests\Farms\UpdateRequest  $request
+     */
+    public function updateFarm(UpdateRequest $request)
+    {
+        // Farm Image
+        if ($request->has('image')) {
+            // Save Image
+            $this->storeImage($request->image);
+        }
+
+        /// Update Farm
+        return $this->update($request->except('image'));
+    }
+
+    /**
+     * Store Image
+     *
+     * @param  string  $file
+     * @return string
+     */
+    public function storeImage($file)
+    {
+        // Put File
+        $image_path = Storage::putFile('public/farms', $file);
+
+        // Relative
+        $image_url = Storage::url($image_path);
+
+        // New Upload
+        $upload = new Upload([
+            'new_image_url' => $image_url,
+            'old_image_url' => $this->image_url,
+        ]);
+
+        // Save Upload
+        $this->uploads()->save($upload);
+
+        // Save Image
+        $this->update(['image_url' => $image_url]);
     }
 
     /**

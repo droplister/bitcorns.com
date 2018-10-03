@@ -14,7 +14,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $farm = Farm::find($this->route('farm'));
+        $farm = Farm::findBySlug($this->route('farm'));
 
         return $farm && $farm->access === 1;
     }
@@ -27,12 +27,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['sometimes', 'min:5', 'max:30'],
-            'description' => ['sometimes', 'min:10', 'max:255'],
-            'latitude' => ['sometimes', 'nullable', 'required_with:latitude', 'numeric', 'min:-90', 'max:90'],
-            'lontitude' => ['sometimes', 'nullable', 'required_with:longitude', 'numeric', 'min:-180', 'max:180'],
             'message' => ['required'],
             'signature' => ['required'],
+            'name' => ['sometimes', 'min:5', 'max:30'],
+            'content' => ['sometimes', 'min:10', 'max:255'],
+            'image' => ['sometimes', 'mimetypes:image/jpeg', 'mimes:jpeg,jpg', 'dimensions:width=1600,height=900', 'max:5000'],
         ];
     }
 }

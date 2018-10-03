@@ -297,7 +297,7 @@ class Token extends Model
      * @param  boolean  $hd
      * @return string
      */
-    private function storeImage($file, $hd = false)
+    public function storeImage($file, $hd = false)
     {
         // Get Key
         $key = $hd ? 'meta_data->hd_image_url' : 'image_url';
