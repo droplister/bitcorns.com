@@ -1,4 +1,4 @@
-<div class="card mb-5">
+<div class="card mb-4">
     <div class="card-header">
         Description
     </div>
@@ -8,7 +8,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6">
-        <div class="card mb-5">
+        <div class="card mb-4">
             <div class="card-header">
                 Last Price
             </div>
@@ -29,12 +29,15 @@
     </div>
 </div>
 @if($token->type !== 'trophy')
+    <h2 class="display-4 mb-5">
+        Noteworthy
+    </h2>
     <div class="row">
-        <div class="col-12 col-sm-6 mb-5">
-            @include('tokens.partials.show.coop', ['coop' => $top_coop])
-        </div>
-        <div class="col-12 col-sm-6 mb-5">
+        <div class="col-12 col-sm-6 mb-4">
             @include('tokens.partials.show.farm', ['farm' => $top_farm])
+        </div>
+        <div class="col-12 col-sm-6 mb-4">
+            @include('tokens.partials.show.coop', ['coop' => $top_coop])
         </div>
     </div>
 @endif

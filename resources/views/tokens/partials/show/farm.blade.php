@@ -6,6 +6,9 @@
         <img src="{{ $farm->display_image_url }}" alt="{{ $farm->name }}" class="w-100 border-bottom">
     </a>
     <div class="card-body">
+        <a href="{{ route('farms.show', ['farm' => $farm->slug]) }}" class="btn btn-outline-primary pull-right">
+            <i class="fa fa-map-marker"></i>
+        </a>
         <h4 class="card-title">
             <a href="{{ route('farms.show', ['farm' => $farm->slug]) }}">
                 {{ $farm->name }}
