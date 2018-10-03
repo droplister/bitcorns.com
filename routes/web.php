@@ -21,6 +21,7 @@ Route::resource('/tokens', 'TokensController');
 Route::get('/api', 'PagesController@api')->name('pages.api');
 Route::get('/buy', 'PagesController@buy')->name('pages.buy');
 Route::get('/calculator', 'PagesController@calculator')->name('pages.calculator');
+Route::get('/countdown', 'PagesController@countdown')->name('pages.countdown');
 Route::get('/forecast', 'PagesController@forecast')->name('pages.forecast');
 Route::get('/privacy', 'PagesController@privacy')->name('pages.privacy');
 Route::get('/rules', 'PagesController@rules')->name('pages.rules');

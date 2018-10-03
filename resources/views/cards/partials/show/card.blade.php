@@ -1,5 +1,5 @@
 <div class="row mt-5">
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 m5-4">
         @if(isset($card->meta_data['orientation']) && $card->meta_data['orientation'] === 'portrait')
             @include('cards.partials.show.modal')
             <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px; cursor: pointer;" role="button" data-toggle="modal" data-target="#imageModal" />
@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-8">
         @include('cards.partials.show.head')
-        <div class="card my-4">
+        <div class="card my-5">
             <div class="card-header">
                 Harvest #{{ $card->harvest_id }} / Card #{{ $card->meta_data['overall_ranking'] }}
             </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <div class="card mb-4">
+                <div class="card mb-5">
                     <div class="card-header">
                         Last Price
                     </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card mb-4">
+                <div class="card mb-5">
                     <div class="card-header">
                         Supply
                     </div>

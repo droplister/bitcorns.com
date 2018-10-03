@@ -28,7 +28,7 @@
         </div>
     </div>
 </div>
-@if($token->type === 'trophy')
+@if($token->type !== 'trophy')
     <div class="row">
         <div class="col-12 col-sm-6">
             @include('tokens.partials.show.coop', ['coop' => $top_coop])

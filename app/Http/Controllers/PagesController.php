@@ -55,6 +55,21 @@ class PagesController extends Controller
     }
 
     /**
+     * Countdown
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function countdown(Request $request)
+    {
+        // Upcoming Harvest
+        $harvest = Harvest::upcoming()->first();
+
+        // Countdown View
+        return view('pages.countdown', compact('harvest', 'request'));
+    }
+
+    /**
      * Forecast
      *
      * @param  \Illuminate\Http\Request  $request

@@ -1,5 +1,5 @@
 @if($balances->count() > 0)
-<div class="card mb-4">
+<div class="card mb-5">
     <div class="card-header">
         Bitcorn Farms
         <span class="badge badge-dark">
@@ -43,10 +43,10 @@
 @endif
 @if($top_coop && $top_farm)
 <div class="row">
-    <div class="col-12 col-sm-6">
+    <div class="col-12 col-sm-6 mb-5">
         @include('cards.partials.show.coop', ['coop' => $top_coop])
     </div>
-    <div class="col-12 col-sm-6">
+    <div class="col-12 col-sm-6 mb-5">
         @include('cards.partials.show.farm', ['farm' => $top_farm])
     </div>
 </div>
