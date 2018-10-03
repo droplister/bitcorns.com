@@ -1,6 +1,10 @@
-<a href="{{ route('cards.show', ['card' => $card->slug]) }}">
-    <img src="{{ $card->image_url }}" width="100%" alt="{{ $card->name }}" class="mb-3" />
-</a>
+@if($card->name === 'CORNFETTI' && $balance->quantity_normalized >= 600)
+    <cornfetti></cornfetti>
+@else
+    <a href="{{ route('cards.show', ['card' => $card->slug]) }}">
+        <img src="{{ $card->image_url }}" width="100%" alt="{{ $card->name }}" class="mb-3" />
+    </a>
+@endif
 <h5 class="card-title d-none d-md-block">
     <a href="{{ route('cards.show', ['card' => $card->slug]) }}" class="text-dark">
         {{ $card->name }}
