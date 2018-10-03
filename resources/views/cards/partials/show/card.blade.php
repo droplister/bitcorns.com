@@ -1,11 +1,7 @@
 <div class="row mt-5">
     <div class="col-md-4 mb-5">
-        @if(isset($card->meta_data['orientation']) && $card->meta_data['orientation'] === 'portrait')
-            @include('cards.partials.show.modal')
-            <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px; cursor: pointer;" role="button" data-toggle="modal" data-target="#imageModal" />
-        @else
-            <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px" />
-        @endif
+        @include('cards.partials.show.modal')
+        <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" style="max-width: 375px; cursor: pointer;" role="button" data-toggle="modal" data-target="#imageModal" />
         @if(isset($card->meta_data['hd_image_url']))
             @include('cards.partials.show.modal-hd')
             <div class="mt-3 text-center">
