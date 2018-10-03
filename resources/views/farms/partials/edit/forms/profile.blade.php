@@ -1,6 +1,6 @@
 <form role="form" method="POST" action="{{ route('farms.update', ['farm' => $farm->slug]) }}">
-    <input type="hidden" name="_method" value="PUT">
-    {{ csrf_field() }}
+    @method('PUT')
+    @csrf
     <div class="form-group">
         <label for="name">Name</label>
         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') ? old('name') : $farm->name }}">
@@ -48,7 +48,7 @@
                  <strong>{{ $errors->first('message') }}</strong>
             </div>
         @else
-            <small id="timestampHelp" class="form-text text-muted">Sign this message to authorize update.</small>
+            <small id="messageHelp" class="form-text text-muted">Sign this message to authorize update.</small>
         @endif
     </div>
     <div class="form-group">
