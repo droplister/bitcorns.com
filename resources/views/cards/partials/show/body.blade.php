@@ -1,4 +1,7 @@
 @if($balances->count() > 0)
+<h2 class="display-4 mb-5">
+    Card Owners
+</h2>
 <div class="card mb-5">
     <div class="card-header">
         Bitcorn Farms
@@ -42,6 +45,9 @@
 </div>
 @endif
 @if($top_coop && $top_farm)
+<h2 class="display-4 mb-5">
+    Noteworthy
+</h2>
 <div class="row">
     <div class="col-12 col-sm-6 mb-5">
         @include('cards.partials.show.coop', ['coop' => $top_coop])
@@ -52,6 +58,9 @@
 </div>
 @endif
 @if($unlocked_achievements->count() + $locked_achievements->count() > 0)
+<h2 class="display-4 mb-5">
+    Achievements
+</h2>
 <div class="row">
     <div class="col">
         <div class="card">

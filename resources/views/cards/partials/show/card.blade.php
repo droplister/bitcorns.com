@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-8">
         @include('cards.partials.show.head')
-        <div class="card my-5">
+        <div class="card my-4">
             <div class="card-header">
                 Harvest #{{ $card->harvest_id }} / Card #{{ $card->meta_data['overall_ranking'] }}
             </div>
