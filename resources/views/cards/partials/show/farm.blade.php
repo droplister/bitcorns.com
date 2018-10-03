@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card">
     <div class="card-header">
         Top Farm
     </div>
