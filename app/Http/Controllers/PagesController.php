@@ -77,8 +77,11 @@ class PagesController extends Controller
      */
     public function forecast(Request $request)
     {
+        // Upcoming Harvest
+        $harvest = Harvest::upcoming()->first();
+
         // Forecast View
-        return view('pages.forecast');
+        return view('pages.forecast', compact('harvest'));
     }
 
     /**

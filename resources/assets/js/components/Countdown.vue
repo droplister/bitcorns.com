@@ -22,7 +22,7 @@ export default {
   font-family: Helvetica, Geneva, sans-serif !important; /* Any font would work, but SansSerif looks better */
 }
 .vuejs-countdown li:after {
-  right: -35px !important;
+  right: -30px !important;
   font-size: 9em !important;
 }
 .vuejs-countdown .digit {
