@@ -15,17 +15,17 @@ trait Mappable
      */
     static function validateCoordinates(UpdateRequest $request, Farm $farm)
     {
-        if ($this->isCoordinateRequest($request)) {
+        if (static::isCoordinateRequest($request)) {
             // Configurable
             $unit = 6378100; // meters
 
             // Find Nearby Map Marker
             $nearby = static::selectRaw('*,
-                ($unit * ACOS(COS(RADIANS($request->latitude))
+                (? * ACOS(COS(RADIANS(?))
                       * COS(RADIANS(latitude))
-                      * COS(RADIANS($request->longitude) - RADIANS(longitude))
-                      + SIN(RADIANS($request->latitude))
-                      * SIN(RADIANS(latitude)))) AS distance')
+                      * COS(RADIANS(?) - RADIANS(longitude))
+                      + SIN(RADIANS(?))
+                      * SIN(RADIANS(latitude)))) AS distance', [$unit, $request->latitude, $request->longitude, $request->latitude])
                 ->whereNotIn('farm_id', [$farm->id])
                 ->orderBy('distance', 'asc')
                 ->first();
@@ -54,7 +54,7 @@ trait Mappable
      * @param  \App\Http\Requests\Farms\UpdateRequest  $request
      * @return boolean
      */
-    private function isCoordinateRequest(UpdateRequest $request)
+    static function isCoordinateRequest(UpdateRequest $request)
     {
         return $request->has('latitude') &&
                $request->has('longitude') &&

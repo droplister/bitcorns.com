@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Farm;
-use App\Token;
-use App\MapMarker;
 use Auth;
 use Cache;
+use App\Farm;
+use App\Token;
+use App\Upload;
+use App\MapMarker;
 use App\Http\Requests\Farms\IndexRequest;
 use App\Http\Requests\Farms\UpdateRequest;
 use Illuminate\Http\Request;
@@ -103,20 +104,20 @@ class FarmsController extends Controller
      */
     public function update(UpdateRequest $request, Farm $farm)
     {
-        // Authentication
+        // Authenticate
         if ($error = $farm->validateSignature($request)) {
             return back()->with('error', $error);
         }
 
-        // Validation
+        // Validate Map
         if ($error = MapMarker::validateCoordinates($request, $farm)) {
             return back()->with('error', $error);
         }
 
-        // Execution
-        $farm->update($request->all());
+        // Update Farm
+        $farm->updateFarm($request->only(['name', 'content', 'image']));
 
         // Return Back
-        return back()->with('success', 'Update Complete');
+        return back()->with('success', 'Success - Update Complete!');
     }
 }

@@ -36,8 +36,8 @@ trait Signable
             // Bitcoin Lib
             $messageVerification = BitcoinLib::verifyMessage(
                 $this->xcp_core_address,
-                $request->message,
-                $request->timestamp
+                $request->signature,
+                $request->message
             );
 
             // Verification
