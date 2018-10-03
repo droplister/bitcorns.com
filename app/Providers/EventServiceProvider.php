@@ -14,20 +14,20 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         // Game Play
-        'Droplister\XcpCore\App\Events\CreditWasCreated' => [
+        \Droplister\XcpCore\App\Events\CreditWasCreated::class => [
             // Game Play
             \App\Listeners\CreateFarmsFromCredits::class,
             // Achievements
             \App\Listeners\FarmCreditAchievements::class,
         ],
-        'Droplister\XcpCore\App\Events\BalanceWasUpdated' => [
+        \Droplister\XcpCore\App\Events\BalanceWasUpdated::class => [
             \App\Listeners\AccessDependentOnCropsBalance::class,
         ],
-        'Droplister\XcpCore\App\Events\DividendWasCreated' => [
+        \Droplister\XcpCore\App\Events\DividendWasCreated::class => [
             \App\Listeners\UpdateHarvestsOnDividend::class,
         ],
         // Achievements
-        'Gstt\Achievements\Event\Unlocked' => [
+        \Gstt\Achievements\Event\Unlocked::class => [
             \App\Listeners\RelativeAchievementTimestamps::class,
             \App\Listeners\AchievementAchievements::class,
         ],
@@ -43,10 +43,10 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\UploadWasCreated::class => [
             \App\Listeners\UploadAchievements::class,
         ],
-        'Droplister\XcpCore\App\Events\BalanceWasCreated' => [
+        \Droplister\XcpCore\App\Events\BalanceWasCreated::class => [
             \App\Listeners\TokenBalanceAchievements::class,
         ],
-        'Droplister\XcpCore\App\Events\OrderMatchWasCreated' => [
+        \Droplister\XcpCore\App\Events\OrderMatchWasCreated::class => [
             \App\Listeners\FarmTradingAchievements::class,
             \App\Listeners\TokenTradingAchievements::class,
         ],
@@ -54,7 +54,7 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\TokenWasCreated::class => [
             \App\Listeners\AnnounceNewCardSubmissions::class,
         ],
-        'Droplister\XcpCore\App\Events\SendWasCreated' => [
+        \Droplister\XcpCore\App\Events\SendWasCreated::class => [
             // Bitcorn Cards
             \App\Listeners\MonitorMuseumDeposits::class,
             \App\Listeners\MonitorSubmissionFees::class,
@@ -63,7 +63,7 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\TokenSendAchievements::class,
         ],
         // Home Features
-        'Droplister\XcpCore\App\Events\BlockWasCreated' => [
+        \Droplister\XcpCore\App\Events\BlockWasCreated::class => [
             \App\Listeners\FeatureListener::class,
         ],
     ];

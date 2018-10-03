@@ -26,7 +26,7 @@ class HomeController extends Controller
 
         // Featured Cards
         $cards = Cache::remember('featured_cards', 60, function () {
-            return Feature::where('featurable_type', '=', \App\Token::class)
+            return Feature::where('featurable_type', '=', 'App\Token')
                 ->with('featurable')
                 ->highestBids()
                 ->take(4)
@@ -35,7 +35,7 @@ class HomeController extends Controller
 
         // Featured Farms
         $farms = Cache::remember('featured_farms', 60, function () {
-            return Feature::where('featurable_type', '=', \App\Farm::class)
+            return Feature::where('featurable_type', '=', 'App\Farm')
                 ->with('featurable')
                 ->highestBids()
                 ->take(2)
