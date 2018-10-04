@@ -53,6 +53,31 @@ class Farm extends Model
     ];
 
     /**
+     * Display Content
+     *
+     * @var string
+     */
+    public function getDisplayContentAttribute()
+    {
+        $cause = array_random([
+            'a fever',
+            'dysentery',
+            'measles',
+            'cholera',
+            'typhoid',
+            'exhaustion',
+            'a snakebite',
+            'a broken leg',
+            'a broken arm',
+            'drowning'
+        ]);
+
+        $death = "Died of {$cause}...";
+
+        return $this->accessBalance()->quantity > 0 ? $this->content : $death;
+    }
+
+    /**
      * Display Name
      *
      * @var string

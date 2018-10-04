@@ -11,7 +11,7 @@
       :opened="infoWinOpen"
       @closeclick="infoWinOpen=false"
     >
-      <a :href="href">{{ name }}</a>
+      <a :href="href" class="font-weight-bold">{{ name }}</a>
     </GmapInfoWindow>
 
     <GmapCircle
@@ -27,7 +27,8 @@
       v-for="(m, index) in markers"
       :position="m.position"
       :clickable="true"
-      :draggable="false"
+      :draggable="farm && farm === m.name"
+      @dragend="updateCoords"
       @click="toggleInfo(m,index)"
     ></GmapMarker>
   </GmapMap>
@@ -44,10 +45,11 @@ Vue.use(VueGoogleMaps, {
 });
  
 export default {
-  props: ['lat', 'lng', 'zoom', 'coop', 'type'],
+  props: ['type', 'lat', 'lng', 'zoom', 'coop', 'farm'],
   data () {
     return {
       center: {lat: this.lat, lng: this.lng},
+      coords: null,
       markers: null,
       name: '',
       href: '',
@@ -88,6 +90,13 @@ export default {
         this.infoWinOpen = true
         this.currentMidx = idx
       }
+    },
+    updateCoords: function(event) {
+      this.coords = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      }
+      console.log(this.coords);
     }
   }
 }

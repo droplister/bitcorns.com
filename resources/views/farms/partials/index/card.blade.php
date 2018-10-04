@@ -18,6 +18,8 @@
                 {{ config('bitcorn.access_token') }}: {{ $farm->accessBalance()->quantity_normalized }}
             @elseif($sort === 'bitcorn')
                 {{ config('bitcorn.reward_token') }}: {{ number_format($farm->rewardBalance()->quantity_normalized) }}
+            @elseif($sort === 'no-crops')
+                <em class="text-muted">{{ $farm->display_content }}</em>
             @endif
         </p>
     </div>

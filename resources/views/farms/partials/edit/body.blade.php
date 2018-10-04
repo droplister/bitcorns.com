@@ -16,6 +16,11 @@
                                     Your Coop
                                 </a>
                             </li>
+                            <li class="nav-item d-none d-sm-inline">
+                                <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="true">
+                                    Marker
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -25,6 +30,14 @@
                             </div>
                             <div class="tab-pane fade" id="coop" role="tabpanel" aria-labelledby="coop-tab">
                                 @include('farms.partials.edit.forms.coop')
+                            </div>
+                            <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
+                                <google-map
+                                    farm="{{ $farm->name }}"
+                                    v-bind:lat="{{ $farm->mapMarker->latitude }}"
+                                    v-bind:lng="{{ $farm->mapMarker->longitude }}"
+                                    v-bind:zoom="8">
+                                </google-map>
                             </div>
                         </div>
                     </div>
