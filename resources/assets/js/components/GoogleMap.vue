@@ -82,7 +82,7 @@ export default {
       var api = !this.coop ? '/api/map' : '/api/map/' + this.coop;
       var self = this
       $.get(api, function (response) {
-        self.markers = response.data
+        self.markers = response
       })
     },
     toggleInfo(marker, idx) {

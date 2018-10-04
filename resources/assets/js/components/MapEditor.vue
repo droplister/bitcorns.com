@@ -101,7 +101,7 @@ export default {
       var api = '/api/map'
       var self = this
       $.get(api, function (response) {
-        self.markers = response.data
+        self.markers = response
       })
     },
     updateCoords: function(event) {
