@@ -1,9 +1,3 @@
 # Bitcorn Crops
 
-## XCP Core
-
-## Notes
-
-This code makes some assumptions, including:
-- That BITCORN and CROPS tokens are not subassets.
-- That DAAB and FM tokens are not subassets.
+Bitcorns is an idle game of accumulation, similar to AdVenture Capitalist, where the only objective is to accumulate the most BITCORN. Deceptively simple, accumulating BITCORN takes an amount of CROPS most people do not possess.
