@@ -27,6 +27,7 @@ Vue.component('calculator', require('./components/Calculator.vue'));
 Vue.component('cornfetti', require('./components/Cornfetti.vue'));
 Vue.component('countdown', require('./components/Countdown.vue'));
 Vue.component('google-map', require('./components/GoogleMap.vue'));
+Vue.component('map-editor', require('./components/MapEditor.vue'));
 
 const app = new Vue({
     el: '#app'
