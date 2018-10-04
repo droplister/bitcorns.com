@@ -23,9 +23,31 @@
                         <tr>
                             <th scope="row">{{ $loop->iteration }}.</th>
                             <td><a href="{{ $balance->farm->url }}">{{ $balance->farm->name }}</a></td>
-                            <td> @if($balance->farm->coop) <a href="{{ $balance->farm->coop->url }}">{{ $balance->farm->coop->name }}</a> @endif </td>
-                            <td>{{ $balance->assetModel->divisible ? $balance->quantity_normalized : number_format($balance->quantity_normalized) }}</td>
-                            <td>{{ number_format($balance->quantity_normalized / $token->asset->supply_normalized * 100, 2) }}%</td>
+                            <td>
+                                @if($balance->farm->coop)
+                                    <a href="{{ $balance->farm->coop->url }}">{{ $balance->farm->coop->name }}</a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($token->name === config('bitcorn.reward_token') && $balance->address === config('bitcorn.genesis_address'))
+                                    {{ number_format($balance->quantity - \App\Harvest::upcoming()->sum('quantity')) }}
+                                    <small class="d-block text-muted">
+                                        {{ $balance->assetModel->divisible ? $balance->quantity_normalized : number_format($balance->quantity_normalized) }}
+                                    </small>
+                                @else
+                                    {{ $balance->assetModel->divisible ? $balance->quantity_normalized : number_format($balance->quantity_normalized) }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($token->name === config('bitcorn.reward_token') && $balance->address === config('bitcorn.genesis_address'))
+                                    {{ number_format(($balance->quantity - \App\Harvest::upcoming()->sum('quantity')) / $token->asset->supply * 100, 2) }}%
+                                    <small class="d-block text-muted">
+                                        {{ number_format($balance->quantity_normalized / $token->asset->supply_normalized * 100, 2) }}%
+                                    </small>
+                                @else
+                                    {{ number_format($balance->quantity_normalized / $token->asset->supply_normalized * 100, 2) }}%
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
