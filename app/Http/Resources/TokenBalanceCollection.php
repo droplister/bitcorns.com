@@ -15,7 +15,7 @@ class TokenBalanceCollection extends Resource
     public function toArray($request)
     {
         return [
-            'address' => $this->farm->address,
+            'address' => $this->farm->xcp_core_address,
             'balance' => (float) $this->quantity_normalized,
         ];
     }

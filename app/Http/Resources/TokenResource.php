@@ -18,7 +18,7 @@ class TokenResource extends Resource
             'image' => $this->image_url,
             'asset' => $this->name,
             'description' => $this->content,
-            'website' => route('home.index'),
+            'website' => route('index'),
             'pgpsig' => '',
         ];
     }
