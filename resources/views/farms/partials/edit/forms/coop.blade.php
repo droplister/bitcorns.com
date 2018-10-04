@@ -2,7 +2,7 @@
     @method('PUT')
     @csrf
     <div class="form-group">
-        <label for="name">Cooperative:</label>
+        <label for="name">Coop Name</label>
         <select id="coop" class="form-control" name="coop">
             <option>Select a Coop:</option>
             @foreach($coops as $coop)
