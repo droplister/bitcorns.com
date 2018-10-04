@@ -439,7 +439,11 @@ class Token extends Model
         // Harvest
         if ($filter && is_int((int) $filter) && (int) $filter !== 0) {
             $cards = $cards->where('harvest_id', '=', $filter);
-        } // Format
+        } // HD
+        elseif($filter && $filter === 'HD') {
+            $cards = $cards->whereNotNull('meta_data->hd_image_url');
+        }
+        // Format
         elseif ($filter && is_string($filter)) {
             $cards = $cards->where('image_url', 'like', '%'. $filter);
         }
