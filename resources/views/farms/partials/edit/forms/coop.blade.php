@@ -11,12 +11,12 @@
         </select>
     </div>
     <div class="form-check">
-        <input type="checkbox" name="add" id="add">
-        <label for="add">Add me to this coop.</label>
-    </div>
-    <div class="form-check">
-        <input type="checkbox" name="leave" id="leave">
-        <label for="leave">Remove me from this coop.</label>
+        <div class="radio">
+            <label><input type="radio" name="action" value="add" checked> Add me to this coop.</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="action" value="leave"> Remove me from this coop.</label>
+        </div>
     </div>
     <hr class="mb-4" />
     <div class="form-group">
