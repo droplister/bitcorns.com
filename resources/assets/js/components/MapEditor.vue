@@ -25,6 +25,7 @@
           ></GmapMarker>
         </GmapMap>
       </div>
+      <div v-if="flash !== null" class="alert my-3" :class="flashClass">{{ flash }}</div>
       <form @submit.prevent="processForm">
         <hr class="mb-4" />
         <div class="row">
@@ -73,6 +74,8 @@ export default {
   props: ['type', 'lat', 'lng', 'zoom', 'farm', 'message'],
   data () {
     return {
+      flash: null,
+      flashClass: 'alert-success',
       coords: null,
       latitude: '',
       longitude: '',
@@ -118,7 +121,13 @@ export default {
         message: self.message,
         signature: self.signature
       }, function (response) {
-        console.log(response)
+        if(response === 'ok') {
+          self.flash = 'Success - Map Marker Updated!'
+          self.flashClass = 'alert-success'
+        } else {
+          self.flash = 'Error - ' + response
+          self.flashClass = 'alert-danger'
+        }
         self.markers = null
         self.fetchData()
       })
