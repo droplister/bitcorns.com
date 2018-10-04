@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Farm;
 use Illuminate\Http\Request;
 use App\Http\Requests\Farms\UpdateRequest;
@@ -28,6 +29,9 @@ class FarmCoopsController extends Controller
         }else{
             $farm->update(['coop_id' => $request->coop]);
         }
+
+        // World Map
+        Cache::forget('world_map');
 
         // Return Back
         return back()->with('success', 'Success - Update Complete!');

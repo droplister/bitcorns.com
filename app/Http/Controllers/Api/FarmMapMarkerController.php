@@ -30,7 +30,7 @@ class FarmMapMarkerController extends Controller
             return $error;
         }
 
-        if($farm->mapMarker->exists())
+        if($farm->mapMarker)
         {
             $farm->mapMarker->update([
                 'latitude' => $request->latitude,

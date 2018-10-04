@@ -35,8 +35,8 @@
                                 <map-editor
                                     farm="{{ $farm->slug }}"
                                     message="{{ config('bitcorn.message') }}"
-                                    v-bind:lat="{{ $farm->mapMarker->latitude }}"
-                                    v-bind:lng="{{ $farm->mapMarker->longitude }}"
+                                    v-bind:lat="{{ $farm->mapMarker ? $farm->mapMarker->latitude : 39.828175 }}"
+                                    v-bind:lng="{{ $farm->mapMarker ? $farm->mapMarker->longitude : -98.5795 }}"
                                     v-bind:zoom="8">
                                 </map-editor>
                             </div>

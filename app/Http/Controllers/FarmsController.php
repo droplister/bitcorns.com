@@ -98,6 +98,9 @@ class FarmsController extends Controller
         // Update Farm
         $farm->updateFarm($request);
 
+        // World Map
+        Cache::forget('world_map');
+
         // Return Back
         return back()->with('success', 'Success - Update Complete!');
     }
