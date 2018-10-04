@@ -55,5 +55,7 @@ class FarmMapMarkerController extends Controller
         }
 
         Cache::forget('world_map');
+
+        return 'ok';
     }
 }
