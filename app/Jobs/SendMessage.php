@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use Telegram;
 use Log;
+use Telegram;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
