@@ -27,7 +27,7 @@ class FarmResource extends Resource
             'coop' => new CoopResource($this->coop),
             'tokens' => FarmBalanceCollection::collection($this->tokenBalances),
             'cards' => FarmBalanceCollection::collection($this->upgradeBalances),
-            'harvests' => HarvestCollection::collection($this->harvests),
+            'harvests' => FarmHarvestCollection::collection($this->harvests),
             'position' => [
                 'lat' => $this->mapMarker ? (float) $this->mapMarker->latitude : null,
                 'lng' => $this->mapMarker ? (float) $this->mapMarker->longitude : null,

@@ -22,7 +22,7 @@ class FarmCollection extends Resource
             'farm' => $this->display_image_url,
             'coop' => $this->coop ? $this->coop->name : null,
             'cards' => $this->upgrade_balances_count,
-            'access' => $this->access,
+            'access' => $this->access ? true : false,
         ];
     }
 }

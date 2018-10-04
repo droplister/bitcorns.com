@@ -24,7 +24,7 @@ class CoopResource extends Resource
             'bitcorn' => (int) $this->rewardBalance(),
             'bitcorn_harvested' => (int) $this->total_harvested,
             'member_count' => $this->farms()->count(),
-            'members' => FarmCollection::collection($this->farms),
+            'members' => FarmCollection::collection($this->farms()->withCount('upgradeBalances')->get()),
         ];
     }
 }
