@@ -22,24 +22,24 @@ class FarmMapMarkerController extends Controller
     {
         // Authenticate
         if ($error = $farm->validateSignature($request)) {
-            return back()->with('error', $error);
+            return $error;
         }
 
         // Validate Map
         if ($error = MapMarker::validateCoordinates($request, $farm)) {
-            return back()->with('error', $error);
+            return $error;
         }
 
         if($farm->mapMarker->exists())
         {
-            return $farm->mapMarker->update([
+            $farm->mapMarker->update([
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
             ]);
         }
         else
         {
-            return MapMarker::create([
+            MapMarker::create([
                 'farm_id' => $farm->id,
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
