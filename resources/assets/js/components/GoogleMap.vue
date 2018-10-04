@@ -19,7 +19,7 @@
       v-for="(m, index) in markers"
       :center="m.position"
       :radius="m.radius"
-      :options="farm && farm === m.slug ? mapOptions : m.options"
+      :options="farm && farm === m.farm || coop && coop === m.coop ? mapOptions : m.options"
     ></GmapCircle>
 
     <GmapMarker
