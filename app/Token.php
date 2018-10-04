@@ -435,18 +435,24 @@ class Token extends Model
      */
     public static function getFilteredCards(IndexRequest $request, $filter)
     {
-        // Cards to Filter
-        $cards = Token::published()->upgrades();
+        // Cache Slug
+        $cache_slug = 'card_index_' . str_slug(serialize($request->all()) . $filter);
 
-        // Harvest
-        if ($filter && is_int((int) $filter) && (int) $filter !== 0) {
-            $cards = $cards->where('harvest_id', '=', $filter);
-        } // Format
-        elseif ($filter && is_string($filter)) {
-            $cards = $cards->where('image_url', 'like', '%'. $filter);
-        }
+        // Filtration
+        Cache::remember($cache_slug, 60, function () use ($request, $filter) {
+            // Cards to Filter
+            $cards = Token::published()->upgrades();
 
-        return $cards->orderBy('meta_data->overall_ranking', 'asc');
+            // Harvest
+            if ($filter && is_int((int) $filter) && (int) $filter !== 0) {
+                $cards = $cards->where('harvest_id', '=', $filter);
+            } // Format
+            elseif ($filter && is_string($filter)) {
+                $cards = $cards->where('image_url', 'like', '%'. $filter);
+            }
+
+            return $cards->orderBy('meta_data->overall_ranking', 'asc');
+        });
     }
 
     /**

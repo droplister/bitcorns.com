@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Cache;
 use App\Token;
 use App\Harvest;
 use Illuminate\Http\Request;
@@ -22,18 +21,11 @@ class CardsController extends Controller
         // Set Filter
         $filter = $request->input('filter', null);
 
-        // Cache Slug
-        $cache_slug = str_slug(serialize($request->all()) . $filter);
-
         // List Cards
-        $cards = Cache::remember($cache_slug, 60, function () use ($request, $filter) {
-            return Token::getFilteredCards($request, $filter)->get();
-        });
+        $cards = Token::getFilteredCards($request, $filter)->get();
 
         // Harvests
-        $harvests = Cache::remember('harvests_completed', 60, function () {
-            return Harvest::complete()->get();
-        });
+        $harvests = Harvest::complete()->get();
 
         // Index View
         return view('cards.index', compact('cards', 'filter', 'harvests'));

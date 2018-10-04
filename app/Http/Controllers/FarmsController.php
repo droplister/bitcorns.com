@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use App\Coop;
 use App\Farm;
-use App\Token;
-use App\Upload;
-use App\MapMarker;
 use Illuminate\Http\Request;
 use App\Http\Requests\Farms\IndexRequest;
 use App\Http\Requests\Farms\UpdateRequest;
@@ -25,7 +23,7 @@ class FarmsController extends Controller
         $sort = $request->has('q') ? 'search' : $request->input('sort', 'crops');
 
         // Cache Slug
-        $cache_slug = str_slug(serialize($request->all()) . $sort);
+        $cache_slug = 'farm_index_' , str_slug(serialize($request->all()) . $sort);
 
         // List Farms
         $farms = Cache::remember($cache_slug, 60, function () use ($request, $sort) {
@@ -75,7 +73,12 @@ class FarmsController extends Controller
      */
     public function edit(Request $request, Farm $farm)
     {
-        return view('farms.edit', compact('farm'));
+        // Dropdown
+        $coops = Cache::remember('coops_abc', 60, function () {
+            return Coop::has('farms')->orderBy('name', 'desc')->get();
+        });
+
+        return view('farms.edit', compact('farm', 'coops'));
     }
 
     /**

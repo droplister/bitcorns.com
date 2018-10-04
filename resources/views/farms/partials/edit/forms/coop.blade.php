@@ -11,7 +11,7 @@
     </div>
     <div class="form-check">
         <input type="checkbox" name="add" id="add">
-        <label for="add">Add me from this coop.</label>
+        <label for="add">Add me to this coop.</label>
     </div>
     <div class="form-check">
         <input type="checkbox" name="leave" id="leave">
