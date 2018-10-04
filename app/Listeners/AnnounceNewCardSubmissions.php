@@ -69,7 +69,7 @@ class AnnounceNewCardSubmissions
      */
     private function publicAnnouncement($token)
     {
-        $depth = ordinal(Token::publishable()->upgrades()->count());
+        $depth = ordinal(Token::pending()->upgrades()->count());
         $message = "{$token->name} was submitted. {$depth} in queue.";
 
         SendMessage::dispatch($message, 'public');
@@ -84,13 +84,13 @@ class AnnounceNewCardSubmissions
     private function privateAnnouncement($token)
     {
         $message = "*{$token->name}*\n";
-        $message.= "{$token->image_url}\n";
+        $message.= asset($token->image_url) . "\n";
         $message.= "Issued: {$token->asset->issuance_normalized}\n";
         
         if (Token::publishable()->where('id', '=', $token->id)->exists()) {
             $message.= "Publishable submission!";
         } else {
-            $message.= "Not okay to publish yet...";
+            $message.= "Not okay to publish yet...\n";
             $message.= "- Locked: {$token->asset->locked}\n";
             $message.= "- Divisible: {$token->asset->divisible}\n";
             $message.= "- Museumed: {$token->museumed_at}\n";

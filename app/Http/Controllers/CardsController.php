@@ -61,7 +61,7 @@ class CardsController extends Controller
         $dex_average = Token::getAverageCardPrice();
 
         // Queue Count
-        $queue_count = Token::publishable()->upgrades()->count();
+        $queue_count = Token::pending()->upgrades()->count();
 
         // Create View
         return view('cards.create', compact('dex_average', 'queue_count'));
