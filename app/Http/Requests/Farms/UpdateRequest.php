@@ -30,6 +30,8 @@ class UpdateRequest extends FormRequest
             'signature' => ['required'],
             'content' => ['sometimes', 'min:10', 'max:255'],
             'name' => ['sometimes', 'min:5', 'max:30', 'unique:farms,name,' . $this->route('farm')->id],
+            'latitude' => ['sometimes', 'required_with:latitude', 'nullable', 'numeric', 'min:-90', 'max:90'],
+            'lontitude' => ['sometimes', 'required_with:longitude', 'nullable', 'numeric', 'min:-180', 'max:180'],
             'image' => ['sometimes', 'mimetypes:image/jpeg', 'mimes:jpeg,jpg', 'dimensions:width=1600,height=900', 'max:5000'],
         ];
     }

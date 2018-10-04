@@ -1,6 +1,7 @@
 <template>
     <div>
       <GmapMap
+        v-if="exists === true"
         :zoom="zoom"
         :center="center"
         :map-type-id="mapType"
@@ -21,30 +22,29 @@
           :clickable="true"
           :draggable="farm && farm === m.slug"
           @dragend="updateCoords"
-          @click="toggleInfo(m,index)"
         ></GmapMarker>
       </GmapMap>
-      <form>
+      <form @submit.prevent="processForm">
         <hr class="mb-4" />
         <div class="row">
           <div class="form-group col-sm-6">
             <label for="latitude">Latitude</label>
-            <input id="latitude" type="text" class="form-control" :value="coords ? coords.lat : ''">
+            <input v-model="latitude" id="latitude" type="text" class="form-control">
           </div>
           <div class="form-group col-sm-6">
             <label for="longitude">Longitude</label>
-            <input id="longitude" type="text" class="form-control" value="coords ? coords.lng : '' ">
+            <input v-model="longitude" id="longitude" type="text" class="form-control">
           </div>
         </div>
         <hr class="mb-4" />
         <div class="form-group">
           <label for="message">Message</label>
-          <input id="message" type="text" class="form-control :value="message" required>
+          <input v-model="message" id="message" type="text" class="form-control" required>
           <small id="messageHelp" class="form-text text-muted">Sign this message to authorize update.</small>
         </div>
         <div class="form-group">
           <label for="signature">Signature</label>
-          <input id="signature" type="text" class="form-control" required>
+          <input v-model="signature" id="signature" type="text" class="form-control" required>
           <small id="signatureHelp" class="form-text text-muted">
             Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a>
           </small>
@@ -69,10 +69,13 @@ Vue.use(VueGoogleMaps, {
 });
  
 export default {
-  props: ['type', 'lat', 'lng', 'zoom', 'farm'],
+  props: ['type', 'lat', 'lng', 'zoom', 'farm', 'exists'],
   data () {
     return {
       coords: null,
+      latitude: '',
+      longitude: '',
+      signature: '',
       mapOptions: {
         'editable': false,
         'fillColor': '#ADFF2F',
@@ -83,21 +86,7 @@ export default {
         lng: this.lng
       },
       markers: null,
-      name: '',
-      href: '',
       mapType: this.type ? this.type : 'terrain',
-      infoPosition: {
-        lat: 0,
-        lng: 0
-      },
-      infoWinOpen: false,
-      currentMidx: null,
-      infoOptions: {
-        pixelOffset: {
-          width: 0,
-          height: -35
-        }
-      }
     }
   },
   mounted() {
@@ -111,24 +100,29 @@ export default {
         self.markers = response.data
       })
     },
-    toggleInfo(marker, idx) {
-      this.infoPosition = marker.position
-      this.name = marker.name
-      this.href = marker.href
-      if (this.currentMidx == idx) {
-        this.infoWinOpen = !this.infoWinOpen
-      }
-      else {
-        this.infoWinOpen = true
-        this.currentMidx = idx
-      }
-    },
     updateCoords: function(event) {
       this.coords = {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       }
-      console.log(this.coords);
+      this.latitude = event.latLng.lat()
+      this.longitude = event.latLng.lng()
+    },
+    methods: {
+      processForm() {
+        var api = '/api/farm/' + this.farm + '/map'
+        var self = this
+        $.post(api, {
+          latitude: self.latitude,
+          longitude: self.longitude,
+          message: self.message,
+          signature: self.signature
+        }, function (response) {
+          console.log(response)
+          self.markers = null
+          self.fetchData()
+        })
+      }
     }
   }
 }

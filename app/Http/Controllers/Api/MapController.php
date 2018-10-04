@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Cache;
 use App\Coop;
 use App\MapMarker;
+use Illuminate\Http\Request;
 use App\Http\Resources\MapMarkerResource;
 use App\Http\Controllers\Controller;
 
@@ -13,9 +14,10 @@ class MapController extends Controller
     /**
      * World Map
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // World Map
         return Cache::remember('world_map', 60, function () {
@@ -25,12 +27,13 @@ class MapController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Territory
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Coop  $coop
      * @return \Illuminate\Http\Response
      */
-    public function show(Coop $coop)
+    public function show(Request $request, Coop $coop)
     {
         // Cache Slug
         $cache_slug = "world_map_{$coop->slug}";

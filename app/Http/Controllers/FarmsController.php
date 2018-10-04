@@ -92,11 +92,6 @@ class FarmsController extends Controller
             return back()->with('error', $error);
         }
 
-        // Validate Map
-        if ($error = MapMarker::validateCoordinates($request, $farm)) {
-            return back()->with('error', $error);
-        }
-
         // Update Farm
         $farm->updateFarm($request);
 
