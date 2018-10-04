@@ -21,7 +21,7 @@ class MapController extends Controller
     {
         // World Map
         return Cache::remember('world_map', 60, function () {
-            $map_markers = MapMarker::with('farm')->get();
+            $map_markers = MapMarker::with('farm.coop')->get();
             return MapMarkerResource::collection($map_markers);
         });
     }

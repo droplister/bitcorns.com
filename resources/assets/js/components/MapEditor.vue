@@ -10,17 +10,17 @@
           <GmapCircle
             :key="index"
             v-for="(m, index) in markers"
-            :center="farm && farm === m.slug && coords !== null ? coords : m.position"
+            :center="farm && farm === m.farm && coords !== null ? coords : m.position"
             :radius="m.radius"
-            :options="farm && farm === m.slug ? mapOptions : m.options"
+            :options="farm && farm === m.farm ? mapOptions : m.options"
           ></GmapCircle>
 
           <GmapMarker
             :key="index"
             v-for="(m, index) in markers"
-            :position="farm && farm === m.slug && coords !== null ? coords : m.position"
+            :position="farm && farm === m.farm && coords !== null ? coords : m.position"
             :clickable="true"
-            :draggable="farm && farm === m.slug"
+            :draggable="farm && farm === m.farm"
             @dragend="updateCoords"
           ></GmapMarker>
         </GmapMap>

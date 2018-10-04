@@ -16,7 +16,8 @@ class MapMarkerResource extends Resource
     {
         return [
             'name' => $this->farm->name,
-            'slug' => $this->farm->slug,
+            'farm' => $this->farm->slug,
+            'coop' => $this->farm->coop->slug,
             'href' => $this->farm->url,
             'options' => $this->settings['options'],
             'position' => [
