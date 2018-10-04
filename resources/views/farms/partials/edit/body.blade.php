@@ -34,8 +34,8 @@
                             <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
                                 <map-editor
                                     farm="{{ $farm->slug }}"
-                                    exists="{{ $farm->mapMarker->exists() }}"
                                     message="{{ config('bitcorn.message') }}"
+                                    v-bind:exists="{{ $farm->mapMarker->exists() }}"
                                     v-bind:lat="{{ $farm->mapMarker->latitude }}"
                                     v-bind:lng="{{ $farm->mapMarker->longitude }}"
                                     v-bind:zoom="8">

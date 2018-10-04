@@ -1,29 +1,30 @@
 <template>
     <div>
-      <GmapMap
-        v-if="exists === true"
-        :zoom="zoom"
-        :center="center"
-        :map-type-id="mapType"
-        style="width: 100%; height: 400px"
-      >
-        <GmapCircle
-          :key="index"
-          v-for="(m, index) in markers"
-          :center="farm && farm === m.slug && coords !== null ? coords : m.position"
-          :radius="m.radius"
-          :options="farm && farm === m.slug ? mapOptions : m.options"
-        ></GmapCircle>
+      <div v-if="exists">
+        <GmapMap
+          :zoom="zoom"
+          :center="center"
+          :map-type-id="mapType"
+          style="width: 100%; height: 400px"
+        >
+          <GmapCircle
+            :key="index"
+            v-for="(m, index) in markers"
+            :center="farm && farm === m.slug && coords !== null ? coords : m.position"
+            :radius="m.radius"
+            :options="farm && farm === m.slug ? mapOptions : m.options"
+          ></GmapCircle>
 
-        <GmapMarker
-          :key="index"
-          v-for="(m, index) in markers"
-          :position="farm && farm === m.slug && coords !== null ? coords : m.position"
-          :clickable="true"
-          :draggable="farm && farm === m.slug"
-          @dragend="updateCoords"
-        ></GmapMarker>
-      </GmapMap>
+          <GmapMarker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="farm && farm === m.slug && coords !== null ? coords : m.position"
+            :clickable="true"
+            :draggable="farm && farm === m.slug"
+            @dragend="updateCoords"
+          ></GmapMarker>
+        </GmapMap>
+      </div>
       <form @submit.prevent="processForm">
         <hr class="mb-4" />
         <div class="row">
