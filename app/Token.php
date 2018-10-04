@@ -429,17 +429,16 @@ class Token extends Model
     /**
      * Get Filtered Cards
      *
-     * @param  \App\Http\Requests\Cards\IndexRequest  $request
      * @param  mixed  $filter
      * @return mixed
      */
-    public static function getFilteredCards(IndexRequest $request, $filter)
+    public static function getFilteredCards($filter)
     {
         // Cache Slug
-        $cache_slug = 'card_index_' . str_slug(serialize($request->all()) . $filter);
+        $cache_slug = 'card_index_' . str_slug($filter);
 
         // Filtration
-        return Cache::remember($cache_slug, 60, function () use ($request, $filter) {
+        return Cache::remember($cache_slug, 60, function () use ($filter) {
             // Cards to Filter
             $cards = Token::published()->upgrades();
 
