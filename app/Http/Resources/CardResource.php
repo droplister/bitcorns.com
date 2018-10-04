@@ -23,7 +23,7 @@ class CardResource extends Resource
             'burned' => (float) $this->asset->burned_normalized,
             'supply' => (float) $this->asset->supply_normalized,
             'holder_count' => $this->farms()->count(),
-            'holders' => TokenBalanceCollection::collection($this->farms),
+            'holders' => TokenBalanceCollection::collection($this->farmBalances),
         ];
     }
 }
