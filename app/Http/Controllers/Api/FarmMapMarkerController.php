@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Cache;
 use App\Farm;
 use App\MapMarker;
 use Illuminate\Http\Request;
@@ -52,5 +53,7 @@ class FarmMapMarkerController extends Controller
                 'major' => 1,
             ]);
         }
+
+        Cache::forget('world_map');
     }
 }
