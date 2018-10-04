@@ -14,4 +14,4 @@
 Route::get('/calculator', 'Api\CalculatorController@index')->name('api.calculator');
 Route::get('/map', 'Api\MapController@index')->name('api.map.index');
 Route::get('/map/{coop}', 'Api\MapController@show')->name('api.map.show');
-Route::get('/farm/{farm}/map', 'Api\FarmMapMarkerController@update')->name('api.farm.map');
+Route::post('/farms/{farm}/map', 'Api\FarmMapMarkerController@update')->name('api.farm.map');

@@ -16,6 +16,7 @@ Route::resource('/', 'HomeController', ['only' => ['index']]);
 Route::resource('/cards', 'CardsController', ['only' => ['index', 'show', 'create', 'store', 'update']]);
 Route::resource('/coops', 'CoopsController');
 Route::resource('/farms', 'FarmsController');
+Route::put('/farms/{farm}/coop', 'Api\FarmCoopsController@update')->name('farms.coop.update');
 Route::resource('/harvests', 'HarvestsController', ['only' => ['index', 'show']]);
 Route::resource('/tokens', 'TokensController');
 Route::get('/api', 'PagesController@api')->name('pages.api');

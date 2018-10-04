@@ -111,7 +111,7 @@ export default {
     },
     methods: {
       processForm() {
-        var api = '/api/farm/' + this.farm + '/map'
+        var api = '/api/farms/' + this.farm + '/map'
         var self = this
         $.post(api, {
           latitude: self.latitude,
