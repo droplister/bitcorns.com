@@ -32,12 +32,12 @@
                                 @include('farms.partials.edit.forms.coop')
                             </div>
                             <div class="tab-pane fade" id="map" role="tabpanel" aria-labelledby="map-tab">
-                                <google-map
-                                    farm="{{ $farm->name }}"
+                                <map-editor
+                                    farm="{{ $farm->slug }}"
                                     v-bind:lat="{{ $farm->mapMarker->latitude }}"
                                     v-bind:lng="{{ $farm->mapMarker->longitude }}"
                                     v-bind:zoom="8">
-                                </google-map>
+                                </map-editor>
                             </div>
                         </div>
                     </div>

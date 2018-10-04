@@ -5,29 +5,21 @@
     :map-type-id="mapType"
     style="width: 100%; height: 400px"
   >
-    <GmapInfoWindow
-      :options="infoOptions"
-      :position="infoPosition"
-      :opened="infoWinOpen"
-      @closeclick="infoWinOpen=false"
-    >
-      <a :href="href" class="font-weight-bold">{{ name }}</a>
-    </GmapInfoWindow>
-
     <GmapCircle
       :key="index"
       v-for="(m, index) in markers"
-      :center="m.position"
+      :center="farm && farm === m.slug && coords !== null ? coords : m.position"
       :radius="m.radius"
-      :options="m.options"
+      :options="farm && farm === m.slug ? mapOptions : m.options"
     ></GmapCircle>
 
     <GmapMarker
       :key="index"
       v-for="(m, index) in markers"
-      :position="m.position"
+      :position="farm && farm === m.slug && coords !== null ? coords : m.position"
       :clickable="true"
-      :draggable="false"
+      :draggable="farm && farm === m.slug"
+      @dragend="updateCoords"
       @click="toggleInfo(m,index)"
     ></GmapMarker>
   </GmapMap>
@@ -44,11 +36,19 @@ Vue.use(VueGoogleMaps, {
 });
  
 export default {
-  props: ['type', 'lat', 'lng', 'zoom', 'coop'],
+  props: ['type', 'lat', 'lng', 'zoom', 'farm'],
   data () {
     return {
-      center: {lat: this.lat, lng: this.lng},
       coords: null,
+      mapOptions: {
+        'editable': false,
+        'fillColor': '#ADFF2F',
+        'strokeColor': '#228B22'
+      },
+      center: {
+        lat: this.lat,
+        lng: this.lng
+      },
       markers: null,
       name: '',
       href: '',
@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     fetchData: function () {
-      var api = !this.coop ? '/api/map' : '/api/map/' + this.coop;
+      var api = !this.coop ? '/api/map' : '/api/map/' + this.farm;
       var self = this
       $.get(api, function (response) {
         self.markers = response.data
@@ -89,6 +89,13 @@ export default {
         this.infoWinOpen = true
         this.currentMidx = idx
       }
+    },
+    updateCoords: function(event) {
+      this.coords = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      }
+      console.log(this.coords);
     }
   }
 }

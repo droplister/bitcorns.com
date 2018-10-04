@@ -15,8 +15,9 @@ class MapMarkerResource extends Resource
     public function toArray($request)
     {
         return [
-            'name' => $this->farm->display_name,
-            'href' => route('farms.show', ['farm' => $this->farm->slug]),
+            'name' => $this->farm->name,
+            'href' => $this->farm->url,
+            'slug' => $this->farm->slug,
             'options' => $this->settings['options'],
             'position' => [
                 'lat' => (float) $this->latitude,
