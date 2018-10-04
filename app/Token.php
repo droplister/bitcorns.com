@@ -439,7 +439,7 @@ class Token extends Model
         $cache_slug = 'card_index_' . str_slug(serialize($request->all()) . $filter);
 
         // Filtration
-        Cache::remember($cache_slug, 60, function () use ($request, $filter) {
+        return Cache::remember($cache_slug, 60, function () use ($request, $filter) {
             // Cards to Filter
             $cards = Token::published()->upgrades();
 
