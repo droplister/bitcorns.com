@@ -468,6 +468,10 @@ class Farm extends Model
      */
     public function updateMapMarker($latitude, $longitude)
     {
+        if(! $latitude || ! $longitude) {
+            return false;
+        }
+
         // Update
         if($this->mapMarker) {
             $this->mapMarker->update([
