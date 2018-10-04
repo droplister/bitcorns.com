@@ -12,7 +12,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ config('bitcorn.access_token') }}: {{ $coop->accessBalance()->quantity_normalized }}
+            {{ config('bitcorn.access_token') }}: {{ $coop->accessBalance() }}
         </p>
     </div>
     <div class="card-footer text-muted">
