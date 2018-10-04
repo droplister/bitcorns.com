@@ -8,6 +8,7 @@ use App\Coop;
 use App\Token;
 use App\Upload;
 use App\Harvest;
+use App\MapMarker;
 use App\Traits\Linkable;
 use App\Traits\Signable;
 use App\Traits\Achievable;
@@ -456,6 +457,42 @@ class Farm extends Model
 
         // Save Image
         $this->update(['image_url' => $image_url]);
+    }
+
+    /**
+     * Update Map Marker
+     *
+     * @param  string  $latitude
+     * @param  string $longitude
+     * @return mixed
+     */
+    public function updateMapMarker($latitude, $longitude)
+    {
+        // Update
+        if($this->mapMarker) {
+            $this->mapMarker->update([
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            ]);
+        } // Create
+        else
+        {
+            MapMarker::create([
+                'farm_id' => $this->id,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'settings' => [
+                    'options' => [
+                        'editable' => false,
+                        'strokeColor' => '#000000',
+                        'fillColor' => '#FFFFFF',
+                    ]
+                ],
+                'major' => 1,
+            ]);
+        }
+
+        Cache::forget('world_map');
     }
 
     /**

@@ -16,7 +16,7 @@ class CardCollection extends Resource
     {
         return [
             'name' => $this->name,
-            'link' => $this->url,
+            'link' => route('cards.show', ['card' => $this->slug]),
             'card' => $this->image_url,
             'issued' => (float) $this->asset->issuance_normalized,
             'burned' => (float) $this->asset->burned_normalized,
