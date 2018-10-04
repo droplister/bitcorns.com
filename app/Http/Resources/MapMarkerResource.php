@@ -16,8 +16,8 @@ class MapMarkerResource extends Resource
     {
         return [
             'name' => $this->farm->name,
-            'href' => $this->farm->url,
             'slug' => $this->farm->slug,
+            'href' => $this->farm->url,
             'options' => $this->settings['options'],
             'position' => [
                 'lat' => (float) $this->latitude,

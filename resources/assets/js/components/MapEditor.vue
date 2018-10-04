@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div v-if="exists">
+      <div>
         <GmapMap
           :zoom="zoom"
           :center="center"
@@ -60,15 +60,15 @@
 </template>
  
 <script>
-import * as VueGoogleMaps from 'vue2-google-maps';
-import Vue from 'vue';
+import * as VueGoogleMaps from 'vue2-google-maps'
+import Vue from 'vue'
  
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyCrHQQfixq1IVYwzBrK8y20vz60D0I5c3Y',
   }
-});
- 
+})
+
 export default {
   props: ['type', 'lat', 'lng', 'zoom', 'farm', 'exists'],
   data () {
@@ -80,11 +80,11 @@ export default {
       mapOptions: {
         'editable': false,
         'fillColor': '#ADFF2F',
-        'strokeColor': '#228B22'
+        'strokeColor': '#228B22',
       },
       center: {
         lat: this.lat,
-        lng: this.lng
+        lng: this.lng,
       },
       markers: null,
       mapType: this.type ? this.type : 'terrain',
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     fetchData: function () {
-      var api = '/api/map';
+      var api = '/api/map'
       var self = this
       $.get(api, function (response) {
         self.markers = response.data
