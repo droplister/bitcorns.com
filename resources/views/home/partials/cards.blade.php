@@ -1,5 +1,5 @@
 <h2 class="display-4 mb-5">
-    Featured Cards
+    <span class="d-none d-sm-inline">Featured</span> Cards
 </h2>
 <div class="row">
     @foreach($cards as $card)

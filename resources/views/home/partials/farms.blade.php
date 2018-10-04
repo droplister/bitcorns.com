@@ -1,5 +1,5 @@
 <h2 class="display-4 my-5">
-    Featured Farms
+    <span class="d-none d-sm-inline">Featured</span> Farms
 </h2>
 <div class="row">
     @if($field)
