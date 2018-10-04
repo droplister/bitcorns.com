@@ -24,7 +24,7 @@ class InfoController extends Controller
             'total_groups' => Coop::count(),
             'total_places' => MapMarker::count(),
             'total_players' => Farm::hasAccess()->count(),
-            'total_rewards' => Harvest::upcoming()->sum('quantity'),
+            'total_rewards' => Harvest::complete()->sum('quantity'),
         ];
     }
 }

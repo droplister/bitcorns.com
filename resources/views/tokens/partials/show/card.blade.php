@@ -30,7 +30,14 @@
             </div>
             <div class="card-body">
                 <p class="card-text">
-                    {{ $token->asset->divisible ? $token->asset->supply_normalized : number_format($token->asset->supply_normalized) }}
+                    @if($token->name === config('bitcorn.reward_token'))
+                        {{ number_format(Harvest::complete()->sum('quantity')) }}
+                        <small class="text-muted">
+                            {{ $token->asset->divisible ? $token->asset->supply_normalized : number_format($token->asset->supply_normalized) }}
+                        </small>
+                    @else
+                        {{ $token->asset->divisible ? $token->asset->supply_normalized : number_format($token->asset->supply_normalized) }}
+                    @endif
                 </p>
             </div>
         </div>
