@@ -15,7 +15,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ $card->name }}: {{ $asset->divisible ? $farm->getBalance($card->xcp_core_asset_name)->quantity_normalized : number_format($farm->getBalance($card->xcp_core_asset_name)->quantity_normalized) }}
+            {{ $card->name }}: {{ $card->asset->divisible ? $farm->getBalance($card->xcp_core_asset_name)->quantity_normalized : number_format($farm->getBalance($card->xcp_core_asset_name)->quantity_normalized) }}
         </p>
     </div>
 </div>

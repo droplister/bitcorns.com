@@ -15,7 +15,7 @@
             </a>
         </h4>
         <p class="card-text">
-            {{ $token->name }}: {{ $asset->divisible ? $coop->getBalance($token->xcp_core_asset_name) : number_format($coop->getBalance($token->xcp_core_asset_name)) }}
+            {{ $token->name }}: {{ $token->asset->divisible ? $coop->getBalance($token->xcp_core_asset_name) : number_format($coop->getBalance($token->xcp_core_asset_name)) }}
         </p>
     </div>
 </div>

@@ -1,4 +1,4 @@
-@if($balances->count() > 0)
+@if($card->farmBalances()->count() > 0)
     <h2 class="display-4 mb-5">
         Card Owners
     </h2>
@@ -6,7 +6,7 @@
         <div class="card-header">
             Bitcorn Farms
             <span class="badge badge-dark">
-                {{ $balances->count() }}
+                {{ $card->farmBalances()->count() }}
             </span>
         </div>
         <div class="table-responsive">
@@ -21,11 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($balances as $balance)
+                    @foreach($card->farmBalances as $balance)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}.</th>
                         <td>
-                            @if($asset->owner === $balance->farm->xcp_core_address)
+                            @if($card->asset->owner === $balance->farm->xcp_core_address)
                                 <small><i class="fa fa-paint-brush text-success" title="Card Owner"></i></small>
                             @endif
                             <a href="{{ route('farms.show', ['farm' => $balance->farm->slug]) }}">{{ $balance->farm->name }}</a>

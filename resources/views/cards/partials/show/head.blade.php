@@ -2,6 +2,6 @@
     {{ $card->name }}
 </h1>
 <p class="text-muted">
-    {{ __('Issued:') }} {{ $asset ? $asset->confirmed_at->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
-    {{ __('Last Traded:') }} {{ $last_match ? $last_match->confirmed_at->toFormattedDateString() : __('N/A') }}
+    {{ __('Issued:') }} {{ $card->asset ? $card->asset->confirmed_at->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
+    {{ __('Last Traded:') }} {{ $card->lastMatch() ? $card->lastMatch()->confirmed_at->toFormattedDateString() : __('N/A') }}
 </p>

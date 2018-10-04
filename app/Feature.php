@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use App\Events\FeatureWasCreated;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,5 +46,33 @@ class Feature extends Model
         return $query->where('xcp_core_tx_index', '>', config('bitcorn.feature_tx_index'))
             ->orderBy('bid', 'desc')
             ->orderBy('xcp_core_tx_index', 'desc');
+    }
+
+    /**
+     * Featured Cards
+     */
+    public static function featuredCards()
+    {
+        return Cache::remember('featured_cards', 60, function () {
+            return static::where('featurable_type', '=', 'App\Token')
+                ->with('featurable')
+                ->highestBids()
+                ->take(4)
+                ->get();
+        });
+    }
+
+    /**
+     * Featured Farms
+     */
+    public static function featuredFarms()
+    {
+        return Cache::remember('featured_farms', 60, function () {
+            return static::where('featurable_type', '=', 'App\Farm')
+                ->with('featurable')
+                ->highestBids()
+                ->take(2)
+                ->get();
+        });
     }
 }
