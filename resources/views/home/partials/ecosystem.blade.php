@@ -2,7 +2,7 @@
     Ecosystem
 </h2>
 <div class="row">
-    <div class="col-12 col-sm-6 col-md-4 mb-5">
+    <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.foundation') }}" target="_blank">
                 <img src="{{ asset('images/websites/bitcorn-foundation.png') }}" alt="Bitcorn Foundation" class="card-img-top" />
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-5">
+    <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.museum') }}" target="_blank">
                 <img src="{{ asset('images/websites/bitcorn-museum.png') }}" alt="Bitcorn Museum" class="card-img-top" />
@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-5">
+    <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.battle') }}" target="_blank">
                 <img src="{{ asset('images/websites/bitcorn-battle.png') }}" alt="Bitcorn Battle" class="card-img-top" />
@@ -64,6 +64,29 @@
                 </h4>
                 <p class="card-text">
                     Military-Grade Simulations
+                </p>
+            </div>
+            <div class="card-footer">
+                Community Made
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 mb-5">
+        <div class="card">
+            <a href="{{ config('bitcorn.harvest') }}" target="_blank">
+                <img src="{{ asset('images/websites/bitcorn-harvest.png') }}" alt="Bitcorn Harvest" class="card-img-top" />
+            </a>
+            <div class="card-body">
+                <a href="{{ config('bitcorn.harvest') }}" class="btn btn-outline-primary pull-right" target="_blank">
+                    <i class="fa fa-map-marker"></i>
+                </a>
+                <h4 class="card-title">
+                    <a href="{{ config('bitcorn.harvest') }}" target="_blank">
+                        Bitcorn Harvest
+                    </a>
+                </h4>
+                <p class="card-text">
+                    Private Bitcorn Consulting
                 </p>
             </div>
             <div class="card-footer">

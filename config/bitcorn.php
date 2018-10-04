@@ -138,6 +138,11 @@ return [
     'github' => env('BITCORN_GITHUB', 'https://github.com/droplister/bitcorns.com'),
 
     /**
+     * Bitcorn Harvest
+     */
+    'harvest' => env('BITCORN_HARVEST', 'https://bitcornharvest.com'),
+
+    /**
      * Medium
      */
     'medium' => env('BITCORN_MEDIUM', 'https://medium.com/@BitcornCrops'),
@@ -171,4 +176,9 @@ return [
      * Counterparty Dex
      */
     'xcpdex' => env('BITCORN_XCPDEX', 'https://xcpdex.com/market/CROPS_XCP'),
+
+    /**
+     * Queue Route
+     */
+    'queue_route' => env('BITCORN_QUEUE'),
 ];
