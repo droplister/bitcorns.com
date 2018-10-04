@@ -11,12 +11,12 @@
                                     Your Farm
                                 </a>
                             </li>
-                            <li class="nav-item d-none d-sm-inline">
+                            <li class="nav-item">
                                 <a class="nav-link" id="coop-tab" data-toggle="tab" href="#coop" role="tab" aria-controls="coop" aria-selected="true">
                                     Your Coop
                                 </a>
                             </li>
-                            <li class="nav-item d-none d-sm-inline">
+                            <li class="nav-item">
                                 <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="true">
                                     Location
                                 </a>

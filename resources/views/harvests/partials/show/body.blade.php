@@ -20,7 +20,7 @@
             {{ $coops->count() }}
         </span>
     </div>
-    <div class="responsive-table">
+    <div class="table-responsive">
         <table class="table table-bordered mb-0">
             <thead>
                 <tr>      
@@ -53,7 +53,7 @@
             {{ $farms->count() }}
         </span>
     </div>
-    <div class="responsive-table">
+    <div class="table-responsive">
         <table class="table table-bordered mb-0">
             <thead>
                 <tr>      

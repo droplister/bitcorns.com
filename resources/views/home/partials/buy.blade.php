@@ -6,7 +6,7 @@
     </small>
 </h2>
 <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 box-shadow">
+    <div class="card mb-5 box-shadow">
         <div class="card-header">
             <h4 class="my-0 font-weight-normal">Basic Access</h4>
         </div>
@@ -24,7 +24,7 @@
             </a>
         </div>
     </div>
-    <div class="card mb-4 box-shadow">
+    <div class="card mb-5 box-shadow">
         <div class="card-header">
             <h4 class="my-0 font-weight-normal">Upload Access</h4>
         </div>
@@ -42,7 +42,7 @@
             </a>
         </div>
     </div>
-    <div class="card mb-4 box-shadow">
+    <div class="card mb-5 box-shadow">
         <div class="card-header">
             <h4 class="my-0 font-weight-normal">XCP DEX</h4>
         </div>

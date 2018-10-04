@@ -14,10 +14,10 @@
 
     <!-- Stylesheets -->
     <link href="{{ asset('favicon.ico') }}" rel="icon">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css?new') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js?new') }}" defer></script>
 
     <!--
      /$$       /$$   /$$                                            
@@ -64,18 +64,20 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('coops.index') }}">Coops</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none d-sm-inline">
                                 <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cards.index') }}">Cards</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none d-sm-inline">
                                 <a class="nav-link" href="{{ route('tokens.index') }}">Tokens</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="almanac_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                                 <div class="dropdown-menu" aria-labelledby="almanac_dropdown">
+                                    <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('harvests.index') }}">Harvests</a>
+                                    <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('tokens.index') }}">Game Tokens</a>
                                     <a class="dropdown-item" href="{{ route('pages.rules') }}">Game Rules</a>
                                     <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Card</a>
                                     <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">Medium.com</a>
