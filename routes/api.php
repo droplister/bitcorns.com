@@ -12,6 +12,12 @@
 */
 
 Route::get('/calculator', 'Api\CalculatorController@index')->name('api.calculator');
+Route::resource('/cards', 'Api\CardsController')->only(['index', 'show']);
+Route::resource('/coops', 'Api\CoopsController')->only(['index', 'show']);
+Route::get('/info', 'Api\InfoController@index')->name('api.info');
+Route::resource('/farms', 'Api\FarmsController')->only(['index', 'show']);
+Route::post('/farms/{farm}/map', 'Api\FarmMapMarkerController@update')->name('api.farm.map');
 Route::get('/map', 'Api\MapController@index')->name('api.map.index');
 Route::get('/map/{coop}', 'Api\MapController@show')->name('api.map.show');
-Route::post('/farms/{farm}/map', 'Api\FarmMapMarkerController@update')->name('api.farm.map');
+Route::resource('/tokens', 'Api\TokensController')->only(['index']);
+Route::get('/tokens/{token}.json', 'Api\TokensController@show')->name('api.tokens.show');
