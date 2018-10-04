@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class HarvestCollection extends Resource
+class FarmHarvestCollection extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,7 @@ class HarvestCollection extends Resource
     {
         return [
             'date' => $this->scheduled_at->toDateString(),
-            'total' => (int) $this->quantity,
+            'total' => (int) ($this->pivot->quantity * $this->pivot->multiplier),
             'tx_id' => $this->xcp_core_tx_index,
         ];
     }
