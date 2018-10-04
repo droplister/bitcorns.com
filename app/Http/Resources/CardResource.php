@@ -19,9 +19,9 @@ class CardResource extends Resource
             'name' => $this->name,
             'link' => $this->url,
             'card' => $this->image_url,
-            'issued' => $this->asset->issuance_normalized,
-            'burned' => $this->asset->burned_normalized,
-            'supply' => $this->asset->supply_normalized,
+            'issued' => (float) $this->asset->issuance_normalized,
+            'burned' => (float) $this->asset->burned_normalized,
+            'supply' => (float) $this->asset->supply_normalized,
             'holder_count' => $this->farms()->count(),
             'holders' => TokenBalanceCollection::collection($this->farms),
         ];
