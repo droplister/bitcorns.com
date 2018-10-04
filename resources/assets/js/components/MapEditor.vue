@@ -109,21 +109,19 @@ export default {
       this.latitude = event.latLng.lat()
       this.longitude = event.latLng.lng()
     },
-    methods: {
-      processForm() {
-        var api = '/api/farms/' + this.farm + '/map'
-        var self = this
-        $.post(api, {
-          latitude: self.latitude,
-          longitude: self.longitude,
-          message: self.message,
-          signature: self.signature
-        }, function (response) {
-          console.log(response)
-          self.markers = null
-          self.fetchData()
-        })
-      }
+    processForm() {
+      var api = '/api/farms/' + this.farm + '/map'
+      var self = this
+      $.post(api, {
+        latitude: self.latitude,
+        longitude: self.longitude,
+        message: self.message,
+        signature: self.signature
+      }, function (response) {
+        console.log(response)
+        self.markers = null
+        self.fetchData()
+      })
     }
   }
 }

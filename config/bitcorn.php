@@ -106,6 +106,11 @@ return [
      * Contact Email
      */
     'email' => env('BITCORN_EMAIL', 'bitcorncrops@gmail.com'),
+    
+    /**
+     * Google Analytics
+     */
+    'analytics' => env('BITCORN_ANALYTICS', 'UA-112477384-4'),
 
     /**
      * Bitcorn Battle
