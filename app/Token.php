@@ -143,7 +143,7 @@ class Token extends Model
      */
     public function farmBalances()
     {
-        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero()->with('farm.coop')->orderBy('quantity', 'desc');
+        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc');
     }
 
     /**

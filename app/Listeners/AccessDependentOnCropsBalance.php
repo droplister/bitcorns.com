@@ -33,6 +33,7 @@ class AccessDependentOnCropsBalance
             // Un-Map No Croppers
             if (! $farm->access) {
                 $farm->mapMarkers()->delete();
+                $farm->update(['coop_id' => null]);
             }
         }
     }

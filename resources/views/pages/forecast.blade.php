@@ -14,6 +14,9 @@
         Forecast
     </h1>
     <div class="card mb-5">
+        <div class="card-header">
+            Harvest Schedule
+        </div>
         <forecast crops="100"></forecast>
     </div>
     <a href="{{ route('pages.countdown', ['vision' => '2020']) }}" class="d-none d-md-inline">
@@ -22,6 +25,8 @@
     <h2 class="display-4 my-5">
         Countdown
     </h2>
-    <countdown deadline="{{ $harvest->scheduled_at }}"></countdown>
+    <div class="card">
+        <countdown deadline="{{ $harvest->scheduled_at }}"></countdown>
+    </div>
 </div>
 @endsection
