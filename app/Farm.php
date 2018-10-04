@@ -94,7 +94,7 @@ class Farm extends Model
      */
     public function getDisplayImageUrlAttribute()
     {
-        return $this->accessBalance()->quantity > 0 ? $this->image_url : '/images/default/0.jpg';
+        return $this->accessBalance()->quantity > 0 ? asset($this->image_url) : asset('/images/default/0.jpg');
     }
 
     /**
