@@ -84,7 +84,7 @@ class AnnounceNewCardSubmissions
     private function privateAnnouncement($token)
     {
         $message = "*{$token->name}*\n";
-        $message.= asset($token->image_url) . "\n";
+        $message.= "{$token->image_url}\n";
         $message.= "Issued: {$token->asset->issuance_normalized}\n";
         
         if (Token::publishable()->where('id', '=', $token->id)->exists()) {
