@@ -18,7 +18,7 @@
                             </li>
                             <li class="nav-item d-none d-sm-inline">
                                 <a class="nav-link" id="map-tab" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="true">
-                                    Marker
+                                    Location
                                 </a>
                             </li>
                         </ul>
