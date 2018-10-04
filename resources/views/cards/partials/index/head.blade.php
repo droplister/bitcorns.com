@@ -13,7 +13,7 @@
         <h6 class="dropdown-header">
             By Format
         </h6>
-        @foreach(['GIF', 'JPG', 'PNG'] as $format)
+        @foreach(['GIF', 'HD', 'JPG', 'PNG'] as $format)
             <a class="dropdown-item" href="{{ route('cards.index', ['filter' => $format]) }}">
                 <i class="fa fa-{{ $filter === $format ? 'check-' : '' }}circle-o mr-1"></i>
                 {{ $format }}
