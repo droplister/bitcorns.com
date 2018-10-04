@@ -19,7 +19,7 @@
       v-for="(m, index) in markers"
       :center="m.position"
       :radius="m.radius"
-      :options="m.options"
+      :options="farm && farm === m.slug ? mapOptions : m.options"
     ></GmapCircle>
 
     <GmapMarker
@@ -44,11 +44,18 @@ Vue.use(VueGoogleMaps, {
 });
  
 export default {
-  props: ['type', 'lat', 'lng', 'zoom', 'coop'],
+  props: ['type', 'lat', 'lng', 'zoom', 'coop', 'farm'],
   data () {
     return {
-      center: {lat: this.lat, lng: this.lng},
-      coords: null,
+      mapOptions: {
+        'editable': false,
+        'fillColor': '#ADFF2F',
+        'strokeColor': '#228B22'
+      },
+      center: {
+        lat: this.lat,
+        lng: this.lng
+      },
       markers: null,
       name: '',
       href: '',

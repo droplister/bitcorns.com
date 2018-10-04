@@ -7,6 +7,7 @@
                 </div>
                 <google-map
                     type="{{ $farm->map_type }}"
+                    farm="{{ $farm->slug }}"
                     v-bind:lat="{{ $farm->mapMarker->latitude }}"
                     v-bind:lng="{{ $farm->mapMarker->longitude }}"
                     v-bind:zoom="8">
