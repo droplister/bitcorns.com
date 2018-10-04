@@ -30,32 +30,10 @@ class FarmMapMarkerController extends Controller
             return $error;
         }
 
-        if($farm->mapMarker)
-        {
-            $farm->mapMarker->update([
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-            ]);
-        }
-        else
-        {
-            MapMarker::create([
-                'farm_id' => $farm->id,
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-                'settings' => [
-                    'options' => [
-                        'editable' => false,
-                        'strokeColor' => '#000000',
-                        'fillColor' => '#FFFFFF',
-                    ]
-                ],
-                'major' => 1,
-            ]);
-        }
+        // Update Marker
+        $farm->updateMapMarker($request->latitude, $request->longitude);
 
-        Cache::forget('world_map');
-
+        // Okie Doke
         return 'ok';
     }
 }
