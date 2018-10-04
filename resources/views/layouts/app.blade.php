@@ -61,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('farms.index') }}">Farms</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item d-none d-sm-inline">
                                 <a class="nav-link" href="{{ route('coops.index') }}">Coops</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline">
@@ -76,8 +76,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="almanac_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                                 <div class="dropdown-menu" aria-labelledby="almanac_dropdown">
+                                    <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('coops.index') }}">Coops</a>
+                                    <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('tokens.index') }}">Tokens</a>
                                     <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('harvests.index') }}">Harvests</a>
-                                    <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('tokens.index') }}">Game Tokens</a>
                                     <a class="dropdown-item" href="{{ route('pages.rules') }}">Game Rules</a>
                                     <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Card</a>
                                     <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">Medium.com</a>
