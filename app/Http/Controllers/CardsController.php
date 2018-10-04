@@ -22,7 +22,7 @@ class CardsController extends Controller
         $filter = $request->input('filter', null);
 
         // List Cards
-        $cards = Token::getFilteredCards($request, $filter)->get();
+        $cards = Token::getFilteredCards($filter)->get();
 
         // Harvests
         $harvests = Harvest::complete()->get();
