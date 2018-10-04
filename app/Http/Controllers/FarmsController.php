@@ -75,7 +75,7 @@ class FarmsController extends Controller
     {
         // Dropdown
         $coops = Cache::remember('coops_abc', 60, function () {
-            return Coop::has('farms')->orderBy('name', 'desc')->get();
+            return Coop::has('farms')->orderBy('name', 'asc')->get();
         });
 
         return view('farms.edit', compact('farm', 'coops'));

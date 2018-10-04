@@ -70,7 +70,7 @@ Vue.use(VueGoogleMaps, {
 })
 
 export default {
-  props: ['type', 'lat', 'lng', 'zoom', 'farm', 'message', 'exists'],
+  props: ['type', 'lat', 'lng', 'zoom', 'farm', 'message'],
   data () {
     return {
       coords: null,
