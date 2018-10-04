@@ -27,8 +27,8 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            @if($last_match)
-                                <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($last_match->trading_price_normalized, 8) }} {{ $last_match->trading_pair_quote_asset }}</a>
+                            @if($card->lastMatch())
+                                <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($card->lastMatch()->trading_price_normalized, 8) }} {{ $card->lastMatch()->trading_pair_quote_asset }}</a>
                             @else
                                 <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">No Trades</a>
                             @endif
@@ -42,7 +42,7 @@
                         Supply
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{ $asset ? number_format($asset->supply_normalized) : __('Syncing') }}</p>
+                        <p class="card-text">{{ $card->asset ? number_format($card->asset->supply_normalized) : __('Syncing') }}</p>
                     </div>
                 </div>
             </div>

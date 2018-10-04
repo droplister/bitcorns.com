@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Cache;
-use App\Coop;
 use App\Token;
 use App\Harvest;
-use Droplister\XcpCore\App\OrderMatch;
+use Illuminate\Http\Request;
 use App\Http\Requests\Cards\IndexRequest;
 use App\Http\Requests\Cards\StoreRequest;
-use Illuminate\Http\Request;
 
 class CardsController extends Controller
 {
@@ -42,7 +40,7 @@ class CardsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Card
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Token  $card
@@ -55,36 +53,12 @@ class CardsController extends Controller
             return redirect(route('tokens.show', ['token' => $card->slug]));
         }
 
-        // Convenience
-        $asset = $card->asset;
-        $last_match = $card->lastMatch();
-
-        // Get Farm Balances
-        $balances = Cache::remember('card_balances_' . $card->slug, 60, function () use ($card) {
-            return $card->balances()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc')->get();
-        });
-
-        // Top Coop
-        $top_coop = Cache::remember('card_top_coop_' . $card->slug, 60, function () use ($card) {
-            $unsorted = Coop::get();
-
-            // Sorted
-            $sorted = $unsorted->sortByDesc(function ($c) use ($card) {
-                return $c->getBalance($card->xcp_core_asset_name);
-            });
-
-            return $sorted->first();
-        });
-
-        // Top Farm
-        $top_farm = $balances->first()->farm;
-
         // Show View
-        return view('cards.show', compact('card', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));
+        return view('cards.show', compact('card'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Submit Card
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -92,7 +66,7 @@ class CardsController extends Controller
     public function create(Request $request)
     {
         // DEX Average
-        $dex_average = $this->getAverageDexPrice();
+        $dex_average = Token::getAverageCardPrice();
 
         // Queue Count
         $queue_count = Token::publishable()->upgrades()->count();
@@ -102,7 +76,7 @@ class CardsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create Card
      *
      * @param  \App\Http\Requests\Cards\StoreRequest  $request
      * @return \Illuminate\Http\Response
@@ -114,30 +88,5 @@ class CardsController extends Controller
 
         // Report Back
         return redirect(route('cards.create'))->with('success', 'Success - Card Submitted!');
-    }
-
-    /**
-     * Get Average DEX Price
-     *
-     * @return string
-     */
-    private function getAverageDexPrice()
-    {
-        // DEX Average (All Cards)
-        return Cache::remember('dex_average', 1440, function () {
-            // Cards
-            $card_assets = Token::published()->upgrades()->pluck('xcp_core_asset_name')->toArray();
-
-            // Buys
-            $buys = OrderMatch::whereIn('forward_asset', $card_assets)->where('backward_asset', '=', config('bitcorn.reward_token'));
-            $average_buy = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
-
-            // Sells
-            $sells = OrderMatch::whereIn('backward_asset', $card_assets)->where('forward_asset', '=', config('bitcorn.reward_token'));
-            $average_sell = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
-
-            // DEX Average
-            return number_format(($average_buy + $average_sell) / 2);
-        });
     }
 }

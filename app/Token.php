@@ -2,8 +2,10 @@
 
 namespace App;
 
+use Cache;
 use Storage;
 use Exception;
+use App\Coop;
 use App\Traits\Linkable;
 use App\Traits\Touchable;
 use App\Traits\Achievable;
@@ -132,6 +134,16 @@ class Token extends Model
     public function allBalances()
     {
         return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Farm Balances
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function farmBalances()
+    {
+        return $this->hasMany(TokenBalance::class, 'asset', 'xcp_core_asset_name')->nonZero()->with('farm.coop')->orderBy('quantity', 'desc');
     }
 
     /**
@@ -265,6 +277,37 @@ class Token extends Model
     }
 
     /**
+     * Top Coop
+     *
+     * @return \App\Coop
+     */
+    public function topCoop()
+    {
+        return Cache::remember('token_top_coop_' . $this->slug, 60, function () {
+            // Coops
+            $unsorted = Coop::get();
+
+            // Sorted
+            return $unsorted->sortByDesc(function ($coop) {
+                return $coop->getBalance($this->xcp_core_asset_name);
+            })->first();
+        });
+    }
+
+    /**
+     * Top Farm
+     *
+     * @return \App\Farm
+     */
+    public function topFarm()
+    {
+        return Cache::remember('token_top_farm_' . $this->slug, 60, function () {
+            // Top Farm
+            return $this->farmBalances()->first()->farm;
+        });
+    }
+
+    /**
      * Locked Achievements
      *
      * @return \Gstt\Achievements\Model\AchievementProgress
@@ -371,6 +414,19 @@ class Token extends Model
     }
 
     /**
+     * Last Price
+     *
+     * @return string
+     */
+    public static function lastPrice()
+    {
+        return Cache::remember('last_price', 60, function () {
+            $crops = static::where('xcp_core_asset_name', '=', config('bitcorn.access_token'))->first();
+            return $crops->lastMatch('XCP') ? number_format($crops->lastMatch('XCP')->trading_price_normalized) . ' XCP' : '0 XCP';
+        });
+    }
+
+    /**
      * Get Filtered Cards
      *
      * @param  \App\Http\Requests\Cards\IndexRequest  $request
@@ -391,6 +447,30 @@ class Token extends Model
         }
 
         return $cards->orderBy('meta_data->overall_ranking', 'asc');
+    }
+
+    /**
+     * Get Average Card Price
+     *
+     * @return string
+     */
+    public static function getAverageCardPrice()
+    {
+        return Cache::remember('dex_average', 1440, function () {
+            // Cards
+            $card_assets = static::published()->upgrades()->pluck('xcp_core_asset_name')->toArray();
+
+            // Buys
+            $buys = OrderMatch::whereIn('forward_asset', $card_assets)->where('backward_asset', '=', config('bitcorn.reward_token'));
+            $average_buy = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
+
+            // Sells
+            $sells = OrderMatch::whereIn('backward_asset', $card_assets)->where('forward_asset', '=', config('bitcorn.reward_token'));
+            $average_sell = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
+
+            // DEX Average
+            return number_format(($average_buy + $average_sell) / 2);
+        });
     }
 
     /**

@@ -3,7 +3,9 @@
         Description
     </div>
     <div class="card-body">
-        <p class="card-text">{{ $token->content }}</p>
+        <p class="card-text">
+            {{ $token->content }}
+        </p>
     </div>
 </div>
 <div class="row">
@@ -13,7 +15,11 @@
                 Last Price
             </div>
             <div class="card-body">
-                <p class="card-text"><a href="{{ $last_match ? 'https://xcpdex.com/market/' . str_replace('/', '_', $last_match->trading_pair_normalized) : 'https://xcpdex.com/markets' }}" target="_blank">{{ $last_match ? $last_match->trading_price_normalized . ' ' . $last_match->trading_pair_quote_asset : __('No Trades') }}</a></p>
+                <p class="card-text">
+                    <a href="{{ $token->lastMatch('XCP') ? 'https://xcpdex.com/market/' . str_replace('/', '_', $token->lastMatch('XCP')->trading_pair_normalized) : 'https://xcpdex.com/markets' }}" target="_blank">
+                        {{ $token->lastMatch('XCP') ? $token->lastMatch('XCP')->trading_price_normalized . ' ' . $token->lastMatch('XCP')->trading_pair_quote_asset : __('No Trades') }}
+                    </a>
+                </p>
             </div>
         </div>
     </div>
@@ -23,7 +29,9 @@
                 Supply
             </div>
             <div class="card-body">
-                <p class="card-text">{{ $asset->divisible ? $asset->supply_normalized : number_format($asset->supply_normalized) }}</p>
+                <p class="card-text">
+                    {{ $token->asset->divisible ? $token->asset->supply_normalized : number_format($token->asset->supply_normalized) }}
+                </p>
             </div>
         </div>
     </div>

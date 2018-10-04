@@ -434,6 +434,14 @@ class Farm extends Model
     }
 
     /**
+     * Field of Dreams
+     */
+    public static function getFieldOfDreams()
+    {
+        return static::findBySlug(config('bitcorn.field_of_dreams'));
+    }
+
+    /**
      * Get the route key for the model.
      *
      * @return string

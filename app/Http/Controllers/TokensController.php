@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Cache;
-use App\Coop;
 use App\Token;
 use Illuminate\Http\Request;
 
 class TokensController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List Tokens
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -40,31 +39,7 @@ class TokensController extends Controller
             return redirect(route('cards.show', ['card' => $token->slug]));
         }
 
-        // Convenience
-        $asset = $token->asset;
-        $last_match = $token->lastMatch('XCP');
-
-        // Get Farm Balances
-        $balances = Cache::remember('token_balances_' . $token->slug, 60, function () use ($token) {
-            return $token->balances()->has('farm')->with('farm.coop')->orderBy('quantity', 'desc')->get();
-        });
-
-        // Top Coop
-        $top_coop = Cache::remember('token_top_coop_' . $token->slug, 60, function () use ($token) {
-            $unsorted = Coop::get();
-
-            // Sorted
-            $sorted = $unsorted->sortByDesc(function ($c) use ($token) {
-                return $c->getBalance($token->xcp_core_asset_name);
-            });
-
-            return $sorted->first();
-        });
-
-        // Top Farm
-        $top_farm = $balances->first()->farm;
-
         // Show View
-        return view('tokens.show', compact('token', 'asset', 'balances', 'last_match', 'top_coop', 'top_farm'));
+        return view('tokens.show', compact('token'));
     }
 }
