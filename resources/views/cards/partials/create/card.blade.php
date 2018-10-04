@@ -17,6 +17,14 @@
                     <strong class="d-block">Border-Only:</strong>
                     <a href="{{ asset('assets/BitcornCardTemplateBorderOnly.psd') }}">BitcornCardTemplateBorderOnly.psd</a>
                 </p>
+                <p class="card-text">
+                    <strong class="d-block">CORN COIN:</strong>
+                    <a href="{{ asset('assets/CORNCOIN.zip') }}">CORNCOIN.zip</a>
+                </p>
+                <p class="card-text">
+                    <strong class="d-block">LOGO CORN:</strong>
+                    <a href="{{ asset('assets/LOGOCORN.zip') }}">LOGOCORN.zip</a>
+                </p>
             </div>
             <div class="col-md-8">
                 <h5 class="card-title">
