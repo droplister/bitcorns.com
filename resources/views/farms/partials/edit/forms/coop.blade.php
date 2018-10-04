@@ -3,7 +3,8 @@
     @csrf
     <div class="form-group">
         <label for="name">Cooperative:</label>
-        <select id="coop" class="form-control" name="coop"> 
+        <select id="coop" class="form-control" name="coop">
+            <option>Select a Coop:</option>
             @foreach($coops as $coop)
                 <option value="{{ $coop->id }}"{{ $farm->coop_id === $coop->id ? ' selected' : '' }}>{{ $coop->name }}</option>
             @endforeach
