@@ -75,10 +75,10 @@
 <div class="text-center my-5">
     Follow Us on Social Media!
     <br />
-    <a href="{{ config('bitcon.telegram') }}" class="btn btn-primary btn-lg" target="_blank">
+    <a href="{{ config('bitcorn.telegram') }}" class="btn btn-primary btn-lg" target="_blank">
         <i aria-hidden="true" class="fa fa-telegram"></i> Telegram
     </a>
-    <a href="{{ config('bitcon.twitter') }}" class="btn btn-info btn-lg" target="_blank">
+    <a href="{{ config('bitcorn.twitter') }}" class="btn btn-info btn-lg" target="_blank">
         <i aria-hidden="true" class="fa fa-twitter"></i> Twitter
     </a>
 </div>
