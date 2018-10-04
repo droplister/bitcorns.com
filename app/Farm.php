@@ -469,14 +469,13 @@ class Farm extends Model
     public function updateMapMarker($latitude, $longitude)
     {
         // Update
-        if($this->mapMarker) {
+        if ($this->mapMarker) {
             $this->mapMarker->update([
                 'latitude' => $latitude,
                 'longitude' => $longitude,
             ]);
         } // Create
-        else
-        {
+        else {
             MapMarker::create([
                 'farm_id' => $this->id,
                 'latitude' => $latitude,
