@@ -15,7 +15,6 @@ use Droplister\XcpCore\App\Burn;
 use Droplister\XcpCore\App\Send;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\OrderMatch;
-use App\Http\Requests\Cards\IndexRequest;
 use App\Http\Requests\Cards\StoreRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -434,24 +433,18 @@ class Token extends Model
      */
     public static function getFilteredCards($filter)
     {
-        // Cache Slug
-        $cache_slug = 'card_index_' . str_slug($filter);
+        // Cards to Filter
+        $cards = Token::published()->upgrades();
 
-        // Filtration
-        return Cache::remember($cache_slug, 60, function () use ($filter) {
-            // Cards to Filter
-            $cards = Token::published()->upgrades();
+        // Harvest
+        if ($filter && is_int((int) $filter) && (int) $filter !== 0) {
+            $cards = $cards->where('harvest_id', '=', $filter);
+        } // Format
+        elseif ($filter && is_string($filter)) {
+            $cards = $cards->where('image_url', 'like', '%'. $filter);
+        }
 
-            // Harvest
-            if ($filter && is_int((int) $filter) && (int) $filter !== 0) {
-                $cards = $cards->where('harvest_id', '=', $filter);
-            } // Format
-            elseif ($filter && is_string($filter)) {
-                $cards = $cards->where('image_url', 'like', '%'. $filter);
-            }
-
-            return $cards->orderBy('meta_data->overall_ranking', 'asc');
-        });
+        return $cards->orderBy('meta_data->overall_ranking', 'asc');
     }
 
     /**

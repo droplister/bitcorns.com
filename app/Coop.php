@@ -115,6 +115,26 @@ class Coop extends Model
     }
 
     /**
+     * Access Balance
+     *
+     * @return \App\Balance
+     */
+    public function accessBalance()
+    {
+        return $this->getBalance(config('bitcorn.access_token'));
+    }
+
+    /**
+     * Reward Balance
+     *
+     * @return \App\Balance
+     */
+    public function rewardBalance()
+    {
+        return $this->getBalance(config('bitcorn.reward_token'));
+    }
+
+    /**
      * Get Balance
      *
      * @param string  $asset
