@@ -39,7 +39,7 @@
             <div class="col-sm-6">
                 <div class="card mb-5">
                     <div class="card-header">
-                        Supply
+                        Issuance
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ $card->asset ? number_format($card->asset->supply_normalized) : __('Syncing') }}</p>
