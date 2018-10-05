@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" style="background: #f5f5f5 url({{ asset('/images/light-beams.jpg') }}) no-repeat center center">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,7 @@
     |_______/ |__/   \___/   \_______/ \______/ |__/      |__/  |__/
     -->
 </head>
-<body>
+<body style="background: transparent; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
     <div id="app">
         <main role="main">
             @yield('content')
