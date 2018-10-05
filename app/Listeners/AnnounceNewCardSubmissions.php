@@ -83,17 +83,23 @@ class AnnounceNewCardSubmissions
      */
     private function privateAnnouncement($token)
     {
+        $locked = $token->asset->locked ? 'True' : 'False';
+        $divisible = $token->asset->divisible ? 'True' : 'False';
+        $issuance = number_format($token->asset->issuance_normalized);
+        $museumed_at = $token->museumed_at ? $token->museumed_at : 'Pending';
+        $preview = route('cards.show', ['card' => $token->slug, 'preview' => 'true']);
+
         $message = "*{$token->name}*\n";
-        $message.= "{$token->image_url}\n";
-        $message.= "Issued: {$token->asset->issuance_normalized}\n";
+        $message.= "{$preview}\n";
+        $message.= "Issued: {$issuance}\n";
         
         if (Token::publishable()->where('id', '=', $token->id)->exists()) {
             $message.= "Publishable submission!";
         } else {
             $message.= "Not okay to publish yet...\n";
-            $message.= "- Locked: {$token->asset->locked}\n";
-            $message.= "- Divisible: {$token->asset->divisible}\n";
-            $message.= "- Museumed: {$token->museumed_at}\n";
+            $message.= "- Locked: {$locked}\n";
+            $message.= "- Divisible: {$divisible}\n";
+            $message.= "- Museumed: {$museumed_at}\n";
         }
 
         SendMessage::dispatch($message, 'private');
