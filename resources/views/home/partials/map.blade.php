@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col">
         <div class="card">
-            <google-map v-bind:lat="39.828175" v-bind:lng="-98.5795" v-bind:zoom="2"></google-map>
+            <google-map v-bind:lat="{{ $geoip->latitude() ? $geoip->latitude() : 39.828175 }}" v-bind:lng="{{ $geoip->longitude() ? $geoip->longitude() : -98.5795 }}" v-bind:zoom="4"></google-map>
         </div>
     </div>
 </div>
