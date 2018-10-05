@@ -53,29 +53,29 @@
 
 .glasses .text {
   vertical-align: middle;
-  line-height: 1.5em !important;
+  line-height: 1em !important;
   transition: font-size 2s cubic-bezier(0, 1, 0, 1);
 }
 
 .glasses li:hover .digit {
   font-size: 15em !important; /* This adds a hover effect */
   line-height: 1em !important;
-  transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
+  transition: font-size .4s cubic-bezier(0, 0.75, 0, 1);
 }
 
 .glasses li:hover .text {
-  font-size: 3em !important; /* This adds a hover effect */
-  line-height: 1em !important;
-  transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
+  font-size: 1.3em !important; /* This adds a hover effect */
+  line-height: 1.5em !important;
+  transition: font-size .4s cubic-bezier(0, 0.75, 0, 1);
 }
 
-.glasses li:active {
+.glasses li:active .digit,
+.glasses li:active .text {
   color: #212529;
   text-shadow: none !important;
 }
 
-.glasses .text::selection,
-.glasses .digit::selection {
+.glasses li::selection {
   background-color: red !important;
 }
 
