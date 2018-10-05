@@ -25,13 +25,13 @@
 
 .glasses {
   margin: 10em 0 !important;
-  text-shadow: -0.3em 0 red,  0.3em 0 cyan !important; /* This creates the 3D effect, pretty easy, eh? */
-  letter-spacing: 0.4em !important; /* make sure the letters don't overlap */
+  text-shadow: -0.3em 0 rgba(255, 0, 0, 0.5),  0.3em 0 rgba(0, 255, 255, 0.5) !important;
+  letter-spacing: 0.4em !important;
 }
 
 .glasses .text {
-  text-shadow: -0.06em 0 red,  0.06em 0 cyan !important; /* This creates the 3D effect, pretty easy, eh? */
-  letter-spacing: 0.08em !important; /* make sure the letters don't overlap */
+  text-shadow: -0.06em 0 rgba(255, 0, 0, 0.5),  0.06em 0 rgba(0, 255, 255, 0.5) !important;
+  letter-spacing: 0.08em !important;
 }
 
 .glasses li {
@@ -39,26 +39,22 @@
  }
 
 .glasses li:after {
-  right: -36px !important;
+  right: -35px !important;
   font-size: 9em !important;
 }
 
-.glasses li:hover:after  {
-  right: -45px !important;
-  font-size: 13em !important;
-} 
-
-.glasses .digit{
+.glasses .digit {
   font-size: 10em !important;
   vertical-align: middle;
-  line-height: 10em;
+  line-height: 1.5em !important;
   transition: font-size 2s cubic-bezier(0, 1, 0, 1);
 }
 
 .glasses .digit:hover {
   font-size: 15em !important; /* This adds a hover effect */
+  line-height: 1em !important;
   transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
-}        
+}
 
 .landscape {
   -webkit-transform: rotate(90deg);
