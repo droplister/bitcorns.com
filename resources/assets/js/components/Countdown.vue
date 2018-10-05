@@ -31,12 +31,4 @@ export default {
 .vuejs-countdown .text {
   font-size: 2em !important;
 }
-.vuejs-countdown .text:active,
-.vuejs-countdown .digit:active {
-  text-shadow: none !important;
-}
-.vuejs-countdown .text::selection,
-.vuejs-countdown .digit::selection {
-  background-color: red !important;
-}
 </style>
