@@ -153,6 +153,11 @@ return [
     'museum' => env('BITCORN_MUSEUM', 'https://bitcornmuseum.org'),
 
     /**
+     * Bitcorn Uncensored
+     */
+    'uncensored' => env('BITCORN_UNCENSORED', 'https://soundcloud.com/user-224956270'),
+
+    /**
      * Telegram Chat
      */
     'telegram' => env('BITCORN_TELEGRAM', 'https://t.me/bitcorns'),
