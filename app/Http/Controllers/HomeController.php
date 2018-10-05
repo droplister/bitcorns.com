@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Cache;
 use App\Farm;
 use App\Token;
 use App\Feature;
-use Sujip\Ipstack\Ipstack;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,12 +29,7 @@ class HomeController extends Controller
         // Field of Dreams
         $field = Farm::getFieldOfDreams();
 
-        // Visitor GEO IP
-        $geoip = Cache::rememberForever($request->ip(), function () use ($request) {
-            return new Ipstack($request->ip());
-        });
-
         // Index View
-        return view('home.index', compact('last_price', 'cards', 'farms', 'field', 'geoip'));
+        return view('home.index', compact('last_price', 'cards', 'farms', 'field'));
     }
 }
