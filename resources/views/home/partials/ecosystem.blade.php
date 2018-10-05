@@ -73,6 +73,29 @@
     </div>
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
+            <a href="{{ config('bitcorn.uncensored') }}" target="_blank">
+                <img src="{{ asset('images/websites/bitcorn-uncensored.png') }}" alt="Bitcorn Uncensored" class="card-img-top" />
+            </a>
+            <div class="card-body">
+                <a href="{{ config('bitcorn.uncensored') }}" class="btn btn-outline-primary pull-right" target="_blank">
+                    <i class="fa fa-map-marker"></i>
+                </a>
+                <h4 class="card-title">
+                    <a href="{{ config('bitcorn.uncensored') }}" target="_blank">
+                        Bitcorn Uncensored
+                    </a>
+                </h4>
+                <p class="card-text">
+                    High Bitcorn Fidelity
+                </p>
+            </div>
+            <div class="card-footer">
+                Community Made
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 mb-5">
+        <div class="card">
             <a href="{{ config('bitcorn.harvest') }}" target="_blank">
                 <img src="{{ asset('images/websites/bitcorn-harvest.png') }}" alt="Bitcorn Harvest" class="card-img-top" />
             </a>
