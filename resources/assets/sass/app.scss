@@ -46,20 +46,30 @@
 }
 
 .glasses .digit {
-  font-size: 10em !important;
   vertical-align: middle;
   line-height: 1.5em !important;
   transition: font-size 2s cubic-bezier(0, 1, 0, 1);
 }
 
-.glasses .digit:hover {
+.glasses .text {
+  vertical-align: middle;
+  line-height: 1.5em !important;
+  transition: font-size 2s cubic-bezier(0, 1, 0, 1);
+}
+
+.glasses li:hover .digit {
   font-size: 15em !important; /* This adds a hover effect */
   line-height: 1em !important;
   transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
 }
 
-.glasses .text:active,
-.glasses .digit:active {
+.glasses li:hover .text {
+  font-size: 3em !important; /* This adds a hover effect */
+  line-height: 1em !important;
+  transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
+}
+
+.glasses li:active {
   color: #212529;
   text-shadow: none !important;
 }
