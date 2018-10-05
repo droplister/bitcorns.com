@@ -24,6 +24,8 @@
 }
 
 .glasses {
+  text-align: center;
+  color: transparent;
   margin: 10em 0 !important;
   text-shadow: -0.3em 0 rgba(255, 0, 0, 0.5),  0.3em 0 rgba(0, 255, 255, 0.5) !important;
   letter-spacing: 0.4em !important;
@@ -54,6 +56,17 @@
   font-size: 15em !important; /* This adds a hover effect */
   line-height: 1em !important;
   transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
+}
+
+.glasses .text:active,
+.glasses .digit:active {
+  color: #212529;
+  text-shadow: none !important;
+}
+
+.glasses .text::selection,
+.glasses .digit::selection {
+  background-color: red !important;
 }
 
 .landscape {
