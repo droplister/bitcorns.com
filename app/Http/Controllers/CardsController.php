@@ -45,6 +45,11 @@ class CardsController extends Controller
             return redirect(route('tokens.show', ['token' => $card->slug]));
         }
 
+        // Unpublished Guard
+        if ($card->published_at === null && ! $request->has('preview')) {
+            return abort(404);
+        }
+
         // Show View
         return view('cards.show', compact('card'));
     }
