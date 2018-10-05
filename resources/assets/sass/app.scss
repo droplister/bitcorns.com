@@ -26,13 +26,39 @@
 .glasses {
   margin: 10em 0 !important;
   text-shadow: -0.3em 0 red,  0.3em 0 cyan !important; /* This creates the 3D effect, pretty easy, eh? */
-  letter-spacing: 0.5em !important; /* make sure the letters don't overlap */
+  letter-spacing: 0.4em !important; /* make sure the letters don't overlap */
 }
+
+.glasses .text {
+  text-shadow: -0.06em 0 red,  0.06em 0 cyan !important; /* This creates the 3D effect, pretty easy, eh? */
+  letter-spacing: 0.08em !important; /* make sure the letters don't overlap */
+}
+
+.glasses li {
+  vertical-align: middle;
+ }
 
 .glasses li:after {
   right: -36px !important;
   font-size: 9em !important;
 }
+
+.glasses li:hover:after  {
+  right: -45px !important;
+  font-size: 13em !important;
+} 
+
+.glasses .digit{
+  font-size: 10em !important;
+  vertical-align: middle;
+  line-height: 10em;
+  transition: font-size 2s cubic-bezier(0, 1, 0, 1);
+}
+
+.glasses .digit:hover {
+  font-size: 15em !important; /* This adds a hover effect */
+  transition: font-size .2s cubic-bezier(0, 0.75, 0, 1);
+}        
 
 .landscape {
   -webkit-transform: rotate(90deg);
