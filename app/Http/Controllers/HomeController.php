@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Farm;
 use App\Token;
 use App\Feature;
+use Sujip\Ipstack\Ipstack;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,10 @@ class HomeController extends Controller
         // Field of Dreams
         $field = Farm::getFieldOfDreams();
 
+        // Visitor GEO IP
+        $geoip = new Ipstack($request->ip());
+
         // Index View
-        return view('home.index', compact('last_price', 'cards', 'farms', 'field'));
+        return view('home.index', compact('last_price', 'cards', 'farms', 'field', 'geoip'));
     }
 }
