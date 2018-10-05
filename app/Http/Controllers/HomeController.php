@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Farm;
 use App\Token;
 use App\Feature;
@@ -31,7 +32,9 @@ class HomeController extends Controller
         $field = Farm::getFieldOfDreams();
 
         // Visitor GEO IP
-        $geoip = new Ipstack($request->ip());
+        $geoip = Cache::rememberForever($request->ip(), function () use ($request) {
+            return new Ipstack($request->ip());
+        });
 
         // Index View
         return view('home.index', compact('last_price', 'cards', 'farms', 'field', 'geoip'));
