@@ -4,6 +4,7 @@ namespace App;
 
 use Cache;
 use Storage;
+use Exception;
 use App\Coop;
 use App\Token;
 use App\Upload;
@@ -379,12 +380,16 @@ class Farm extends Model
      */
     public function getBattleStat($key)
     {
-        $data = Cache::remember('battle_stats_' . $this->xcp_core_address, 60, function () {
-            $data = file_get_contents('https://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
-            return json_decode($data, true);
-        });
+        try {
+            $data = Cache::remember('battle_stats_' . $this->xcp_core_address, 60, function () {
+                $data = file_get_contents('http://bitcornbattle.com/api/winloss.php?a=' . $this->xcp_core_address);
+                return json_decode($data, true);
+            });
 
-        return isset($data[$key]) ? (int) $data[$key] : 0;
+            return isset($data[$key]) ? (int) $data[$key] : 0;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 
     /**
