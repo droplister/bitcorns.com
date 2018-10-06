@@ -11,7 +11,7 @@
             @foreach($achievements as $achievement)
                 <tr>
                     <td>
-                        <a href="{{ $achievement->achiever->url }}">{{ $achievement->achiever->name }}</a>
+                        <a href="{{ $achievement->achiever->url }}">{{ $achievement->achiever_type === 'App\Farm' ? $achievement->achiever->display_name : $achievement->achiever->name }}</a>
                     </td>
                     <td>{{ number_format($achievement->points) }}</td>
                     @if($locked)
