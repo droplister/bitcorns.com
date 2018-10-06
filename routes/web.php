@@ -13,6 +13,7 @@
 
 Auth::routes();
 Route::resource('/', 'HomeController', ['only' => ['index']]);
+Route::resource('/achievements', 'AchievementsController', ['only' => ['index', 'show']]);
 Route::resource('/cards', 'CardsController', ['only' => ['index', 'show', 'create', 'store', 'update']]);
 Route::resource('/coops', 'CoopsController');
 Route::resource('/farms', 'FarmsController');

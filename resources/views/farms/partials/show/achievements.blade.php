@@ -30,7 +30,7 @@
                                 <tbody>
                                     @foreach($farm->unlockedAchievements() as $achievement)
                                         <tr>
-                                            <td>{{ $achievement->details->name }}</td>
+                                            <td><a href="{{ route('achievements.show', ['achievement' => $achievement->achievement_id]) }}">{{ $achievement->details->name }}</a></td>
                                             <td>{{ $achievement->details->description }}</td>
                                             <td>{{ $achievement->unlocked_at->format('M d, Y') }}</td>
                                         </tr>
@@ -52,7 +52,7 @@
                                 <tbody>
                                     @foreach($farm->lockedAchievements() as $achievement)
                                         <tr>
-                                            <td>{{ $achievement->details->name }}</td>
+                                            <td><a href="{{ route('achievements.show', ['achievement' => $achievement->achievement_id]) }}">{{ $achievement->details->name }}</a></td>
                                             <td>{{ $achievement->details->description }}</td>
                                             <td>{{ number_format($achievement->points / $achievement->details->points * 100) }}%</td>
                                         </tr>
