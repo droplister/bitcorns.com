@@ -1,4 +1,4 @@
-@if($uploads->count() > 0)
+@if($uploads->count() > 0 && $farm->access === 1)
     <div class="row mt-5">
         <div class="col">
             <div class="card">

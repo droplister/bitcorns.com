@@ -1,3 +1,4 @@
+@if($farm->access === 1)
 <div class="row mt-5">
     <div class="col">
         <div class="card">
@@ -66,3 +67,4 @@
         </div>
     </div>
 </div>
+@endif
