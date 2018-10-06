@@ -57,7 +57,7 @@ class AchievementsController extends Controller
 
         // Unlocked
         $unlocked_achievements = Cache::remember('unlocked_achievements_' . $achievement->id, 60, function () use ($achievement) {
-            return $achievement->unlocks()->sortByDesc('unlocked_at');
+            return $achievement->unlocks()->sortBy('unlocked_at');
         });
 
         // Show View
