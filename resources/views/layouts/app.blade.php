@@ -79,6 +79,7 @@
                                     <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('coops.index') }}">Coops</a>
                                     <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('tokens.index') }}">Tokens</a>
                                     <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('harvests.index') }}">Harvests</a>
+                                    <a class="dropdown-item" href="{{ route('achievements.index') }}">Achievements</a>
                                     <a class="dropdown-item" href="{{ route('pages.rules') }}">Game Rules</a>
                                     <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Card</a>
                                     <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">Medium.com</a>
