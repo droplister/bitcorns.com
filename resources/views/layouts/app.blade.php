@@ -67,6 +67,9 @@
                             <li class="nav-item d-none d-sm-inline">
                                 <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
                             </li>
+                            <li class="nav-item d-none d-sm-inline">
+                                <a class="dropdown-item" href="{{ route('pages.rules') }}">Rules</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cards.index') }}">Cards</a>
                             </li>
@@ -80,9 +83,10 @@
                                     <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('tokens.index') }}">Tokens</a>
                                     <a class="dropdown-item d-inline-block d-sm-none" href="{{ route('harvests.index') }}">Harvests</a>
                                     <a class="dropdown-item" href="{{ route('achievements.index') }}">Achievements</a>
-                                    <a class="dropdown-item" href="{{ route('pages.rules') }}">Game Rules</a>
+                                    <a class="dropdown-itemd-inline-block d-sm-none" href="{{ route('pages.rules') }}">Game Rules</a>
                                     <a class="dropdown-item" href="{{ route('cards.create') }}">Submit Card</a>
-                                    <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">Medium.com</a>
+                                    <a class="dropdown-item" href="{{ config('bitcorn.medium') }}" target="_blank">Bitcorn Blog</a>
+                                    <a class="dropdown-item" href="{{ config('bitcorn.store') }}" target="_blank">Memorabilia</a>
                                 </div>
                             </li>
                         </ul>

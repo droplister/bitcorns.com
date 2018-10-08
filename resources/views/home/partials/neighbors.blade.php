@@ -1,5 +1,5 @@
 <h2 class="display-4 my-5">
-    Ecosystem
+    Neighbors
 </h2>
 <div class="row">
     <div class="col-12 col-sm-6 mb-5">
