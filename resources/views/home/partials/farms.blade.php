@@ -11,6 +11,9 @@
         <div class="col-12 col-sm-6 col-md-4 mb-5">
             @include('home.partials.farm', ['farm' => $farm->featurable])
         </div>
+        @if($loop->iteration === 2)
+            <div class="w-100"></div>
+        @endif
     @endforeach
 </div>
 <div class="text-center mb-4">
