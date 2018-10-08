@@ -44,8 +44,8 @@ class Feature extends Model
     public function scopeHighestBids($query)
     {
         return $query->where('xcp_core_tx_index', '>', config('bitcorn.feature_tx_index'))
-            ->orderBy('bid', 'desc')
-            ->orderBy('xcp_core_tx_index', 'desc');
+            ->orderBy('xcp_core_tx_index', 'desc')
+            ->orderBy('bid', 'desc');
     }
 
     /**
