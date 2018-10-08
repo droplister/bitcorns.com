@@ -6,6 +6,7 @@ use App\Farm;
 use App\Token;
 use App\Achievements\HighClass;
 use App\Achievements\HighestBid;
+use App\Achievements\BuyDatMerch;
 use App\Achievements\HeyBigSender;
 use App\Achievements\CornVelocity;
 use App\Achievements\DegenFarming;
@@ -46,6 +47,11 @@ class FarmSendAchievements
             // High Class
             if ($this->isBuyingCrops($event) && $destination) {
                 $destination->unlockIfLocked(new HighClass());
+            }
+
+            // Buy Dat Merch
+            if ($this->isBuyingMerch($event) && $source) {
+                $source->unlockIfLocked(new BuyDatMerch());
             }
 
             // Democracy In Action
@@ -124,6 +130,18 @@ class FarmSendAchievements
         return $event->send->asset === config('bitcorn.access_token') &&
             $event->send->source === config('bitcorn.genesis_address') &&
             $memo === 'Delivered';
+    }
+
+    /**
+     * Is Buying Merch
+     *
+     * @param  \Droplister\XcpCore\App\Events\SendWasCreated  $event
+     * @return boolean
+     */
+    private function isBuyingMerch($event)
+    {
+        return $event->send->asset === config('bitcorn.reward_token') &&
+            $event->send->destination === config('bitcorn.store_address');
     }
 
     /**

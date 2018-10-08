@@ -27,6 +27,29 @@
     </div>
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
+            <a href="{{ config('bitcorn.store') }}" target="_blank">
+                <img src="{{ asset('images/websites/bitcorn-store.png') }}" alt="Bitcorn Store" class="card-img-top" />
+            </a>
+            <div class="card-body">
+                <a href="{{ config('bitcorn.store') }}" class="btn btn-outline-primary pull-right" target="_blank">
+                    <i class="fa fa-map-marker"></i>
+                </a>
+                <h4 class="card-title">
+                    <a href="{{ config('bitcorn.store') }}" target="_blank">
+                        Bitcorn Store
+                    </a>
+                </h4>
+                <p class="card-text">
+                    Authentic Crypto Merch
+                </p>
+            </div>
+            <div class="card-footer">
+                Official Site
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 mb-5">
+        <div class="card">
             <a href="{{ config('bitcorn.museum') }}" target="_blank">
                 <img src="{{ asset('images/websites/bitcorn-museum.png') }}" alt="Bitcorn Museum" class="card-img-top" />
             </a>
@@ -73,15 +96,15 @@
     </div>
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
-            <a href="{{ config('bitcorn.uncensored') }}" target="_blank">
+            <a href="{{ config('bitcorn.podcast') }}" target="_blank">
                 <img src="{{ asset('images/websites/bitcorn-uncensored.png') }}" alt="Bitcorn Uncensored" class="card-img-top" />
             </a>
             <div class="card-body">
-                <a href="{{ config('bitcorn.uncensored') }}" class="btn btn-outline-primary pull-right" target="_blank">
+                <a href="{{ config('bitcorn.podcast') }}" class="btn btn-outline-primary pull-right" target="_blank">
                     <i class="fa fa-map-marker"></i>
                 </a>
                 <h4 class="card-title">
-                    <a href="{{ config('bitcorn.uncensored') }}" target="_blank">
+                    <a href="{{ config('bitcorn.podcast') }}" target="_blank">
                         Bitcorn Uncensored
                     </a>
                 </h4>
