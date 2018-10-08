@@ -20,6 +20,12 @@
                     <td>{{ number_format($farm->total_harvested) }}</td>
                 </tr>
             @endforeach
+            <tr>
+                <th>Totals:</th>
+                <th>{{ number_format($coop->accessBalance(), 8) }}</th>
+                <th>{{ number_format($coop->rewardBalance()) }}</th>
+                <th>{{ number_format($coop->total_harvested) }}</th>
+            </tr>
         </tbody>
     </table>
 </div>
