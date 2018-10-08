@@ -68,7 +68,7 @@
                                 <a class="nav-link" href="{{ route('harvests.index') }}">Harvests</a>
                             </li>
                             <li class="nav-item d-none d-sm-inline">
-                                <a class="dropdown-item" href="{{ route('pages.rules') }}">Rules</a>
+                                <a class="nav-link" href="{{ route('pages.rules') }}">Rules</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cards.index') }}">Cards</a>
