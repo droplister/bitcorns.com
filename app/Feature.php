@@ -71,7 +71,7 @@ class Feature extends Model
             return static::where('featurable_type', '=', 'App\Farm')
                 ->with('featurable')
                 ->highestBids()
-                ->take(2)
+                ->take(5)
                 ->get();
         });
     }
