@@ -1,4 +1,4 @@
-<div class="dropdown float-right mt-3 show">
+<div class="dropdown float-right mt-3 show d-none d-md-inline-block">
     <a role="button" id="dropdownMenuLink" class="btn btn-primary dropdown-toggle" href="{{ route('achievements.index') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
        Sort
     </a>

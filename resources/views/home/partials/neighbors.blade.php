@@ -1,5 +1,5 @@
 <h2 class="display-4 my-5">
-    Ecosystem
+    Neighbors
 </h2>
 <div class="row">
     <div class="col-12 col-sm-6 mb-5">
@@ -28,7 +28,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.store') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-store.png') }}" alt="Bitcorn Store" class="card-img-top" />
+                <img src="{{ asset('images/websites/bitcorn-store.png') }}" alt="Bitcorn Merch" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.store') }}" class="btn btn-outline-primary pull-right" target="_blank">
@@ -36,11 +36,11 @@
                 </a>
                 <h4 class="card-title">
                     <a href="{{ config('bitcorn.store') }}" target="_blank">
-                        Bitcorn Store
+                        Bitcorn Merch
                     </a>
                 </h4>
                 <p class="card-text">
-                    Authentic Crypto Merch
+                    Authentic Memorabilia
                 </p>
             </div>
             <div class="card-footer">
