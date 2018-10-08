@@ -6,6 +6,7 @@ use Cache;
 use Storage;
 use Exception;
 use App\Coop;
+use Carbon\Carbon;
 use App\Traits\Linkable;
 use App\Traits\Touchable;
 use App\Traits\Achievable;
@@ -463,11 +464,15 @@ class Token extends Model
             $card_assets = static::published()->upgrades()->pluck('xcp_core_asset_name')->toArray();
 
             // Buys
-            $buys = OrderMatch::whereIn('forward_asset', $card_assets)->where('backward_asset', '=', config('bitcorn.reward_token'));
+            $buys = OrderMatch::whereIn('forward_asset', $card_assets)
+                ->where('backward_asset', '=', config('bitcorn.reward_token'))
+                ->where('confirmed_at', '>=', Carbon::now()->subDays(30));
             $average_buy = $buys->sum('forward_quantity') === 0 ? 0 : $buys->sum('backward_quantity') / $buys->sum('forward_quantity');
 
             // Sells
-            $sells = OrderMatch::whereIn('backward_asset', $card_assets)->where('forward_asset', '=', config('bitcorn.reward_token'));
+            $sells = OrderMatch::whereIn('backward_asset', $card_assets)
+                ->where('forward_asset', '=', config('bitcorn.reward_token'))
+                ->where('confirmed_at', '>=', Carbon::now()->subDays(30));
             $average_sell = $sells->sum('backward_asset') === 0 ? 0 : $sells->sum('forward_asset') / $sells->sum('backward_asset');
 
             // DEX Average

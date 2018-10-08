@@ -55,7 +55,7 @@
                     Send {{ number_format(config('bitcorn.subfee')) }} {{ config('bitcorn.reward_token') }} to this address: <a href="https://xcpfox.com/address/{{ config('bitcorn.subfee_address') }}" target="_blank">{{ config('bitcorn.subfee_address') }}</a>.
                 </p>
                 <p class="card-text">
-                    <em>The average card sells for {{ $dex_average }} {{ config('bitcorn.reward_token') }} on the Counterparty DEX.</em>
+                    <em>The average card sells for {{ $dex_average }} {{ config('bitcorn.reward_token') }} on the DEX. (Last 30 Days)</em>
                 </p>
                 <h5 class="card-title">
                     Bitcorn Museum
