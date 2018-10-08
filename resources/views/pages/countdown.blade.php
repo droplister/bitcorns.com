@@ -11,7 +11,13 @@
         <h1 class="display-4 my-5">
             Countdown
         </h1>
+        <countdown deadline="{{ $harvest->scheduled_at }}"></countdown>
+    @else
+        <countdown deadline="{{ $harvest->scheduled_at }}"></countdown>
+        <div class="text-center my-5 py-5">
+            <img src="{{ asset('/images/3D-glasses-icon.png') }}" />
+            <a href="{{ config('bitcorn.glasses') }}" class="text-muted" target="_blank">Buy 3D Bitcorn Glasses</a>
+        </div>
     @endif
-    <countdown deadline="{{ $harvest->scheduled_at }}"></countdown>
 </div>
 @endsection

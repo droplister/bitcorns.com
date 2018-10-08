@@ -73,6 +73,11 @@ return [
     'voting_address' => env('BITCORN_VOTING_ADDRESS', '1VoteMg3ENEknHm6WyJMcXMaFdQqz9GvQ'),
 
     /**
+     * Store Address
+     */
+    'store_address' => env('BITCORN_STORE_ADDRESS', '1MerchXqHzpYfnWFz1s174KvyWNBcHMU7Z'),
+
+    /**
      * Submmission Fee Address
      */
     'subfee_address' => env('BITCORN_SUBFEE_ADDRESS', '1BitcornSubmissionFeeAddressgL5Xg'),
@@ -138,6 +143,11 @@ return [
     'github' => env('BITCORN_GITHUB', 'https://github.com/droplister/bitcorns.com'),
 
     /**
+     * Bitcorn Glasses
+     */
+    'glasses' => env('BITCORN_GLASSES', 'https://shop.bitcorns.com/products/bitcorn-glasses'),
+
+    /**
      * Bitcorn Harvest
      */
     'harvest' => env('BITCORN_HARVEST', 'https://bitcornharvest.com'),
@@ -153,9 +163,14 @@ return [
     'museum' => env('BITCORN_MUSEUM', 'https://bitcornmuseum.org'),
 
     /**
-     * Bitcorn Uncensored
+     * Bitcorn Podcast
      */
-    'uncensored' => env('BITCORN_UNCENSORED', 'https://soundcloud.com/user-224956270'),
+    'podcast' => env('BITCORN_PODCAST', 'https://soundcloud.com/user-224956270'),
+
+    /**
+     * Bitcorn Store
+     */
+    'store' => env('BITCORN_STORE', 'https://shop.bitcorns.com'),
 
     /**
      * Telegram Chat
