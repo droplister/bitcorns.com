@@ -106,7 +106,7 @@
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right d-none d-sm-inline">
-                    <a href="#">Top ^</a>
+                    <a href="{{ config('bitcorn.analytics_url') }}" target="_blank">Analytics</a>
                 </p>
                 <p>
                     <a href="mailto:{{ config('bitcorn.email') }}" class="mr-3">Contact</a>

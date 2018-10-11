@@ -373,6 +373,24 @@ class Farm extends Model
     }
 
     /**
+     * Coop Total
+     *
+     * @param \App\Coop  $coop
+     * @param boolean  $multiply
+     * @var string
+     */
+    public function coopTotal($coop, $multiply = false)
+    {
+        return $this->harvests()->where('coop_id', '=', $coop->id)->get()->sum(function ($coop) use ($multiply) {
+            if ($multiply) {
+                return $coop->pivot->quantity * $coop->pivot->multiplier;
+            }
+
+            return $coop->pivot->quantity;
+        });
+    }
+
+    /**
      * Get Battle Stat
      *
      * @param string  $key

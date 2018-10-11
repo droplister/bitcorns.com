@@ -177,6 +177,23 @@ class Coop extends Model
     }
 
     /**
+     * Coop Total
+     *
+     * @param boolean  $multiply
+     * @var string
+     */
+    public function coopTotal($multiply = false)
+    {
+        return $this->harvests()->whereNotNull('xcp_core_tx_index')->get()->sum(function ($harvest) use ($multiply) {
+            if ($multiply) {
+                return $harvest->pivot->quantity * $harvest->pivot->multiplier;
+            }
+
+            return $harvest->pivot->quantity;
+        });
+    }
+
+    /**
      * Alpha Collectors
      *
      * @return boolean
