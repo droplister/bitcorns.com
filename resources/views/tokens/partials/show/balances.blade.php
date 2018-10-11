@@ -15,7 +15,7 @@
                     <th scope="col" style="width: 40px">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Coop</th>
-                    <th scope="col">{{ $token->name }}</th>
+                    <th scope="col">{{ title_case($token->name) }}</th>
                     <th scope="col">Percent</th>
                 </thead>
                 <tbody>
