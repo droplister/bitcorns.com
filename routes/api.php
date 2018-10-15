@@ -19,6 +19,7 @@ Route::resource('/farms', 'Api\FarmsController')->only(['index', 'show']);
 Route::post('/farms/{farm}/map', 'Api\FarmMapMarkerController@update')->name('api.farm.map');
 Route::get('/map', 'Api\MapController@index')->name('api.map.index');
 Route::get('/map/{coop}', 'Api\MapController@show')->name('api.map.show');
+Route::get('/supply', 'Api\SupplyController@index')->name('api.supply');
 Route::resource('/tokens', 'Api\TokensController')->only(['index']);
 Route::get('/tokens/{token}.json', 'Api\TokensController@show')->name('api.tokens.show');
 Route::get(config('bitcorn.queue_route'), 'Api\QueueController@index')->name('api.queue');
