@@ -42,10 +42,10 @@ trait SortsFarms
                     ->orderBy('created_at', 'asc');
             case 'newest':
                 return static::hasAccess()
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('id', 'desc');
             case 'oldest':
                 return static::hasAccess()
-                    ->orderBy('created_at', 'asc');
+                    ->orderBy('id', 'asc');
             case 'updated':
                 return static::hasAccess()
                     ->orderBy('updated_at', 'desc');
