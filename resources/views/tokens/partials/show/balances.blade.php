@@ -19,7 +19,7 @@
                     <th scope="col">Percent</th>
                 </thead>
                 <tbody>
-                    @foreach($token->farmBalances as $balance)
+                    @foreach($balances as $balance)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}.</th>
                             <td><a href="{{ $balance->farm->url }}">{{ $balance->farm->name }}</a></td>

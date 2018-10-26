@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Token;
+use App\Harvest;
 use Illuminate\Http\Request;
 
 class TokensController extends Controller
@@ -39,7 +40,18 @@ class TokensController extends Controller
             return redirect(route('cards.show', ['card' => $token->slug]));
         }
 
+        // Farm Token Balances
+        $balances = Cache::remember('tokens_show_balances_' . $token->id, 60, function () use ($token) {
+            return $token->farmBalances->sortByDesc(function ($balance) use ($token) {
+                if($token->name === config('bitcorn.reward_token') && $balance->address === config('bitcorn.genesis_address')) {
+                    return $balance->quantity - Harvest::upcoming()->sum('quantity');
+                }else{
+                    return $balance->quantity;
+                }
+            });
+        });
+
         // Show View
-        return view('tokens.show', compact('token'));
+        return view('tokens.show', compact('token', 'balances'));
     }
 }
