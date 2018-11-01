@@ -1,4 +1,4 @@
-<h2 class="display-4 mb-5">
+<h2 class="display-4 my-5">
     How to Play
 </h2>
 <div class="card">

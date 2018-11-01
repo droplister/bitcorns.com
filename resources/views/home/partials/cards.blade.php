@@ -3,9 +3,12 @@
 </h2>
 <div class="row">
     @foreach($cards as $card)
-        <div class="col-6 col-sm-4 col-lg-3 mb-4 text-center">
+        <div class="col-6 col-sm-4 col-lg-3 mb-4 text-center{{ $loop->iteration > 3 ? ' d-none d-md-inline' : '' }}">
             @include('home.partials.card', ['card' => $card->featurable])
         </div>
+        @if($loop->iteration === 3)
+            <div class="w-100"></div>
+        @endif
     @endforeach
 </div>
 <div class="text-center mb-5">
