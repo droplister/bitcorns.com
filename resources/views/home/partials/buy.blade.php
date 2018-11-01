@@ -1,4 +1,4 @@
-<h2 class="display-4 mb-5" style="white-space: nowrap;">
+<h2 class="display-4 my-5" style="white-space: nowrap;">
     <img src="{{ asset('/images/tokens/CROPS.png') }}" alt="CROPS access token" class="float-left mr-3 d-none d-sm-inline" width="60" />
     Buy CROPS
     <small class="lead d-none d-sm-inline">
