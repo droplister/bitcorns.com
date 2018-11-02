@@ -63,8 +63,11 @@ class UpdateFeatured implements ShouldQueue
             } // Coop Feature
             elseif ($coop = Coop::findBySlug($memo)) {
                 $coop->features()->save($feature);
-            } // Farm Feature
-            elseif ($farm = Farm::findBySlug($memo) || $farm = Farm::where('name', '=', $memo)->first()) {
+            } // Farm Feature (by slug)
+            elseif ($farm = Farm::findBySlug($memo)) {
+                $farm->features()->save($feature);
+            } // Farm Feature (by name)
+            elseif ($farm = Farm::where('name', '=', $memo)->first()) {
                 $farm->features()->save($feature);
             }
         }
