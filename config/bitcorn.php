@@ -125,7 +125,7 @@ return [
     /**
      * Bitcorn Battle
      */
-    'battle' => env('BITCORN_BATTLE', 'https://bitcornbattle.com'),
+    'battle' => env('BITCORN_BATTLE', 'http://bitcornbattle.com'),
 
     /**
      * Bitcorn Battle (About)
