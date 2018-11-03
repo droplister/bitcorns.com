@@ -21,6 +21,9 @@ class CardCollection extends Resource
             'issued' => (float) $this->asset->issuance_normalized,
             'burned' => (float) $this->asset->burned_normalized,
             'supply' => (float) $this->asset->supply_normalized,
+            'harvest' => $this->harvest_id,
+            'harvest_ranking' => $this->meta['harvest_ranking'],
+            'overall_ranking' => $this->meta['overall_ranking'],
         ];
     }
 }

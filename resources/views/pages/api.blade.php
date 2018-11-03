@@ -182,7 +182,10 @@
     "card": "https://bitcorns.com/img/cards/HELIPAD.png",
     "issued": 31,
     "burned": 1,
-    "supply": 30
+    "supply": 30,
+    "harvest": 1,
+    "harvest_ranking": 1,
+    "overall_ranking": 1
   },
   {
     "name": "YACHTDOCK",
@@ -190,7 +193,10 @@
     "card": "https://bitcorns.com/img/cards/YACHTDOCK.png",
     "issued": 31,
     "burned": 1,
-    "supply": 30
+    "supply": 30,
+    "harvest": 1,
+    "harvest_ranking": 2,
+    "overall_ranking": 2
   }
 ]
 </pre>
