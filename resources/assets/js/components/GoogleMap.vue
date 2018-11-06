@@ -81,6 +81,7 @@ export default {
         lng: this.lng
       },
       markers: null,
+      statusText: '',
       name: '',
       href: '',
       mapType: this.type ? this.type : 'terrain',
