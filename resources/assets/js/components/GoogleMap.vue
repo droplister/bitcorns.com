@@ -34,7 +34,15 @@
       :clickable="true"
       :draggable="false"
       @click="toggleInfo(m,index)"
+      @mouseover="statusText = m.name"
+      @mouseout="statusText = null"
     ></GmapMarker>
+
+    <div slot="visible">
+      <div style="bottom: 0; left: 0; background-color: #155724; color: #ffffff; position: absolute; z-index: 100">
+        {{statusText}}
+      </div>
+    </div>
   </GmapMap>
 </template>
  
