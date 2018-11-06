@@ -22,6 +22,11 @@
       :options="farm && farm === m.farm || coop && coop === m.coop ? mapOptions : m.options"
     ></GmapCircle>
 
+    <GmapRectangle
+      :options="{"editable": false, "fillColor": "#4e8b01", "strokeColor": "#143402"}"
+      :bounds="{"south":40.544,"west":46.478,"north":55.482,"east":87.529}"
+    ></GmapRectangle>
+
     <GmapMarker
       :key="index"
       v-for="(m, index) in markers"
