@@ -95,6 +95,7 @@ export default {
       signature: '',
       coloring: {
         'editable': false,
+        'fillColor': '#FFFFFF',
         'strokeColor': '#4e8b01',
       },
       rectangle: {
