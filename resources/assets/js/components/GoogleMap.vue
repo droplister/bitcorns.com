@@ -22,6 +22,11 @@
       :options="farm && farm === m.farm || coop && coop === m.coop ? mapOptions : m.options"
     ></GmapCircle>
 
+    <GmapRectangle
+      :options="coloring"
+      :bounds="rectangle"
+    ></GmapRectangle>
+
     <GmapMarker
       :key="index"
       v-for="(m, index) in markers"
@@ -29,7 +34,15 @@
       :clickable="true"
       :draggable="false"
       @click="toggleInfo(m,index)"
+      @mouseover="statusText = m.name"
+      @mouseout="statusText = null"
     ></GmapMarker>
+
+    <div slot="visible">
+      <div style="bottom: 0; left: 0; background-color: #155724; color: #ffffff; position: absolute; z-index: 100">
+        {{statusText}}
+      </div>
+    </div>
   </GmapMap>
 </template>
  
@@ -47,6 +60,17 @@ export default {
   props: ['type', 'lat', 'lng', 'zoom', 'coop', 'farm'],
   data () {
     return {
+      coloring: {
+        'editable': false,
+        'fillColor': '#4e8b01',
+        'strokeColor': '#143402',
+      },
+      rectangle: {
+        'south': 40.544,
+        'west': 46.478,
+        'north': 55.482,
+        'east': 87.529,
+      },
       mapOptions: {
         'editable': false,
         'fillColor': '#ADFF2F',
@@ -57,6 +81,7 @@ export default {
         lng: this.lng
       },
       markers: null,
+      statusText: '',
       name: '',
       href: '',
       mapType: this.type ? this.type : 'terrain',

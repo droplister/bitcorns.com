@@ -43,6 +43,17 @@ trait Mappable
                     return 'No Tresspassing (' . $nearby->farm->name . ')';
                 }
             }
+
+            // Kekistan Passport Zone
+            if ($request->latitude >= 40.544 &&
+                $request->latitude <= 55.482 &&
+                $request->longitude >= 46.478 &&
+                $request->longitude <= 87.529)
+            {
+                if(! $farm->hasBalance(config('bitcorn.pepepassort'))) {
+                    return 'Kekistan Passport Zone Requires PEPEPASSPORT';
+                }
+            }
         }
 
         return false;
