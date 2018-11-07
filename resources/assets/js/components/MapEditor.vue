@@ -22,13 +22,15 @@
             :clickable="true"
             :draggable="farm && farm === m.farm"
             @dragend="updateCoords"
+            @mouseover="statusText = m.name"
+            @mouseout="statusText = null"
           ></GmapMarker>
 
           <GmapRectangle
             :options="coloring"
             :bounds="rectangle"
           ></GmapRectangle>
-    
+
           <div slot="visible">
             <div style="bottom: 0; left: 0; background-color: #155724; color: #ffffff; position: absolute; z-index: 100">
               {{statusText}}
@@ -93,8 +95,7 @@ export default {
       signature: '',
       coloring: {
         'editable': false,
-        'fillColor': '#4e8b01',
-        'strokeColor': '#143402',
+        'strokeColor': '#4e8b01',
       },
       rectangle: {
         'south': 40.544,
