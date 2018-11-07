@@ -14,10 +14,10 @@
 
     <!-- Stylesheets -->
     <link href="{{ asset('favicon.ico') }}" rel="icon">
-    <link href="{{ asset('css/app.css?new') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js?new') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!--
      /$$       /$$   /$$                                            
