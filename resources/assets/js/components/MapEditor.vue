@@ -15,11 +15,6 @@
             :options="farm && farm === m.farm ? mapOptions : m.options"
           ></GmapCircle>
 
-          <GmapRectangle
-            :options="coloring"
-            :bounds="rectangle"
-          ></GmapRectangle>
-
           <GmapMarker
             :key="index"
             v-for="(m, index) in markers"
@@ -29,6 +24,11 @@
             @dragend="updateCoords"
           ></GmapMarker>
 
+          <GmapRectangle
+            :options="coloring"
+            :bounds="rectangle"
+          ></GmapRectangle>
+    
           <div slot="visible">
             <div style="bottom: 0; left: 0; background-color: #155724; color: #ffffff; position: absolute; z-index: 100">
               {{statusText}}
@@ -112,6 +112,7 @@ export default {
         lng: this.lng,
       },
       markers: null,
+      statusText: '',
       mapType: this.type ? this.type : 'terrain',
     }
   },
