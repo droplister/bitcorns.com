@@ -15,6 +15,11 @@
             :options="farm && farm === m.farm ? mapOptions : m.options"
           ></GmapCircle>
 
+          <GmapRectangle
+            :options="coloring"
+            :bounds="rectangle"
+          ></GmapRectangle>
+
           <GmapMarker
             :key="index"
             v-for="(m, index) in markers"
@@ -23,6 +28,12 @@
             :draggable="farm && farm === m.farm"
             @dragend="updateCoords"
           ></GmapMarker>
+
+          <div slot="visible">
+            <div style="bottom: 0; left: 0; background-color: #155724; color: #ffffff; position: absolute; z-index: 100">
+              {{statusText}}
+            </div>
+          </div>
         </GmapMap>
       </div>
       <div v-if="flash !== null" class="alert my-3" :class="flashClass">{{ flash }}</div>
@@ -80,6 +91,17 @@ export default {
       latitude: '',
       longitude: '',
       signature: '',
+      coloring: {
+        'editable': false,
+        'fillColor': '#4e8b01',
+        'strokeColor': '#143402',
+      },
+      rectangle: {
+        'south': 40.544,
+        'west': 46.478,
+        'north': 55.482,
+        'east': 87.529,
+      },
       mapOptions: {
         'editable': false,
         'fillColor': '#ADFF2F',
