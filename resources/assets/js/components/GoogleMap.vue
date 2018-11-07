@@ -29,8 +29,6 @@
       :clickable="true"
       :draggable="false"
       @click="toggleInfo(m,index)"
-      @mouseover="statusText = m.name"
-      @mouseout="statusText = null"
     ></GmapMarker>
 
     <div slot="visible">
