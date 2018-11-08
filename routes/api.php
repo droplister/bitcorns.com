@@ -23,3 +23,4 @@ Route::get('/supply', 'Api\SupplyController@index')->name('api.supply');
 Route::resource('/tokens', 'Api\TokensController')->only(['index']);
 Route::get('/tokens/{token}.json', 'Api\TokensController@show')->name('api.tokens.show');
 Route::get(config('bitcorn.queue_route'), 'Api\QueueController@index')->name('api.queue');
+Route::get('/approval/' . config('bitcorn.approval_route') . '/{card}', 'Api\ApprovalController@update')->name('api.approval');
