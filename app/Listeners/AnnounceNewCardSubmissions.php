@@ -101,6 +101,7 @@ class AnnounceNewCardSubmissions
             $message.= "- Divisible: {$divisible}\n";
             $message.= "- Museumed: {$museumed_at}\n";
         }
+        $message.= "https://bitcorn.org/queue";
 
         SendMessage::dispatch($message, 'private');
     }

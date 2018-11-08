@@ -303,7 +303,7 @@ class Token extends Model
     {
         return Cache::remember('token_top_farm_' . $this->slug, 60, function () {
             // Top Farm
-            return $this->farmBalances()->first()->farm;
+            return $this->farmBalances()->first() ? $this->farmBalances()->first()->farm : null;
         });
     }
 
