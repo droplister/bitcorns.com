@@ -50,7 +50,7 @@ trait Mappable
                 $request->longitude >= 46.478 &&
                 $request->longitude <= 87.529)
             {
-                if(! $farm->hasBalance(config('bitcorn.pepepassort'))) {
+                if(! $farm->hasBalance(config('bitcorn.passport_token'))) {
                     return 'Kekistan Passport Zone - PEPEPASSPORT Required';
                 }
             }
