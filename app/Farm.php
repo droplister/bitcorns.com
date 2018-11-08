@@ -18,6 +18,7 @@ use App\Events\FarmWasCreated;
 use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
+use Droplister\XcpCore\App\Balance;
 use Droplister\XcpCore\App\Transaction;
 use App\Http\Requests\Farms\UpdateRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -161,6 +162,16 @@ class Farm extends Model
     public function address()
     {
         return $this->belongsTo(Address::class, 'xcp_core_address', 'address');
+    }
+
+    /**
+     * Asset Balances
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assetBalances()
+    {
+        return $this->hasMany(Balance::class, 'address', 'xcp_core_address');
     }
 
     /**
@@ -325,6 +336,19 @@ class Farm extends Model
     public function hasBalance($asset_name)
     {
         return $this->balances()
+            ->where('asset', '=', $asset_name)
+            ->where('quantity', '>', 0)
+            ->exists();
+    }
+
+    /**
+     * Has Asset Balance
+     *
+     * @return \App\Balance
+     */
+    public function hasAssetBalance($asset_name)
+    {
+        return $this->assetBalances()
             ->where('asset', '=', $asset_name)
             ->where('quantity', '>', 0)
             ->exists();
