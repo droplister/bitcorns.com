@@ -21,12 +21,12 @@ class ApprovalController extends Controller
     {
         // Validation
         $request->validate([
-            'decision' => 'require|in:approve,deny',
+            'decision' => 'required|in:approve,deny',
         ]);
 
         // Simple Guard
         if($card->approved_at || $card->rejected_at) {
-            return false;
+            return 'Error';
         }
 
         // Approve Card
@@ -48,7 +48,7 @@ class ApprovalController extends Controller
             // Card Data
             $card->update([
                 'harvest_id' => $harvest->id,
-                'meta' => [
+                'meta_data' => [
                     'harvest_ranking' => $harvest_ranking,
                     'overall_ranking' => $overall_ranking,
                 ],
@@ -62,6 +62,6 @@ class ApprovalController extends Controller
             $card->touchTime('rejected_at');
         }
 
-        return true;
+        return 'OK';
     }
 }
