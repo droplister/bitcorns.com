@@ -23,6 +23,11 @@ return [
     'daab_save_token' => env('BITCORN_DAAB_SAVE_TOKEN', 'FOREVERMOIST'),
 
     /**
+     * Passport Token
+     */
+    'passport_token' => env('BITCORN_PASSPORT_TOKEN', 'PEPEPASSPORT'),
+
+    /**
      * Feature TX Index
      */
     'feature_tx_index' => env('BITCORN_FEATURE_TX_INDEX', 0),
