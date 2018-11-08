@@ -22,8 +22,8 @@ class CardCollection extends Resource
             'burned' => (float) $this->asset->burned_normalized,
             'supply' => (float) $this->asset->supply_normalized,
             'harvest' => $this->harvest_id,
-            'harvest_ranking' => $this->meta_data['harvest_ranking'],
-            'overall_ranking' => $this->meta_data['overall_ranking'],
+            'harvest_ranking' => isset($this->meta_data['harvest_ranking']) ? $this->meta_data['harvest_ranking'] : null,
+            'overall_ranking' => isset($this->meta_data['overall_ranking']) ? $this->meta_data['overall_ranking'] : null,
         ];
     }
 }

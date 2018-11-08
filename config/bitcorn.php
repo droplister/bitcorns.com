@@ -203,7 +203,12 @@ return [
     'xcpdex' => env('BITCORN_XCPDEX', 'https://xcpdex.com/market/CROPS_XCP'),
 
     /**
+     * Approval Route
+     */
+    'approval_route' => env('BITCORN_APPROVAL_ROUTE'),
+
+    /**
      * Queue Route
      */
-    'queue_route' => env('BITCORN_QUEUE'),
+    'queue_route' => env('BITCORN_QUEUE_ROUTE'),
 ];
