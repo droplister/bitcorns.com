@@ -54,7 +54,7 @@ class Feature extends Model
     public static function featuredCards()
     {
         return Cache::remember('featured_cards', 60, function () {
-            return static::where('featurable_type', '=', 'App\Token')
+            return static::where('featurable_type', '=', \App\Token::class)
                 ->with('featurable')
                 ->highestBids()
                 ->take(8)
@@ -68,7 +68,7 @@ class Feature extends Model
     public static function featuredFarms()
     {
         return Cache::remember('featured_farms', 60, function () {
-            return static::where('featurable_type', '=', 'App\Farm')
+            return static::where('featurable_type', '=', \App\Farm::class)
                 ->with('featurable')
                 ->highestBids()
                 ->take(5)

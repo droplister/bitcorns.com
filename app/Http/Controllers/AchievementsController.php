@@ -22,7 +22,7 @@ class AchievementsController extends Controller
         // Farms
         $farm_achievements = Cache::remember('farm_achievements_index_' . $sort, 60, function () use ($sort) {
             return AchievementDetails::whereHas('progress', function ($progress) {
-                return $progress->where('achiever_type', '=', 'App\Farm');
+                return $progress->where('achiever_type', '=', \App\Farm::class);
             })->get()->{$sort}(function ($achievement) {
                 return $achievement->unlocks()->count();
             });
@@ -31,7 +31,7 @@ class AchievementsController extends Controller
         // Tokens
         $token_achievements = Cache::remember('token_achievements_index_' . $sort, 60, function () use ($sort) {
             return AchievementDetails::whereHas('progress', function ($progress) {
-                return $progress->where('achiever_type', '=', 'App\Token');
+                return $progress->where('achiever_type', '=', \App\Token::class);
             })->get()->{$sort}(function ($achievement) {
                 return $achievement->unlocks()->count();
             });
