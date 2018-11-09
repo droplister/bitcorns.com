@@ -25,12 +25,12 @@ class ApprovalController extends Controller
         ]);
 
         // Simple Guard
-        if($card->approved_at || $card->rejected_at) {
+        if ($card->approved_at || $card->rejected_at) {
             return 'Error';
         }
 
         // Approve Card
-        if($request->decision === 'approve') {
+        if ($request->decision === 'approve') {
             // Harvest
             $harvest = Harvest::current()->first();
 

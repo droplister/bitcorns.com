@@ -24,9 +24,9 @@ class FarmCoopsController extends Controller
         }
 
         // Update Coop
-        if($request->action === 'leave') {
+        if ($request->action === 'leave') {
             $farm->update(['coop_id' => null]);
-        }else{
+        } else {
             $farm->update(['coop_id' => $request->coop]);
         }
 
