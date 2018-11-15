@@ -48,10 +48,8 @@ class ApprovalController extends Controller
             // Card Data
             $card->update([
                 'harvest_id' => $harvest->id,
-                'meta_data' => [
-                    'harvest_ranking' => $harvest_ranking,
-                    'overall_ranking' => $overall_ranking,
-                ],
+                'meta_data->harvest_ranking' => $harvest_ranking,
+                'meta_data->overall_ranking' => $overall_ranking,
             ]);
 
             // Timestamp
