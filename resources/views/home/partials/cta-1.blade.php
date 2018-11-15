@@ -1,4 +1,8 @@
 <div class="alert alert-success my-5 text-center">
-    <strong> Looking to start a farm?</strong>
-    <a href="{{ config('bitcorn.telegram') }}" target="_blank">Join our Telegram</a> and get 0.001 CROPS air dropped to your address. We call that crop dusting and it's free!
+    <strong>News Alert:</strong>
+    <strong>
+        <a href="https://medium.com/@BitcornCrops/bitcorn-cards-added-to-book-of-orbs-d96374403d27" target="_blank">
+            BITCORN Added to BoO!
+        </a>
+    </strong>
 </div>
