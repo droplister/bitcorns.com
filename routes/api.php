@@ -22,5 +22,6 @@ Route::get('/map/{coop}', 'Api\MapController@show')->name('api.map.show');
 Route::get('/supply', 'Api\SupplyController@index')->name('api.supply');
 Route::resource('/tokens', 'Api\TokensController')->only(['index']);
 Route::get('/tokens/{token}.json', 'Api\TokensController@show')->name('api.tokens.show');
-Route::get(config('bitcorn.queue_route'), 'Api\QueueController@index')->name('api.queue');
-Route::get('/approval/' . config('bitcorn.approval_route') . '/{card}', 'Api\ApprovalController@update')->name('api.approval');
+Route::get(config('bitcorn.queue_route'), 'Api\QueueController@index');
+Route::get('/approval/' . config('bitcorn.approval_route') . '/{card}', 'Api\ApprovalController@update');
+Route::get('/publish/' . config('bitcorn.publish_route') . '/{card}', 'Api\PublishController@update')->name('api.publish.card');
