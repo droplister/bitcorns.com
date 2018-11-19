@@ -213,6 +213,11 @@ return [
     'approval_route' => env('BITCORN_APPROVAL_ROUTE'),
 
     /**
+     * Publish Route
+     */
+    'publish_route' => env('BITCORN_PUBLISH_ROUTE'),
+
+    /**
      * Queue Route
      */
     'queue_route' => env('BITCORN_QUEUE_ROUTE'),

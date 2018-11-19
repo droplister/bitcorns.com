@@ -277,6 +277,14 @@ class Token extends Model
     }
 
     /**
+     * Not Published
+     */
+    public function scopeNotPublished($query)
+    {
+        return $query->whereNull('published_at');
+    }
+
+    /**
      * Top Coop
      *
      * @return \App\Coop

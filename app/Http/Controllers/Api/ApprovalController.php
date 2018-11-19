@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Token;
-use App\Harvest;
 use App\Jobs\SendMessage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,35 +30,46 @@ class ApprovalController extends Controller
 
         // Approve Card
         if($request->decision === 'approve') {
-            // Harvest
-            $harvest = Harvest::current()->first();
-
-            // Harvest #
-            $harvest_ranking = Token::where('harvest_id', '=', $harvest->id)
-                ->upgrades()
-                ->published()
-                ->count() + 1;
-
-            // Overall #
-            $overall_ranking = Token::upgrades()
-                ->published()
-                ->count() + 1;
-
-            // Card Data
-            $card->update([
-                'harvest_id' => $harvest->id,
-                'meta_data->harvest_ranking' => $harvest_ranking,
-                'meta_data->overall_ranking' => $overall_ranking,
-            ]);
-
             // Timestamp
             $card->touchTime('approved_at');
-            $card->touchTime('published_at');
+
+            // Announcement
+            $this->announceAcceptance($card);
         } else {
             // Timestamp
             $card->touchTime('rejected_at');
+
+            // Announcement
+            $this->announceRejection($card);
         }
 
         return 'OK';
+    }
+
+    /**
+     * Announce Acceptance
+     *
+     * @param  \App\Token  $card
+     * @return void
+     */
+    private function announceAcceptance(Token $card)
+    {
+        $link = route('api.publish.card', ['card' => $card->slug]);
+        $message = "The Bitcorn Foundation has accepted **{$card->name}**. Click: {$link} to publish.";
+
+        SendMessage::dispatch($message, 'private');
+    }
+
+    /**
+     * Announce Rejection
+     *
+     * @param  \App\Token  $card
+     * @return void
+     */
+    private function announceRejection(Token $card)
+    {
+        $message = "The Bitcorn Foundation has decided against publishing **{$card->name}**. Thank you for your submission.";
+
+        SendMessage::dispatch($message);
     }
 }
