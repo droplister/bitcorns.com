@@ -16,6 +16,9 @@ class ValidBurn implements Rule
      */
     public function passes($attribute, $value)
     {
+        // Jubilee
+        if(config('bitcorn.subfee') === 0) return true;
+
         // Get Send
         $send = Send::where('tx_hash', '=', $value)->first();
 
