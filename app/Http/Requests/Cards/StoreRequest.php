@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
         return [
             'image' => ['required', 'image', 'mimes:png,gif', 'dimensions:width=375,height=520'],
             'hd_image' => ['sometimes', 'image', 'mimes:png,gif', 'dimensions:width=750,height=1040'],
-            'burn' => ['required', 'unique:tokens,xcp_core_burn_tx_hash', new ValidBurn],
+            'burn' => ['required', 'unique:tokens,xcp_core_burn_tx_hash', 'exists:transactions,tx_hash', new ValidBurn],
             'name' => ['required', 'alpha', 'unique:tokens', 'exists:assets,asset_name', new Uppercase, new Locked, new NotDivisible],
             'content' => ['required', 'min:10', 'max:65535'],
         ];

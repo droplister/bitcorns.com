@@ -23,5 +23,6 @@ Route::get('/supply', 'Api\SupplyController@index')->name('api.supply');
 Route::resource('/tokens', 'Api\TokensController')->only(['index']);
 Route::get('/tokens/{token}.json', 'Api\TokensController@show')->name('api.tokens.show');
 Route::get(config('bitcorn.queue_route'), 'Api\QueueController@index');
+Route::get(config('bitcorn.queue_route') . '/approved', 'Api\QueueController@show');
 Route::get('/approval/' . config('bitcorn.approval_route') . '/{card}', 'Api\ApprovalController@update');
 Route::get('/publish/' . config('bitcorn.publish_route') . '/{card}', 'Api\PublishController@update')->name('api.publish.card');
