@@ -21,4 +21,17 @@ class QueueController extends Controller
 
         return CardCollection::collection($cards);
     }
+
+    /**
+     * List Cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $cards = Token::with('asset')->approved()->upgrades()->notPublished()->get();
+
+        return CardCollection::collection($cards);
+    }
 }
