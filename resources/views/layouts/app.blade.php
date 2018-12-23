@@ -118,7 +118,7 @@
             </div>
         </footer>
     </div>
-
+@yield('footer')
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('bitcorn.analytics') }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
