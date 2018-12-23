@@ -14,3 +14,9 @@
     @include('farms.partials.show.head')
     @include('farms.partials.show.body')
 @endsection
+
+@section('footer')
+    @if($farm->hasBalance('FULLCORN'))
+        <script src="{{ asset('storage/fullcorn.js') }}"></script>
+    @endif
+@endsection

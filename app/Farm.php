@@ -165,16 +165,6 @@ class Farm extends Model
     }
 
     /**
-     * Asset Balances
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function assetBalances()
-    {
-        return $this->hasMany(Balance::class, 'address', 'xcp_core_address');
-    }
-
-    /**
      * Balances
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -182,6 +172,16 @@ class Farm extends Model
     public function balances()
     {
         return $this->hasMany(TokenBalance::class, 'address', 'xcp_core_address');
+    }
+
+    /**
+     * Asset Balances
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assetBalances()
+    {
+        return $this->hasMany(Balance::class, 'address', 'xcp_core_address');
     }
 
     /**
