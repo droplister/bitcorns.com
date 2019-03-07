@@ -1,5 +1,5 @@
 <div class="dropdown float-right mt-3 show">
-    <a role="button" id="dropdownMenuLink" class="btn btn-primary dropdown-toggle" href="{{ route('farms.index') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a role="button" id="dropdownMenuLink" class="btn btn-primary dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
        Sort
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">

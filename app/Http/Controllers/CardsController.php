@@ -46,7 +46,7 @@ class CardsController extends Controller
         }
 
         // Unpublished Guard
-        if ($card->published_at === null && ! $request->has('preview')) {
+        if ($card->published_at === null) {
             return abort(404);
         }
 

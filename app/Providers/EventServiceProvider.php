@@ -66,6 +66,12 @@ class EventServiceProvider extends ServiceProvider
         \Droplister\XcpCore\App\Events\BlockWasCreated::class => [
             \App\Listeners\FeatureListener::class,
         ],
+
+
+        // XC3-PO Channel
+        \Droplister\XcpCore\App\Events\MessageWasCreated::class => [
+            \App\Listeners\XC3POTelegramChannel::class,
+        ],
     ];
 
     /**

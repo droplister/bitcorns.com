@@ -257,7 +257,7 @@ class Token extends Model
      */
     public function scopePending($query)
     {
-        return $query->whereNull('approved_at')->whereNull('rejected_at');
+        return $query->whereNull('published_at')->whereNull('rejected_at');
     }
 
     /**

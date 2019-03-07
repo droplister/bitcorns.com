@@ -87,10 +87,8 @@ class AnnounceNewCardSubmissions
         $divisible = $token->asset->divisible ? 'True' : 'False';
         $issuance = number_format($token->asset->issuance_normalized);
         $museumed_at = $token->museumed_at ? $token->museumed_at : 'Pending';
-        $preview = route('cards.show', ['card' => $token->slug, 'preview' => 'true']);
 
         $message = "*{$token->name}*\n";
-        $message.= "{$preview}\n";
         $message.= "Issued: {$issuance}\n";
         
         if (Token::publishable()->where('id', '=', $token->id)->exists()) {

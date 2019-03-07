@@ -17,7 +17,7 @@ class QueueController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Token::with('asset')->pending()->upgrades()->get();
+        $cards = Token::with('asset')->whereNull('approved_at')->whereNull('rejected_at')->upgrades()->get();
 
         return CardCollection::collection($cards);
     }
