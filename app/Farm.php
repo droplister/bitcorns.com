@@ -435,6 +435,33 @@ class Farm extends Model
     }
 
     /**
+     * Corn Prayers
+     *
+     * @return boolean
+     */
+    public function isCP()
+    {
+        // DAAB Token
+        $token = Token::where('xcp_core_asset_name', '=', 'CORNPRAYER')->first();
+
+        // Balances (hi -> lo)
+        $token_balances = $token->balances()->has('farm')->with('farm')->orderBy('quantity', 'desc')->get();
+
+        // Check Whether CP
+        foreach ($token_balances as $token_balance) {
+            if($token_balance->farm->coop_id === null) {
+                continue;
+            }
+
+            // Corn Prayer
+            return $token_balance->farm->id === $this->id;
+        }
+
+        // Nope
+        return false;
+    }
+
+    /**
      * Is DAAB
      *
      * @return boolean
