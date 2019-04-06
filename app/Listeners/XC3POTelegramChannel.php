@@ -44,13 +44,15 @@ class XC3POTelegramChannel
             }
         }
 
-        return Telegram::sendMessage([
-            'chat_id' => -1001283911290,
-            'text' => $message,
-            'parse_mode' => 'Markdown',
-            'disable_notification' => true,
-            'disable_web_page_preview' => true,
-        ]);
+        if (isset($message) && config('xcp-core.indexing')) {
+            return Telegram::sendMessage([
+                'chat_id' => -1001283911290,
+                'text' => $message,
+                'parse_mode' => 'Markdown',
+                'disable_notification' => true,
+                'disable_web_page_preview' => true,
+            ]);
+        }
     }
 
     private function issuanceMessage($bindings) {
