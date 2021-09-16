@@ -26,7 +26,7 @@
         "laravel/tinker": "^2.5",
         "laravel/horizon": "^3.0", 
         "maatwebsite/excel": "^3.1",
-        "morrislaptop/laravel-queue-clear": "~1.0",
+        "morrislaptop/laravel-queue-clear": "~1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
