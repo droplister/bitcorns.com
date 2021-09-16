@@ -4,11 +4,11 @@ namespace App;
 
 use App\Token;
 use Droplister\XcpCore\App\Balance;
-use Tightenco\Parental\HasParentModel;
+use Parental\HasParent;
 
 class TokenBalance extends Balance
 {
-    use HasParentModel;
+    use HasParent;
 
     public static function boot()
     {
