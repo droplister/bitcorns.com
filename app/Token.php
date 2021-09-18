@@ -457,7 +457,7 @@ class Token extends Model
             $cards = $cards->where('image_url', 'like', '%'. $filter);
         }
 
-        return $cards->orderBy('meta_data->overall_ranking', 'asc');
+        return $cards->orderByRaw('CAST(meta_data->"$.overall_ranking" AS UNSIGNED)', 'asc');
     }
 
     /**
