@@ -26,7 +26,7 @@
     <div class="card-footer">
         <div class="row text-muted">
             <div class="col">
-                {{ $farm->firstCrops->confirmed_at->format('M d, Y') }}
+                {{ $farm->firstCrops ? $farm->firstCrops->confirmed_at->format('M d, Y') : $farm->created_at->format('M d, Y') }}
             </div>
             <div class="col text-right">
                 Harvests: {{ $farm->harvests_count }}

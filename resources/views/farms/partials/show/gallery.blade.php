@@ -23,7 +23,7 @@
                                             <img class="d-block w-100" src="{{ $upload->old_image_url }}" />
                                         </a>
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h5>{{ $farm->firstCrops->confirmed_at->format('M d, Y') }}</h5>
+                                            <h5>{{ $farm->firstCrops ? $farm->firstCrops->confirmed_at->format('M d, Y') : $farm->created_at->format('M d, Y') }}</h5>
                                         </div>
                                     </div>
                                 @endif
