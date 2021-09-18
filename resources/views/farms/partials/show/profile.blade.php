@@ -45,9 +45,9 @@
                             Farm Deed #{{ $farm->id }}
                         </h5>
                         <p class="card-text">
-                            {{ $farm->display_name }} was established {{ $farm->firstCrops ? $farm->firstCrops->confirmed_at->format('M d, Y') : $farm->created_at->format('M d, Y') }} by a {{ config('bitcorn.access_token') }} {{ $farm->firstCrops ? $farm->firstCrops->action : 'farmer' }}.
+                            {{ $farm->display_name }} was established {{ $farm->firstCrops ? $farm->firstCrops->confirmed_at->format('M d, Y') : $farm->created_at->format('M d, Y') }} by a {{ config('bitcorn.access_token') }} {{ $farm->firstCrops ? $farm->firstCrops->action : 'syncing' }}.
                         </p>
-                        <a href="https://xcpfox.com/block/{{ $farm->firstCrops->block_index }}" class="btn btn-primary" target="_blank">
+                        <a href="https://xcpfox.com/block/{{ $farm->firstCrops ? $farm->firstCrops->block_index : 'syncing' }}" class="btn btn-primary" target="_blank">
                             <i class="fa fa-search"></i> View Block
                         </a>
                     </div>
