@@ -19,6 +19,7 @@
         "cviebrock/eloquent-sluggable": "^6.0",
         "droplister/xcp-core": "dev-feature/add-dispeners",
         "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
         "gstt/laravel-achievements": "^1.0",
         "irazasyed/telegram-bot-sdk": "^2.0",
         "laravel/framework": "^6.0",
