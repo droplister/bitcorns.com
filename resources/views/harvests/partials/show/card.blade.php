@@ -22,7 +22,7 @@
                         <tr>
                             @if($harvest->xcp_core_tx_index)
                                 <td class="d-none d-md-block">
-                                    <a href="https://xcpfox.com/tx/{{ $harvest->dividend->tx_hash }}" target="_blank">
+                                    <a href="https://xchain.io/tx/{{ $harvest->dividend->tx_hash }}" target="_blank">
                                         {{ $harvest->scheduled_at->toDateString() }}
                                     </a>
                                 </td>

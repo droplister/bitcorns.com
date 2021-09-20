@@ -44,7 +44,7 @@
                     </div>
                 @else
                     <small class="form-text text-muted">
-                        Look up your send tx in <a href="https://xcpfox.com/transactions/sends" target="_blank">an explorer</a>. This is proof of submission fee.
+                        Look up your send tx in <a href="https://xchain.io/transactions/sends" target="_blank">an explorer</a>. This is proof of submission fee.
                     </small>
                 @endif
             </div>

@@ -43,7 +43,7 @@
                     Submissions
                 </h5>
                 <p class="card-text">
-                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ number_format(config('bitcorn.subfee')) }} {{ config('bitcorn.reward_token') }} to <a href="https://xcpfox.com/address/{{ config('bitcorn.subfee_address') }}" target="_blank">this address</a>. Afterwards, send one of your new cards to the <a href="{{ config('bitcorn.museum') }}" target="_blank">Bitcorn Museum</a> for permanent display. (See below.)
+                    When you're ready to submit, it's time to <em>burn</em>. Start by sending {{ number_format(config('bitcorn.subfee')) }} {{ config('bitcorn.reward_token') }} to <a href="https://xchain.io/address/{{ config('bitcorn.subfee_address') }}" target="_blank">this address</a>. Afterwards, send one of your new cards to the <a href="{{ config('bitcorn.museum') }}" target="_blank">Bitcorn Museum</a> for permanent display. (See below.)
                 </p>
                 <p class="card-text">
                     Now, you can use the form on this page to submit your card. If it gets accepted by <a href="{{ config('bitcorn.foundation') }}" target="_blank">The Foundation</a>, it will become a Bitcorn Card and get integrated into the game.
@@ -52,7 +52,7 @@
                     Submission Fee
                 </h5>
                 <p class="card-text">
-                    Send {{ number_format(config('bitcorn.subfee')) }} {{ config('bitcorn.reward_token') }} to this address: <a href="https://xcpfox.com/address/{{ config('bitcorn.subfee_address') }}" target="_blank">{{ config('bitcorn.subfee_address') }}</a>.
+                    Send {{ number_format(config('bitcorn.subfee')) }} {{ config('bitcorn.reward_token') }} to this address: <a href="https://xchain.io/address/{{ config('bitcorn.subfee_address') }}" target="_blank">{{ config('bitcorn.subfee_address') }}</a>.
                 </p>
                 <p class="card-text">
                     <em>The average card sells for {{ $dex_average }} {{ config('bitcorn.reward_token') }} on the DEX. (Last 30 Days)</em>
@@ -61,7 +61,7 @@
                     Bitcorn Museum
                 </h5>
                 <p class="card-text">
-                    Send one of your cards to this address: <a href="https://xcpfox.com/address/{{ config('bitcorn.museum_address') }}" target="_blank">{{ config('bitcorn.museum_address') }}</a>.
+                    Send one of your cards to this address: <a href="https://xchain.io/address/{{ config('bitcorn.museum_address') }}" target="_blank">{{ config('bitcorn.museum_address') }}</a>.
                 </p>
                 <p class="card-text">
                     <em>It's important that we curate and save this art forever.</em>
