@@ -4,9 +4,9 @@ namespace App\Listeners;
 
 use App\Farm;
 use App\Token;
-use App\Achievements\TradingCards;
-use App\Achievements\AccumulationPhase;
-use App\Achievements\MarketManipulation;
+use App\Achievements\Farms\TradingCards;
+use App\Achievements\Farms\AccumulationPhase;
+use App\Achievements\Farms\MarketManipulation;
 use Droplister\XcpCore\App\OrderMatch;
 use Droplister\XcpCore\App\Events\OrderMatchWasCreated;
 use Illuminate\Queue\InteractsWithQueue;

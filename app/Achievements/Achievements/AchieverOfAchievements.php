@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Achievements;
+namespace App\Achievements\Achievements;
 
 use Gstt\Achievements\Achievement;
 

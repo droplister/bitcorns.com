@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Farm;
-use App\Achievements\Famous;
-use App\Achievements\Featured;
-use App\Achievements\Publicist;
+use App\Achievements\Features\Famous;
+use App\Achievements\Features\Featured;
+use App\Achievements\Farms\Publicist;
 use App\Events\FeatureWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

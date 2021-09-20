@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Token;
-use App\Achievements\PermanentCollection;
+use App\Achievements\Tokens\PermanentCollection;
 use Droplister\XcpCore\App\Events\SendWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

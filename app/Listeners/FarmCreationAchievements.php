@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Achievements\EarlyAcropter;
+use App\Achievements\Farms\EarlyAcropter;
 use App\Events\FarmWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

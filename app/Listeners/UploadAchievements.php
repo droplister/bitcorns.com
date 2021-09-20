@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Achievements\AndyWarhol;
-use App\Achievements\ArtsAndCrafts;
-use App\Achievements\JeanFrancoisMillet;
+use App\Achievements\Uploads\AndyWarhol;
+use App\Achievements\Uploads\ArtsAndCrafts;
+use App\Achievements\Uploads\JeanFrancoisMillet;
 use App\Events\UploadWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

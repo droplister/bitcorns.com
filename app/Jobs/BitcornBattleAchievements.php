@@ -3,10 +3,10 @@
 namespace App\Jobs;
 
 use App\Farm;
-use App\Achievements\BattleLegend;
-use App\Achievements\BattleTested;
-use App\Achievements\BattleChampion;
-use App\Achievements\BattleHardened;
+use App\Achievements\Farms\BattleLegend;
+use App\Achievements\Farms\BattleTested;
+use App\Achievements\Farms\BattleChampion;
+use App\Achievements\Farms\BattleHardened;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

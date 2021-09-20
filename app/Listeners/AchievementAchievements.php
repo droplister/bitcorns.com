@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Achievements\AchieverOfAchievements;
+use App\Achievements\Achievements\AchieverOfAchievements;
 use Gstt\Achievements\Event\Unlocked;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

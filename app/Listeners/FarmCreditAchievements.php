@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Farm;
-use App\Achievements\Cornucopia;
-use App\Achievements\FarmersMarket;
-use App\Achievements\CornFlowethOver;
+use App\Achievements\Farms\Cornucopia;
+use App\Achievements\Farms\FarmersMarket;
+use App\Achievements\Farms\CornFlowethOver;
 use Droplister\XcpCore\App\Events\CreditWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;

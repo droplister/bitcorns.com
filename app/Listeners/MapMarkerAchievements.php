@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Achievements\WereOnTheMap;
+use App\Achievements\Farms\WereOnTheMap;
 use App\Events\MapMarkerWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
