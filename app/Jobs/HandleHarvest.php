@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Cache;
 use App\Coop;
 use App\Farm;
 use App\Harvest;
@@ -57,7 +58,9 @@ class HandleHarvest implements ShouldQueue
         // Update Harvest TX
         $this->updateHarvest($harvest);
 
-        // Fire Harvest Event
+        // Clear Page Cache
+        Cache::forget('harvest_coops_' . $harvest->id);
+        Cache::forget('harvest_farms_' . $harvest->id);
     }
 
     /**
