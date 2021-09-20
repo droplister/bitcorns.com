@@ -79,6 +79,7 @@ return [
                 'processes' => 1,
                 'tries' => 3,
                 'force' => true,
+                'timeout' => 600,
             ],
         ],
 
@@ -90,6 +91,7 @@ return [
                 'processes' => 1,
                 'tries' => 3,
                 'force' => true,
+                'timeout' => 600,
             ],
         ],
     ],
