@@ -100,6 +100,11 @@
                 </div>
             </div>
         </header>
+        <div class="alert alert-success mb-0 border-0 rounded-0" role="alert">
+            <div class="text-center">
+                <i aria-hidden="true" class="fa fa-info-circle"></i> Counterparty NFTs are now available on <a href="/opensea" target="_blank">OpenSea.io</a> thanks to <a href="https://circuitsofvalue.com/?ref=bitcorns" target="_blank">Emblem Vaults</a>.
+            </div>
+        </div>
         <main role="main">
             @yield('content')
         </main>
