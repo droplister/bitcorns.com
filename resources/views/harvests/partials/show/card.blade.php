@@ -1,7 +1,7 @@
 <div class="card mb-5">
     <div class="row">
         <div class="col-sm-4 col-md-3">
-            <img src="{{ $harvest->image_url }}" alt="{{ $harvest->name }}" width="100%" />
+            <img loading="lazy" src="{{ $harvest->image_url }}" alt="{{ $harvest->name }}" width="100%" />
         </div>
         <div class="col-sm-8 col-md-9">
             <div class="harvest-body">

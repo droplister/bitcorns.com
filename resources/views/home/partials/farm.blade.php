@@ -1,6 +1,6 @@
 <div class="card">
     <a href="{{ $farm->url }}">
-        <img src="{{ $farm->display_image_url }}" alt="{{ $farm->display_name }}" class="card-img-top" />
+        <img loading="lazy" src="{{ $farm->display_image_url }}" alt="{{ $farm->display_name }}" class="card-img-top" />
     </a>
     <div class="card-body">
         <a href="{{ $farm->url }}" class="btn btn-outline-primary pull-right">

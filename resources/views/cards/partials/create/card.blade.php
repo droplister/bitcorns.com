@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <img src="{{ asset('images/blank-card-example.png') }}" alt="Blank Card Example" width="100%" />
+                <img loading="lazy" src="{{ asset('images/blank-card-example.png') }}" alt="Blank Card Example" width="100%" />
                 <h5 class="card-title mt-4">
                     Creative Assets
                 </h5>

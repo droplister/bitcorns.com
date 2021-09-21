@@ -3,9 +3,9 @@
         <div class="modal-content border-0 text-center" style="background: transparent;">
             <div class="modal-body">
                 @if(isset($card->meta_data['orientation']) && $card->meta_data['orientation'] === 'landscape')
-                    <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" class="landscape" />
+                    <img loading="lazy" src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" class="landscape" />
                 @else
-                    <img src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" />
+                    <img loading="lazy" src="{{ $card->image_url }}" alt="{{ $card->name }}" width="100%" />
                 @endif
             </div>
         </div>

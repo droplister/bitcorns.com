@@ -22,7 +22,7 @@
       <div class="col-md-6 mb-4">
         <div class="card">
           <div class="card-body">
-            <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
+            <img loading="lazy" src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
             <h5 class="card-title">
               Harvested <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Harvest #1 to Now</small>
             </h5>
@@ -35,7 +35,7 @@
       <div class="col-md-6 mb-4">
         <div class="card">
           <div class="card-body">
-            <img src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
+            <img loading="lazy" src="/images/tokens/BITCORN.png" width="60" class="float-left mr-3">
             <h5 class="card-title">
               Remaining <small class="text-muted d-none d-sm-inline d-md-none d-lg-inline">Now to Harvest #16</small>
             </h5>

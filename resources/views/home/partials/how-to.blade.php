@@ -8,7 +8,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-4 col-lg-3">
-                <img src="{{ asset('/images/tiles/LAMBOGARAGE.png') }}" alt="LAMBOGARAGE" width="100%" />
+                <img loading="lazy" src="{{ asset('/images/tiles/LAMBOGARAGE.png') }}" alt="LAMBOGARAGE" width="100%" />
             </div>
             <div class="col-sm-8 col-lg-9">
                 <p class="card-text">

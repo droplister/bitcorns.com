@@ -3,7 +3,7 @@
         Top Farm
     </div>
     <a href="{{ $farm->url }}">
-        <img src="{{ $farm->display_image_url }}" alt="{{ $farm->name }}" class="w-100 border-bottom">
+        <img loading="lazy" src="{{ $farm->display_image_url }}" alt="{{ $farm->name }}" class="w-100 border-bottom">
     </a>
     <div class="card-body">
         <a href="{{ $farm->url }}" class="btn btn-outline-primary pull-right">

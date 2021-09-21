@@ -11,7 +11,7 @@
                             @foreach($uploads as $upload)
                                 <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
                                     <a href="{{ $upload->new_image_url }}">
-                                        <img class="d-block w-100" src="{{ $upload->new_image_url }}" /></a>
+                                        <img @if(!$loop->first) loading="lazy" @endif class="d-block w-100" src="{{ $upload->new_image_url }}" /></a>
                                     </a>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{{ $upload->created_at->format('M d, Y') }}</h5>
@@ -20,7 +20,7 @@
                                 @if($loop->last)
                                     <div class="carousel-item">
                                         <a href="{{ $upload->old_image_url }}">
-                                            <img class="d-block w-100" src="{{ $upload->old_image_url }}" />
+                                            <img loading="lazy" class="d-block w-100" src="{{ $upload->old_image_url }}" />
                                         </a>
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>{{ $farm->firstCrops ? $farm->firstCrops->confirmed_at->format('M d, Y') : $farm->created_at->format('M d, Y') }}</h5>

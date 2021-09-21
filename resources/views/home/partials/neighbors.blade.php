@@ -5,7 +5,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.foundation') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-foundation.png') }}" alt="Bitcorn Foundation" class="card-img-top" />
+                <img loading="lazy" src="{{ asset('images/websites/bitcorn-foundation.png') }}" alt="Bitcorn Foundation" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.foundation') }}" class="btn btn-outline-primary pull-right" target="_blank">
@@ -28,7 +28,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.store') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-store.png') }}" alt="Bitcorn Merch" class="card-img-top" />
+                <img loading="lazy" src="{{ asset('images/websites/bitcorn-store.png') }}" alt="Bitcorn Merch" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.store') }}" class="btn btn-outline-primary pull-right" target="_blank">
@@ -51,7 +51,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.museum') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-museum.png') }}" alt="Bitcorn Museum" class="card-img-top" />
+                <img loading="lazy" src="{{ asset('images/websites/bitcorn-museum.png') }}" alt="Bitcorn Museum" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.museum') }}" class="btn btn-outline-primary pull-right" target="_blank">
@@ -74,7 +74,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.battle') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-battle.png') }}" alt="Bitcorn Battle" class="card-img-top" />
+                <img loading="lazy" src="{{ asset('images/websites/bitcorn-battle.png') }}" alt="Bitcorn Battle" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.battle') }}" class="btn btn-outline-primary pull-right" target="_blank">
@@ -97,7 +97,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.podcast') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-uncensored.png') }}" alt="Bitcorn Uncensored" class="card-img-top" />
+                <img loading="lazy" src="{{ asset('images/websites/bitcorn-uncensored.png') }}" alt="Bitcorn Uncensored" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.podcast') }}" class="btn btn-outline-primary pull-right" target="_blank">
@@ -120,7 +120,7 @@
     <div class="col-12 col-sm-6 mb-5">
         <div class="card">
             <a href="{{ config('bitcorn.harvest') }}" target="_blank">
-                <img src="{{ asset('images/websites/bitcorn-harvest.png') }}" alt="Bitcorn Harvest" class="card-img-top" />
+                <img loading="lazy" src="{{ asset('images/websites/bitcorn-harvest.png') }}" alt="Bitcorn Harvest" class="card-img-top" />
             </a>
             <div class="card-body">
                 <a href="{{ config('bitcorn.harvest') }}" class="btn btn-outline-primary pull-right" target="_blank">

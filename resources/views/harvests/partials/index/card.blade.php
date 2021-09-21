@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-4 col-md-3">
             <a href="{{ route('harvests.show', ['harvest' => $harvest->id]) }}">
-                <img src="{{ $harvest->image_url }}" alt="{{ $harvest->name }}" width="100%" />
+                <img loading="lazy" src="{{ $harvest->image_url }}" alt="{{ $harvest->name }}" width="100%" />
             </a>
         </div>
         <div class="col-sm-8 col-md-9">

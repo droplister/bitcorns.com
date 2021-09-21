@@ -1,6 +1,6 @@
 <div class="card">
     <a href="{{ $coop->url }}">
-        <img src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="card-img-top border-bottom" />
+        <img loading="lazy" src="{{ $coop->image_url }}" alt="{{ $coop->name }}" class="card-img-top border-bottom" />
     </a>
     <div class="card-body">
         <a href="{{ $coop->url }}" class="btn btn-outline-primary pull-right">

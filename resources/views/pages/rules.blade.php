@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/tiles/LAMBOGARAGE.png') }}" alt="LAMBOGARAGE" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/tiles/LAMBOGARAGE.png') }}" alt="LAMBOGARAGE" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">
@@ -41,7 +41,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/tiles/HELIPAD.png') }}" alt="HELIPAD" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/tiles/HELIPAD.png') }}" alt="HELIPAD" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">
@@ -74,7 +74,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/tiles/YACHTDOCK.png') }}" alt="YACHTDOCK" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/tiles/YACHTDOCK.png') }}" alt="YACHTDOCK" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">
@@ -100,7 +100,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/world-map.png') }}" alt="World Map" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/world-map.png') }}" alt="World Map" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">
@@ -134,7 +134,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/tokens/BITCORN.png') }}" alt="BITCORN" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/tokens/BITCORN.png') }}" alt="BITCORN" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">
@@ -158,7 +158,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/tokens/SQUADGOALS.png') }}" alt="SQUADGOALS" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/tokens/SQUADGOALS.png') }}" alt="SQUADGOALS" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">
@@ -176,7 +176,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4 col-lg-3">
-                    <img src="{{ asset('/images/tokens/BRAGGING.png') }}" alt="BRAGGING" width="100%" />
+                    <img loading="lazy" src="{{ asset('/images/tokens/BRAGGING.png') }}" alt="BRAGGING" width="100%" />
                 </div>
                 <div class="col-sm-8 col-lg-9">
                     <p class="card-text">

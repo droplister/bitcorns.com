@@ -20,7 +20,7 @@
         <forecast crops="100"></forecast>
     </div>
     <a href="{{ route('pages.countdown', ['vision' => '2020']) }}" class="d-none d-md-inline">
-        <img src="{{ asset('images/3d-glasses.png') }}" alt="Dan's Vision" width="200" style="cursor: pointer" class="float-right mt-3" />
+        <img loading="lazy" src="{{ asset('images/3d-glasses.png') }}" alt="Dan's Vision" width="200" style="cursor: pointer" class="float-right mt-3" />
     </a>
     <h2 class="display-4 my-5">
         Countdown
