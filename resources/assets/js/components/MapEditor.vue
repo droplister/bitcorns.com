@@ -61,7 +61,7 @@
           <label for="signature">Signature</label>
           <input v-model="signature" id="signature" type="text" class="form-control" required>
           <small id="signatureHelp" class="form-text text-muted">
-            Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a>
+            Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a> <a href="counterparty:?action=sign&message=I authorize this change."><i class="fa fa-external-link"></i> FreeWallet</a>
           </small>
         </div>
         <div class="form-group">
