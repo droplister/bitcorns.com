@@ -31,14 +31,14 @@
         @endif
     </div>
     <div class="form-group">
-        <label for="signature">Signature</label>
+        <label for="signature">Signature <a href="counterparty:?action=sign&message=I authorize this change."><i class="fa fa-edit"></i></a></label>
         <input id="signature" type="text" class="form-control{{ $errors->has('signature') ? ' is-invalid' : '' }}" name="signature" value="{{ old('signature') }}" required>
         @if ($errors->has('signature'))
             <div class="invalid-feedback">
                 <strong>{{ $errors->first('signature') }}</strong>
             </div>
         @else
-            <small id="signatureHelp" class="form-text text-muted">Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a> <a href="counterparty:?action=sign&message=I authorize this change."><i class="fa fa-external-link"></i> FreeWallet</a></small>
+            <small id="signatureHelp" class="form-text text-muted">Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a> </small>
         @endif
     </div>
     <div class="form-group">

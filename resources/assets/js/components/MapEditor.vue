@@ -58,10 +58,10 @@
           <small id="messageHelp" class="form-text text-muted">Sign this message to authorize update.</small>
         </div>
         <div class="form-group">
-          <label for="signature">Signature</label>
+          <label for="signature">Signature <a href="counterparty:?action=sign&message=I authorize this change."><i class="fa fa-edit"></i></a></label>
           <input v-model="signature" id="signature" type="text" class="form-control" required>
           <small id="signatureHelp" class="form-text text-muted">
-            Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a> <a href="counterparty:?action=sign&message=I authorize this change."><i class="fa fa-external-link"></i> FreeWallet</a>
+            Enter your signed message. <a href="https://youtu.be/AvPdaNb35qY" target="_blank"><i class="fa fa-external-link"></i> Tutorial</a> 
           </small>
         </div>
         <div class="form-group">

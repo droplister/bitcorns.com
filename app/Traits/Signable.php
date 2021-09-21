@@ -41,9 +41,7 @@ trait Signable
         // Based on
         // https://github.com/Bit-Wasp/bitcoin-php/blob/1.0/examples/signedmessage.verify.php
         try {
-            $sig = '-----BEGIN BITCOIN SIGNED MESSAGE-----
-            ' . $request->message . '
-            -----BEGIN SIGNATURE-----
+            $sig = '-----BEGIN BITCOIN SIGNED MESSAGE----- ' . $request->message . ' -----BEGIN SIGNATURE-----
             '. $request->signature .'
             -----END BITCOIN SIGNED MESSAGE-----';
 
