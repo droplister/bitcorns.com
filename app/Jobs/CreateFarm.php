@@ -70,6 +70,7 @@ class CreateFarm implements ShouldQueue
             'name' => $this->getName(),
             'image_url' => $this->getImageUrl(),
             'content' => $this->getContent(),
+            'access' => strpos($this->credit->action, 'dispenser') !== false ? 0 : 1,
         ]);
     }
 
