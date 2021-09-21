@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <script defer data-domain="bitcorns.com" src="https://plausible.io/js/plausible.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
@@ -111,7 +112,7 @@
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right d-none d-sm-inline">
-                    <a href="{{ config('bitcorn.analytics_url') }}" target="_blank">Analytics</a>
+                    <a href="https://plausible.io/bitcorns.com" target="_blank">Analytics</a>
                 </p>
                 <p>
                     <a href="mailto:{{ config('bitcorn.email') }}" class="mr-3">Contact</a>
@@ -124,13 +125,5 @@
         </footer>
     </div>
 @yield('footer')
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ config('bitcorn.analytics') }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '{{ config('bitcorn.analytics') }}');
-</script>
 </body>
 </html>

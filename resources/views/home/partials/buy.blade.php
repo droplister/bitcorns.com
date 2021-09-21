@@ -11,7 +11,7 @@
             <h4 class="my-0 font-weight-normal">Basic Access</h4>
         </div>
         <div class="card-body">
-            <h1 class="card-title pricing-card-title">$3.50</h1>
+            <h1 class="card-title pricing-card-title">Sold Out</h1>
             <ul class="list-unstyled mt-3 mb-3">
                 <li>0.001 CROPS</li>
             </ul>
@@ -29,7 +29,7 @@
             <h4 class="my-0 font-weight-normal">Upload Access</h4>
         </div>
         <div class="card-body">
-            <h1 class="card-title pricing-card-title">$29.99</h1>
+            <h1 class="card-title pricing-card-title">Sold Out</h1>
             <ul class="list-unstyled mt-3 mb-3">
                 <li>0.01 CROPS</li>
             </ul>
@@ -49,7 +49,7 @@
         <div class="card-body">
             <h1 class="card-title pricing-card-title">{{ $last_price }}</h1>
             <ul class="list-unstyled mt-3 mb-3">
-                <li>1 CROPS</li>
+                <li>1 CROPS = {{ $last_price }}</li>
             </ul>
             <p class="card-text mb-4">
                 Other amounts may be available on the Counterparty DEX or directly from other members of the community. The last trade on occurred at a strike price of {{ $last_price }}.
