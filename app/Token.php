@@ -15,6 +15,7 @@ use Gstt\Achievements\Achiever;
 use Droplister\XcpCore\App\Burn;
 use Droplister\XcpCore\App\Send;
 use Droplister\XcpCore\App\Asset;
+use Droplister\XcpCore\App\Dispense;
 use Droplister\XcpCore\App\OrderMatch;
 use App\Http\Requests\Cards\StoreRequest;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -418,6 +419,18 @@ class Token extends Model
             ->orWhere('forward_asset', '=', $this->xcp_core_asset_name)
             ->where('status', '=', 'completed')
             ->orderBy('tx1_index', 'desc')
+            ->first();
+    }
+
+    /**
+     * Last Dispense
+     *
+     * @return \Droplister\XcpCore\App\Dispense
+     */
+    public function lastDispense()
+    {
+        return Dispense::where('asset', '=', $this->xcp_core_asset_name)
+            ->orderBy('tx_index', 'desc')
             ->first();
     }
 

@@ -27,8 +27,16 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">
-                            @if($card->lastMatch())
+                            @if($card->lastMatch() && $card->lastDispense())
+                                @if($card->lastMatch()->confirmed_at > $card->lastDispense()->confirmed_at)
+                                    <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($card->lastMatch()->trading_price_normalized, 8) }} {{ $card->lastMatch()->trading_pair_quote_asset }}</a>
+                                @else
+                                    <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($card->lastDispense()->dispenser->trading_price_normalized, 8) }} BTC</a>
+                                @endif
+                            @elseif($card->lastMatch())
                                 <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($card->lastMatch()->trading_price_normalized, 8) }} {{ $card->lastMatch()->trading_pair_quote_asset }}</a>
+                            @elseif($card->lastDispense())
+                                <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">{{ number_format($card->lastDispense()->dispenser->trading_price_normalized, 8) }} BTC</a>
                             @else
                                 <a href="https://digirare.com/cards/{{ $card->slug }}" target="_blank">No Trades</a>
                             @endif
