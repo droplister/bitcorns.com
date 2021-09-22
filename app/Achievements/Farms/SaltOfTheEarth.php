@@ -14,5 +14,5 @@ class SaltOfTheEarth extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = "A new farm was establshed! And today, the sun shone a little brighter.";
+    public $description = "A new farm was established! And today, the sun shone a little brighter.";
 }
