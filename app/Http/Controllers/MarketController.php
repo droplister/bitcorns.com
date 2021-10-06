@@ -19,7 +19,7 @@ class MarketController extends Controller
     public function index(Request $request)
     {
         // Tokens
-        $tokens = App\Token::published()->pluck('xcp_core_asset_name');
+        $tokens = Token::published()->pluck('xcp_core_asset_name');
 
         // Dispensers
         $dispensers = Cache::remember('market_dispensers', 5, function () use ($tokens) {
