@@ -16,6 +16,7 @@ Route::resource('/', 'HomeController', ['only' => ['index']]);
 Route::resource('/achievements', 'AchievementsController', ['only' => ['index', 'show']]);
 Route::resource('/cards', 'CardsController', ['only' => ['index', 'show', 'create', 'store', 'update']]);
 Route::resource('/coops', 'CoopsController');
+Route::resource('/market', 'MarketController', ['only' => ['index']]);
 Route::resource('/farms', 'FarmsController');
 Route::put('/farms/{farm}/coop', 'FarmCoopsController@update')->name('farms.coop.update');
 Route::resource('/harvests', 'HarvestsController', ['only' => ['index', 'show']]);
