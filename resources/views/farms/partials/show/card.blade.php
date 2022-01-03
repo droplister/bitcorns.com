@@ -1,5 +1,7 @@
 @if($card->name === 'CORNFETTI' && $balance->quantity_normalized >= config('bitcorn.min_cornfetti'))
     <cornfetti></cornfetti>
+@elseif($card->name === 'CORNTONE' && $balance->quantity_normalized >= config('bitcorn.min_corntone'))
+    <corntone></corntone>  
 @elseif($card->name === 'FULLCORN')
     <img src="{{ $card->image_url }}" width="100%" alt="{{ $card->name }}" class="mb-3" id="fullcorn_button" style="cursor: pointer;" />
 @else
