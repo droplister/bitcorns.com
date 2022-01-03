@@ -111,6 +111,11 @@ return [
      * Min Cornfetti
      */
     'min_cornfetti' => env('BITCORN_MIN_CORNFETTI', 800),
+    
+      /**
+     * Min Corntone
+     */
+    'min_corntone' => env('BITCORN_MIN_CORNTONE', 1),
 
     /**
      * Contact Email

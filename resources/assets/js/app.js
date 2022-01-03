@@ -25,6 +25,7 @@ Vue.use(require('vue-moment'));
 Vue.component('forecast', require('./components/Forecast.vue'));
 Vue.component('calculator', require('./components/Calculator.vue'));
 Vue.component('cornfetti', require('./components/Cornfetti.vue'));
+Vue.component('corntone', require('./components/Corntone.vue'));
 Vue.component('countdown', require('./components/Countdown.vue'));
 Vue.component('google-map', require('./components/GoogleMap.vue'));
 Vue.component('map-editor', require('./components/MapEditor.vue'));
