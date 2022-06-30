@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card text-center">
+                    <div class="card">
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs" id="farm2Tab" role="tablist">
                                 <li class="nav-item">
