@@ -35,7 +35,7 @@
                                     <tbody>
                                         @foreach($list_1 as $card)
                                             <tr>
-                                                <td><a href="{{ route('card.show', ['card' => $card->token->slug]) }}">{{ $card->token->name }}</a></td>
+                                                <td><a href="{{ route('cards.show', ['card' => $card->token->slug]) }}">{{ $card->token->name }}</a></td>
                                                 <td>{{ $card->quantity }}</td>
                                                 <td>{{ $card->token->asset->issuance }}</td>
                                                 <td>{{ $card->token->harvest_id }}</td>
@@ -77,7 +77,7 @@
                                     <tbody>
                                         @foreach($list_2 as $card)
                                             <tr>
-                                                <td><a href="{{ route('card.show', ['card' => $card->token->slug]) }}">{{ $card->token->name }}</a></td>
+                                                <td><a href="{{ route('cards.show', ['card' => $card->token->slug]) }}">{{ $card->token->name }}</a></td>
                                                 <td>{{ $card->quantity }}</td>
                                                 <td>{{ $card->token->asset->issuance }}</td>
                                                 <td>{{ $card->token->harvest_id }}</td>
