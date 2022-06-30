@@ -30,6 +30,13 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="dupes_1" id="dupes_1" {{ old('dupes_1') ? 'checked' : '' }}>
+
+                                        <label class="form-check-label" for="dupes_1">
+                                            {{ __('Dupes Only') }}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -56,6 +63,13 @@
                                                  <strong>{{ $errors->first('farm_2') }}</strong>
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="dupes_2" id="dupes_2" {{ old('dupes_2') ? 'checked' : '' }}>
+
+                                        <label class="form-check-label" for="dupes_2">
+                                            {{ __('Dupes Only') }}
+                                        </label>
                                     </div>
                                 </div>
                             </div>
