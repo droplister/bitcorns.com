@@ -53,6 +53,6 @@ class FairController extends Controller
         $list_2 = $farm_2->upgradeBalances()->whereIn('asset', $unique_2)->with('token.asset')->get()->sortBy('token.asset.issuance');
 
         // Report Back
-        return compact('farm_1', 'farm_2', 'list_1', 'list_2');
+        return view('fair.store', compact('farm_1', 'farm_2', 'list_1', 'list_2'));
     }
 }
