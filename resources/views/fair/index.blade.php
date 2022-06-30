@@ -63,11 +63,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row mt-5">
+                <div class="col text-center">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">
-                            Compare
+                            Compare Farms
                         </button>
                     </div>
                 </div>
