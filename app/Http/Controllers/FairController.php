@@ -33,8 +33,8 @@ class FairController extends Controller
         $farm_2 = Farm::findBySlugOrFail($request->farm_2);
 
         // Dupes
-        $dupes_1 = $request->input('dupes_1', false);
-        $dupes_2 = $request->input('dupes_2', false);
+        $dupes_1 = $request->has('dupes_1');
+        $dupes_2 = $request->has('dupes_2');
 
         // Tokens
         $upgrades_1 = Cache::remember('farm_upgrades_' . $farm_1->slug, 60, function () use ($farm_1) {
