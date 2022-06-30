@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Farm;
+use App\Http\Requests\Fair\StoreRequest;
 use Illuminate\Http\Request;
 
 class FairController extends Controller
