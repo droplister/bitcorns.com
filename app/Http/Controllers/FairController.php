@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Farm;
 use App\Http\Requests\Fair\StoreRequest;
 use Illuminate\Http\Request;
