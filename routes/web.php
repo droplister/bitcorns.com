@@ -34,3 +34,5 @@ Route::redirect('/map', '/', 302);
 Route::redirect('/order', '/buy', 301);
 Route::redirect('/submit', '/cards/create', 301);
 Route::redirect('/opensea', 'https://opensea.io/collection/emblem-vault?search[sortAscending]=false&search[sortBy]=PRICE&search[stringTraits][0][name]=Bitcorns&search[stringTraits][0][values][0]=All%20Bitcorns&collectionSlug=emblem-vault&ref=0xda467a5b795aafd564dbb48012007b7ebb8397d4', 301);
+Route::get('/looksfair', 'FairController@index')->name('fair.index';
+Route::post('/looksfair', 'FairController@store')->name('fair.store';
